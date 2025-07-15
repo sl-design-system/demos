@@ -1,0 +1,25 @@
+{
+  "name": "demos-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/angular-demo",
+    "apps/lit-demo",
+    "apps/svelte-demo",
+    "apps/vue-demo"
+  ],
+  "dependencies": {
+    "@angular/common": "^19.0.0",
+    "@angular/compiler": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@angular/platform-browser": "^19.0.0",
+    "@angular/platform-browser-dynamic": "^19.0.0",
+    "rxjs": "^7.8.0",
+    "zone.js": "^0.14.0"
+  },
+  "devDependencies": {
+    "@angular/cli": "^19.0.0",
+    "@angular-devkit/build-angular": "^19.0.0",
+    "@angular/compiler-cli": "^19.0.0",
+    "typescript": "5.8.3"
+  }
+}
