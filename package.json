@@ -20,6 +20,12 @@
     "@angular/cli": "^19.0.0",
     "@angular-devkit/build-angular": "^19.0.0",
     "@angular/compiler-cli": "^19.0.0",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "vite": "^4.0.0"
+  },
+  "scripts": {
+    "dev:lit": "cd apps/lit-demo && npm run dev",
+    "build:lit": "cd apps/lit-demo && npm run build",
+    "preview:lit": "cd apps/lit-demo && npm run preview"
   }
 }
