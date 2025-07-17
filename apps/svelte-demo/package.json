@@ -4,9 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "wireit",
     "build": "vite build",
     "preview": "vite preview"
+  },
+  "wireit": {
+    "dev": {
+      "command": "vite",
+      "files": ["vite.config.js", "tsconfig.json"]
+    }
   },
   "dependencies": {
     "svelte": "^4.0.0"
@@ -14,6 +20,7 @@
   "devDependencies": {
     "vite": "^4.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
-    "svelte-preprocess": "^5.0.0"
+    "svelte-preprocess": "^5.0.0",
+    "wireit": "^0.14.12"
   }
 }

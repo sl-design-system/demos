@@ -3,16 +3,25 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "wireit",
     "build": "vite build",
     "preview": "vite preview"
+  },
+  "wireit": {
+    "dev": {
+      "command": "vite",
+      "files": [
+        "vite.config.js",
+        "index.html"
+      ]
+    }
   },
   "dependencies": {
     "vue": "^3.4.0"
   },
   "devDependencies": {
     "vite": "^4.0.0",
-    "@vitejs/plugin-vue": "^4.0.0"
+    "@vitejs/plugin-vue": "^4.0.0",
+    "wireit": "^0.14.12"
   }
 }
-
