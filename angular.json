@@ -18,7 +18,10 @@
             "polyfills": "apps/angular-demo/src/polyfills.ts",
             "tsConfig": "apps/angular-demo/tsconfig.app.json",
             "assets": [],
-            "styles": [],
+            "styles": [
+              "./node_modules/@sl-design-system/sanoma-learning/light.css",
+              "apps/angular-demo/src/styles.css"
+            ],
             "scripts": []
           },
           "configurations": {

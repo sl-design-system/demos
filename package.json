@@ -8,11 +8,17 @@
     "apps/vue-demo"
   ],
   "dependencies": {
+    "@floating-ui/dom": "^1.6.13",
+    "@sl-design-system/angular": "^3.1.0",
+    "@sl-design-system/button": "^1.2.4",
+    "@sl-design-system/sanoma-learning": "^0.4.5",
+    "@sl-design-system/tooltip": "^1.1.5",
     "@angular/common": "^19.0.0",
     "@angular/compiler": "^19.0.0",
     "@angular/core": "^19.0.0",
     "@angular/platform-browser": "^19.0.0",
     "@angular/platform-browser-dynamic": "^19.0.0",
+    "@open-wc/scoped-elements": "^3.0.5",
     "rxjs": "^7.8.0",
     "zone.js": "^0.14.0"
   },
