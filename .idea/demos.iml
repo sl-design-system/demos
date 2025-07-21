@@ -3,7 +3,10 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/apps/angular-demo/.wireit" />
       <excludeFolder url="file://$MODULE_DIR$/apps/lit-demo/.wireit" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/svelte-demo/.wireit" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/vue-demo/.wireit" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

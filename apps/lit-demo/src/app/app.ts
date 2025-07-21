@@ -1,19 +1,26 @@
-import {css, CSSResultGroup, html, LitElement, TemplateResult} from 'lit';
-import { type ScopedElementsMap, ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
-// import { ScopedElementsMixin } from '@open-wc/scoped-elements';
-import { styles } from './app.styles';
-// import { Button } from '@sanomalearning/slds-core/button';
+import { css, CSSResultGroup, html, LitElement, TemplateResult } from 'lit';
+import { ScopedElementsMixin, type ScopedElementsMap } from '@open-wc/scoped-elements/lit-element.js';
+// import { styles } from './app.styles';
 import { Button } from '@sl-design-system/button';
-// import {ScopedElementsMap} from "@open-wc/scoped-elements/types.js";
 
 export class App extends ScopedElementsMixin(LitElement) {
   static get scopedElements(): ScopedElementsMap {
-    return {
-      'sl-button': Button
-    };
+    return { 'sl-button': Button };
   }
 
-  static styles: CSSResultGroup = styles;
+  static styles: CSSResultGroup = css`
+    //@import '../../../../node_modules/@sl-design-system/sanoma-learning/light.css';
+
+    :host {
+      font-family: source-sans-pro, "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+    }
+    
+    h1 {
+      color: #1976d2;
+    }
+  `;
 
   render(): TemplateResult {
     return html`

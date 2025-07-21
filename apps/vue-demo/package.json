@@ -20,6 +20,7 @@
     "vue": "^3.4.0"
   },
   "devDependencies": {
+    "@sl-design-system/sanoma-learning": "^0.4.5",
     "vite": "^6.3.5",
     "@vitejs/plugin-vue": "^4.0.0",
     "wireit": "^0.14.12"
