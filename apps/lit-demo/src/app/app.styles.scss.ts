@@ -1,12 +1,2 @@
-import { css } from 'lit';
-
-export default css`
-@import '@sl-design-system/sanoma-learning/light.css';
-@import '../../../../node_modules/@sl-design-system/sanoma-learning/light.css';
-:host {
-  font-family: source-sans-pro, "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-h1 {
-  color: #1976d2;
-}`;
+import styles from './app.styles.scss.js';
+export default styles;
