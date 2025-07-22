@@ -4,13 +4,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate-styles": "node scripts/generate-styles.js",
+    "generate-styles": "wireit",
     "start": "wireit"
   },
   "wireit": {
+    "generate-styles": {
+      "command": "node scripts/generate-styles.js",
+      "files": ["scripts/generate-styles.js", "src/app/app.styles.scss", "package.json"],
+      "output": ["src/app/app.styles.scss.js"]
+    },
     "start": {
-      "command": "npm run generate-styles && wds --open --watch",
-      "files": ["scripts/generate-styles.js", "src/app/app.styles.scss"]
+      "command": "wds --open --watch",
+      "dependencies": ["generate-styles"]
     }
   },
   "dependencies": {
