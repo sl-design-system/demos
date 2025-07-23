@@ -2,17 +2,39 @@
   "name": "vue-demo",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "wireit",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "wireit",
+    "preview": "wireit"
   },
   "wireit": {
     "dev": {
-      "command": "vite",
+      "command": "node scripts/build.js --watch",
       "files": [
-        "vite.config.js",
-        "index.html"
+        "scripts/build.js",
+        "index.html",
+        "tsconfig.json",
+        "src/**/*"
+      ],
+      "service": true
+    },
+    "build": {
+      "command": "node scripts/build.js",
+      "files": [
+        "scripts/build.js",
+        "index.html",
+        "tsconfig.json",
+        "src/**/*"
+      ],
+      "output": [
+        "dist/**"
+      ]
+    },
+    "preview": {
+      "command": "wds --root-dir dist --open",
+      "dependencies": [
+        "build"
       ]
     }
   },
@@ -20,9 +42,8 @@
     "vue": "^3.4.0"
   },
   "devDependencies": {
-    "@sl-design-system/sanoma-learning": "^0.4.5",
-    "vite": "^6.3.5",
-    "@vitejs/plugin-vue": "^4.0.0",
+    "esbuild": "^0.23.0",
+    "esbuild-plugin-vue-next": "^0.1.4",
     "wireit": "^0.14.12"
   }
 }

@@ -7,6 +7,37 @@
     "apps/svelte-demo",
     "apps/vue-demo"
   ],
+  "scripts": {
+    "dev:lit": "wireit",
+    "build:lit": "wireit",
+    "preview:lit": "wireit",
+    "build": "wireit"
+  },
+  "wireit": {
+    "dev:lit": {
+      "dependencies": [
+        "./apps/lit-demo:dev"
+      ]
+    },
+    "build:lit": {
+      "dependencies": [
+        "./apps/lit-demo:build"
+      ]
+    },
+    "preview:lit": {
+      "dependencies": [
+        "./apps/lit-demo:preview"
+      ]
+    },
+    "build": {
+      "dependencies": [
+        "./apps/angular-demo:build",
+        "./apps/lit-demo:build",
+        "./apps/svelte-demo:build",
+        "./apps/vue-demo:build"
+      ]
+    }
+  },
   "dependencies": {
     "@floating-ui/dom": "^1.6.13",
     "@sl-design-system/angular": "^3.1.0",
@@ -27,11 +58,7 @@
     "@angular-devkit/build-angular": "^19.0.0",
     "@angular/compiler-cli": "^19.0.0",
     "typescript": "5.8.3",
-    "vite": "^4.0.0"
-  },
-  "scripts": {
-    "dev:lit": "cd apps/lit-demo && npm run dev",
-    "build:lit": "cd apps/lit-demo && npm run build",
-    "preview:lit": "cd apps/lit-demo && npm run preview"
+    "vite": "^4.0.0",
+    "wireit": "^0.14.12"
   }
 }

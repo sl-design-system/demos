@@ -4,14 +4,29 @@
   "private": true,
   "scripts": {
     "start": "wireit",
-    "build": "ng build"
+    "build": "wireit"
   },
   "wireit": {
     "start": {
       "command": "ng serve",
       "files": [
         "angular.json",
-        "src/**/*.ts"
+        "tsconfig.json",
+        "tsconfig.app.json",
+        "src/**/*"
+      ],
+      "service": true
+    },
+    "build": {
+      "command": "ng build",
+      "files": [
+        "angular.json",
+        "tsconfig.json",
+        "tsconfig.app.json",
+        "src/**/*"
+      ],
+      "output": [
+        "dist/**"
       ]
     }
   },

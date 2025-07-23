@@ -5,21 +5,46 @@
   "type": "module",
   "scripts": {
     "dev": "wireit",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "wireit",
+    "preview": "wireit"
   },
   "wireit": {
     "dev": {
-      "command": "vite",
-      "files": ["vite.config.js", "tsconfig.json"]
+      "command": "node scripts/build.js --watch",
+      "files": [
+        "scripts/build.js",
+        "src/index.html",
+        "tsconfig.json",
+        "src/**/*"
+      ],
+      "service": true
+    },
+    "build": {
+      "command": "node scripts/build.js",
+      "files": [
+        "scripts/build.js",
+        "src/index.html",
+        "tsconfig.json",
+        "src/**/*"
+      ],
+      "output": [
+        "dist/**"
+      ]
+    },
+    "preview": {
+      "command": "wds --root-dir dist --open",
+      "dependencies": [
+        "build"
+      ]
     }
   },
   "dependencies": {
     "svelte": "^4.0.0"
   },
   "devDependencies": {
-    "vite": "^4.0.0",
-    "@sveltejs/vite-plugin-svelte": "^3.0.0",
+    "@web/dev-server": "^0.4.6",
+    "esbuild": "^0.23.0",
+    "esbuild-svelte": "^0.8.0",
     "svelte-preprocess": "^5.0.0",
     "wireit": "^0.14.12"
   }

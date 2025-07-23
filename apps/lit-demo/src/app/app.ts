@@ -11,20 +11,6 @@ export class App extends ScopedElementsMixin(LitElement) {
 
   static styles = styles;
 
-  // static styles: CSSResultGroup = css`
-  //   //@import '../../../../node_modules/@sl-design-system/sanoma-learning/light.css';
-  //
-  //   :host {
-  //     font-family: source-sans-pro, "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-  //     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-  //     "Segoe UI Symbol";
-  //   }
-  //
-  //   h1 {
-  //     color: #1976d2;
-  //   }
-  // `;
-
   render(): TemplateResult {
     return html`
       <h1>Hello Lit Demo!</h1>
