@@ -2,16 +2,13 @@
   "name": "demos-monorepo",
   "private": true,
   "workspaces": [
-    "apps/angular-demo",
-    "apps/lit-demo",
-    "apps/svelte-demo",
-    "apps/vue-demo"
+    "apps/*"
   ],
   "scripts": {
     "dev:lit": "wireit",
     "build:lit": "wireit",
     "preview:lit": "wireit",
-    "build": "wireit"
+    "build": "yarn workspaces foreach --all run build"
   },
   "wireit": {
     "dev:lit": {
@@ -58,7 +55,6 @@
     "@angular-devkit/build-angular": "^19.0.0",
     "@angular/compiler-cli": "^19.0.0",
     "typescript": "5.8.3",
-    "vite": "^4.0.0",
     "wireit": "^0.14.12"
   }
 }

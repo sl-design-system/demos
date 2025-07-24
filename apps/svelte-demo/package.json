@@ -38,10 +38,9 @@
       ]
     }
   },
-  "dependencies": {
-    "svelte": "^4.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "svelte": "^4.0.0",
     "@web/dev-server": "^0.4.6",
     "esbuild": "^0.23.0",
     "esbuild-svelte": "^0.8.0",

@@ -40,3 +40,6 @@ apps/**/*.d.ts
 apps/**/*.d.ts.map
 apps/**/*.js
 apps/**/*.js.map
+
+# Intellij
+.idea/
