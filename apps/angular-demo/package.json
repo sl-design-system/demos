@@ -2,9 +2,12 @@
   "name": "angular-demo",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "wireit",
-    "build": "wireit"
+    "build": "wireit",
+    "lint": "wireit",
+    "lint:fix": "wireit"
   },
   "wireit": {
     "start": {
@@ -28,6 +31,24 @@
       "output": [
         "dist/**"
       ]
+    },
+    "lint": {
+      "command": "eslint . --ext .ts,.html",
+      "files": [
+        "src/**/*.ts",
+        "src/**/*.html"
+      ]
+    },
+    "lint:fix": {
+      "command": "eslint . --ext .ts,.html --fix",
+      "files": [
+        "src/**/*.ts",
+        "src/**/*.html"
+      ],
+      "output": [
+        "src/**/*.ts",
+        "src/**/*.html"
+      ]
     }
   },
   "dependencies": {
@@ -44,6 +65,7 @@
     "@angular/cli": "^19.0.0",
     "@angular-devkit/build-angular": "^19.0.0",
     "@angular/compiler-cli": "^19.0.0",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "@angular-eslint/eslint-plugin-template": "^20.1.1"
   }
 }

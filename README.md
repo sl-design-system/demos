@@ -1,4 +1,5 @@
 # demos
+
 Monorepo containing demo apps that showcase SLDS components.
 
 ## Getting Started
@@ -74,6 +75,40 @@ It is also possible to build all applications at once, by running the following 
 
 ```bash
 yarn build
+```
+
+## Linting
+
+You can run the linter on all applications at once by running the following command in the root of the project:
+
+```bash
+yarn lint
+```
+
+You can also lint a specific application by running the following command:
+
+```bash
+yarn workspace <workspace-name> lint
+```
+
+For example, to lint the Angular demo app, you would run:
+
+```bash
+yarn workspace angular-demo lint
+```
+
+You can also automatically fix any fixable linting errors by running the following command:
+
+```bash
+yarn lint:fix
+```
+
+## Formatting Code
+
+You can automatically format all the code in the project by running the following command in the root of the project:
+
+```bash
+yarn format
 ```
 
 TODO: Describe how to test the components (locally, from `components` repo) in the demo apps.

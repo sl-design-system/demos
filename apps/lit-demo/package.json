@@ -7,28 +7,64 @@
     "generate-styles": "wireit",
     "dev": "wireit",
     "build": "wireit",
-    "preview": "wireit"
+    "preview": "wireit",
+    "lint": "wireit",
+    "lint:fix": "wireit"
   },
   "wireit": {
     "generate-styles": {
       "command": "node scripts/generate-styles.js",
-      "files": ["scripts/generate-styles.js", "src/**/*.scss", "package.json"],
-      "output": ["src/**/*.scss.js"]
+      "files": [
+        "scripts/generate-styles.js",
+        "src/**/*.scss",
+        "package.json"
+      ],
+      "output": [
+        "src/**/*.scss.js"
+      ]
     },
     "dev": {
       "command": "node scripts/build.js --watch",
-      "dependencies": ["generate-styles"],
+      "dependencies": [
+        "generate-styles"
+      ],
       "service": true
     },
     "build": {
       "command": "node scripts/build.js",
-      "files": ["scripts/build.js", "src/**/*", "index.html", "tsconfig.json"],
-      "dependencies": ["generate-styles"],
-      "output": ["dist/**/*"]
+      "files": [
+        "scripts/build.js",
+        "src/**/*",
+        "index.html",
+        "tsconfig.json"
+      ],
+      "dependencies": [
+        "generate-styles"
+      ],
+      "output": [
+        "dist/**/*"
+      ]
     },
     "preview": {
       "command": "wds --root-dir dist --open",
-      "dependencies": ["build"]
+      "dependencies": [
+        "build"
+      ]
+    },
+    "lint": {
+      "command": "eslint . --ext .ts",
+      "files": [
+        "src/**/*.ts"
+      ]
+    },
+    "lint:fix": {
+      "command": "eslint . --ext .ts --fix",
+      "files": [
+        "src/**/*.ts"
+      ],
+      "output": [
+        "src/**/*.ts"
+      ]
     }
   },
   "dependencies": {

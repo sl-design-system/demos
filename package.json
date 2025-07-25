@@ -1,6 +1,7 @@
 {
   "name": "demos-monorepo",
   "private": true,
+  "type": "module",
   "workspaces": [
     "apps/*"
   ],
@@ -8,7 +9,10 @@
     "dev:lit": "wireit",
     "build:lit": "wireit",
     "preview:lit": "wireit",
-    "build": "yarn workspaces foreach --all run build"
+    "build": "wireit",
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "format": "wireit"
   },
   "wireit": {
     "dev:lit": {
@@ -33,28 +37,68 @@
         "./apps/svelte-demo:build",
         "./apps/vue-demo:build"
       ]
+    },
+    "lint": {
+      "dependencies": [
+        "./apps/angular-demo:lint",
+        "./apps/lit-demo:lint",
+        "./apps/svelte-demo:lint",
+        "./apps/vue-demo:lint"
+      ]
+    },
+    "lint:fix": {
+      "dependencies": [
+        "./apps/angular-demo:lint:fix",
+        "./apps/lit-demo:lint:fix",
+        "./apps/svelte-demo:lint:fix",
+        "./apps/vue-demo:lint:fix"
+      ]
+    },
+    "format": {
+      "command": "prettier --write .",
+      "files": [
+        "**/*.{js,ts,json,html,svelte,vue,css,scss,md}"
+      ],
+      "output": []
     }
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.6.13",
-    "@sl-design-system/angular": "^3.1.0",
-    "@sl-design-system/button": "^1.2.4",
-    "@sl-design-system/sanoma-learning": "^0.4.5",
-    "@sl-design-system/tooltip": "^1.1.5",
     "@angular/common": "^19.0.0",
     "@angular/compiler": "^19.0.0",
     "@angular/core": "^19.0.0",
     "@angular/platform-browser": "^19.0.0",
     "@angular/platform-browser-dynamic": "^19.0.0",
+    "@floating-ui/dom": "^1.6.13",
     "@open-wc/scoped-elements": "^3.0.5",
+    "@sl-design-system/angular": "^3.1.0",
+    "@sl-design-system/button": "^1.2.4",
+    "@sl-design-system/sanoma-learning": "^0.4.5",
+    "@sl-design-system/tooltip": "^1.1.5",
     "rxjs": "^7.8.0",
     "zone.js": "^0.14.0"
   },
   "devDependencies": {
-    "@angular/cli": "^19.0.0",
     "@angular-devkit/build-angular": "^19.0.0",
+    "@angular-eslint/eslint-plugin": "^20.1.1",
+    "@angular-eslint/template-parser": "^20.1.1",
+    "@angular-eslint/eslint-plugin-template": "^20.1.1",
+    "@angular/cli": "^19.0.0",
     "@angular/compiler-cli": "^19.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-lit": "^2.1.1",
+    "eslint-plugin-lit-a11y": "^5.1.1",
+    "eslint-plugin-svelte": "^3.11.0",
+    "eslint-plugin-vue": "^10.3.0",
+    "eslint-plugin-wc": "^3.0.1",
+    "globals": "^16.3.0",
+    "prettier": "^3.6.2",
+    "svelte-eslint-parser": "^1.3.0",
     "typescript": "5.8.3",
+    "typescript-eslint": "^8.38.0",
+    "vue-eslint-parser": "^10.2.0",
     "wireit": "^0.14.12"
   }
 }

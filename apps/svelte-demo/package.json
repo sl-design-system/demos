@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "wireit",
     "build": "wireit",
-    "preview": "wireit"
+    "preview": "wireit",
+    "lint": "wireit",
+    "lint:fix": "wireit"
   },
   "wireit": {
     "dev": {
@@ -35,6 +37,24 @@
       "command": "wds --root-dir dist --open",
       "dependencies": [
         "build"
+      ]
+    },
+    "lint": {
+      "command": "eslint . --ext .ts,.svelte",
+      "files": [
+        "src/**/*.ts",
+        "src/**/*.svelte"
+      ]
+    },
+    "lint:fix": {
+      "command": "eslint . --ext .ts,.svelte --fix",
+      "files": [
+        "src/**/*.ts",
+        "src/**/*.svelte"
+      ],
+      "output": [
+        "src/**/*.ts",
+        "src/**/*.svelte"
       ]
     }
   },
