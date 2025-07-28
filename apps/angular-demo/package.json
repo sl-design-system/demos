@@ -33,14 +33,14 @@
       ]
     },
     "lint": {
-      "command": "eslint . --ext .ts,.html",
+      "command": "eslint --config eslint.config.mjs --ext .ts,.html .",
       "files": [
         "src/**/*.ts",
         "src/**/*.html"
       ]
     },
     "lint:fix": {
-      "command": "eslint . --ext .ts,.html --fix",
+      "command": "eslint --config eslint.config.mjs --ext .ts,.html --fix .",
       "files": [
         "src/**/*.ts",
         "src/**/*.html"
