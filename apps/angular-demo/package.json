@@ -34,11 +34,17 @@
     },
     "lint": {
       "command": "eslint . --ext .ts",
-      "files": ["src/**/*.ts","src/**/*.html"]
+      "files": [
+        "src/**/*.ts",
+        "src/**/*.html"
+      ]
     },
     "lint:fix": {
       "command": "eslint . --ext .ts --fix",
-      "files": ["src/**/*.ts","src/**/*.html"]
+      "files": [
+        "src/**/*.ts",
+        "src/**/*.html"
+      ]
     }
   },
   "dependencies": {

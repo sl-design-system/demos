@@ -6,9 +6,6 @@
     "apps/*"
   ],
   "scripts": {
-    "dev:lit": "wireit",
-    "build:lit": "wireit",
-    "preview:lit": "wireit",
     "build": "wireit",
     "lint": "wireit",
     "lint:fix": "wireit",
@@ -17,21 +14,6 @@
     "format": "wireit"
   },
   "wireit": {
-    "dev:lit": {
-      "dependencies": [
-        "./apps/lit-demo:dev"
-      ]
-    },
-    "build:lit": {
-      "dependencies": [
-        "./apps/lit-demo:build"
-      ]
-    },
-    "preview:lit": {
-      "dependencies": [
-        "./apps/lit-demo:preview"
-      ]
-    },
     "build": {
       "dependencies": [
         "./apps/angular-demo:build",

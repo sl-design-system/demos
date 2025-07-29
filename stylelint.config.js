@@ -5,7 +5,7 @@ export default {
     '**/dist/**',
     '**/node_modules/**',
     '**/.wireit/**',
-    '**/*.scss.js'
+    '**/*.scss.js',
   ],
   rules: {
     'color-named': 'never',
@@ -16,8 +16,8 @@ export default {
       true,
       {
         // WebKit still has this property prefixed
-        ignoreProperties: ['backdrop-filter']
-      }
+        ignoreProperties: ['backdrop-filter'],
+      },
     ],
     'csstools/use-logical': 'always',
     'order/properties-alphabetical-order': true,
@@ -29,21 +29,21 @@ export default {
         singleQuote: true,
         tabWidth: 2,
         trailingComma: 'none',
-        endOfLine: 'auto'
-      }
-    ]
+        endOfLine: 'auto',
+      },
+    ],
   },
   overrides: [
     {
       files: ['**/*.scss'],
       extends: ['stylelint-config-standard-scss'],
       rules: {
-        'scss/operator-no-newline-after': null
-      }
+        'scss/operator-no-newline-after': null,
+      },
     },
     {
       files: ['**/*.ts'],
-      customSyntax: 'postcss-lit'
-    }
-  ]
+      customSyntax: 'postcss-lit',
+    },
+  ],
 };

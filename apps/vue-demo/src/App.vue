@@ -12,4 +12,3 @@
 <style scoped>
 /* You can add scoped styles here or rely on App.css */
 </style>
-

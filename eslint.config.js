@@ -13,19 +13,16 @@ export default [
       'dist/**',
       'node_modules/**',
       '.wireit/**',
-      '**/*.html',  // Exclude all HTML files from ESLint
-      '**/*.vue',   // Exclude all Vue files from ESLint for now
+      '**/*.html', // Exclude all HTML files from ESLint
+      '**/*.vue', // Exclude all Vue files from ESLint for now
       '**/*.svelte', // Exclude all Svelte files from ESLint for now
       '**/scripts/**', // Exclude build scripts
-      '**/*.scss.js'   // Exclude generated SCSS files
-    ]
+      '**/*.scss.js', // Exclude generated SCSS files
+    ],
   },
 
   // extend recommended ESLint and plugin configs
-  ...compat.extends(
-    'plugin:@typescript-eslint/recommended',
-    'prettier'
-  ),
+  ...compat.extends('plugin:@typescript-eslint/recommended', 'prettier'),
 
   // apply TypeScript parser only to TS and JS files
   {
@@ -38,12 +35,12 @@ export default [
           './apps/angular-demo/tsconfig.app.json',
           './apps/lit-demo/tsconfig.json',
           './apps/svelte-demo/tsconfig.json',
-          './apps/vue-demo/tsconfig.json'
+          './apps/vue-demo/tsconfig.json',
         ],
         tsconfigRootDir: new URL('.', import.meta.url).pathname,
         ecmaVersion: 'latest',
-        sourceType: 'module'
-      }
-    }
-  }
+        sourceType: 'module',
+      },
+    },
+  },
 ];

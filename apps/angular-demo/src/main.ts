@@ -8,8 +8,7 @@ import '@sl-design-system/button/register.js';
 bootstrapApplication(AppComponent);
 
 platformBrowserDynamic()
-    .bootstrapModule(AppModule)
-    .catch(err => console.error(err));
+  .bootstrapModule(AppModule)
+  .catch((err) => console.error(err));
 
 setup();
-
