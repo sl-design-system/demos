@@ -33,22 +33,13 @@
       ]
     },
     "lint": {
-      "command": "eslint --config eslint.config.mjs --ext .ts,.html .",
-      "files": [
-        "src/**/*.ts",
-        "src/**/*.html"
-      ]
+      "command": "eslint . --ext .ts,.html",
+      "files": ["src/**/*.ts","src/**/*.html"]
     },
     "lint:fix": {
-      "command": "eslint --config eslint.config.mjs --ext .ts,.html --fix .",
-      "files": [
-        "src/**/*.ts",
-        "src/**/*.html"
-      ],
-      "output": [
-        "src/**/*.ts",
-        "src/**/*.html"
-      ]
+      "command": "eslint . --ext .ts,.html --fix",
+      "files": ["src/**/*.ts","src/**/*.html"],
+      "output": ["src/**/*.ts","src/**/*.html"]
     }
   },
   "dependencies": {

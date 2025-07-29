@@ -52,13 +52,13 @@
       ]
     },
     "lint": {
-      "command": "eslint . --ext .ts",
+      "command": "eslint . --ext .ts,.js,.html",
       "files": [
         "src/**/*.ts"
       ]
     },
     "lint:fix": {
-      "command": "eslint . --ext .ts --fix",
+      "command": "eslint . --ext .ts,.js,.html --fix",
       "files": [
         "src/**/*.ts"
       ],
