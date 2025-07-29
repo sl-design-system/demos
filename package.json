@@ -12,6 +12,8 @@
     "build": "wireit",
     "lint": "wireit",
     "lint:fix": "wireit",
+    "stylelint": "wireit",
+    "stylelint:fix": "wireit",
     "format": "wireit"
   },
   "wireit": {
@@ -53,6 +55,20 @@
         "./apps/svelte-demo:lint:fix",
         "./apps/vue-demo:lint:fix"
       ]
+    },
+    "stylelint": {
+      "command": "stylelint '**/*.{css,scss}'",
+      "files": [
+        "**/*.{css,scss}"
+      ],
+      "output": []
+    },
+    "stylelint:fix": {
+      "command": "stylelint '**/*.{css,scss}' --fix",
+      "files": [
+        "**/*.{css,scss}"
+      ],
+      "output": []
     },
     "format": {
       "command": "prettier --write .",
@@ -99,6 +115,13 @@
     "typescript": "5.8.3",
     "typescript-eslint": "^8.38.0",
     "vue-eslint-parser": "^10.2.0",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-config-standard-scss": "^13.0.0",
+    "stylelint-use-logical": "^2.1.2",
+    "stylelint-order": "^6.0.4",
+    "stylelint-prettier": "^5.0.0",
+    "postcss-lit": "^1.1.1",
     "wireit": "^0.14.12"
   }
 }
