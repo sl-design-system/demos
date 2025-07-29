@@ -61,9 +61,6 @@
       "command": "eslint . --ext .ts,.js,.html --fix",
       "files": [
         "src/**/*.ts"
-      ],
-      "output": [
-        "src/**/*.ts"
       ]
     }
   },

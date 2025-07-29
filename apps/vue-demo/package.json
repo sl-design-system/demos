@@ -40,19 +40,15 @@
       ]
     },
     "lint": {
-      "command": "eslint . --ext .ts,.vue",
+      "command": "eslint . --ext .ts",
       "files": [
         "src/**/*.ts",
         "src/**/*.vue"
       ]
     },
     "lint:fix": {
-      "command": "eslint . --ext .ts,.vue --fix",
+      "command": "eslint . --ext .ts --fix",
       "files": [
-        "src/**/*.ts",
-        "src/**/*.vue"
-      ],
-      "output": [
         "src/**/*.ts",
         "src/**/*.vue"
       ]

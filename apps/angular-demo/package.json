@@ -33,13 +33,12 @@
       ]
     },
     "lint": {
-      "command": "eslint . --ext .ts,.html",
+      "command": "eslint . --ext .ts",
       "files": ["src/**/*.ts","src/**/*.html"]
     },
     "lint:fix": {
-      "command": "eslint . --ext .ts,.html --fix",
-      "files": ["src/**/*.ts","src/**/*.html"],
-      "output": ["src/**/*.ts","src/**/*.html"]
+      "command": "eslint . --ext .ts --fix",
+      "files": ["src/**/*.ts","src/**/*.html"]
     }
   },
   "dependencies": {

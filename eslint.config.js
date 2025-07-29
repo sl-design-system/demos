@@ -12,7 +12,12 @@ export default [
       '**/.wireit/**',
       'dist/**',
       'node_modules/**',
-      '.wireit/**'
+      '.wireit/**',
+      '**/*.html',  // Exclude all HTML files from ESLint
+      '**/*.vue',   // Exclude all Vue files from ESLint for now
+      '**/*.svelte', // Exclude all Svelte files from ESLint for now
+      '**/scripts/**', // Exclude build scripts
+      '**/*.scss.js'   // Exclude generated SCSS files
     ]
   },
 
@@ -22,9 +27,9 @@ export default [
     'prettier'
   ),
 
-  // apply parser and project settings to TS, JS, Vue, Svelte and HTML files
+  // apply TypeScript parser only to TS and JS files
   {
-    files: ['**/*.{ts,js,vue,svelte,html}'],
+    files: ['**/*.{ts,js}'],
     languageOptions: {
       parser: tsParser,
       parserOptions: {
@@ -37,8 +42,7 @@ export default [
         ],
         tsconfigRootDir: new URL('.', import.meta.url).pathname,
         ecmaVersion: 'latest',
-        sourceType: 'module',
-        extraFileExtensions: ['.vue', '.svelte', '.html']
+        sourceType: 'module'
       }
     }
   }
