@@ -12,12 +12,25 @@
   },
   "wireit": {
     "dev": {
+      "dependencies": [
+        "build:watch",
+        "serve"
+      ]
+    },
+    "build:watch": {
       "command": "node scripts/build.js --watch",
       "files": [
         "scripts/build.js",
         "src/index.html",
         "tsconfig.json",
         "src/**/*"
+      ],
+      "service": true
+    },
+    "serve": {
+      "command": "wds --root-dir dist --open",
+      "dependencies": [
+        "build"
       ],
       "service": true
     },
@@ -56,11 +69,11 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "svelte": "^4.0.0",
     "@web/dev-server": "^0.4.6",
-    "esbuild": "^0.23.0",
-    "esbuild-svelte": "^0.8.0",
-    "svelte-preprocess": "^5.0.0",
+    "esbuild": "^0.25.8",
+    "esbuild-svelte": "^0.9.3",
+    "svelte": "^5.37.1",
+    "svelte-preprocess": "^6.0.3",
     "wireit": "^0.14.12"
   }
 }

@@ -58,7 +58,7 @@
     "vue": "^3.4.0"
   },
   "devDependencies": {
-    "esbuild": "^0.23.0",
+    "esbuild": "^0.25.8",
     "esbuild-plugin-vue-next": "^0.1.4",
     "wireit": "^0.14.12"
   }
