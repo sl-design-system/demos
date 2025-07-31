@@ -4,12 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate-styles": "wireit",
-    "dev": "wireit",
     "build": "wireit",
-    "preview": "wireit",
+    "dev": "wireit",
+    "generate-styles": "wireit",
     "lint": "wireit",
-    "lint:fix": "wireit"
+    "lint:fix": "wireit",
+    "preview": "wireit"
   },
   "wireit": {
     "generate-styles": {

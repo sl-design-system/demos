@@ -13,6 +13,13 @@ const isWatch = process.argv.includes('--watch');
   // Clean up the output directory
   await fs.rm(outdir, { recursive: true, force: true });
   await fs.mkdir(outdir, { recursive: true });
+  // Read and transform index.html so it loads the bundled script
+  const rawHtml = await fs.readFile(path.resolve(rootDir, 'index.html'), 'utf-8');
+  const outHtml = rawHtml.replace(
+    /<script[^>]+src=["']\.\/src\/index\.ts["'][^>]*><\/script>/,
+    '<script type="module" src="./bundle.js"></script>'
+  );
+  await fs.writeFile(path.resolve(outdir, 'index.html'), outHtml, 'utf-8');
 
   const buildOptions = {
     entryPoints: [path.resolve(rootDir, 'src', 'index.ts')],
@@ -23,16 +30,6 @@ const isWatch = process.argv.includes('--watch');
     sourcemap: isWatch ? 'inline' : true,
   };
 
-  // Copy index.html and update the script tag
-  async function copyIndex() {
-    let indexHtml = await fs.readFile(path.resolve(rootDir, 'index.html'), 'utf-8');
-    indexHtml = indexHtml.replace(
-      '<script type="module" src="./src/index.ts"></script>',
-      '<script type="module" src="./bundle.js"></script>'
-    );
-    await fs.writeFile(path.resolve(outdir, 'index.html'), indexHtml, 'utf-8');
-  }
-
   const ctx = await context(buildOptions);
 
   if (isWatch) {
@@ -41,11 +38,9 @@ const isWatch = process.argv.includes('--watch');
       servedir: outdir,
       port: 8009,
     });
-    await copyIndex();
     console.log('Development server started at http://localhost:8009');
   } else {
     await ctx.rebuild();
-    await copyIndex();
     console.log('Build complete!');
     await ctx.dispose();
   }

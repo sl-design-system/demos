@@ -4,22 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "wireit",
     "build": "wireit",
     "lint": "wireit",
-    "lint:fix": "wireit"
+    "lint:fix": "wireit",
+    "start": "wireit"
   },
   "wireit": {
-    "start": {
-      "command": "ng serve",
-      "files": [
-        "angular.json",
-        "tsconfig.json",
-        "tsconfig.app.json",
-        "src/**/*"
-      ],
-      "service": true
-    },
     "build": {
       "command": "ng build",
       "files": [
@@ -45,6 +35,16 @@
         "src/**/*.ts",
         "src/**/*.html"
       ]
+    },
+    "start": {
+      "command": "ng serve",
+      "files": [
+        "angular.json",
+        "tsconfig.json",
+        "tsconfig.app.json",
+        "src/**/*"
+      ],
+      "service": true
     }
   },
   "dependencies": {
