@@ -18,25 +18,17 @@ const buildOptions = {
   format: 'esm',
   minify: !isWatch,
   sourcemap: isWatch ? 'inline' : true,
-  plugins: [vue()],
+  plugins: [ vue() ],
 };
-
-async function copyIndex() {
-  // Copy index.html and update the script tag
-  let indexHtml = await fs.readFile(path.resolve(rootDir, 'index.html'), 'utf-8');
-  indexHtml = indexHtml
-    .replace(
-      '<script type="module" src="/src/main.ts"></script>',
-      '<script type="module" src="./main.js"></script>'
-    )
-    .replace('</head>', '<link rel="stylesheet" href="./main.css">\n  </head>');
-  await fs.writeFile(path.resolve(outdir, 'index.html'), indexHtml, 'utf-8');
-}
 
 (async () => {
   // Clean up the output directory
   await fs.rm(outdir, { recursive: true, force: true });
   await fs.mkdir(outdir, { recursive: true });
+  // Copy all static files from public into dist
+  await fs.cp(path.resolve(rootDir, 'public'), outdir, { recursive: true });
+  // copy component stylesheet so it can be linked from index.html
+  await fs.copyFile(path.resolve(rootDir, 'src', 'App.css'), path.resolve(outdir, 'App.css'));
 
   const ctx = await context(buildOptions);
 
@@ -46,11 +38,9 @@ async function copyIndex() {
       servedir: outdir,
       port: 8008,
     });
-    await copyIndex(); // Copy index after serve starts to ensure it's available
     console.log('Development server started at http://localhost:8008');
   } else {
     await ctx.rebuild();
-    await copyIndex();
     console.log('Build complete!');
     await ctx.dispose();
   }

@@ -6,9 +6,7 @@
 </template>
 
 <script setup lang="ts">
-// Vue 3 script setup
+// script setup
 </script>
 
-<style scoped>
-/* You can add scoped styles here or rely on App.css */
-</style>
+<style src="./App.css" scoped></style>

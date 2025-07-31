@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { context } from 'esbuild';
 import fs from 'node:fs/promises';
 import path from 'node:path';
