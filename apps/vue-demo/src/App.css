@@ -18,5 +18,5 @@ body {
 }
 
 h1 {
-  color: #42b983;
+  color: var(--sl-color-palette-success-base);
 }
