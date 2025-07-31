@@ -12,24 +12,6 @@
     "preview": "wireit"
   },
   "wireit": {
-    "generate-styles": {
-      "command": "node scripts/generate-styles.js",
-      "files": [
-        "scripts/generate-styles.js",
-        "src/**/*.scss",
-        "package.json"
-      ],
-      "output": [
-        "src/**/*.scss.js"
-      ]
-    },
-    "dev": {
-      "command": "node scripts/build.js --watch",
-      "dependencies": [
-        "generate-styles"
-      ],
-      "service": true
-    },
     "build": {
       "command": "node scripts/build.js",
       "files": [
@@ -45,10 +27,22 @@
         "dist/**/*"
       ]
     },
-    "preview": {
-      "command": "wds --root-dir dist --open",
+    "dev": {
+      "command": "node scripts/build.js --watch",
       "dependencies": [
-        "build"
+        "generate-styles"
+      ],
+      "service": true
+    },
+    "generate-styles": {
+      "command": "node scripts/generate-styles.js",
+      "files": [
+        "scripts/generate-styles.js",
+        "src/**/*.scss",
+        "package.json"
+      ],
+      "output": [
+        "src/**/*.scss.js"
       ]
     },
     "lint": {
@@ -61,6 +55,12 @@
       "command": "eslint . --ext .ts,.js,.html --fix",
       "files": [
         "src/**/*.ts"
+      ]
+    },
+    "preview": {
+      "command": "wds --root-dir dist --open",
+      "dependencies": [
+        "build"
       ]
     }
   },
