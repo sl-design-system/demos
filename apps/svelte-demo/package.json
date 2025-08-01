@@ -4,36 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "wireit",
     "build": "wireit",
-    "preview": "wireit",
+    "dev": "wireit",
     "lint": "wireit",
-    "lint:fix": "wireit"
+    "lint:fix": "wireit",
+    "preview": "wireit"
   },
   "wireit": {
-    "dev": {
-      "dependencies": [
-        "build:watch",
-        "serve"
-      ]
-    },
-    "build:watch": {
-      "command": "node scripts/build.js --watch",
-      "files": [
-        "scripts/build.js",
-        "src/index.html",
-        "tsconfig.json",
-        "src/**/*"
-      ],
-      "service": true
-    },
-    "serve": {
-      "command": "wds --root-dir dist --open",
-      "dependencies": [
-        "build"
-      ],
-      "service": true
-    },
     "build": {
       "command": "node scripts/build.js",
       "files": [
@@ -46,10 +23,20 @@
         "dist/**"
       ]
     },
-    "preview": {
-      "command": "wds --root-dir dist --open",
+    "build:watch": {
+      "command": "node scripts/build.js --watch",
+      "files": [
+        "scripts/build.js",
+        "src/index.html",
+        "tsconfig.json",
+        "src/**/*"
+      ],
+      "service": true
+    },
+    "dev": {
       "dependencies": [
-        "build"
+        "build:watch",
+        "serve"
       ]
     },
     "lint": {
@@ -65,6 +52,19 @@
         "src/**/*.ts",
         "src/**/*.svelte"
       ]
+    },
+    "preview": {
+      "command": "wds --root-dir dist --open",
+      "dependencies": [
+        "build"
+      ]
+    },
+    "serve": {
+      "command": "wds --root-dir dist --open",
+      "dependencies": [
+        "build"
+      ],
+      "service": true
     }
   },
   "dependencies": {},

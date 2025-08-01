@@ -4,23 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "wireit",
     "build": "wireit",
-    "preview": "wireit",
+    "dev": "wireit",
     "lint": "wireit",
-    "lint:fix": "wireit"
+    "lint:fix": "wireit",
+    "preview": "wireit"
   },
   "wireit": {
-    "dev": {
-      "command": "node scripts/build.js --watch",
-      "files": [
-        "scripts/build.js",
-        "index.html",
-        "tsconfig.json",
-        "src/**/*"
-      ],
-      "service": true
-    },
     "build": {
       "command": "node scripts/build.js",
       "files": [
@@ -33,11 +23,15 @@
         "dist/**"
       ]
     },
-    "preview": {
-      "command": "wds --root-dir dist --open",
-      "dependencies": [
-        "build"
-      ]
+    "dev": {
+      "command": "node scripts/build.js --watch",
+      "files": [
+        "scripts/build.js",
+        "index.html",
+        "tsconfig.json",
+        "src/**/*"
+      ],
+      "service": true
     },
     "lint": {
       "command": "eslint . --ext .ts",
@@ -51,6 +45,12 @@
       "files": [
         "src/**/*.ts",
         "src/**/*.vue"
+      ]
+    },
+    "preview": {
+      "command": "wds --root-dir dist --open",
+      "dependencies": [
+        "build"
       ]
     }
   },
