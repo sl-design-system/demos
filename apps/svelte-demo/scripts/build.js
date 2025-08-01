@@ -22,7 +22,7 @@ const buildOptions = {
   resolveExtensions: ['.ts', '.js', '.svelte', '.css'],
 };
 
-async function copyStaticFiles() {
+const copyStaticFiles = async () => {
   try {
     await fs.mkdir('dist', { recursive: true });
     await fs.copyFile('src/index.html', 'dist/index.html');
@@ -31,10 +31,11 @@ async function copyStaticFiles() {
     console.error('Error copying static files:', err);
     process.exit(1);
   }
-}
+};
 
-async function run() {
+const run = async () => {
   await copyStaticFiles();
+
   if (isWatch) {
     const ctx = await esbuild.context(buildOptions);
     await ctx.watch();
@@ -42,9 +43,9 @@ async function run() {
   } else {
     await esbuild.build(buildOptions);
   }
-}
+};
 
-run().catch((e) => {
+run().catch(e => {
   console.error(e);
   process.exit(1);
 });

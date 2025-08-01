@@ -20,7 +20,7 @@ const buildOptions = {
   plugins: [ vue() ],
 };
 
-(async () => {
+const runBuild = async () => {
   await fs.rm(outdir, { recursive: true, force: true });
   await fs.mkdir(outdir, { recursive: true });
   await fs.cp(path.resolve(rootDir, 'public'), outdir, { recursive: true });
@@ -40,4 +40,7 @@ const buildOptions = {
     console.log('Build complete!');
     await ctx.dispose();
   }
-})();
+};
+
+// invoke named build function
+runBuild();

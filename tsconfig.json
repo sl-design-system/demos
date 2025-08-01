@@ -2,7 +2,7 @@
   "compilerOptions": {
     "strict": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "sourceMap": true
   },
   "exclude": ["node_modules", "dist"]

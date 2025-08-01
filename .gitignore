@@ -43,3 +43,4 @@ apps/**/*.js.map
 
 # Intellij
 .idea/
+/.idea/

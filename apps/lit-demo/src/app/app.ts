@@ -3,7 +3,6 @@ import {
   ScopedElementsMixin,
   type ScopedElementsMap,
 } from '@open-wc/scoped-elements/lit-element.js';
-// import { styles } from './app.styles';
 import { Button } from '@sl-design-system/button';
 import styles from './app.styles.scss.js';
 
