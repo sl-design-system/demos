@@ -35,7 +35,6 @@ const copyStaticFiles = async () => {
 
 const run = async () => {
   await copyStaticFiles();
-
   if (isWatch) {
     const ctx = await esbuild.context(buildOptions);
     await ctx.watch();
