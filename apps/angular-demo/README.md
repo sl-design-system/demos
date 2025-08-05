@@ -16,13 +16,13 @@ npm install
 
 ## Available Scripts
 
-- `npm run start`     
+- `npm run start`  
   Launches the Angular development server (http://localhost:4200)
 
-- `npm run build`     
+- `npm run build`  
   Builds the app into `apps/angular-demo/dist` for production
 
-- `npm run lint`      
+- `npm run lint`  
   Runs ESLint checks on TypeScript and HTML files
 
 - `npm run lint:fix`  
@@ -32,4 +32,3 @@ npm install
 
 - Configuration is managed by the Angular CLI (`angular.json`).
 - Styles are loaded from `styles.css` and any imported design system CSS.
-

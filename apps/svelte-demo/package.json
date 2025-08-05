@@ -67,7 +67,6 @@
       "service": true
     }
   },
-  "dependencies": {},
   "devDependencies": {
     "@web/dev-server": "^0.4.6",
     "esbuild": "^0.25.8",

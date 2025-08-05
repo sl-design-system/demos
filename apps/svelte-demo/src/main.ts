@@ -1,4 +1,4 @@
-import { mount } from "svelte";
+import { mount } from 'svelte';
 import App from './App.svelte';
 import '@sl-design-system/button/register.js';
 import { setup } from '@sl-design-system/sanoma-learning';

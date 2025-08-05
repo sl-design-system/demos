@@ -1,12 +1,51 @@
-# demos
+# Demos
 
-Monorepo containing demo apps that showcase SLDS components.
+This is a monorepo containing demo apps that showcase SLDS components.
 
 ## Getting Started
+
+> Note: Yarn 4.x reads registry settings from `.yarnrc.yml` and your `SLDS_PACKAGES_AUTH_TOKEN` environment variable for authenticating private packages—no project-level `.npmrc` is needed.
+
+- **Corepack & Yarn version**
+- If you are using Corepack to manage Yarn, enable it with:
+- ```bash
+
+  ```
+- corepack enable
+- ```
+
+  ```
+- To pin or switch Yarn versions (optional):
+- ```bash
+
+  ```
+- corepack prepare yarn@4.9.2 --activate
+- yarn --version # should output 4.x.x
+- ```
+
+  ```
+-
+- **Node.js version**
+- This project has been tested with Node.js 18.x or later. To switch Node versions, consider using nvm:
+- ```bash
+
+  ```
+- nvm install 20 && nvm use 20
+- ```
+
+  ```
+-
+- Ensure you have the LTS version of Node.js installed (see https://nodejs.org/en/)
 
 ### Prerequisites
 
 Make sure you have [Node.js](httpss://nodejs.org/) and [Yarn](httpss://yarnpkg.com/) installed.
+
+In order to authenticate to SLDS private packages, you must set the `SLDS_PACKAGES_AUTH_TOKEN` environment variable in your shell. For example:
+
+```bash
+export SLDS_PACKAGES_AUTH_TOKEN=your_token_here
+```
 
 ### Installation
 
@@ -85,7 +124,7 @@ You can run the linter on all applications at once by running the following comm
 yarn lint
 ```
 
-You can also lint a specific application by running the following command:
+You can also `lint` a specific application by running the following command:
 
 ```bash
 yarn workspace <workspace-name> lint
@@ -111,64 +150,44 @@ You can automatically format all the code in the project by running the followin
 yarn format
 ```
 
-
 TODO: Describe how to test the components (locally, from `components` repo) in the demo apps.
 
 ## Testing Local Component Versions
 
-You can test a local (unpublished) version of an SLDS component (for example, from your separate `components` repository) in two ways:
+You can test a local (unpublished) version of an SLDS component (for example, from your separate `components` repository) using the built-in [portal protocol](https://yarnpkg.com/protocol/portal) in Yarn 2+ or via workspace link.
 
-1. **Using Yarn Link (v1) or Yarn Plug’n’Play Link (v2+)**
-   - Yarn 1 (classic):
+The example below shows how to set up a local `sl-button` component (`@sl-design-system/button`) in demo apps.
+
+1. **Using the Portal Protocol (Yarn 2+)**
+
+   In demos monorepo root `package.json`, update the component dependency to point to your local path:
+
+   ```json
+   "@sl-design-system/button": "portal:../components/packages/components/button"
+   ```
+
+   Then install dependencies:
+
+   ```bash
+   yarn install
+   ```
+
+   Yarn will create a live symlink into your local component folder. Rebuild or watch your component (`yarn build --watch`) in the `components` repo and restart any demo dev server to pick up changes immediately.
+
+   For continuous development, we recommend using the **portal protocol** with the component repo’s own watch/build script so changes propagate faster without reinstalling.
+
+2. **Using a File Dependency**
+
+   If you prefer a [file-based dependency](https://yarnpkg.com/protocol/file), point directly to your local component folder:
+   - **Globally at root**:
      ```bash
-     cd /Users/anna.sobczak/IdeaProjects/components/packages/components/button
-     yarn link
-     cd /Users/anna.sobczak/IdeaProjects/demos_2
-     yarn link @sl-design-system/button
-     yarn install
+     yarn add @sl-design-system/button file:../components/packages/components/button -W
      ```
-   - Yarn 2/3/4 (Berry + PnP) no longer exposes `yarn link` by default. To enable it, import the workspace-tools plugin:
-     ```bash
-     cd /Users/anna.sobczak/IdeaProjects/components/packages/components/button
-     yarn plugin import workspace-tools
-     yarn link create
-     ```
-     Then in the demos monorepo root:
-     ```bash
-     cd /Users/anna.sobczak/IdeaProjects/demos_2
-     yarn link use @sl-design-system/button
-     ```
-     If you still face issues, either switch to the `node-modules` linker in `.yarnrc.yml` or fall back to `npm link`:
-     ```bash
-     # switch to node-modules linker
-     echo "nodeLinker: node-modules" > .yarnrc.yml
-     yarn install
-     yarn link && yarn link @sl-design-system/button
-     ```
-   - After linking, rebuild or restart your demo; it will now resolve the local button sources.
 
-2. **Using a File Dependency (per-workspace or globally)**
-    - **Per-workspace**: Install into one demo only (replace `<demo>` with your workspace name, e.g. `angular-demo`, `lit-demo`, `svelte-demo`, or `vue-demo`):
-      ```bash
-      yarn workspace angular-demo add @sl-design-system/button file:../components/packages/components/button
-      yarn workspace lit-demo add @sl-design-system/button file:../components/packages/components/button
-      # or for Svelte:
-      yarn workspace svelte-demo add @sl-design-system/button file:../components/packages/components/button
-      # or for Vue:
-      yarn workspace vue-demo add @sl-design-system/button file:../components/packages/components/button
-      ```
-    - **Globally at root**: Install into all workspaces from the root using the `-W` flag:
-      ```bash
-      yarn add @sl-design-system/button file:../components/packages/components/button -W
-      ```
-    - Run `yarn install` to update all dependencies accordingly.
+   Then install or reinstall dependencies:
 
-Both methods let you integrate a local component version into your demos. Note:
-- **Yarn Link** reflects combined changes immediately (with rebuild/restart of component and demo).
-- **File** dependencies copy at install time, so you must rerun `yarn install` (or re-add) and rebuild/restart the demo to pick up any changes.
+   ```bash
+   yarn install
+   ```
 
-**Keeping component updates in sync**
-
-- If you used **Yarn Link**, the demo apps receive updates via the symlink but you must rebuild the component package (e.g., `yarn build` or its watch mode) in the components repo, and then restart your demo's dev server to pick up the new code.
-- If you used a **file:** dependency, Yarn copies the folder at install time. Any later changes in the components repo won’t be reflected until you re-run `yarn install` (or re-add the dependency) in the demos monorepo, and rebuild or restart the demo.
-- For continuous development, we recommend using **Yarn Link** with the component repo’s own watch/build script so changes propagate faster without reinstalling.
+   Yarn will copy the component code into your workspace at install time. To pick up later changes in the component repo, re-run `yarn install` and restart your demo dev server.

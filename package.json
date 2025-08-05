@@ -63,7 +63,7 @@
   },
   "dependencies": {
     "@sl-design-system/angular": "^3.1.0",
-    "@sl-design-system/button": "^1.2.4",
+    "@sl-design-system/button": "portal:../components/packages/components/button",
     "@sl-design-system/sanoma-learning": "^0.4.5",
     "@sl-design-system/tooltip": "^1.1.5"
   },
