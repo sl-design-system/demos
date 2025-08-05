@@ -6,40 +6,31 @@ This is a monorepo containing demo apps that showcase SLDS components.
 
 > Note: Yarn 4.x reads registry settings from `.yarnrc.yml` and your `SLDS_PACKAGES_AUTH_TOKEN` environment variable for authenticating private packages—no project-level `.npmrc` is needed.
 
-- **Corepack & Yarn version**
-- If you are using Corepack to manage Yarn, enable it with:
-- ```bash
+**Corepack & Yarn version**
+If you are using Corepack to manage Yarn, enable it with:
+```bash
+corepack enable
+```
+To pin or switch Yarn versions (optional):
+```bash
+corepack prepare yarn@4.9.2 --activate
+yarn --version # should output 4.x.x
+```
 
-  ```
-- corepack enable
-- ```
-
-  ```
-- To pin or switch Yarn versions (optional):
-- ```bash
-
-  ```
-- corepack prepare yarn@4.9.2 --activate
-- yarn --version # should output 4.x.x
-- ```
-
-  ```
--
-- **Node.js version**
-- This project has been tested with Node.js 18.x or later. To switch Node versions, consider using nvm:
-- ```bash
-
-  ```
-- nvm install 20 && nvm use 20
-- ```
-
-  ```
--
-- Ensure you have the LTS version of Node.js installed (see https://nodejs.org/en/)
+Ensure you have the LTS version of Node.js installed (see https://nodejs.org/en/)
 
 ### Prerequisites
 
 Make sure you have [Node.js](httpss://nodejs.org/) and [Yarn](httpss://yarnpkg.com/) installed.
+- Ensure you have the LTS version of Node.js (>=18.x) installed. You can install via https://nodejs.org or tools like nvm:
+  ```bash
+  nvm install --lts && nvm use --lts
+  ```
+- Ensure Yarn (>=4.x) is available. If using Corepack (Node 16+):
+  ```bash
+  corepack enable
+  yarn --version
+  ```
 
 In order to authenticate to SLDS private packages, you must set the `SLDS_PACKAGES_AUTH_TOKEN` environment variable in your shell. For example:
 

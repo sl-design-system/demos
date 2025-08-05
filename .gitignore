@@ -41,6 +41,9 @@ apps/**/*.d.ts.map
 apps/**/*.js
 apps/**/*.js.map
 
+# Yarn optimization file
+.yarn/install-state.gz
+
 # Intellij
 .idea/
 /.idea/
