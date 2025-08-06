@@ -181,3 +181,9 @@ The example below shows how to set up a local `sl-button` component (`@sl-design
    ```
 
    Yarn will copy the component code into your workspace at install time. To pick up later changes in the component repo, re-run `yarn install` and restart your demo dev server.
+
+
+## Resources
+
+- SL Design System docs: https://sanomalearning.design/
+- Storybook: https://storybook.sanomalearning.design/

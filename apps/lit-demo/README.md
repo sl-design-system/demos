@@ -1,48 +1,55 @@
 # Lit Demo
 
-A LitElement-based demo showcasing SL Design System components and scoped styles.
+A LitElement-based demo showcasing SL Design System components with scoped styles in a monorepo workspace.
+
+## Getting Started
+
+Clone the monorepo and install dependencies from the root:
+
+```bash
+yarn install
+```
+
+Then navigate to this demo and run dev or build the app:
+
+```bash
+cd apps/lit-demo
+# Install dependencies and run in dev or build mode (both auto-run style generation):
+yarn dev    # development with watch and auto SCSS compilation
+# or for production build:
+yarn build
+# serve dist with a static server (e.g. npx serve dist)
+```
 
 ## Prerequisites
 
-- Node.js v14 or later
-- npm (or yarn)
+- Node.js (>=18.x) or later
+- Yarn v4+
 
 ## Installation
 
 ```bash
 cd apps/lit-demo
-npm install
-npm run generate-styles  # compile SCSS imports into JS styles
+yarn install
+yarn generate-styles
 ```
 
 ## Available Scripts
 
-- `npm run generate-styles`  
-  Processes all `.scss` files in `src/` to generate `.scss.js` modules.
+- `yarn dev`  
+  Runs the build in watch mode and auto-generates styles on file changes (invokes `generate-styles`).
 
-- `npm run build`  
-  Bundles the app and outputs to `dist/`.
+- `yarn build`  
+  Bundles the app into `dist/` for production and auto-runs style generation.
 
-- `npm run dev`  
-  Starts the build in watch mode for development.
+- `yarn preview`  
+  Serves the `dist/` folder locally using Web Dev Server (`wds`).
 
-- `npm run preview`  
-  Serves the `dist/` folder on a local HTTP server.
-
-- `npm run lint`  
-  Runs ESLint on TypeScript and HTML files.
-
-- `npm run lint:fix`  
-  Runs ESLint with auto-fix.
+- `yarn generate-styles`  
+  Manually compiles `.scss` files to `.scss.js` modules; only needed if you want to regenerate styles without a full build.
 
 ## Project Structure
 
-- `scripts/build.js` Build script using esbuild.
-- `scripts/generate-styles.js` SCSS preprocessor to JS converter.
-- `src/` Application source files.
-- `index.html` Entry HTML template.
-
-## Notes
-
-- Styles are scoped via `ScopedElementsMixin` and imported CSS.
-- Uses `esbuild` for fast bundling and a simple copy of HTML.
+- `index.html` – Entry HTML that loads the app bundle,
+- `src/` – Application source files,
+- `scripts/` – Build scripts (e.g. `generate-styles.js` and Rollup config in `build.js`).

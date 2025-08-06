@@ -1,35 +1,56 @@
 # Angular Demo
 
-An Angular application showcasing the SL Design System components in an Angular context.
+An Angular demo app showcasing the SL Design System components in an Angular workspace.
+
+## Getting Started
+
+Clone the monorepo and install dependencies from the root:
+
+```bash
+yarn install
+```
+
+Then navigate to this demo and start the server:
+
+```bash
+cd apps/angular-demo
+yarn start
+```
+
+> Note: You may need to set `SLDS_PACKAGES_AUTH_TOKEN` to access private design-system packages:
+> ```bash
+> export SLDS_PACKAGES_AUTH_TOKEN=<your-token>
+> ```
 
 ## Prerequisites
 
-- Node.js v14 or later
-- npm (or yarn)
+- Node.js (>=18.x) or later
+- Yarn v4+
 
 ## Installation
 
 ```bash
 cd apps/angular-demo
-npm install
+yarn install
 ```
 
 ## Available Scripts
 
-- `npm run start`     
-  Launches the Angular development server (http://localhost:4200)
+- `yarn start` 
+  Launches the Angular development server at http://localhost:4200
 
-- `npm run build`     
-  Builds the app into `apps/angular-demo/dist` for production
+- `yarn build` 
+  Builds the production bundle into `apps/angular-demo/dist`
 
-- `npm run lint`      
-  Runs ESLint checks on TypeScript and HTML files
+- `yarn lint` 
+  Runs ESLint on TypeScript and HTML
 
-- `npm run lint:fix`  
-  Runs ESLint with auto-fix enabled
+- `yarn lint:fix` 
+  Runs ESLint with `--fix`
 
-## Notes
 
-- Configuration is managed by the Angular CLI (`angular.json`).
-- Styles are loaded from `styles.css` and any imported design system CSS.
+## Project Structure
 
+- `angular.json` – CLI configuration for builds and serve,
+- `tsconfig.app.json` – TypeScript config for this app,
+- `src/` – Application source code.

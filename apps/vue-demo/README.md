@@ -1,45 +1,55 @@
 # Vue Demo
 
-A Vue 3 demo showcasing SL Design System components using esbuild for bundling.
+A Vue demo app showcasing SL Design System components with esbuild bundling in a monorepo workspace.
 
-## Prerequisites
+## Getting Started
 
-- Node.js v14 or later
-- npm (or yarn)
+Clone the monorepo and install dependencies from the root:
 
-## Installation
+```bash
+yarn install
+```
+
+Navigate into this demo and run scripts:
 
 ```bash
 cd apps/vue-demo
-npm install
+# development (watch + live reload)
+yarn dev
+# production build
+yarn build
+# preview production output
+yarn preview
 ```
+
+## Prerequisites
+
+- Node.js (>=18.x) or later
+- Yarn v4+
 
 ## Available Scripts
 
-- `npm run build`  
-  Bundles the app and outputs files into `dist/`.
+- `yarn dev`  
+  Starts the esbuild build in watch mode with live reload on port 8008.
 
-- `npm run dev`  
-  Starts the esbuild dev server with watch and live reload on port 8008.
+- `yarn build`  
+  Bundles the app into `dist/` using the custom esbuild script.
 
-- `npm run lint`  
-  Runs ESLint on `.ts` and `.vue` files.
+- `yarn lint`  
+  Runs ESLint against `.ts` and `.vue` files.
 
-- `npm run lint:fix`  
-  Runs ESLint with auto-fix enabled.
+- `yarn lint:fix`  
+  Runs ESLint with `--fix` to auto-correct issues.
 
-- `npm run preview`  
-  Serves the `dist/` directory on a local HTTP server and opens in browser.
+- `yarn preview`  
+  Serves the `dist/` folder locally via Web Dev Server (`wds`) and opens the browser.
 
 ## Project Structure
 
-- `scripts/build.js` Custom build script using esbuild and vue plugin.
-- `public/` Contains static `index.html` template.
-- `src/` Source files, including `App.vue`, styles, and `main.ts` entry.
-- `dist/` Generated output folder.
-
-## Notes
-
-- The HTML template is copied from `public` into `dist/` during build.
-- Global and component CSS are manually copied by the build script.
-- You can adjust port and serve directory in `scripts/build.js`.
+- `scripts/build.js`  – Custom esbuild pipeline using `esbuild-plugin-vue-next`.
+- `public/`          – Static `index.html` template and assets.
+- `src/`             – Vue application source:
+  - `App.vue`       – Root component
+  - `main.ts`       – App entry point
+- `dist/`            – Generated output containing bundled JS, HTML, and assets.
+- `tsconfig.json`    – TypeScript config for this demo.
