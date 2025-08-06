@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "es2022",
+    "target": "esnext",
     "module": "esnext",
     "moduleResolution": "bundler",
     "useDefineForClassFields": false,

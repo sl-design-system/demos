@@ -73,17 +73,11 @@
     "@lit/localize": "^0.12.2",
     "@sl-design-system/angular": "^3.1.0",
     "@sl-design-system/button": "portal:../components/packages/components/button",
-    "@sl-design-system/checkbox": "portal:../components/packages/components/checkbox",
     "@sl-design-system/form": "^1.2.3",
     "@sl-design-system/icon": "^1.2.0",
-    "@sl-design-system/radio-group": "portal:../components/packages/components/radio-group",
     "@sl-design-system/sanoma-learning": "^0.4.5",
-    "@sl-design-system/select": "portal:../components/packages/components/select",
     "@sl-design-system/shared": "^0.8.0",
-    "@sl-design-system/switch": "portal:../components/packages/components/switch",
-    "@sl-design-system/text-area": "portal:../components/packages/components/text-area",
-    "@sl-design-system/text-field": "portal:../components/packages/components/text-field",
-    "@sl-design-system/tooltip": "portal:../components/packages/components/tooltip",
+    "@sl-design-system/tooltip": "^1.1.5",
     "zone.js": "^0.15.1"
   },
   "devDependencies": {

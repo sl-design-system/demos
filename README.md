@@ -162,7 +162,7 @@ The example below shows how to set up a local `sl-button` component (`@sl-design
    yarn install
    ```
 
-   Yarn will create a live symlink into your local component folder. Rebuild or watch your component (`yarn build --watch`) in the `components` repo and restart any demo dev server to pick up changes immediately.
+   Yarn will create a live symlink into your local component folder. Rebuild or watch your component (`yarn run build --watch`) in the `components` repo and restart any demo dev server to pick up changes immediately.
 
    For continuous development, we recommend using the **portal protocol** with the component repo’s own watch/build script so changes propagate faster without reinstalling.
 
