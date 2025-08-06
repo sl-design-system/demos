@@ -7,6 +7,7 @@ This is a monorepo containing demo apps that showcase SLDS components.
 > Note: Yarn 4.x reads registry settings from `.yarnrc.yml` and your `SLDS_PACKAGES_AUTH_TOKEN` environment variable for authenticating private packages—no project-level `.npmrc` is needed.
 
 **Corepack & Yarn version**
+
 If you are using Corepack to manage Yarn, enable it with:
 ```bash
 corepack enable
@@ -16,8 +17,6 @@ To pin or switch Yarn versions (optional):
 corepack prepare yarn@4.9.2 --activate
 yarn --version # should output 4.x.x
 ```
-
-Ensure you have the LTS version of Node.js installed (see https://nodejs.org/en/)
 
 ### Prerequisites
 
@@ -49,25 +48,25 @@ export SLDS_PACKAGES_AUTH_TOKEN=your_token_here
 
 ## Running the demo apps
 
-When you want to run an angular demo app, you can run the following command:
+When you want to run an `angular demo app`, you can run the following command:
 
 ```bash
 yarn workspace angular-demo start
 ```
 
-When you want to run a lit demo app, you can run the following command:
+When you want to run a `lit demo app`, you can run the following command:
 
 ```bash
 yarn workspace lit-demo dev
 ```
 
-When you want to run a svelte demo app, you can run the following command:
+When you want to run a `svelte demo app`, you can run the following command:
 
 ```bash
 yarn workspace svelte-demo dev
 ```
 
-When you want to run a vue demo app, you can run the following command:
+When you want to run a `vue demo app`, you can run the following command:
 
 ```bash
 yarn workspace vue-demo dev
