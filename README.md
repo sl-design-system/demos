@@ -1,6 +1,6 @@
 # Demos
 
-This is a monorepo containing demo apps that showcase SLDS components.
+This is a monorepository containing demo apps that showcase SLDS components.
 
 ## Getting Started
 

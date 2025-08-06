@@ -36,7 +36,7 @@ yarn preview
   Bundles the app into `dist/` using the custom esbuild script.
 
 - `yarn lint`  
-  Runs ESLint against `.ts` and `.vue` files.
+  Runs ESLint on `.ts` files.
 
 - `yarn lint:fix`  
   Runs ESLint with `--fix` to auto-correct issues.

@@ -39,7 +39,7 @@ yarn preview
   Serves the contents of `dist/` locally with Web Dev Server (`wds`).
 
 - `yarn lint`  
-  Runs ESLint on `.ts` and `.svelte` files.
+  Runs ESLint on `.ts` files.
 
 - `yarn lint:fix`  
   Runs ESLint with `--fix`.

@@ -40,17 +40,15 @@
       ]
     },
     "lint": {
-      "command": "eslint . --ext .ts",
+      "command": "eslint src/**/*.ts",
       "files": [
-        "src/**/*.ts",
-        "src/**/*.svelte"
+        "src/**/*.ts"
       ]
     },
     "lint:fix": {
-      "command": "eslint . --ext .ts --fix",
+      "command": "eslint src/**/*.ts --fix",
       "files": [
-        "src/**/*.ts",
-        "src/**/*.svelte"
+        "src/**/*.ts"
       ]
     },
     "preview": {

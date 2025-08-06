@@ -43,7 +43,7 @@ yarn install
   Builds the production bundle into `apps/angular-demo/dist`
 
 - `yarn lint` 
-  Runs ESLint on TypeScript and HTML
+  Runs ESLint on TypeScript files
 
 - `yarn lint:fix` 
   Runs ESLint with `--fix`

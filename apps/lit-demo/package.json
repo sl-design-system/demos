@@ -46,15 +46,15 @@
       ]
     },
     "lint": {
-      "command": "eslint . --ext .ts,.js,.html",
+      "command": "eslint \"src/**/*.{ts,js}\"",
       "files": [
-        "src/**/*.ts"
+        "src/**/*.{ts,js}"
       ]
     },
     "lint:fix": {
-      "command": "eslint . --ext .ts,.js,.html --fix",
+      "command": "eslint \"src/**/*.{ts,js}\" --fix",
       "files": [
-        "src/**/*.ts"
+        "src/**/*.{ts,js}"
       ]
     },
     "preview": {
