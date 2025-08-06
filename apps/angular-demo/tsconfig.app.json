@@ -6,9 +6,11 @@
     "allowJs": true
   },
   "files": ["src/main.ts", "src/polyfills.ts"],
-  "include": [
-    "src/app/**/*.ts",
-    "../../node_modules/@sl-design-system/button/src/**/*.js",
-    "../../node_modules/@sl-design-system/angular/**/*.js"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": [
+    "node_modules",
+    "../../node_modules",
+    "**/node_modules/**/*.ts",
+    "../../node_modules/@sl-design-system/**/*.ts"
+    ]
 }
