@@ -24,7 +24,7 @@ const runBuild = async () => {
   await fs.rm(outdir, { recursive: true, force: true });
   await fs.mkdir(outdir, { recursive: true });
   await fs.cp(path.resolve(rootDir, 'public'), outdir, { recursive: true });
-  await fs.copyFile(path.resolve(rootDir, 'src', 'App.css'), path.resolve(outdir, 'App.css'));
+  await fs.copyFile(path.resolve(rootDir, 'src', 'app.css'), path.resolve(outdir, 'app.css'));
 
   const ctx = await context(buildOptions);
 

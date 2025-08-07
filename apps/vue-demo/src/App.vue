@@ -9,4 +9,4 @@
 // script setup
 </script>
 
-<style src="./App.css" scoped></style>
+<style src="app.css" scoped></style>

@@ -48,3 +48,6 @@ apps/**/*.js.map
 # Intellij
 .idea/
 /.idea/
+
+# CSS source maps
+*.css.map

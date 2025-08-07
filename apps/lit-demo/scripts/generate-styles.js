@@ -27,7 +27,6 @@ const findScssFiles = (dir) => {
   return results;
 }
 
-// Process each .scss file found
 const scssFiles = findScssFiles(srcDir);
 
 scssFiles.forEach(inputPath => {

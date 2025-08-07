@@ -52,3 +52,8 @@ yarn preview
 - `scripts/build.js` – Main build pipeline using esbuild and svelte-preprocess,
 - `src/` – Source files,
 - `dist/` – Output directory containing `main.js`, `index.html`, and assets.
+
+
+## Naming
+
+By convention in Svelte you name component files in PascalCase (e.g. App.svelte, MyButton.svelte) so they stand out as components rather than plain scripts or styles.

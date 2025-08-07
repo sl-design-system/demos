@@ -22,7 +22,6 @@ export default [
 
   ...compat.extends('plugin:@typescript-eslint/recommended', 'prettier'),
 
-  // apply TypeScript parser only to TS and JS files
   {
     files: ['**/*.{ts,js}'],
     languageOptions: {

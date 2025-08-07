@@ -26,7 +26,7 @@ const copyStaticFiles = async () => {
   try {
     await fs.mkdir('dist', { recursive: true });
     await fs.copyFile('src/index.html', 'dist/index.html');
-    await fs.copyFile('src/App.css', 'dist/main.css');
+    await fs.copyFile('src/app.css', 'dist/main.css');
   } catch (err) {
     console.error('Error copying static files:', err);
     process.exit(1);
