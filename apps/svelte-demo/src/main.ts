@@ -5,12 +5,6 @@ import { setup } from '@sl-design-system/sanoma-learning';
 
 setup();
 
-// const app = new App({
-//   target: document.body,
-// });
-//
-// export default app;
-
 export default mount(App, {
   target: document.body,
 });

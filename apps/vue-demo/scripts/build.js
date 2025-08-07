@@ -42,5 +42,4 @@ const runBuild = async () => {
   }
 };
 
-// invoke named build function
 runBuild();

@@ -4,7 +4,6 @@ import tsParser from '@typescript-eslint/parser';
 const compat = new FlatCompat({ baseDirectory: import.meta.url });
 
 export default [
-  // ignore output and dependencies - must be first and global
   {
     ignores: [
       '**/dist/**',
@@ -13,15 +12,14 @@ export default [
       'dist/**',
       'node_modules/**',
       '.wireit/**',
-      '**/*.html', // Exclude all HTML files from ESLint
-      '**/*.vue', // Exclude all Vue files from ESLint for now
-      '**/*.svelte', // Exclude all Svelte files from ESLint for now
+      '**/*.html',
+      '**/*.vue',
+      '**/*.svelte',
       '**/scripts/**', // Exclude build scripts
       '**/*.scss.js', // Exclude generated SCSS files
     ],
   },
 
-  // extend recommended ESLint and plugin configs
   ...compat.extends('plugin:@typescript-eslint/recommended', 'prettier'),
 
   // apply TypeScript parser only to TS and JS files
