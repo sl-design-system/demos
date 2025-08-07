@@ -19,17 +19,19 @@ This monorepository contains demo apps showcasing SL Design System (SLDS) compon
 **Corepack & Yarn version**
 
 If you are using Corepack to manage Yarn, enable it with:
+
 ```bash
 corepack enable
 ```
+
 To pin or switch Yarn versions (optional):
+
 ```bash
 corepack prepare yarn@4.9.2 --activate
 yarn --version # should output 4.x.x
 ```
 
 > Note: Yarn 4.x reads registry settings from `.yarnrc.yml` and your `SLDS_PACKAGES_AUTH_TOKEN` environment variable for authenticating private packages—no project-level `.npmrc` is needed.
-
 
 ### Prerequisites
 
@@ -55,11 +57,11 @@ export SLDS_PACKAGES_AUTH_TOKEN=your_token_here
 
 Run these commands from the monorepo root:
 
-- `yarn build`        Builds all demo apps (uses Wireit)
-- `yarn format`       Formats code via Prettier
-- `yarn lint`         Runs ESLint on all workspaces
-- `yarn lint:fix`     Fixes lint errors via ESLint
-- `yarn stylelint`    Runs stylelint on CSS/SCSS
+- `yarn build` Builds all demo apps (uses Wireit)
+- `yarn format` Formats code via Prettier
+- `yarn lint` Runs ESLint on all workspaces
+- `yarn lint:fix` Fixes lint errors via ESLint
+- `yarn stylelint` Runs stylelint on CSS/SCSS
 
 ## Running Demos
 
@@ -93,7 +95,7 @@ yarn build
 yarn lint
 yarn lint:fix
 yarn format
-``` 
+```
 
 ## Testing Local Components
 
@@ -134,7 +136,6 @@ The example below shows how to set up a local `sl-button` component (`@sl-design
    ```
 
    Yarn will copy the component code into your workspace at installation time. To pick up later changes in the component repository, re-run `yarn install` and restart your demo dev server.
-
 
 ## Resources
 

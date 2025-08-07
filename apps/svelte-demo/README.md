@@ -56,5 +56,3 @@ yarn install
 - `scripts/build.js` – Main build pipeline using esbuild and svelte-preprocess,
 - `src/` – Source files,
 - `dist/` – Output directory containing `main.js`, `index.html`, and assets.
-
-

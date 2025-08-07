@@ -18,6 +18,7 @@ yarn start
 ```
 
 > Note: You may need to set `SLDS_PACKAGES_AUTH_TOKEN` to access private design-system packages:
+>
 > ```bash
 > export SLDS_PACKAGES_AUTH_TOKEN=<your-token>
 > ```
@@ -36,18 +37,17 @@ yarn install
 
 ## Available Scripts
 
-- `yarn start` 
+- `yarn start`
   Launches the Angular development server at http://localhost:4200
 
-- `yarn build` 
+- `yarn build`
   Builds the production bundle into `apps/angular-demo/dist`
 
-- `yarn lint` 
+- `yarn lint`
   Runs ESLint on TypeScript files
 
-- `yarn lint:fix` 
+- `yarn lint:fix`
   Runs ESLint with `--fix`
-
 
 ## Project Structure
 

@@ -46,10 +46,10 @@ yarn preview
 
 ## Project Structure
 
-- `scripts/build.js`  – Custom esbuild pipeline using `esbuild-plugin-vue-next`.
-- `public/`          – Static `index.html` template and assets.
-- `src/`             – Vue application source:
-  - `App.vue`       – Root component
-  - `main.ts`       – App entry point
-- `dist/`            – Generated output containing bundled JS, HTML, and assets.
-- `tsconfig.json`    – TypeScript config for this demo.
+- `scripts/build.js` – Custom esbuild pipeline using `esbuild-plugin-vue-next`.
+- `public/` – Static `index.html` template and assets.
+- `src/` – Vue application source:
+  - `App.vue` – Root component
+  - `main.ts` – App entry point
+- `dist/` – Generated output containing bundled JS, HTML, and assets.
+- `tsconfig.json` – TypeScript config for this demo.
