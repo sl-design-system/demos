@@ -47,13 +47,6 @@ yarn preview
 - `yarn lint:fix`  
   Runs ESLint with `--fix`.
 
-## Installation Details
-
-```bash
-cd apps/svelte-demo
-yarn install
-```
-
 ## Project Structure
 
 - `scripts/build.js` – Main build pipeline using esbuild and svelte-preprocess,

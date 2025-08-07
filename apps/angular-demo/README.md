@@ -28,13 +28,6 @@ yarn start
 - Node.js (>=18.x) LTS or later
 - Yarn v4+
 
-## Installation
-
-```bash
-cd apps/angular-demo
-yarn install
-```
-
 ## Available Scripts
 
 - `yarn start`

@@ -27,13 +27,6 @@ yarn build
 - Node.js (>=18.x) LTS or later
 - Yarn v4+
 
-## Installation
-
-```bash
-cd apps/lit-demo
-yarn install
-```
-
 ## Available Scripts
 
 - `yarn dev`  
