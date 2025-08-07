@@ -7,6 +7,7 @@
       <excludeFolder url="file://$MODULE_DIR$/apps/lit-demo/.wireit" />
       <excludeFolder url="file://$MODULE_DIR$/apps/svelte-demo/.wireit" />
       <excludeFolder url="file://$MODULE_DIR$/apps/vue-demo/.wireit" />
+      <excludeFolder url="file://$MODULE_DIR$/.wireit" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
