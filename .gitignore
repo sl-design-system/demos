@@ -1,17 +1,14 @@
 # Angular specific
-/dist/
 /out-tsc/
 /tmp/
 /coverage/
 /e2e/test-output/
-/.angular/
-.angular/
+.angular
 
 # Node modules and dependency files
 node_modules
-/package-lock.json
-/yarn.lock
-/apps/angular-demo/node_modules/
+package-lock.json
+yarn.lock
 
 # Optional npm cache directory
 .npm
@@ -35,8 +32,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # Dist files & folders
-custom-elements.json
 dist
+custom-elements.json
 apps/**/*.d.ts
 apps/**/*.d.ts.map
 apps/**/*.js
@@ -47,7 +44,6 @@ apps/**/*.js.map
 
 # Intellij
 .idea/
-/.idea/
 
 # CSS source maps
 *.css.map
