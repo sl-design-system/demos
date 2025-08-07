@@ -14,10 +14,13 @@ Then navigate into the demo and start development or build:
 
 ```bash
 cd apps/svelte-demo
+
 # development: rebuild on changes and preview
 yarn dev
+
 # production build only
 yarn build
+
 # preview the production output
 yarn preview
 ```

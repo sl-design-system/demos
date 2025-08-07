@@ -14,11 +14,12 @@ Then navigate to this demo and run dev or build the app:
 
 ```bash
 cd apps/lit-demo
+
 # Install dependencies and run in dev or build mode (both auto-run style generation):
 yarn dev    # development with watch and auto SCSS compilation
+
 # or for production build:
 yarn build
-# serve dist with a static server (e.g. npx serve dist)
 ```
 
 ## Prerequisites
@@ -31,7 +32,6 @@ yarn build
 ```bash
 cd apps/lit-demo
 yarn install
-yarn generate-styles
 ```
 
 ## Available Scripts
