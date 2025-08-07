@@ -31,7 +31,7 @@ corepack prepare yarn@4.9.2 --activate
 yarn --version # should output 4.x.x
 ```
 
-> Note: Yarn 4.x reads registry settings from `.yarnrc.yml` and your `SLDS_PACKAGES_AUTH_TOKEN` environment variable for authenticating private packages—no project-level `.npmrc` is needed.
+> Note: Yarn 4.x reads registry settings from `.yarnrc.yml` and your `SLDS_PACKAGES_AUTH_TOKEN` environment variable for authenticating private packages — no project-level `.npmrc` is needed.
 
 ### Prerequisites
 
