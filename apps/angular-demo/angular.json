@@ -4,26 +4,27 @@
   "cli": {
     "packageManager": "yarn"
   },
+  "defaultProject": "angular-demo",
   "projects": {
     "angular-demo": {
       "projectType": "application",
-      "root": "apps/angular-demo",
-      "sourceRoot": "apps/angular-demo/src",
+      "root": "",
+      "sourceRoot": "src",
       "prefix": "app",
       "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "apps/angular-demo/dist",
-            "index": "apps/angular-demo/src/index.html",
-            "main": "apps/angular-demo/src/main.ts",
-            "polyfills": "apps/angular-demo/src/polyfills.ts",
-            "tsConfig": "apps/angular-demo/tsconfig.app.json",
+            "outputPath": "dist",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
             "assets": [],
             "styles": [
-              "./node_modules/@sl-design-system/sanoma-learning/light.css",
-              "apps/angular-demo/src/styles.css"
+              "../../node_modules/@sl-design-system/sanoma-learning/light.css",
+              "src/styles.css"
             ],
             "scripts": []
           },
