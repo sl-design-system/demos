@@ -7,7 +7,6 @@ const filename = fileURLToPath(import.meta.url),
     dirname = path.dirname(filename),
     srcDir = path.resolve(dirname, '..', 'src');
 
-// Find all .scss files in a directory
 const findScssFiles = (dir) => {
   let results = [];
   const list = fs.readdirSync(dir);
