@@ -25,7 +25,7 @@ yarn start
 
 ## Prerequisites
 
-- Node.js (>=18.x) or later
+- Node.js (>=18.x) LTS or later
 - Yarn v4+
 
 ## Installation
