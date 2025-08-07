@@ -14,10 +14,13 @@ Navigate into this demo and run scripts:
 
 ```bash
 cd apps/vue-demo
+
 # development (watch + live reload)
 yarn dev
+
 # production build
 yarn build
+
 # preview production output
 yarn preview
 ```
