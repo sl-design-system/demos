@@ -44,6 +44,8 @@ In order to authenticate to SLDS private packages, you must set the `SLDS_PACKAG
 export SLDS_PACKAGES_AUTH_TOKEN=your_token_here
 ```
 
+More information on how to obtain this token can be found in [the SL Design System documentation website](https://sanomalearning.design/categories/getting-started/developers/#make-sure-you-have-access).
+
 ## Installation
 
 1.  Clone the repository.

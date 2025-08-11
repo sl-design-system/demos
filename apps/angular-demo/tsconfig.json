@@ -11,6 +11,9 @@
     "experimentalDecorators": true,
     "target": "esnext",
     "typeRoots": ["node_modules/@types"],
-    "lib": ["ES2022", "dom"]
+    "lib": ["ES2022", "dom"],
+    "paths": {
+      "@sl-design-system/*": ["../../node_modules/@sl-design-system/*"]
+    }
   }
 }
