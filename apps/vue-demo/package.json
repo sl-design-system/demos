@@ -1,0 +1,64 @@
+{
+  "name": "vue-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "wireit",
+    "dev": "wireit",
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "preview": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "command": "node scripts/build.js",
+      "files": [
+        "scripts/build.js",
+        "index.html",
+        "tsconfig.json",
+        "src/**/*"
+      ],
+      "output": [
+        "dist/**"
+      ]
+    },
+    "dev": {
+      "command": "node scripts/build.js --watch",
+      "files": [
+        "scripts/build.js",
+        "index.html",
+        "tsconfig.json",
+        "src/**/*"
+      ],
+      "service": true
+    },
+    "lint": {
+      "command": "eslint src/**/*.ts",
+      "files": [
+        "src/**/*.ts"
+      ]
+    },
+    "lint:fix": {
+      "command": "eslint src/**/*.ts --fix",
+      "files": [
+        "src/**/*.ts"
+      ]
+    },
+    "preview": {
+      "command": "wds --root-dir dist --open",
+      "dependencies": [
+        "build"
+      ]
+    }
+  },
+  "dependencies": {
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.4.0",
+    "esbuild": "^0.25.8",
+    "esbuild-plugin-vue-next": "^0.1.4",
+    "wireit": "^0.14.12"
+  }
+}

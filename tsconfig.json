@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "bundler",
+    "sourceMap": true
+  },
+  "exclude": ["node_modules", "dist"]
+}
