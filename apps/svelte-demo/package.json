@@ -1,0 +1,76 @@
+{
+  "name": "svelte-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "wireit",
+    "dev": "wireit",
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "preview": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "command": "node scripts/build.js",
+      "files": [
+        "scripts/build.js",
+        "src/index.html",
+        "tsconfig.json",
+        "src/**/*"
+      ],
+      "output": [
+        "dist/**"
+      ]
+    },
+    "build:watch": {
+      "command": "node scripts/build.js --watch",
+      "files": [
+        "scripts/build.js",
+        "src/index.html",
+        "tsconfig.json",
+        "src/**/*"
+      ],
+      "service": true
+    },
+    "dev": {
+      "dependencies": [
+        "build:watch",
+        "serve"
+      ]
+    },
+    "lint": {
+      "command": "eslint src/**/*.ts",
+      "files": [
+        "src/**/*.ts"
+      ]
+    },
+    "lint:fix": {
+      "command": "eslint src/**/*.ts --fix",
+      "files": [
+        "src/**/*.ts"
+      ]
+    },
+    "preview": {
+      "command": "wds --root-dir dist --open",
+      "dependencies": [
+        "build"
+      ]
+    },
+    "serve": {
+      "command": "wds --root-dir dist --open",
+      "dependencies": [
+        "build"
+      ],
+      "service": true
+    }
+  },
+  "devDependencies": {
+    "@web/dev-server": "^0.4.6",
+    "esbuild": "^0.25.8",
+    "esbuild-svelte": "^0.9.3",
+    "svelte": "^5.37.1",
+    "svelte-preprocess": "^6.0.3",
+    "wireit": "^0.14.12"
+  }
+}
