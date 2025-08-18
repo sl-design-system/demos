@@ -42,5 +42,8 @@ apps/**/*.js.map
 # Yarn optimization file
 .yarn/install-state.gz
 
+# Intellij
+.idea/
+
 # CSS source maps
 *.css.map
