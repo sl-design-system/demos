@@ -1,2 +1,11 @@
 <h1>Hello Angular Demo!</h1>
 <sl-button variant="info" size="lg">Button</sl-button>
+
+<ul>
+  <ng-template ngFor let-item [ngForOf]="quotes">
+    <li>{{item.quote}} - {{item.author}}
+  </ng-template>
+</ul>
+
+<sl-paginator [dataSource]="dataSource" 
+              (sl-page-change)="onPageChange()"></sl-paginator>

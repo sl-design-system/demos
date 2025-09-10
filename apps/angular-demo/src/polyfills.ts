@@ -1,1 +1,2 @@
 import 'zone.js';
+import '@webcomponents/scoped-custom-element-registry/scoped-custom-element-registry.min.js';

@@ -4,6 +4,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { setup } from '@sl-design-system/sanoma-learning';
 import '@sl-design-system/button/register.js';
+import '@sl-design-system/paginator/register.js';
 
 bootstrapApplication(AppComponent);
 
