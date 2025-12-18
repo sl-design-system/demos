@@ -1,2 +1,44 @@
 <h1>Hello Angular Demo!</h1>
-<sl-button variant="info" size="lg">Button</sl-button>
+
+<nav style="margin-bottom: 2rem;">
+  <app-nav-item [ariaDescribedby]="'test123'" label="Home" href="/home" [isActive]="true"></app-nav-item>
+  <sl-tooltip id="test123">Navigate to Home</sl-tooltip>
+  <app-nav-item label="About" href="/about"></app-nav-item>
+  <app-nav-item label="Services" href="/services"></app-nav-item>
+  <app-nav-item label="Contact" href="/contact"></app-nav-item>
+</nav>
+
+<nav style="margin-bottom: 2rem;">
+  <app-nav-item [slTooltip]="'tooltipText'" label="Home" href="/home" [isActive]="true"></app-nav-item>
+  <app-nav-item label="About" href="/about"></app-nav-item>
+  <app-nav-item label="Services" href="/services"></app-nav-item>
+  <app-nav-item label="Contact" href="/contact"></app-nav-item>
+</nav>
+
+
+<sl-button variant="info" size="lg" aria-describedby="my-tooltip">Button</sl-button>
+<sl-tooltip id="my-tooltip">
+  This is a tooltip
+</sl-tooltip>
+
+<sl-button variant="info" size="lg" [attr.aria-describedby]="`my-tooltip2`">Button</sl-button>
+<sl-tooltip [id]="`my-tooltip2`">
+  This is a tooltip
+</sl-tooltip>
+
+<sl-button variant="info" size="lg" slTooltip="I am a tooltip added via directive to the button">Button</sl-button>
+
+<div class="links-wrapper">
+  <a [slTooltip]="'tooltipText'" href="https://angular.io/guide/component-overview" target="_blank" class="card-link">
+    Read More with tooltip directive →
+  </a>
+</div>
+
+<div class="links-wrapper">
+  <a href="https://angular.io/guide/component-overview" target="_blank" class="card-link" aria-describedby="my-tooltip-link">
+    Read More with tooltip component →
+  </a>
+  <sl-tooltip id="my-tooltip-link">
+    Link tooltip added via tooltip component
+  </sl-tooltip>
+</div>
