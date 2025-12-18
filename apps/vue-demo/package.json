@@ -53,11 +53,11 @@
     }
   },
   "dependencies": {
-    "vue": "^3.4.0"
+    "vue": "^3.5.26"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.4.0",
-    "esbuild": "^0.25.8",
+    "@vue/compiler-sfc": "^3.5.26",
+    "esbuild": "^0.27.2",
     "esbuild-plugin-vue-next": "^0.1.4",
     "wireit": "^0.14.12"
   }

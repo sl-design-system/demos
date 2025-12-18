@@ -65,15 +65,15 @@
     }
   },
   "dependencies": {
-    "@open-wc/scoped-elements": "^3.0.5",
+    "@open-wc/scoped-elements": "^3.0.6",
     "@webcomponents/scoped-custom-element-registry": "^0.0.10",
-    "lit": "^3.3.0"
+    "lit": "^3.3.1"
   },
   "devDependencies": {
     "@web/dev-server": "^0.4.6",
-    "esbuild": "^0.25.8",
-    "sass": "^1.89.2",
-    "typescript": "^5.8.3",
+    "esbuild": "^0.27.2",
+    "sass": "^1.97.0",
+    "typescript": "^5.9.3",
     "wireit": "^0.14.12"
   }
 }
