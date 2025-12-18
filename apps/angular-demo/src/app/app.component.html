@@ -1,20 +1,24 @@
 <h1>Hello Angular Demo!</h1>
 
+<h2>Nav Item Component (Button Style)</h2>
 <nav style="margin-bottom: 2rem;">
   <app-nav-item [ariaDescribedby]="'test123'" label="Home" href="/home" [isActive]="true"></app-nav-item>
   <sl-tooltip id="test123">Navigate to Home</sl-tooltip>
-  <app-nav-item label="About" href="/about"></app-nav-item>
-  <app-nav-item label="Services" href="/services"></app-nav-item>
-  <app-nav-item label="Contact" href="/contact"></app-nav-item>
+  <app-nav-item [ariaDescribedby]="'test123a'" label="About" href="/about"></app-nav-item>
+  <sl-tooltip id="test123a">Navigate to Home</sl-tooltip>
+  <app-nav-item [ariaDescribedby]="'test123b'" label="Services" href="/services"></app-nav-item>
+  <sl-tooltip id="test123b">Navigate to Home</sl-tooltip>
+  <app-nav-item [ariaDescribedby]="'test123c'" label="Contact" href="/contact"></app-nav-item>
+  <sl-tooltip id="test123c">Navigate to Home</sl-tooltip>
 </nav>
 
+<h2>Nav Link Component (Underline Style) - With Tooltip Directive</h2>
 <nav style="margin-bottom: 2rem;">
-  <app-nav-item [slTooltip]="'tooltipText'" label="Home" href="/home" [isActive]="true"></app-nav-item>
-  <app-nav-item label="About" href="/about"></app-nav-item>
-  <app-nav-item label="Services" href="/services"></app-nav-item>
-  <app-nav-item label="Contact" href="/contact"></app-nav-item>
+  <app-nav-link label="Home" href="/home" [isActive]="true" [slTooltip]="'Home Page'"></app-nav-link>
+  <app-nav-link label="Products" href="/products"  [slTooltip]="'Products Page'"></app-nav-link>
+  <app-nav-link label="Blog" href="/blog"  [slTooltip]="'Blog Page'"></app-nav-link>
+  <app-nav-link label="Contact" href="/contact"  [slTooltip]="'Contact Page'"></app-nav-link>
 </nav>
-
 
 <sl-button variant="info" size="lg" aria-describedby="my-tooltip">Button</sl-button>
 <sl-tooltip id="my-tooltip">
@@ -29,7 +33,7 @@
 <sl-button variant="info" size="lg" slTooltip="I am a tooltip added via directive to the button">Button</sl-button>
 
 <div class="links-wrapper">
-  <a [slTooltip]="'tooltipText'" href="https://angular.io/guide/component-overview" target="_blank" class="card-link">
+  <a [slTooltip]="tooltipText" href="https://angular.io/guide/component-overview" target="_blank" class="card-link">
     Read More with tooltip directive →
   </a>
 </div>

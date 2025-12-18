@@ -1,0 +1,40 @@
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  text-decoration: none;
+  color: #0066cc;
+  background-color: transparent;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav-link:hover {
+  color: #0052a3;
+  border-bottom-color: #0052a3;
+}
+
+.nav-link:focus {
+  color: #0052a3;
+  border-bottom-color: #0052a3;
+  outline: 2px dashed #0066cc;
+  outline-offset: 4px;
+}
+
+.nav-link.active {
+  color: #004080;
+  border-bottom-color: #004080;
+  font-weight: 700;
+}
+
+.nav-link.active:hover,
+.nav-link.active:focus {
+  color: #003366;
+  border-bottom-color: #003366;
+}
+

@@ -1,10 +1,9 @@
 <a
   [href]="href"
   [class.active]="isActive"
-  class="nav-item"
+  class="nav-link"
   [attr.aria-describedby]="ariaDescribedby"
-  (focus)="onFocus($event)"
-  (blur)="onBlur($event)">
+  [slTooltip]="slTooltip || ''">
   {{ label }}
 </a>
 
