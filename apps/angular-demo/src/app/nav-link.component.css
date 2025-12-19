@@ -1,40 +1,39 @@
 .nav-link {
-  display: inline-flex;
   align-items: center;
-  padding: 0.5rem 1rem;
-  margin: 0 0.5rem;
-  text-decoration: none;
-  color: #0066cc;
   background-color: transparent;
-  border-bottom: 2px solid transparent;
-  transition: all 0.2s ease;
-  font-weight: 600;
+  border-block-end: 2px solid transparent;
+  color: #06c;
+  display: inline-flex;
   font-size: 0.95rem;
-  text-transform: uppercase;
+  font-weight: 600;
   letter-spacing: 0.5px;
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
 }
 
 .nav-link:hover {
+  border-block-end-color: #0052a3;
   color: #0052a3;
-  border-bottom-color: #0052a3;
 }
 
 .nav-link:focus {
+  border-block-end-color: #0052a3;
   color: #0052a3;
-  border-bottom-color: #0052a3;
-  outline: 2px dashed #0066cc;
+  outline: 2px dashed #06c;
   outline-offset: 4px;
 }
 
 .nav-link.active {
+  border-block-end-color: #004080;
   color: #004080;
-  border-bottom-color: #004080;
   font-weight: 700;
 }
 
 .nav-link.active:hover,
 .nav-link.active:focus {
-  color: #003366;
-  border-bottom-color: #003366;
+  border-block-end-color: #036;
+  color: #036;
 }
-

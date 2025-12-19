@@ -11,22 +11,13 @@ import { TooltipDirective } from '@sl-design-system/angular';
 })
 export class NavLinkComponent {
   @Input() label = 'Nav Link';
+
   @Input() href = '#';
+
   @Input() isActive = false;
+
   @Input() ariaDescribedby?: string;
-  @Input() slTooltip?: string;
 
-  // TODO: add polyfill import '@webcomponents/scoped-custom-element-registry/scoped-custom-element-registry.min.js'; to get the directive working
-
-  // onFocus(event: FocusEvent) {
-  //   console.log('Focus event:', event, event.detail);
-  //   const target = event.target as HTMLElement;
-  //   target.parentElement?.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
-  // }
-  //
-  // onBlur(event: FocusEvent) {
-  //   const target = event.target as HTMLElement;
-  //   target.parentElement?.dispatchEvent(new FocusEvent('blur', { bubbles: true }));
-  // }
+  @Input() tooltipText?: string;
 }
 

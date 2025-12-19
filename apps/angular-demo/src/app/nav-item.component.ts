@@ -10,12 +10,14 @@ import { CommonModule } from '@angular/common';
 })
 export class NavItemComponent {
   @Input() label = 'Nav Item';
+
   @Input() href = '#';
+
   @Input() isActive = false;
+
   @Input() ariaDescribedby?: string;
 
   onFocus(event: FocusEvent) {
-    console.log('Focus event:', event, event.detail);
     const target = event.target as HTMLElement;
     target.parentElement?.focus();
   }

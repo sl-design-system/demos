@@ -14,10 +14,10 @@
 
 <h2>Nav Link Component (Underline Style) - With Tooltip Directive</h2>
 <nav style="margin-bottom: 2rem;">
-  <app-nav-link label="Home" href="/home" [isActive]="true" [slTooltip]="'Home Page'"></app-nav-link>
-  <app-nav-link label="Products" href="/products"  [slTooltip]="'Products Page'"></app-nav-link>
-  <app-nav-link label="Blog" href="/blog"  [slTooltip]="'Blog Page'"></app-nav-link>
-  <app-nav-link label="Contact" href="/contact"  [slTooltip]="'Contact Page'"></app-nav-link>
+  <app-nav-link label="Home" href="/home" [isActive]="true" [tooltipText]="'Home Page'"></app-nav-link>
+  <app-nav-link label="Products" href="/products"  [tooltipText]="'Products Page'"></app-nav-link>
+  <app-nav-link label="Blog" href="/blog"  [tooltipText]="'Blog Page'"></app-nav-link>
+  <app-nav-link label="Contact" href="/contact"  [tooltipText]="'Contact Page'"></app-nav-link>
 </nav>
 
 <div class="buttons-wrapper">
@@ -36,16 +36,16 @@
 </div>
 
 <div class="links-wrapper">
-  <a [slTooltip]="tooltipText" href="https://angular.io/guide/component-overview" target="_blank" class="card-link">
-    Read More with tooltip directive →
-  </a>
-</div>
-
-<div class="links-wrapper">
   <a href="https://angular.io/guide/component-overview" target="_blank" class="card-link" aria-describedby="my-tooltip-link">
     Read More with tooltip component →
   </a>
   <sl-tooltip id="my-tooltip-link">
     Link tooltip added via tooltip component
   </sl-tooltip>
+</div>
+
+<div class="links-wrapper">
+  <a [slTooltip]="tooltipText" href="https://angular.io/guide/component-overview" target="_blank" class="card-link">
+    Read More with tooltip directive →
+  </a>
 </div>
