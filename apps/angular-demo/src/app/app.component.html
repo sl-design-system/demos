@@ -20,6 +20,7 @@
   <app-nav-link label="Contact" href="/contact"  [slTooltip]="'Contact Page'"></app-nav-link>
 </nav>
 
+<div class="buttons-wrapper">
 <sl-button variant="info" size="lg" aria-describedby="my-tooltip">Button</sl-button>
 <sl-tooltip id="my-tooltip">
   This is a tooltip
@@ -31,6 +32,8 @@
 </sl-tooltip>
 
 <sl-button variant="info" size="lg" slTooltip="I am a tooltip added via directive to the button">Button</sl-button>
+
+</div>
 
 <div class="links-wrapper">
   <a [slTooltip]="tooltipText" href="https://angular.io/guide/component-overview" target="_blank" class="card-link">

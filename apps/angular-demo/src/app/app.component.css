@@ -5,3 +5,8 @@ h1 {
 .links-wrapper {
   margin-block: 2rem;
 }
+
+.buttons-wrapper {
+  display: flex;
+  gap: 1rem;
+}
