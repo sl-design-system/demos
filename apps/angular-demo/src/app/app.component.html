@@ -49,3 +49,39 @@
     Read More with tooltip directive →
   </a>
 </div>
+
+<div class="select-example">
+<sl-select id="level" style="width: 200px;">
+  <sl-option value="avi_start">
+          <span class="option-content">
+            <sl-icon name="fas-circle"></sl-icon>
+            AVI Start
+          </span>
+  </sl-option>
+
+  <sl-option value="avi_m3">
+    <span class="option-content"> <sl-icon name="fas-triangle-exclamation"></sl-icon>AVI M3</span></sl-option
+  >
+  <sl-option value="avi_e3">
+    <span class="option-content"> <sl-icon name="fas-square"></sl-icon>AVI E3</span></sl-option
+  >
+  <sl-option value="avi_m4">
+    <span class="option-content"> <sl-icon name="fas-hexagon-nodes"></sl-icon>AVI M4</span></sl-option
+  >
+</sl-select>
+</div>
+
+<div class="links-wrapper">
+  <a #linkEl
+    matButton="outlined"
+    [href]="link()"
+    [attr.aria-describedby]="'tertiary-navigation-tooltip'"
+    (pointerover)="onPointerover()"
+    (pointerout)="onPointerout()">
+    <div class="link-content">
+      <sl-icon name="fas-arrow-left"></sl-icon>
+      <span>{{ label()}}</span>
+    </div>
+  </a>
+  <sl-tooltip id="tertiary-navigation-tooltip" position="bottom" #tooltip>abcdefg</sl-tooltip>
+</div>

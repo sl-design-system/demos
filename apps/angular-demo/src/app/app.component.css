@@ -10,3 +10,11 @@ h1 {
   display: flex;
   gap: 1rem;
 }
+
+.select-example {
+  inline-size: 200px;
+}
+
+sl-select-button {
+  inline-size: 300px;
+}
