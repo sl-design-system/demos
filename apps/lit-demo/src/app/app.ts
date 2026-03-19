@@ -13,10 +13,15 @@ export class App extends ScopedElementsMixin(LitElement) {
 
   static styles = styles;
 
+  openBlankPage(): void {
+    window.open('about:blank', '_blank', 'noopener,noreferrer');
+  }
+
   render(): TemplateResult {
     return html`
       <h1>Hello Lit Demo!</h1>
-      <sl-button variant="info" size="lg">Button</sl-button>
+      <h2>sl-button</h2>
+      <sl-button variant="info" size="lg" @click=${this.openBlankPage}>Button</sl-button>
     `;
   }
 }
