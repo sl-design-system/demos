@@ -18,3 +18,9 @@ h1 {
 sl-select-button {
   inline-size: 300px;
 }
+
+.popover-example {
+  display: flex;
+  gap: 200px;
+  justify-content: center;
+}

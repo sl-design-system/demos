@@ -85,3 +85,46 @@
   </a>
   <sl-tooltip id="tertiary-navigation-tooltip" position="bottom" #tooltip>abcdefg</sl-tooltip>
 </div>
+
+<div class="links-wrapper">
+  <a
+     matButton="outlined"
+     [slTooltip]="'this is a tooltip via directive'"
+     [href]="link()"
+     [attr.aria-describedby]="'tertiary-navigation-tooltip'">
+    <div class="link-content">
+      <sl-icon name="fas-arrow-left"></sl-icon>
+      <span>{{ label()}}</span>
+    </div>
+  </a>
+</div>
+
+<div class="popover-example">
+  <sl-button (click)="handleButtonClicked()"
+             [attr.popovertarget]="'adapt_popover'"
+             [id]="'adaptivity_btn'"
+             aria-labelledby="tooltip"
+             fill="outline"
+             shape="pill" size="sm">
+    <sl-icon name="fas-chart-line"/>
+  </sl-button>
+  <sl-tooltip [maxWidth]="200" id="tooltip">aaaa</sl-tooltip>
+  <sl-popover #popoverEl
+              [attr.anchor]="'adaptivity_btn'"
+              [attr.popover]="'manual'"
+              [attr.position]="'bottom'"
+              [id]="'adapt_popover'"
+              class="onboarding-popover">
+    <section>
+      <p>
+        {{ 'completionResults.adaptivityOnboardingText' }}
+      </p>
+    </section>
+    <sl-button (click)="handleCloseOnboardingPopover()"
+               variant="primary">{{ 'completionResults.onboardingButton' }}
+    </sl-button>
+  </sl-popover>
+
+  <sl-button id="anchor2" [attr.popovertarget]="'example_popover'" variant="primary">This is a popover anchor element (sl-button)</sl-button>
+  <sl-popover #examplePopover [id]="'example_popover'" [attr.anchor]="'anchor2'" [attr.popover]="'manual'" [attr.position]="'bottom'">Popover example</sl-popover>
+</div>
