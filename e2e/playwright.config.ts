@@ -1,5 +1,19 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const apps = [
+  { name: 'angular', baseURL: 'http://localhost:4200' },
+  { name: 'lit',     baseURL: 'http://localhost:8009' },
+  { name: 'svelte',  baseURL: 'http://localhost:8000' },
+  { name: 'vue',     baseURL: 'http://localhost:8008' },
+];
+
+const browsers = [
+  { name: 'chromium', device: devices['Desktop Chrome'] },
+  { name: 'firefox',  device: devices['Desktop Firefox'] },
+  { name: 'edge',     device: { ...devices['Desktop Edge'], channel: 'msedge' } },
+  { name: 'webkit',   device: devices['Desktop Safari'] },
+];
+
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
@@ -9,22 +23,10 @@ export default defineConfig({
   use: {
     trace: 'on-first-retry',
   },
-  projects: [
-    {
-      name: 'angular',
-      use: { ...devices['Desktop Chrome'], baseURL: 'http://localhost:4200' },
-    },
-    {
-      name: 'lit',
-      use: { ...devices['Desktop Chrome'], baseURL: 'http://localhost:8009' },
-    },
-    {
-      name: 'svelte',
-      use: { ...devices['Desktop Chrome'], baseURL: 'http://localhost:8000' },
-    },
-    {
-      name: 'vue',
-      use: { ...devices['Desktop Chrome'], baseURL: 'http://localhost:8008' },
-    },
-  ],
+  projects: apps.flatMap(app =>
+    browsers.map(browser => ({
+      name: `${app.name}-${browser.name}`,
+      use: { ...browser.device, baseURL: app.baseURL },
+    }))
+  ),
 });
