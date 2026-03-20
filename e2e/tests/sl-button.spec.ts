@@ -12,12 +12,10 @@ test.describe('sl-button', () => {
   });
 
   test('should click the sl-button and open a new page', async ({ page }) => {
-    await page.waitForTimeout(1000);
     [newPage] = await Promise.all([
       page.context().waitForEvent('page'),
       page.locator('sl-button').click(),
     ]);
     await expect(newPage).toHaveURL('about:blank');
-    await page.waitForTimeout(1000);
   });
 });

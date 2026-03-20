@@ -1,0 +1,80 @@
+name: E2E Tests
+
+on:
+  push:
+    branches:
+      - Chore/e2e-tests
+  workflow_dispatch:
+    inputs:
+      app:
+        description: 'App to test'
+        required: true
+        type: choice
+        options:
+          - angular
+          - lit
+          - svelte
+          - vue
+      browser:
+        description: 'Browser to test'
+        required: true
+        type: choice
+        options:
+          - chromium
+          - firefox
+          - edge
+          - webkit
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        env:
+          SLDS_PACKAGES_AUTH_TOKEN: ${{ secrets.SLDS_PACKAGES_AUTH_TOKEN }}
+        run: yarn install
+
+      - name: Install Playwright browser
+        run: yarn workspace e2e exec playwright install ${{ inputs.browser }} --with-deps
+
+      - name: Resolve app config
+        id: app-config
+        run: |
+          case "${{ inputs.app }}" in
+            angular) echo "command=yarn workspace angular-demo start" >> $GITHUB_OUTPUT
+                     echo "port=4200" >> $GITHUB_OUTPUT ;;
+            lit)     echo "command=yarn workspace lit-demo dev" >> $GITHUB_OUTPUT
+                     echo "port=8009" >> $GITHUB_OUTPUT ;;
+            svelte)  echo "command=yarn workspace svelte-demo dev" >> $GITHUB_OUTPUT
+                     echo "port=8000" >> $GITHUB_OUTPUT ;;
+            vue)     echo "command=yarn workspace vue-demo dev" >> $GITHUB_OUTPUT
+                     echo "port=8008" >> $GITHUB_OUTPUT ;;
+          esac
+
+      - name: Start app
+        run: ${{ steps.app-config.outputs.command }} &
+
+      - name: Wait for app to be ready
+        run: npx wait-on http://localhost:${{ steps.app-config.outputs.port }} --timeout 60000
+
+      - name: Run E2E tests
+        run: yarn workspace e2e exec playwright test --project=${{ inputs.app }}-${{ inputs.browser }}
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-${{ inputs.app }}-${{ inputs.browser }}
+          path: e2e/playwright-report/
+          retention-days: 30
