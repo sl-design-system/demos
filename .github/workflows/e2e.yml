@@ -43,7 +43,7 @@ jobs:
       - name: Install dependencies
         env:
           SLDS_PACKAGES_AUTH_TOKEN: ${{ secrets.SLDS_PACKAGES_AUTH_TOKEN }}
-        run: yarn install
+        run: yarn install --no-immutable
 
       - name: Install Playwright browser
         run: yarn workspace e2e exec playwright install ${{ inputs.browser }} --with-deps
