@@ -9,6 +9,7 @@ on:
       app:
         description: 'App to test'
         required: true
+        default: 'angular'
         type: choice
         options:
           - angular
@@ -18,6 +19,7 @@ on:
       browser:
         description: 'Browser to test'
         required: true
+        default: 'chromium'
         type: choice
         options:
           - chromium
@@ -63,7 +65,8 @@ jobs:
           esac
 
       - name: Start app
-        run: ${{ steps.app-config.outputs.command }} &
+        run: |
+          ${{ steps.app-config.outputs.command }} &
 
       - name: Wait for app to be ready
         run: npx wait-on http://localhost:${{ steps.app-config.outputs.port }} --timeout 60000
