@@ -1,9 +1,6 @@
 name: E2E Tests
 
 on:
-  push:
-    branches:
-      - Chore/e2e-tests
   workflow_dispatch:
     inputs:
       app:
@@ -47,13 +44,13 @@ jobs:
       - name: Install dependencies
         run: yarn install --no-immutable
 
-      - name: Install Playwright browser
+      - name: Install browsers
         run: yarn workspace e2e exec playwright install ${{ inputs.browser }} --with-deps
 
       - name: Resolve app config
         id: app-config
         run: |
-          case "${{ inputs.app || 'angular' }}" in
+          case "${{ inputs.app }}" in
             angular) echo "command=yarn workspace angular-demo start" >> $GITHUB_OUTPUT
                      echo "port=4200" >> $GITHUB_OUTPUT ;;
             lit)     echo "command=yarn workspace lit-demo dev" >> $GITHUB_OUTPUT
@@ -72,12 +69,12 @@ jobs:
         run: npx wait-on http://localhost:${{ steps.app-config.outputs.port }} --timeout 60000
 
       - name: Run E2E tests
-        run: yarn workspace e2e exec playwright test --project=${{ inputs.app || 'angular' }}-${{ inputs.browser || 'chromium' }}
+        run: yarn workspace e2e exec playwright test --project=${{ inputs.app }}-${{ inputs.browser }}
 
-      - name: Upload Playwright report
+      - name: Upload tests report
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: playwright-report-${{ inputs.app || 'angular' }}-${{ inputs.browser || 'chromium' }}
+          name: playwright-report-${{ inputs.app }}-${{ inputs.browser }}
           path: e2e/playwright-report/
           retention-days: 30
