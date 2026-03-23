@@ -1,0 +1,30 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:angular:chromium": "playwright test --project=angular-chromium",
+    "test:angular:firefox": "playwright test --project=angular-firefox",
+    "test:angular:edge": "playwright test --project=angular-edge",
+    "test:angular:webkit": "playwright test --project=angular-webkit",
+    "test:lit:chromium": "playwright test --project=lit-chromium",
+    "test:lit:firefox": "playwright test --project=lit-firefox",
+    "test:lit:edge": "playwright test --project=lit-edge",
+    "test:lit:webkit": "playwright test --project=lit-webkit",
+    "test:svelte:chromium": "playwright test --project=svelte-chromium",
+    "test:svelte:firefox": "playwright test --project=svelte-firefox",
+    "test:svelte:edge": "playwright test --project=svelte-edge",
+    "test:svelte:webkit": "playwright test --project=svelte-webkit",
+    "test:vue:chromium": "playwright test --project=vue-chromium",
+    "test:vue:firefox": "playwright test --project=vue-firefox",
+    "test:vue:edge": "playwright test --project=vue-edge",
+    "test:vue:webkit": "playwright test --project=vue-webkit",
+    "test:report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0"
+  }
+}

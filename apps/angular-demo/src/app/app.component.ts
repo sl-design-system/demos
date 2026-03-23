@@ -8,4 +8,8 @@ import { ButtonComponent } from '@sl-design-system/angular/button';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {}
+export class AppComponent {
+  openBlankPage() {
+    window.open('about:blank', '_blank', 'noopener,noreferrer');
+  }
+}
