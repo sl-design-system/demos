@@ -26,7 +26,9 @@ export class App extends ScopedElementsMixin(LitElement) {
     return html`
       <h1>Hello Lit Demo!</h1>
       <h2>sl-button</h2>
-      <sl-button variant="info" size="lg" @click=${this.openBlankPage}>Button</sl-button>
+      <sl-button variant="info" size="lg" @click=${this.openBlankPage}
+        >Button</sl-button
+      >
       <h2>sl-accordion</h2>
       <sl-accordion single>
         <sl-accordion-item summary="Test 1">

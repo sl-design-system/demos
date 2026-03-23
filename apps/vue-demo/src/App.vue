@@ -2,7 +2,9 @@
   <div id="app">
     <h1>Hello Vue Demo!</h1>
     <h2>sl-button</h2>
-    <sl-button variant="info" size="lg" @click="openBlankPage">Button</sl-button>
+    <sl-button variant="info" size="lg" @click="openBlankPage"
+      >Button</sl-button
+    >
     <h2>sl-accordion</h2>
     <sl-accordion single>
       <sl-accordion-item summary="Test 1">
