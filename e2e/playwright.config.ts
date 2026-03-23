@@ -10,7 +10,7 @@ const apps = [
 const browsers = [
   { name: 'chromium', device: devices['Desktop Chrome'] },
   { name: 'firefox',  device: devices['Desktop Firefox'] },
-  { name: 'edge',     device: { ...devices['Desktop Edge'], channel: 'msedge' } },
+  { name: 'msedge',   device: { ...devices['Desktop Edge'], channel: 'msedge' } },
   { name: 'webkit',   device: devices['Desktop Safari'] },
 ];
 
