@@ -3,6 +3,7 @@ import {
   ScopedElementsMixin,
   type ScopedElementsMap,
 } from '@open-wc/scoped-elements/lit-element.js';
+import { Breadcrumbs } from '@sl-design-system/breadcrumbs';
 import { Accordion, AccordionItem } from '@sl-design-system/accordion';
 import { Button } from '@sl-design-system/button';
 import styles from './app.styles.scss.js';
@@ -10,6 +11,7 @@ import styles from './app.styles.scss.js';
 export class App extends ScopedElementsMixin(LitElement) {
   static get scopedElements(): ScopedElementsMap {
     return {
+      'sl-breadcrumbs': Breadcrumbs,
       'sl-accordion': Accordion,
       'sl-accordion-item': AccordionItem,
       'sl-button': Button,
@@ -38,6 +40,10 @@ export class App extends ScopedElementsMixin(LitElement) {
           Extended content for Test 2
         </sl-accordion-item>
       </sl-accordion>
+      <h2>sl-breadcrumbs</h2>
+      <sl-breadcrumbs>
+        <a href="about:blank" target="_blank" rel="noopener noreferrer">Test 1</a>
+      </sl-breadcrumbs>
     `;
   }
 }
