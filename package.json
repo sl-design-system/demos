@@ -72,6 +72,7 @@
     "@lit/localize": "^0.12.2",
     "@open-wc/dedupe-mixin": "^1.4.0",
     "@open-wc/scoped-elements": "^3.0.5",
+    "@sl-design-system/accordion": "^1.1.0",
     "@sl-design-system/angular": "^3.2.0",
     "@sl-design-system/button": "^1.2.4",
     "@sl-design-system/checkbox": "^2.1.4",

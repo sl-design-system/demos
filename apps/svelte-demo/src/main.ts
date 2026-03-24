@@ -1,6 +1,7 @@
 import { mount } from 'svelte';
 import App from './App.svelte';
 import '@sl-design-system/button/register.js';
+import '@sl-design-system/accordion/register.js';
 import { setup } from '@sl-design-system/sanoma-learning';
 
 setup();

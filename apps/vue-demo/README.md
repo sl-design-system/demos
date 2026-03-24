@@ -57,7 +57,6 @@ yarn preview
 - `dist/` – Generated output containing bundled JS, HTML, and assets.
 - `tsconfig.json` – TypeScript config for this demo.
 
-
 ## Naming
 
 In Vue, name your single-file component files using PascalCase (like `App.vue` or `MyButton.vue`).

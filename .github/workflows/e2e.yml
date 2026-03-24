@@ -21,7 +21,7 @@ on:
         options:
           - chromium
           - firefox
-          - edge
+          - msedge
           - webkit
 
 jobs:
