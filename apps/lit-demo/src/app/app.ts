@@ -29,6 +29,10 @@ export class App extends ScopedElementsMixin(LitElement) {
   render(): TemplateResult {
     return html`
       <h1>Hello Lit Demo!</h1>
+      <h2>sl-button</h2>
+      <sl-button variant="info" size="lg" @click=${this.openBlankPage}
+        >Button</sl-button
+      >
       <h2>sl-button-bar</h2>
       <sl-button-bar align="start">
         <sl-button variant="primary" fill="solid" disabled>Test 1</sl-button>

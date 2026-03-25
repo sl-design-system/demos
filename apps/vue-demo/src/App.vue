@@ -1,6 +1,10 @@
 <template>
   <div id="app">
     <h1>Hello Vue Demo!</h1>
+    <h2>sl-button</h2>
+    <sl-button variant="info" size="lg" @click="openBlankPage"
+      >Button</sl-button
+    >
     <h2>sl-button-bar</h2>
     <sl-button-bar align="start">
       <sl-button variant="primary" fill="solid" :disabled="true"

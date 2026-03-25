@@ -9,6 +9,8 @@
 
 <main>
     <h1>Hello {name}!</h1>
+    <h2>sl-button</h2>
+    <sl-button variant="info" size="lg" on:click={openBlankPage}>Button</sl-button>
     <h2>sl-button-bar</h2>
     <sl-button-bar align="start">
         <sl-button variant="primary" fill="solid" disabled>Test 1</sl-button>
