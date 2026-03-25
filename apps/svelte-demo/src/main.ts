@@ -2,6 +2,7 @@ import '@webcomponents/scoped-custom-element-registry';
 import { mount } from 'svelte';
 import App from './App.svelte';
 import '@sl-design-system/button/register.js';
+import '@sl-design-system/button-bar/register.js';
 import '@sl-design-system/accordion/register.js';
 import '@sl-design-system/breadcrumbs/register.js';
 import { setup } from '@sl-design-system/sanoma-learning';

@@ -6,6 +6,7 @@ import {
 import { Breadcrumbs } from '@sl-design-system/breadcrumbs';
 import { Accordion, AccordionItem } from '@sl-design-system/accordion';
 import { Button } from '@sl-design-system/button';
+import { ButtonBar } from '@sl-design-system/button-bar';
 import styles from './app.styles.scss.js';
 
 export class App extends ScopedElementsMixin(LitElement) {
@@ -15,6 +16,7 @@ export class App extends ScopedElementsMixin(LitElement) {
       'sl-accordion': Accordion,
       'sl-accordion-item': AccordionItem,
       'sl-button': Button,
+      'sl-button-bar': ButtonBar,
     };
   }
 
@@ -27,10 +29,13 @@ export class App extends ScopedElementsMixin(LitElement) {
   render(): TemplateResult {
     return html`
       <h1>Hello Lit Demo!</h1>
-      <h2>sl-button</h2>
-      <sl-button variant="info" size="lg" @click=${this.openBlankPage}
-        >Button</sl-button
-      >
+      <h2>sl-button-bar</h2>
+      <sl-button-bar align="start">
+        <sl-button variant="primary" fill="solid" disabled>Test 1</sl-button>
+        <sl-button variant="primary" fill="solid" @click=${this.openBlankPage}
+          >Test 2</sl-button
+        >
+      </sl-button-bar>
       <h2>sl-accordion</h2>
       <sl-accordion single>
         <sl-accordion-item summary="Test 1">
