@@ -14,7 +14,7 @@ test.describe('sl-button', () => {
   test('should click the sl-button and open a new page', async ({ page }) => {
     [newPage] = await Promise.all([
       page.context().waitForEvent('page'),
-      page.locator('sl-button').click(),
+      page.locator('sl-button', { hasText: 'Button' }).click(),
     ]);
     await expect(newPage).toHaveURL('about:blank');
   });
