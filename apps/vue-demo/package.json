@@ -53,7 +53,8 @@
     }
   },
   "dependencies": {
-    "vue": "^3.4.0"
+    "vue": "^3.4.0",
+    "vue-router": "^4.0.0"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.4.0",

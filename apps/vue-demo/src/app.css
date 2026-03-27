@@ -2,6 +2,8 @@
 
 html,
 body {
+  margin: 0;
+  height: 100%;
   font-family:
     source-sans-pro,
     Inter,
@@ -15,8 +17,4 @@ body {
     'Apple Color Emoji',
     'Segoe UI Emoji',
     'Segoe UI Symbol';
-}
-
-h1 {
-  color: var(--sl-color-palette-success-base);
 }
