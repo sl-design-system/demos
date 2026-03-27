@@ -4,7 +4,7 @@ test.describe('sl-callout', () => {
   let newPage: Page;
 
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/sl-callout');
   });
 
   test.afterEach(async () => {

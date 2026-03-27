@@ -4,7 +4,7 @@ test.describe('sl-button', () => {
   let newPage: Page;
 
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/sl-button');
   });
 
   test.afterEach(async () => {

@@ -1,6 +1,7 @@
 import { context } from 'esbuild';
 import vue from 'esbuild-plugin-vue-next';
 import fs from 'node:fs/promises';
+import http from 'node:http';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -17,7 +18,7 @@ const buildOptions = {
   format: 'esm',
   minify: !isWatch,
   sourcemap: isWatch ? 'inline' : true,
-  plugins: [ vue() ],
+  plugins: [ vue({ templateOptions: { compilerOptions: { isCustomElement: (tag) => tag.startsWith('sl-') } } }) ],
 };
 
 const runBuild = async () => {
@@ -30,10 +31,32 @@ const runBuild = async () => {
 
   if (isWatch) {
     await ctx.watch();
-    await ctx.serve({
-      servedir: outdir,
-      port: 8008,
-    });
+    const esbuildServer = await ctx.serve({ servedir: outdir });
+
+    // Proxy that falls back to index.html for unknown paths (SPA support)
+    http
+      .createServer((req, res) => {
+        const forwardReq = http.request(
+          { hostname: esbuildServer.host, port: esbuildServer.port, path: req.url, method: req.method, headers: req.headers },
+          (forwardRes) => {
+            if (forwardRes.statusCode === 404) {
+              http.request(
+                { hostname: esbuildServer.host, port: esbuildServer.port, path: '/index.html', method: req.method, headers: req.headers },
+                (indexRes) => {
+                  res.writeHead(indexRes.statusCode, indexRes.headers);
+                  indexRes.pipe(res);
+                }
+              ).end();
+            } else {
+              res.writeHead(forwardRes.statusCode, forwardRes.headers);
+              forwardRes.pipe(res);
+            }
+          }
+        );
+        req.pipe(forwardReq);
+      })
+      .listen(8008);
+
     console.log('Development server started at http://localhost:8008');
   } else {
     await ctx.rebuild();
