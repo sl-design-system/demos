@@ -1,2 +1,13 @@
-<h1>Hello Angular Demo!</h1>
+<h1>Angular Router Demo</h1>
 <sl-button variant="info" size="lg">Button</sl-button>
+
+<!-- Visual breadcrumbs using web component -->
+<sl-breadcrumbs>
+  <a href="/" slot="home">🏠 Custom home</a>
+  <a routerLink="/page-1" routerLinkActive="active">Page 1 with a very long name to it truncates</a>
+  <a routerLink="/page-2" routerLinkActive="active">Page 2 with a very long name to it truncates</a>
+  <a routerLink="/page-3" routerLinkActive="active">Page 3</a>
+</sl-breadcrumbs>
+
+<!-- Routed page content -->
+<router-outlet></router-outlet>
