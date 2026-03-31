@@ -1,0 +1,6 @@
+<template>
+  <sl-checkbox-group>
+    <sl-checkbox value="enabled">Test 1</sl-checkbox>
+    <sl-checkbox value="disabled" :disabled="true">Test 2</sl-checkbox>
+  </sl-checkbox-group>
+</template>
