@@ -24,5 +24,9 @@ export const router = createRouter({
       path: '/sl-callout',
       component: () => import('./components/sl-callout.vue'),
     },
+    {
+      path: '/sl-checkbox',
+      component: () => import('./components/sl-checkbox.vue'),
+    },
   ],
 });
