@@ -6,6 +6,7 @@ import '@sl-design-system/button-bar/register.js';
 import '@sl-design-system/accordion/register.js';
 import '@sl-design-system/breadcrumbs/register.js';
 import '@sl-design-system/callout/register.js';
+import '@sl-design-system/checkbox/register.js';
 import { setup } from '@sl-design-system/sanoma-learning';
 
 setup();

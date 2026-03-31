@@ -37,4 +37,11 @@ export const routes: Routes = [
         (m) => m.CalloutPageComponent,
       ),
   },
+  {
+    path: 'sl-checkbox',
+    loadComponent: () =>
+      import('./components/sl-checkbox.component').then(
+        (m) => m.CheckboxPageComponent,
+      ),
+  },
 ];

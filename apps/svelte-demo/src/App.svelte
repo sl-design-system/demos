@@ -5,6 +5,7 @@
   import Button from './components/sl-button.svelte';
   import ButtonBar from './components/sl-button-bar.svelte';
   import Callout from './components/sl-callout.svelte';
+  import Checkbox from './components/sl-checkbox.svelte';
 
   const navItems = [
     { path: '/sl-accordion', label: 'sl-accordion', component: Accordion },
@@ -12,6 +13,7 @@
     { path: '/sl-button', label: 'sl-button', component: Button },
     { path: '/sl-button-bar', label: 'sl-button-bar', component: ButtonBar },
     { path: '/sl-callout', label: 'sl-callout', component: Callout },
+    { path: '/sl-checkbox', label: 'sl-checkbox', component: Checkbox },
   ];
 
   let currentPath = $state(
