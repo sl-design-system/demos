@@ -4,6 +4,7 @@ description: Generate a read-only issue priority report for sl-design-system/com
 tools:
   - github/list_issues
   - github/search_issues
+  - github/issue_read
 ---
 
 Use GitHub MCP to analyze open issues in the repository sl-design-system/components and produce a read-only prioritization report.
@@ -18,7 +19,17 @@ Use GitHub MCP to analyze open issues in the repository sl-design-system/compone
 
 ## Goal
 
-Identify the most important issues that should be addressed first and explain why.
+Identify the most important issues that should be addressed first and explain why, taking into account component maturity status and accessibility impact.
+
+## Component maturity status
+
+Components in the design system have a maturity status: **draft**, **preview**, or **stable**.
+Determine component status from issue labels, component documentation, or issue context.
+Use maturity status as a prioritization factor:
+
+- **Stable** components: bugs and regressions are **high priority** — these are in production use
+- **Preview** components: bugs are **medium priority** — important and actively used but not yet stable
+- **Draft** components: bugs are **lower priority** — still experimental and expected to change
 
 ## Scope
 
@@ -26,7 +37,7 @@ Focus on:
 
 - Open issues in sl-design-system/components
 - Related signals that help with prioritization, if available:
-  - labels
+  - labels (including component status: draft, preview, stable)
   - assignees
   - milestones
   - author
@@ -43,26 +54,32 @@ If the issue volume is large, first identify the highest-signal candidates and t
 
 Give higher priority to issues that appear to have one or more of the following:
 
-1. **User impact**
+1. **Accessibility**
+   - any issue related to accessibility (a11y), WCAG compliance, screen reader support, keyboard navigation, or ARIA
+   - accessibility issues are always high priority regardless of component status
+2. **Component maturity**
+   - stable component bug or regression → high priority
+   - preview component bug → medium priority
+   - draft component bug → lower priority
+3. **User impact**
    - breaks an existing component
    - causes regression
    - affects multiple components or shared foundations
    - impacts documentation, adoption, or developer experience in a way that blocks usage
-2. **Risk**
-   - accessibility issue
+4. **Risk**
    - visual regression
    - release blocker
    - breaking change risk
    - reliability or correctness problem
-3. **Breadth**
+5. **Breadth**
    - affects shared packages, tokens, styling foundations, wrappers, build/release flow, or documentation consumed by many teams
-4. **Urgency signals**
+6. **Urgency signals**
    - many comments
    - recent activity on an older issue
    - milestone attached
    - blocker-like labels
    - references from pull requests or other issues
-5. **Neglect risk**
+7. **Neglect risk**
    - old issue with meaningful impact
    - no owner
    - repeatedly discussed but not resolved
@@ -88,13 +105,13 @@ When relevant, pay special attention to issues involving:
 
 ## Scoring
 
-For each candidate issue, assign:
+For each candidate issue, internally calculate a priority level (Critical / High / Medium / Low) based on:
 
-- **Priority**: Critical / High / Medium / Low
-- **Score**: 1-10
-- **Confidence**: High / Medium / Low
+- component maturity status (stable > preview > draft)
+- accessibility impact
+- observed evidence from labels, comments, and linked PRs
 
-Base the score on observed evidence only. Do not invent missing facts.
+Use the calculated priority to determine ranking order, but do not include a separate score or confidence column in the output. The ranking position itself reflects priority. Base all judgments on observed evidence only. Do not invent missing facts.
 
 ## Output format
 
@@ -111,8 +128,8 @@ Return the report in English and use exactly these sections:
 ## 2. Top issues to address first
 
 Provide a table with:
-| Rank | Issue | Title | Priority | Score | Confidence | Why it matters | Recommended next step |
-|------|------:|-------|----------|------:|------------|----------------|-----------------------|
+| Rank | Issue | Title | Priority | Why it matters | Recommended next step |
+|------|------:|-------|----------|----------------|-----------------------|
 
 Rules:
 
@@ -126,7 +143,7 @@ Group the most important issues into clusters such as:
 
 - Accessibility
 - Visual regression
-- Component correctness / bugs
+- Component correctness / bugs (grouped by status: stable, preview, draft)
 - Shared foundations / tokens / styling
 - Documentation / developer experience
 - Release / maintenance risk
@@ -181,6 +198,10 @@ Explicitly state:
 - Be concise but specific
 - Cite issue numbers throughout the report
 - Prefer evidence over assumptions
+
+## Save the report
+
+After generating the report, save it as a Markdown file at the workspace root: `issues-priority-report.md`.
 - If information is incomplete, say so clearly
 - If two issues are related, mention the relationship
 - If linked PRs suggest work is already in progress, mention that
