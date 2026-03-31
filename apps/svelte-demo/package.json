@@ -52,13 +52,13 @@
       ]
     },
     "preview": {
-      "command": "wds --root-dir dist --open",
+      "command": "wds --config web-dev-server.config.mjs",
       "dependencies": [
         "build"
       ]
     },
     "serve": {
-      "command": "wds --root-dir dist --open",
+      "command": "wds --config web-dev-server.config.mjs",
       "dependencies": [
         "build"
       ],

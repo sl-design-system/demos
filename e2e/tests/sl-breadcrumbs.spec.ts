@@ -4,7 +4,7 @@ test.describe('sl-breadcrumbs', () => {
   let newPage: Page;
 
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/sl-breadcrumbs');
   });
 
   test.afterEach(async () => {
@@ -24,11 +24,7 @@ test.describe('sl-breadcrumbs', () => {
   test('should click the sl-breadcrumbs home button and navigate to base url', async ({
     page,
   }) => {
-    const baseUrl = '/';
-    const fakeUrl = '/?from=test';
-
-    await page.goto(fakeUrl);
-    await expect(page).toHaveURL(fakeUrl);
+    const baseUrl = '/sl-accordion';
 
     await Promise.all([
       page.waitForURL(baseUrl),

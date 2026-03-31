@@ -1,60 +1,103 @@
 import { html, LitElement, TemplateResult } from 'lit';
+import { state } from 'lit/decorators.js';
 import {
   ScopedElementsMixin,
   type ScopedElementsMap,
 } from '@open-wc/scoped-elements/lit-element.js';
-import { Breadcrumbs } from '@sl-design-system/breadcrumbs';
-import { Accordion, AccordionItem } from '@sl-design-system/accordion';
-import { Button } from '@sl-design-system/button';
-import { ButtonBar } from '@sl-design-system/button-bar';
+import { AccordionPage } from '../components/sl-accordion.js';
+import { BreadcrumbsPage } from '../components/sl-breadcrumbs.js';
+import { ButtonPage } from '../components/sl-button.js';
+import { ButtonBarPage } from '../components/sl-button-bar.js';
+import { CalloutPage } from '../components/sl-callout.js';
 import styles from './app.styles.scss.js';
 
+const ROUTES = [
+  { path: '/sl-accordion', label: 'sl-accordion' },
+  { path: '/sl-breadcrumbs', label: 'sl-breadcrumbs' },
+  { path: '/sl-button', label: 'sl-button' },
+  { path: '/sl-button-bar', label: 'sl-button-bar' },
+  { path: '/sl-callout', label: 'sl-callout' },
+];
+
 export class App extends ScopedElementsMixin(LitElement) {
-  static get scopedElements(): ScopedElementsMap {
+  static override get scopedElements(): ScopedElementsMap {
     return {
-      'sl-breadcrumbs': Breadcrumbs,
-      'sl-accordion': Accordion,
-      'sl-accordion-item': AccordionItem,
-      'sl-button': Button,
-      'sl-button-bar': ButtonBar,
+      'page-accordion': AccordionPage,
+      'page-breadcrumbs': BreadcrumbsPage,
+      'page-button': ButtonPage,
+      'page-button-bar': ButtonBarPage,
+      'page-callout': CalloutPage,
     };
   }
 
-  static styles = styles;
+  static override styles = styles;
 
-  openBlankPage(): void {
-    window.open('about:blank', '_blank', 'noopener,noreferrer');
+  @state() private _currentPath = window.location.pathname;
+
+  private _onPopState = () => {
+    this._currentPath = window.location.pathname;
+  };
+
+  override connectedCallback(): void {
+    super.connectedCallback();
+    window.addEventListener('popstate', this._onPopState);
+    if (this._currentPath === '/') {
+      this._navigate('/sl-accordion');
+    }
   }
 
-  render(): TemplateResult {
+  override disconnectedCallback(): void {
+    super.disconnectedCallback();
+    window.removeEventListener('popstate', this._onPopState);
+  }
+
+  private _navigate(path: string): void {
+    window.history.pushState(null, '', path);
+    this._currentPath = path;
+  }
+
+  private _renderPage(): TemplateResult {
+    switch (this._currentPath) {
+      case '/sl-accordion':
+        return html`<page-accordion></page-accordion>`;
+      case '/sl-breadcrumbs':
+        return html`<page-breadcrumbs></page-breadcrumbs>`;
+      case '/sl-button':
+        return html`<page-button></page-button>`;
+      case '/sl-button-bar':
+        return html`<page-button-bar></page-button-bar>`;
+      case '/sl-callout':
+        return html`<page-callout></page-callout>`;
+      default:
+        return html``;
+    }
+  }
+
+  override render(): TemplateResult {
     return html`
-      <h1>Hello Lit Demo!</h1>
-      <h2>sl-button</h2>
-      <sl-button variant="info" size="lg" @click=${this.openBlankPage}
-        >Button</sl-button
-      >
-      <h2>sl-button-bar</h2>
-      <sl-button-bar align="start">
-        <sl-button variant="primary" fill="solid" disabled>Test 1</sl-button>
-        <sl-button variant="primary" fill="solid" @click=${this.openBlankPage}
-          >Test 2</sl-button
-        >
-      </sl-button-bar>
-      <h2>sl-accordion</h2>
-      <sl-accordion single>
-        <sl-accordion-item summary="Test 1">
-          Extended content for Test 1
-        </sl-accordion-item>
-        <sl-accordion-item summary="Test 2" disabled>
-          Extended content for Test 2
-        </sl-accordion-item>
-      </sl-accordion>
-      <h2>sl-breadcrumbs</h2>
-      <sl-breadcrumbs>
-        <a href="about:blank" target="_blank" rel="noopener noreferrer"
-          >Test 1</a
-        >
-      </sl-breadcrumbs>
+      <div class="app-layout">
+        <nav class="sidebar">
+          <h2>Lit Demo App</h2>
+          <ul>
+            ${ROUTES.map(
+              ({ path, label }) => html`
+                <li>
+                  <a
+                    href=${path}
+                    class=${this._currentPath === path ? 'active' : ''}
+                    @click=${(e: Event) => {
+                      e.preventDefault();
+                      this._navigate(path);
+                    }}
+                    >${label}</a
+                  >
+                </li>
+              `,
+            )}
+          </ul>
+        </nav>
+        <main class="content">${this._renderPage()}</main>
+      </div>
     `;
   }
 }

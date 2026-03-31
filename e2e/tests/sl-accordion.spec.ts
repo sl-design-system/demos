@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('sl-accordion', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/sl-accordion');
   });
 
   test('should expand sl-accordion item', async ({ page }) => {
