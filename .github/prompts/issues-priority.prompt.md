@@ -24,20 +24,60 @@ Identify the most important issues that should be addressed first and explain wh
 ## Component maturity status
 
 Components in the design system have a maturity status: **draft**, **preview**, or **stable**.
-Determine component status from issue labels, component documentation, or issue context.
-Use maturity status as a prioritization factor:
+Use the reference table below to determine each component's status. Use maturity status as a prioritization factor:
 
 - **Stable** components: bugs and regressions are **high priority** — these are in production use
 - **Preview** components: bugs are **medium priority** — important and actively used but not yet stable
 - **Draft** components: bugs are **lower priority** — still experimental and expected to change
 
+### Component status reference
+
+| Component | Status |
+|---|---|
+| Accordion | stable |
+| Avatar | stable |
+| Badge | stable |
+| Breadcrumbs | stable |
+| Button | stable |
+| Button bar | stable |
+| Callout | preview |
+| Card | stable |
+| Checkbox | stable |
+| Combobox | draft |
+| Dialog | stable |
+| Form | stable |
+| Form field | preview |
+| Icon | stable |
+| Inline message | stable |
+| Menu | preview |
+| Message dialog | preview |
+| Number field | preview |
+| Paginator | draft |
+| Panel | draft |
+| Popover | stable |
+| Progress bar | preview |
+| Radio group | stable |
+| Search field | preview |
+| Select | stable |
+| Skeleton | stable |
+| Spinner | stable |
+| Switch | stable |
+| Tabs | stable |
+| Tag | preview |
+| Text area | stable |
+| Text field | stable |
+| Time field | draft |
+| Toggle button | preview |
+| Toggle group | preview |
+| Tooltip | stable |
+| Tree | preview |
+
 ## Scope
 
 Focus on:
 
-- Open issues in sl-design-system/components
+- **All** open issues in sl-design-system/components — fetch every page of results until there are no more pages remaining. Do not stop at the first page.
 - Related signals that help with prioritization, if available:
-  - labels (including component status: draft, preview, stable)
   - assignees
   - milestones
   - author
@@ -48,7 +88,7 @@ Focus on:
   - duplicate / blocked / dependency signals
   - evidence of production impact, regression, accessibility impact, visual regression, release risk, or breaking change risk
 
-If the issue volume is large, first identify the highest-signal candidates and then analyze those in more depth.
+After collecting all issues, identify the highest-signal candidates and analyze those in more depth.
 
 ## Prioritization criteria
 
@@ -107,7 +147,7 @@ When relevant, pay special attention to issues involving:
 
 For each candidate issue, internally calculate a priority level (Critical / High / Medium / Low) based on:
 
-- component maturity status (stable > preview > draft)
+- component maturity status from the reference table above (stable > preview > draft)
 - accessibility impact
 - observed evidence from labels, comments, and linked PRs
 
