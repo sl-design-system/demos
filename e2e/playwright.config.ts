@@ -24,7 +24,7 @@ export default defineConfig({
     timeout: 5000,
   },
   use: {
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
     actionTimeout: 5000,
   },
   projects: apps.flatMap((app) =>
