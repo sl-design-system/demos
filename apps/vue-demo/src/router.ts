@@ -28,5 +28,9 @@ export const router = createRouter({
       path: '/sl-checkbox',
       component: () => import('./components/sl-checkbox.vue'),
     },
+    {
+      path: '/sl-combobox',
+      component: () => import('./components/sl-combobox.vue'),
+    },
   ],
 });
