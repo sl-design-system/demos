@@ -44,4 +44,11 @@ export const routes: Routes = [
         (m) => m.CheckboxPageComponent,
       ),
   },
+  {
+    path: 'sl-combobox',
+    loadComponent: () =>
+      import('./components/sl-combobox.component').then(
+        (m) => m.ComboboxPageComponent,
+      ),
+  },
 ];

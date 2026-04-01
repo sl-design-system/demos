@@ -79,6 +79,7 @@
     "@sl-design-system/button-bar": "^1.4.0",
     "@sl-design-system/callout": "^0.1.0",
     "@sl-design-system/checkbox": "^2.1.9",
+    "@sl-design-system/combobox": "^0.1.7",
     "@sl-design-system/dialog": "^2.0.1",
     "@sl-design-system/form": "^1.2.4",
     "@sl-design-system/icon": "^1.2.1",
