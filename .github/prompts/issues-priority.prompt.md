@@ -237,7 +237,7 @@ Explicitly state:
 ## Report quality rules
 
 - Be concise but specific
-- Cite issue numbers throughout the report
+- Every issue number must be a Markdown link to the GitHub issue, e.g. `[#3095](https://github.com/sl-design-system/components/issues/3095)`. Never use a bare `#3095` without a link.
 - Prefer evidence over assumptions
 
 ## Save the report
