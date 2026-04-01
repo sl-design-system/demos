@@ -5,17 +5,21 @@ test.describe('sl-combobox', () => {
     await page.goto('/sl-combobox');
   });
 
-  test('should select and remove option from the list', async ({
-    page,
-  }) => {
+  test('should select and remove option from the list', async ({ page }) => {
     await page.locator('sl-combobox').click();
-    await expect(page.locator('sl-option', { hasText: 'Test 1' })).toBeVisible();
-    await expect(page.locator('sl-option', { hasText: 'Test 2' })).toBeVisible();
-    
+    await expect(
+      page.locator('sl-option', { hasText: 'Test 1' }),
+    ).toBeVisible();
+    await expect(
+      page.locator('sl-option', { hasText: 'Test 2' }),
+    ).toBeVisible();
+
     await page.locator('sl-option', { hasText: 'Test 1' }).click();
-    const tag = page.locator('sl-combobox').locator('sl-tag', { hasText: 'Test 1' });
+    const tag = page
+      .locator('sl-combobox')
+      .locator('sl-tag', { hasText: 'Test 1' });
     await expect(tag).toBeVisible();
-    
+
     await tag.locator('button').click();
     await expect(tag).not.toBeVisible();
   });
@@ -26,7 +30,9 @@ test.describe('sl-combobox', () => {
     await page.locator('sl-combobox').click();
     await page.keyboard.type('Test 2');
     await page.keyboard.press('Enter');
-    const tag = page.locator('sl-combobox').locator('sl-tag', { hasText: 'Test 2' });
+    const tag = page
+      .locator('sl-combobox')
+      .locator('sl-tag', { hasText: 'Test 2' });
     await expect(tag).toBeVisible();
   });
 
@@ -38,7 +44,11 @@ test.describe('sl-combobox', () => {
     await page.locator('sl-option', { hasText: 'Test 1' }).click();
     await page.locator('sl-option', { hasText: 'Test 2' }).click();
 
-    await expect(combobox.locator('sl-tag', { hasText: 'Test 1' })).toBeVisible();
-    await expect(combobox.locator('sl-tag', { hasText: 'Test 2' })).toBeVisible();
+    await expect(
+      combobox.locator('sl-tag', { hasText: 'Test 1' }),
+    ).toBeVisible();
+    await expect(
+      combobox.locator('sl-tag', { hasText: 'Test 2' }),
+    ).toBeVisible();
   });
 });
