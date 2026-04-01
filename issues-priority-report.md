@@ -1,184 +1,222 @@
 # Issue Priority Report — sl-design-system/components
 
-**Generated:** 2026-03-31
-**Source:** 576 open issues analyzed across all pages (6 pages × 100 per page)
+**Generated:** 2026-04-01  
+**Total open issues:** 576  
+**Accessibility-related:** 124 (21.5%)  
+**Bug-labeled:** 5  
+**Issues on stable components:** 168 | **Preview:** 72 | **Draft:** 39 | **No listed component:** 297
+
+---
 
 ## 1. Executive summary
 
-- **Accessibility is the dominant risk area.** A large cluster of accessibility issues spans stable and preview components — Accordion, Select, Dialog, Date field, Calendar, Search field, Toggle button, and more. Many are WCAG violations reported by the dedicated a11y auditor (@a11ymiko) with clear suggested fixes.
-- **Tooltip "stuck open" bugs are recurring and unresolved.** Issue #3086 acknowledges the need to reevaluate the Tooltip implementation approach. A PR (#3108) is in progress but still open. This affects the **stable** Tooltip component used widely in production.
-- **Stable component bugs demand immediate attention.** Dialog (#3159, #3042), Select (#3150, #3104, #2705), Accordion (#3153, #3155), and Tooltip (#3086) all have confirmed bugs against stable, production-used components.
-- **Cross-cutting naming misalignment creates breaking-change risk.** Issue #3090 documents that code uses `warning/danger/success` while Figma and Tokens use `caution/negative/positive` — affecting Button, ButtonBar, Inline Message, Menu, Progress Bar, and Checkbox. Resolution requires coordinated Figma, Token Studio, and code changes.
-- **Disabled state visibility is broken cross-component.** Issue #2961 reports that disabled buttons and inputs disappear against `elevation.surface.raised.alternative` — a systemic token/design issue.
-- **Infrastructure bottleneck: PR deploys hitting Azure limits.** Issue #3094 documents that Azure Static Web Apps has reached its maximum preview environments with no upgrade path. This blocks PR preview workflows.
-- **~350+ issues are module tracking containers, not actionable bugs.** Issues titled `[Module] X`, `[X] Bug fixes`, `[X] Maintenance` are organizational meta-issues with 0 comments. These inflate the issue count but require no direct action.
-- **Shared accessibility infrastructure needs improvement.** Issue #3101 (`ObserveAttributesMixin`) is a foundational fix that would unblock multiple `aria-disabled` propagation bugs across components.
+- **Accessibility dominates the backlog.** 124 of 576 open issues (21.5%) are accessibility-related. They span Select, Accordion, Tooltip, Tag, Tree, and many issues referencing Grid (which is not in the component status reference table). These are the highest-priority items.
+- **Select (stable) has the most critical a11y and bug combination.** Low contrast focus indicators (#2705), missing visible labels (#3104), and a production bug where the dropdown closes when clicking its scrollbar inside a modal dialog (#3150 — bug-labeled, assigned).
+- **Grid-related issues are the largest cluster but Grid has no status in the reference table.** The Grid accessibility audit (#2500, 8 comments, milestoned) and numerous child issues (#2880, #2884, #2881, #2883, #2879, #2895, #2896, #2897) represent the biggest concentration of a11y work. Since Grid is not listed in the component status reference table, these all show as `none` for status.
+- **Tooltip (stable) has multiple behavioral bugs.** Not dismissing on mouse leave (#2969 — 3 comments, assigned), Esc key conflicts (#3049), ARIA id issues (#3035), and an implementation reevaluation underway (#3086).
+- **Semantic variant naming is misaligned** (#3090). Code uses `warning/danger/success` while Figma and Tokens use `caution/negative/positive`. Affects Button, ButtonBar, Inline Message, Menu, Progress Bar, and Checkbox. Breaking change risk.
+- **The Form `Error` export collides with JavaScript's native `Error`** (#2915 — bug-labeled, assigned). Causes developer confusion in production.
+- **Disabled state visual regression** (#2961 — assigned) causes buttons and inputs to disappear against certain surface backgrounds. Cross-component impact.
+- **Calendar issues (#2919, #2992, #3088) involve combined visual and a11y bugs** but Calendar is not in the status reference table, so these show as `none` for component status.
+
+---
 
 ## 2. Top issues to address first
 
-| Rank | Issue | Title | Priority | Why it matters | Recommended next step |
-|------|------:|-------|----------|----------------|-----------------------|
-| 1 | #3074 | [Date field] Focus escapes expanded picker | Critical | Focus trap missing in stable date-field picker — keyboard users can Tab out of an open calendar dialog. WCAG 2.4.3 violation. Clear suggested fix provided. | Implement focus trap for the date-field picker dialog following WAI-ARIA dialog modal pattern. |
-| 2 | #3153 | [Accordion] Disabled items not announced | Critical | Stable Accordion's disabled state is invisible to screen readers (VoiceOver, NVDA). Suggested fix: switch from `disabled` to `aria-disabled`. | Replace `disabled` with `aria-disabled` on `sl-accordion-item` and add corresponding CSS/JS handling. |
-| 3 | #3150 | [Select] Dropdown closes on scrollbar click in modal | Critical | Stable Select component is unusable when scrollbar is clicked inside a modal dialog. Reported by external team (MyPortal/Bingel INT). Clear fix provided. | Add mousedown prevention on listbox scrollbar interaction to prevent focusout. |
-| 4 | #3086 | [Tooltip] Reevaluate implementation approach | Critical | Recurring "stuck tooltip" bug across multiple reports. Stable component. PR #3108 is in progress (assigned to @michal-sanoma). | Continue and merge PR #3108; validate against all known stuck-tooltip reports. |
-| 5 | #3104 | [Select] Missing visible labels | High | Stable Select examples on docs/Storybook lack visible labels — WCAG 3.3.2 violation. Assigned to @a11ymiko with 3 comments. | Update documentation examples and Storybook stories to include visible labels. |
-| 6 | #3088 | [Calendar] NVDA switches to Browse mode | High | NVDA changes from Focus to Browse mode inside Calendar grid, breaking keyboard navigation and `aria-describedby` announcements. Known upstream NVDA issue. Assigned to @a11ymiko. | Investigate focus management approach in calendar grid to prevent NVDA mode switch. |
-| 7 | #3090 | Align semantic variants naming | High | Naming mismatch (code: warning/danger/success vs Figma/Tokens: caution/negative/positive) affects 6+ components. Unresolved creates confusion and breaking-change risk. | Align Figma and Tokens with code naming; update documentation. Requires cross-team coordination. |
-| 8 | #3159 | [Dialog] close-button not responsive | High | Stable Dialog's close button overlaps primary action on mobile breakpoints. Reproducible on Storybook. Reported by team member @jpzwarte. | Add responsive handling to hide/reposition close-button on mobile media query. |
-| 9 | #3042 | [Dialog] Flickers at breakpoint | High | Stable Dialog flickers during viewport resize due to animation triggering at breakpoint. Assigned to @anna-lach. Reported by external team (Clickedu). | Suppress transition/animation when breakpoint-triggered re-render occurs. |
-| 10 | #3132 | [Search field] Clear button not keyboard accessible | High | Preview Search field's clear button has `tabindex=-1`, making it unreachable for keyboard users. Simple fix: change to `tabindex=0`. | Change clear button tabindex from -1 to 0 and ensure visible focus indicator with 3:1 contrast. |
-| 11 | #2961 | Disabled state disappears on raised surfaces | High | Cross-component issue: disabled buttons and inputs are invisible on `elevation.surface.raised.alternative`. Affects multiple stable components. Assigned to @RoaldBoerema. | Update disabled state tokens (background: grey.150, border: grey.400) or apply `opacity.disabled`. |
-| 12 | #3101 | [Shared] Improve ObserveAttributesMixin | High | Foundational fix enabling `aria-disabled` propagation across all components. Unblocks #3153, #3102, and other disabled-state a11y bugs. | Extend mixin to support keeping attributes on both host and internal focusable element. |
-| 13 | #3102 | [Toggle button] Disabled not announced | High | Preview Toggle button's disabled state not in accessibility tree. Same root cause pattern as #3153. | Apply `aria-disabled` instead of `disabled` on `sl-toggle-button`. |
-| 14 | #2705 | [Select] Low contrast focus indicator | High | Stable Select's keyboard focus indicator has only 1.1:1 contrast (dark mode: 1.6:1). WCAG failure. Milestoned, Figma design done, code implementation pending. | Implement the already-designed Figma update in code. |
-| 15 | #3094 | Change PR deploy hosting | High | Azure Static Web Apps hit maximum preview environments. Blocks PR preview workflow. Assigned to @jpzwarte. | Evaluate Netlify or static.app and migrate hosting. |
-| 16 | #2919 | [Calendar] Visual & a11y bug fixes | Medium | Calendar layout, contrast, and style alignment with Figma. Draft PR #3084 in progress. Assigned to @michal-sanoma. | Continue and merge draft PR #3084. |
-| 17 | #3113 | [Form field] On-blur validation | Medium | Feature request from Magister team. Preview Form field currently only validates on submit. 3 comments of active discussion. | Design and implement on-blur validation for fields where invalid input is independently detectable. |
-| 18 | #2500 | [Grid] Accessibility audit | Medium | Grid a11y audit with milestone, 8 comments, assigned to @KatarzynaWM. Prerequisite for Grid reaching stable/preview. | Continue audit and track resulting issues in milestone. |
-| 19 | #3100 | [Text area] Character count indicator | Medium | Feature request from NPM team. Stable Text area needs count display. 2 comments. | UI research on counter placement, then implement. |
-| 20 | #3069 | Add canary NPM packages | Medium | Enables devs to try fixes without waiting for releases. Already supported by changesets. | Configure changesets snapshot releases on main branch merge. |
+| Rank | Issue | Title | Component | Status | Priority | Why it matters | Recommended next step |
+|------|------:|-------|-----------|--------|----------|----------------|-----------------------|
+| 1 | #2705 | [Select] Low Contrast Indicator in Select Navigation (Keyboard Interaction) | Select | stable | Critical | Focus indicator contrast ratio 1.1:1 (light) / 1.6:1 (dark) — far below WCAG 3:1 minimum. Figma already updated. 3 comments, milestoned. | Implement the updated focus indicator styles in code. |
+| 2 | #3150 | sl-select dropdown closes when clicking listbox scrollbar inside a modal dialog | Select | stable | Critical | Production bug, bug-labeled, assigned. External team (MyPortal) blocked. Select in a dialog is a common pattern. Has proposed fix. | Validate and ship the mousedown preventDefault fix. |
+| 3 | #3104 | [Select] Some select components do not have visible label | Select | stable | Critical | Missing visible labels. 3 comments, a11y labeled. WCAG violation on a stable component. | Add visible labels to all affected Select variants. |
+| 4 | #3154 | [Accordion] NVDA in browse mode announces two buttons as one | Accordion | stable | High | Screen reader merges announcements of adjacent buttons. A11y labeled, development labeled. | Debug NVDA browse mode behavior; separate button announcements. |
+| 5 | #3153 | [Accordion] Disabled items not announced as disabled/dimmed | Accordion | stable | High | Screen readers don't communicate disabled state on Firefox/Safari. Snack-labeled (quick win). Suggested solution in issue. | Add `aria-disabled` and adjust keyboard/CSS behavior. |
+| 6 | #3155 | [Accordion] VoiceOver announces "empty group" in Toggle Externally story | Accordion | stable | High | VoiceOver reads decorative `<br>` elements. Snack-labeled (quick win). | Add `aria-hidden="true"` to decorative `<br>` elements. |
+| 7 | #2969 | [Tooltip] Does not disappear when mouse cursor leaves | Tooltip | stable | High | Tooltip persists and occludes content. 3 comments, assigned. Impacts production dashboards (Max Online). | Fix dismiss logic so tooltip hides when cursor leaves trigger and tooltip area. |
+| 8 | #3159 | [Dialog] Close button does not behave responsively | Dialog | stable | High | Close button overlaps primary action on mobile. Reported by SLDS team member. Reproducible in Storybook. | Hide or reposition close button when mobile media query applies. |
+| 9 | #2915 | Rename Error to SlError | none | none | High | Form package exports `Error` shadowing JavaScript's native `Error`. Bug-labeled, assigned. Causes runtime confusion. | Deprecate `Error` export, add `SlError` alias; plan breaking change for next major. |
+| 10 | #3090 | Align semantic variants (caution, negative, positive) | none | none | High | Naming mismatch between Code, Figma, and Tokens. Affects 6+ components. Breaking change risk if not aligned. | Align Figma + Tokens to code naming; update documentation. |
+| 11 | #2961 | Disabled state disappears against elevation.surface.raised.alternative | none | none | High | Disabled buttons/inputs invisible on certain backgrounds. Assigned. Cross-component visual regression. | Apply proposed `grey.150`/`grey.400` fix or `opacity.disabled`. |
+| 12 | #2868 | [Tag] Tags with interactions should have button roles | Tag | preview | High | Removable tags lack programmatic role. Mobile screen reader users cannot delete items. Milestoned. 3 comments. | Add `role="button"` and native button interactions to interactive tags. |
+| 13 | #2869 | [Tag list] Clarification for interaction for assistive technology users | Tag | preview | High | Tag list interaction unclear for screen reader users. 3 comments, a11y labeled. | Clarify and implement interaction patterns for tag lists. |
+| 14 | #3035 | [Tooltip] Directive With Options uses non-existing tooltip ID for aria-describedby | Tooltip | stable | High | ARIA reference points to non-existing element. A11y bug on stable component. | Fix the directive to use correct tooltip ID. |
+| 15 | #3049 | [Menu button] Esc key on expanded menu with tooltip closes menu not tooltip | none | none | High | Esc key precedence wrong when menu and tooltip overlay. A11y bug. | Fix Esc key handling to dismiss tooltip first, then menu. |
+| 16 | #2500 | [Grid - Basics] Accessibility audit | none | none | High | Umbrella a11y audit for Grid. 8 comments, milestoned, assigned. Many child issues depend on it. | Continue the audit; triage child a11y issues by severity. |
+| 17 | #3016 | [Switch] Custom Icons switches do not have any labels | Switch | stable | High | Switches missing labels entirely. A11y + Snack-labeled. | Add accessible labels to custom icon switch variants. |
+| 18 | #3017 | [Select] Custom Styling variants do not have accessible names | Select | stable | High | Multiple Select story variants lack accessible names. A11y + Snack-labeled. | Add accessible names to affected variants. |
+| 19 | #1989 | [Form] Add reportValidity API to sl-form | Form | stable | Medium | Enhancement requested by team with 60+ forms. 3 comments. Would improve validation DX significantly. | Evaluate adding `reportValidity` property to sl-form. |
+| 20 | #1556 | [Grid - Basics] Very long grid cell text doesn't render properly | none | none | Medium | 18 months old, bug-labeled, 3 comments. Long text overflows grid cells. No assignee. | Investigate CSS text overflow handling in grid cells. |
+
+---
 
 ## 3. Thematic clusters
 
-### 3.1 Accessibility
+### Cluster 1: Accessibility — Select component
 
-**Issues:** #3074, #3153, #3155, #3104, #3088, #3132, #3102, #2705, #2500, #3101, #3076, #2961
-
-**Common pattern:** Systematic a11y audit by @a11ymiko is uncovering WCAG violations across components. Most issues follow a pattern: `disabled` attribute not propagated to accessibility tree, missing focus traps, insufficient contrast ratios, or missing visible labels. The shared `ObserveAttributesMixin` (#3101) is a root-cause infrastructure issue.
-
-**Why it matters:** Accessibility failures affect all users of the design system across all consuming products. Multiple issues are WCAG Level A/AA violations (focus management, name/role/value, visible labels, contrast). Legal and compliance risk.
-
-**Address first:** #3074 (focus trap escape) and #3153 (disabled announcement) — both affect stable components and have clear, implementable fixes. Then #3101 (mixin improvement) to unblock multiple downstream fixes.
+**Issues:** #2705, #3104, #3017, #2884, #2896, #2799, #3137  
+**Common pattern:** Select has contrast issues, missing labels, broken keyboard behavior, and missing accessible names. These affect both standalone Select and grid selection variants.  
+**Why it matters:** Select is stable and in heavy production use. Low-contrast focus indicators and missing labels are direct WCAG failures.  
+**Address first:** #2705 (contrast fix — Figma already done, needs code) and #3104 (missing labels).
 
 ---
 
-### 3.2 Component correctness — Stable
+### Cluster 2: Accessibility — Grid (not in status reference table)
 
-**Issues:** #3150, #3159, #3042, #3086/#3108, #2919
-
-**Common pattern:** Bugs in stable, production-used components. Select dropdown closing unexpectedly, Dialog layout/responsiveness issues, Tooltip getting stuck. External teams (Clickedu, MyPortal/Bingel INT) are reporting these — evidence of real production impact.
-
-**Why it matters:** Stable components are in active production use. Bugs here directly affect end users. Multiple reports from different consuming teams confirm widespread impact.
-
-**Address first:** #3150 (Select scrollbar in modal) — clear fix, impacts real users. Then #3086 (Tooltip stuck) — PR already in progress.
+**Issues:** #2500, #2880, #2879, #2881, #2883, #2884, #2895, #2896, #2897, #2421, #2505, #2499, #2420  
+**Common pattern:** The largest concentration of a11y issues. Problems span ARIA attributes, keyboard navigation, selection state, empty headers, and drag-and-drop inaccessibility. Grid is not listed in the component status reference table.  
+**Why it matters:** Grid is widely used across multiple products. The accessibility audit (#2500) is milestoned. Screen readers receive incorrect or missing information.  
+**Address first:** #2880 (invalid `aria-rowindex` — quick fix) and #2884 (focus reset on selection).
 
 ---
 
-### 3.3 Component correctness — Preview / Draft
+### Cluster 3: Accessibility — Accordion
 
-**Issues:** #3132 (Search field, preview), #3102 (Toggle button, preview), #3113 (Form field, preview), #2249 (Toggle group, preview)
-
-**Common pattern:** Preview components have a11y gaps and missing features that block their path to stable status. Draft components (Combobox, Paginator, Panel, Time field) have mostly tracking issues, not urgent bugs.
-
-**Why it matters:** Preview components are actively used and need these fixes before reaching stable. Blocking issues delay component maturity and force consuming teams to implement workarounds.
-
-**Address first:** #3132 (Search field clear button) — simple tabindex change. Then #3102 (Toggle button disabled) — same pattern as #3153, can be batch-fixed.
+**Issues:** #3155, #3154, #3153, #2883  
+**Common pattern:** Disabled state not announced, VoiceOver reads empty groups, NVDA merges button announcements. All reported recently by the a11y team (a11ymiko).  
+**Why it matters:** Accordion is stable. Issues are well-documented with suggested solutions. Two are Snack-labeled (quick wins).  
+**Address first:** #3153 (disabled not announced — Snack) and #3155 (empty group — Snack).
 
 ---
 
-### 3.4 Shared foundations / tokens / styling
+### Cluster 4: Accessibility — Calendar & Date Field (not in status reference table)
 
-**Issues:** #3090, #2961, #3131, #2202
-
-**Common pattern:** Token naming inconsistencies, cross-component styling issues, and disabled-state visibility problems. These are systemic issues affecting multiple components simultaneously.
-
-**Why it matters:** Foundation issues multiply across every component that depends on them. The semantic variant naming mismatch (#3090) affects 6+ components and risks breaking changes if not resolved consistently.
-
-**Address first:** #3090 (align semantic variants) — highest cross-cutting impact and breaking-change risk. Then #2961 (disabled state visibility).
+**Issues:** #2919, #2992, #3088, #3137, #3135, #3134, #3074  
+**Common pattern:** Combined visual + a11y bugs, NVDA mode switching, focus management issues. Neither Calendar nor Date Field appear in the component status reference table.  
+**Why it matters:** Calendar is widely used. Visual and a11y fixes in #2919 are partially complete. NVDA mode-switching (#3088) breaks interaction.  
+**Address first:** #2919 (complete code changes), then #3088 (NVDA mode switching).
 
 ---
 
-### 3.5 Documentation / developer experience
+### Cluster 5: Component correctness — Tooltip
 
-**Issues:** #3148, #3076, #3104, #3106, #3131
-
-**Common pattern:** Documentation gaps (missing analytics, a11y testing for docs website), Storybook examples showing non-accessible patterns, Figma-code misalignment in visual documentation.
-
-**Why it matters:** The documentation website and Storybook are the primary adoption surfaces. Inaccessible examples in documentation propagate bad patterns to consuming teams.
-
-**Address first:** #3104 (Select visible labels in docs) — fixing documentation examples prevents downstream a11y issues in consuming products. Then merge #3076 (doc website a11y testing PR).
+**Issues:** #2969, #3086, #3035, #3049, #2965, #2928, #3152, #3067  
+**Common pattern:** Tooltip does not dismiss, Esc key conflicts, configuration issues, flickering animations, ARIA ID errors. An implementation reevaluation is underway (#3086).  
+**Why it matters:** Tooltip is stable and broadly used. Multiple external teams report problems.  
+**Address first:** #2969 (not dismissing — assigned, 3 comments), then coordinate with #3086 (reevaluation).
 
 ---
 
-### 3.6 Release / maintenance / infrastructure
+### Cluster 6: Shared foundations / Tokens / Styling
 
-**Issues:** #3094, #3069, #3072
+**Issues:** #3090, #2961, #2999, #3131  
+**Common pattern:** Naming misalignment across code/Figma/tokens, disabled state visibility, contrast on disabled elements.  
+**Why it matters:** Cross-component issues affecting consistency, theming, and developer trust. #3090 has breaking change risk.  
+**Address first:** #3090 (align naming before it drifts further), then #2961 (disabled state — assigned).
 
-**Common pattern:** CI/CD and release workflow limitations. PR deploy hosting hitting limits, no canary package releases, release management overhead.
+---
 
-**Why it matters:** #3094 is an active blocker — the team cannot deploy more PR previews. Canary packages (#3069) would accelerate bug fix validation by consuming teams.
+### Cluster 7: Component correctness — Grid (non-a11y)
 
-**Address first:** #3094 (PR deploy hosting) — actively blocking workflow.
+**Issues:** #3066, #3068, #3115, #2980, #2889, #2888, #2893, #1556  
+**Common pattern:** Rendering bugs, duplicate fetch calls, badge rendering, Angular sorting, text overflow. Grid is not in the status reference table.  
+**Why it matters:** Grid is the most complex component. Multiple external teams (Magister, Bingel) report production issues.  
+**Address first:** #3068 (double fetchPage) and #3066 (last row rendering).
+
+---
+
+### Cluster 8: Accessibility — Tag & Tree (preview)
+
+**Issues:** #2868, #2869, #2845, #2611, #2826, #2608, #2603  
+**Common pattern:** Tags lack button roles and interaction, tree badges unreachable, focus behavior issues, keyboard navigation gaps.  
+**Why it matters:** Tag and Tree are both preview components. Tag issues block Combobox progress (milestoned). Tree has active a11y work.  
+**Address first:** #2868 (tags need button role — milestoned) and #2611 (tree badges unreachable for NVDA).
+
+---
+
+### Cluster 9: Documentation / Developer experience
+
+**Issues:** #3148, #3064, #3157, #2590, #2581, #2499, #2485, #2130  
+**Common pattern:** Missing analytics, API docs gaps, bug template improvements, component documentation incomplete.  
+**Why it matters:** Documentation drives adoption. Gaps slow down external teams and increase support burden.  
+**Address first:** #3157 (improve bug template — Snack, 3 comments) and #3148 (add analytics).
+
+---
+
+### Cluster 10: Release / Maintenance risk
+
+**Issues:** #3094, #3069, #2915, #3158  
+**Common pattern:** PR deployment changes, canary packages, Error naming collision, ESLint config issues.  
+**Why it matters:** These affect developer workflow and release reliability. #2915 (Error naming) is a production hazard.  
+**Address first:** #2915 (Error → SlError — assigned, bug-labeled).
+
+---
 
 ## 4. Immediate actions
 
-1. **Fix focus trap in Date field picker (#3074)**
-   - Why now: WCAG violation on a stable component. Keyboard users can escape the open picker, losing context. Clear implementation path provided by reporter.
-   - Issues covered: #3074
+1. **Fix Select focus indicator contrast (#2705)**
+   - Why now: WCAG failure at 1.1:1 contrast on a stable component. Figma design already updated. Code-only change needed.
+   - Issues covered: #2705
 
-2. **Ship Tooltip implementation overhaul (PR #3108 for #3086)**
-   - Why now: Recurring "stuck tooltip" reports across multiple teams. PR is already in progress. Merging resolves a long-standing stable component reliability problem.
-   - Issues covered: #3086, #3108
+2. **Ship the Select scrollbar-in-modal fix (#3150)**
+   - Why now: Production bug, assigned, proposed solution ready. External team blocked.
+   - Issues covered: #3150
 
-3. **Batch-fix aria-disabled propagation (#3101, #3153, #3102)**
-   - Why now: The shared `ObserveAttributesMixin` improvement unblocks disabled-state announcements across Accordion, Toggle button, and potentially other components. One infrastructure fix, multiple downstream wins.
-   - Issues covered: #3101, #3153, #3102
+3. **Add visible labels to Select variants (#3104)**
+   - Why now: WCAG violation, 3 comments, actively discussed. Stable component.
+   - Issues covered: #3104, #3017
 
-4. **Resolve Select bugs (#3150, #3104, #2705)**
-   - Why now: Three distinct bugs on the stable Select component — scrollbar in modal, missing labels (WCAG), and low-contrast focus indicator. Select is heavily used across products.
-   - Issues covered: #3150, #3104, #2705
+4. **Fix Accordion a11y quick wins (#3153, #3155)**
+   - Why now: Both are Snack-labeled with clear solutions documented. Small effort, stable component.
+   - Issues covered: #3153, #3155
 
-5. **Migrate PR deploy hosting (#3094)**
-   - Why now: Azure Static Web Apps limit is reached. No upgrade path. This blocks the team's ability to preview PRs, slowing review and QA.
-   - Issues covered: #3094
+5. **Resolve Tooltip dismiss behavior (#2969) and coordinate with reevaluation (#3086)**
+   - Why now: Assigned, 3 comments, external team impact. Aligning with reevaluation prevents double work.
+   - Issues covered: #2969, #3086, #3049
+
+---
 
 ## 5. Quick wins
 
-1. **#3155 — Accordion VoiceOver "empty group" announcement**
-   - Why quick: Single `aria-hidden="true"` addition on a `<br>` element in a Storybook story.
-   - Expected benefit: Eliminates confusing "empty group" announcement for VoiceOver users in Accordion.
+1. **#3153 — Accordion disabled items not announced (Snack-labeled)**
+   - Why: Add `aria-disabled` attribute. Clear solution documented in the issue.
+   - Expected benefit: Screen readers correctly announce disabled accordion items.
 
-2. **#3132 — Search field clear button keyboard access**
-   - Why quick: Change `tabindex="-1"` to `tabindex="0"` on the clear button. One-line code change.
-   - Expected benefit: Makes clear button reachable for keyboard and screen reader users. Fixes WCAG 2.1.1.
+2. **#3155 — Accordion VoiceOver "empty group" (Snack-labeled)**
+   - Why: Add `aria-hidden="true"` to decorative `<br>` elements.
+   - Expected benefit: VoiceOver stops announcing non-meaningful content.
 
-3. **#3153 — Accordion disabled not announced**
-   - Why quick: Replace `disabled` with `aria-disabled` attribute. A targeted, well-scoped change.
-   - Expected benefit: Screen readers announce disabled state correctly in a stable component.
+3. **#3095 — Avatar picture not hidden from a11y readers (Snack-labeled)**
+   - Why: Set decorative avatar images as not readable. Small, scoped change.
+   - Expected benefit: Screen readers skip decorative avatar images.
 
-4. **#3069 — Canary NPM packages**
-   - Why quick: Already supported by changesets via snapshot releases. Mostly CI/CD configuration.
-   - Expected benefit: Consuming teams can validate fixes immediately without waiting for official releases.
+4. **#3157 — Improve bug template (Snack-labeled, 3 comments)**
+   - Why: Template changes, no code required. Already has 3 comments with consensus.
+   - Expected benefit: Better bug reports, reducing triage time for every future issue.
 
-5. **#3131 — Body text paragraph spacing to 8px**
-   - Why quick: Token/CSS value change. Figma design already done.
-   - Expected benefit: Aligns code with Figma for body text, fixing visual inconsistency reported by external team (Clickedu).
+5. **#3016 — Switch custom icons missing labels (Snack-labeled)**
+   - Why: Add labels to custom icon switch variants. Small, well-scoped a11y fix.
+   - Expected benefit: Screen readers can identify switch purpose.
+
+---
 
 ## 6. Neglected risks
 
-1. **#2705 — Select low contrast focus indicator**
-   - Open since 2025-10-01 (6 months). Milestoned ("Paginator: preview stage"), Figma design completed, but code implementation not done. 3 comments. WCAG contrast failure on a stable component.
+1. **#138 — [Module] Snackbar (created 2023-01-09, 7 comments)**
+   - Open for over 3 years. Repeatedly discussed. No assignee. Commonly requested pattern.
 
-2. **#1431 — Status light setup component**
-   - Open since 2024-08-05 (~20 months). 8 comments from multiple teams (ETSL, Magister, Sesame, Bingel INT, MAX). High cross-team interest but no assignee and no progress indicator.
+2. **#1556 — [Grid - Basics] Very long grid cell text doesn't render properly (created 2024-09-27, 3 comments, bug-labeled)**
+   - 18 months old, bug-labeled, no assignee. Grid is not in the status reference table but is widely used.
 
-3. **#2500 — Grid accessibility audit**
-   - Open since 2025-08-27 (7 months). Milestoned, assigned, 8 comments. Prerequisite for Grid maturity. The audit itself may generate many new issues, further increasing the backlog.
+3. **#1606 — [Documentation website] Rename tabs on detail pages (created 2024-10-22)**
+   - 17 months old. Accessibility issue on the documentation website itself. No recent activity.
 
-4. **#2961 — Disabled state visibility on raised surfaces**
-   - Open since 2026-01-29 (2 months). Assigned to @RoaldBoerema but affects all interactive components. Cross-cutting issue that may worsen as more components adopt the affected elevation tokens.
+4. **#261 — [Time field] Setup (created 2023-02-13)**
+   - Over 3 years old. Time field is draft. The setup issue remains open with no assignee.
 
-5. **#1134 — Split button setup component**
-   - Open since 2024-04-08 (24 months). Feature request with no progress. If there is demand, it should be prioritized; if not, it should be closed to reduce backlog noise.
+5. **#1942 — [Grid - Basics] Arrows-navigable variant (created 2025-04-07, 3 comments)**
+   - 12 months old. Grid keyboard navigation enhancement. No assignee.
+
+6. **#2003 — [ES Lint Plugin] No a11y rule for form controls outside forms (created 2025-04-29)**
+   - 11 months old. Would catch a11y violations at build time. No assignee. Form is stable.
+
+---
 
 ## 7. Data gaps and caveats
 
-- **~350 of 576 issues are tracking/meta containers.** Issues titled `[Module] X`, `[X] Bug fixes`, `[X] Maintenance`, and category groupings (e.g., "Form Components", "Overlay Components") have 0 comments and 0 labels. These are organizational placeholders, not actionable issues. They heavily skew the total issue count.
-- **No priority labels on most issues.** The repository does not appear to use priority labels (P0/P1/P2 or critical/high/medium/low). Priority was inferred from component maturity status, labels (bug, accessibility, enhancement), comment count, and reporter context.
-- **Limited milestone usage.** Only a few issues have milestones (e.g., #2705 → "Paginator: preview stage", #2500 → "Grid - basics: preview stage"). Most issues lack milestone context.
-- **Issue type field is inconsistently used.** Some issues have `issue_type` (Bug, Story, Feature, Chore, Module, Maintenance), but many have none.
-- **Grid and Drawer component statuses unknown.** These components' documentation pages return JavaScript-only content and could not be scraped for maturity status. Grid sub-modules have extensive tracking issues but no confirmed maturity level.
-- **Calendar and Date field are not in the component status reference table.** These are used in production but their maturity status was not found on the documentation website.
-- **Closed issues mixed into some API results.** A few issues fetched via the list API returned as closed (e.g., #3147, #3145, #3037, #3036) — these were excluded from analysis.
-- **Confidence is high for the top 20 ranked issues** where full issue details were read. For the remaining ~200 non-tracking issues, ranking is based on title, labels, and metadata only.
+- **Grid, Calendar, and Date Field are not in the component status reference table.** These components appear frequently in the backlog but have no defined maturity status in the reference table. All are marked as `none` for component status in this report. Grid milestones reference "preview stage."
+- **Bug label is underused.** Only 5 issues carry the `bug` label, but many more are typed as "Bug" in the issue template. This makes bug filtering via labels unreliable.
+- **Component mapping is heuristic.** Components were identified from issue titles using keyword matching. Some issues may match multiple components (e.g., "[Menu button]" matches "button" from the reference table rather than "menu"). Manual review of borderline cases is recommended.
+- **No milestone data on most issues.** Only a small subset of issues have milestones. This limits ability to assess scheduling intent.
+- **Limited PR linkage visibility.** The issues API does not directly expose linked pull requests. Assignee field is used as a proxy for active work.
+- **Assignee does not guarantee active work.** Several assigned issues have had no update in months.
+- **Accessibility scoring is weighted heavily.** Because the prompt criteria treat all a11y issues as high priority regardless of component status, the top of the ranking is dominated by a11y items. Some lower-ranked non-a11y issues may have higher production urgency in specific team contexts.
+- **No severity / impact labels.** The repository does not use severity labels (P0/P1/P2 etc.), making it difficult to distinguish between critical and minor bugs without reading each issue body.

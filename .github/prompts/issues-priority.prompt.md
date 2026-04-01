@@ -168,12 +168,13 @@ Return the report in English and use exactly these sections:
 ## 2. Top issues to address first
 
 Provide a table with:
-| Rank | Issue | Title | Priority | Why it matters | Recommended next step |
-|------|------:|-------|----------|----------------|-----------------------|
+| Rank | Issue | Title | Component | Status | Priority | Why it matters | Recommended next step |
+|------|------:|-------|-----------|--------|----------|----------------|-----------------------|
 
 Rules:
 
 - include the most important issues first
+- for Component and Status columns, use **only** the component name and its maturity status from the reference table above. If the component is not listed in the reference table or cannot be determined, use `none`. If the status is not listed in the reference table or cannot be determined, use `none`. Never infer or assume a status that is not explicitly in the table.
 - recommended next step must be advisory only
 - do not suggest performing any GitHub write action directly from tools
 
