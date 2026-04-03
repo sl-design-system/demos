@@ -7,6 +7,7 @@
   import Callout from './components/sl-callout.svelte';
   import Checkbox from './components/sl-checkbox.svelte';
   import Combobox from './components/sl-combobox.svelte';
+  import Dialog from './components/sl-dialog.svelte';
 
   const navItems = [
     { path: '/sl-accordion', label: 'sl-accordion', component: Accordion },
@@ -16,6 +17,7 @@
     { path: '/sl-callout', label: 'sl-callout', component: Callout },
     { path: '/sl-checkbox', label: 'sl-checkbox', component: Checkbox },
     { path: '/sl-combobox', label: 'sl-combobox', component: Combobox },
+    { path: '/sl-dialog', label: 'sl-dialog', component: Dialog },
   ];
 
   let currentPath = $state(
