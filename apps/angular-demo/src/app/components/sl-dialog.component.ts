@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { ButtonComponent } from '@sl-design-system/angular/button';
 import { DialogComponent } from '@sl-design-system/angular/dialog';
 

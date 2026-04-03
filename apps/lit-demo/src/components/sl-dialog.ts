@@ -27,7 +27,12 @@ export class DialogPage extends ScopedElementsMixin(LitElement) {
 
   override render(): TemplateResult {
     return html`
-      <sl-button variant="primary" fill="solid" @click=${() => this._openDialog()}>Test</sl-button>
+      <sl-button
+        variant="primary"
+        fill="solid"
+        @click=${() => this._openDialog()}
+        >Test</sl-button
+      >
       <sl-dialog>
         <h1 slot="title">Test title</h1>
         Test description
