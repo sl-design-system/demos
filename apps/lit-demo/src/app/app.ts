@@ -11,6 +11,7 @@ import { ButtonBarPage } from '../components/sl-button-bar.js';
 import { CalloutPage } from '../components/sl-callout.js';
 import { CheckboxPage } from '../components/sl-checkbox.js';
 import { ComboboxPage } from '../components/sl-combobox.js';
+import { DialogPage } from '../components/sl-dialog.js';
 import styles from './app.styles.scss.js';
 
 const ROUTES = [
@@ -21,6 +22,7 @@ const ROUTES = [
   { path: '/sl-callout', label: 'sl-callout' },
   { path: '/sl-checkbox', label: 'sl-checkbox' },
   { path: '/sl-combobox', label: 'sl-combobox' },
+  { path: '/sl-dialog', label: 'sl-dialog' },
 ];
 
 export class App extends ScopedElementsMixin(LitElement) {
@@ -33,6 +35,7 @@ export class App extends ScopedElementsMixin(LitElement) {
       'page-callout': CalloutPage,
       'page-checkbox': CheckboxPage,
       'page-combobox': ComboboxPage,
+      'page-dialog': DialogPage,
     };
   }
 
@@ -78,6 +81,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-checkbox></page-checkbox>`;
       case '/sl-combobox':
         return html`<page-combobox></page-combobox>`;
+      case '/sl-dialog':
+        return html`<page-dialog></page-dialog>`;
       default:
         return html``;
     }

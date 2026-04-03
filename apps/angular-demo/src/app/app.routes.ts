@@ -51,4 +51,11 @@ export const routes: Routes = [
         (m) => m.ComboboxPageComponent,
       ),
   },
+  {
+    path: 'sl-dialog',
+    loadComponent: () =>
+      import('./components/sl-dialog.component').then(
+        (m) => m.DialogPageComponent,
+      ),
+  },
 ];

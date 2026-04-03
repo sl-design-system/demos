@@ -32,5 +32,9 @@ export const router = createRouter({
       path: '/sl-combobox',
       component: () => import('./components/sl-combobox.vue'),
     },
+    {
+      path: '/sl-dialog',
+      component: () => import('./components/sl-dialog.vue'),
+    },
   ],
 });
