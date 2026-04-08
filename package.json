@@ -67,6 +67,7 @@
     "@angular/core": "^20.1.6",
     "@angular/forms": "^20.1.6",
     "@angular/platform-browser": "^20.1.6",
+    "@axe-core/playwright": "^4.11.1",
     "@floating-ui/dom": "^1.7.1",
     "@lit-labs/virtualizer": "^2.1.0",
     "@lit/localize": "^0.12.2",
