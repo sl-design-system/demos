@@ -5,56 +5,56 @@ export const routes: Routes = [
   {
     path: 'sl-accordion',
     loadComponent: () =>
-      import('./components/sl-accordion.component').then(
+      import('./components/sl-accordion/sl-accordion.component').then(
         (m) => m.AccordionPageComponent,
       ),
   },
   {
     path: 'sl-breadcrumbs',
     loadComponent: () =>
-      import('./components/sl-breadcrumbs.component').then(
+      import('./components/sl-breadcrumbs/sl-breadcrumbs.component').then(
         (m) => m.BreadcrumbsPageComponent,
       ),
   },
   {
     path: 'sl-button',
     loadComponent: () =>
-      import('./components/sl-button.component').then(
+      import('./components/sl-button/sl-button.component').then(
         (m) => m.ButtonPageComponent,
       ),
   },
   {
     path: 'sl-button-bar',
     loadComponent: () =>
-      import('./components/sl-button-bar.component').then(
+      import('./components/sl-button-bar/sl-button-bar.component').then(
         (m) => m.ButtonBarPageComponent,
       ),
   },
   {
     path: 'sl-callout',
     loadComponent: () =>
-      import('./components/sl-callout.component').then(
+      import('./components/sl-callout/sl-callout.component').then(
         (m) => m.CalloutPageComponent,
       ),
   },
   {
     path: 'sl-checkbox',
     loadComponent: () =>
-      import('./components/sl-checkbox.component').then(
+      import('./components/sl-checkbox/sl-checkbox.component').then(
         (m) => m.CheckboxPageComponent,
       ),
   },
   {
     path: 'sl-combobox',
     loadComponent: () =>
-      import('./components/sl-combobox.component').then(
+      import('./components/sl-combobox/sl-combobox.component').then(
         (m) => m.ComboboxPageComponent,
       ),
   },
   {
     path: 'sl-dialog',
     loadComponent: () =>
-      import('./components/sl-dialog.component').then(
+      import('./components/sl-dialog/sl-dialog.component').then(
         (m) => m.DialogPageComponent,
       ),
   },

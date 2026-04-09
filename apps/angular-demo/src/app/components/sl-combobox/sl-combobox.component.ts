@@ -7,14 +7,7 @@ import {
 
 @Component({
   selector: 'app-combobox-page',
-  template: `
-    <sl-combobox [multiple]="true">
-      <sl-listbox>
-        <sl-option value="0">Test 1</sl-option>
-        <sl-option value="1">Test 2</sl-option>
-      </sl-listbox>
-    </sl-combobox>
-  `,
+  templateUrl: './sl-combobox.component.html',
   imports: [ComboboxComponent, ListboxComponent, OptionComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

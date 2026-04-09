@@ -4,14 +4,14 @@ import {
   ScopedElementsMixin,
   type ScopedElementsMap,
 } from '@open-wc/scoped-elements/lit-element.js';
-import { AccordionPage } from '../components/sl-accordion.js';
-import { BreadcrumbsPage } from '../components/sl-breadcrumbs.js';
-import { ButtonPage } from '../components/sl-button.js';
-import { ButtonBarPage } from '../components/sl-button-bar.js';
-import { CalloutPage } from '../components/sl-callout.js';
-import { CheckboxPage } from '../components/sl-checkbox.js';
-import { ComboboxPage } from '../components/sl-combobox.js';
-import { DialogPage } from '../components/sl-dialog.js';
+import { AccordionPage } from '../components/sl-accordion/sl-accordion.js';
+import { BreadcrumbsPage } from '../components/sl-breadcrumbs/sl-breadcrumbs.js';
+import { ButtonPage } from '../components/sl-button/sl-button.js';
+import { ButtonBarPage } from '../components/sl-button-bar/sl-button-bar.js';
+import { CalloutPage } from '../components/sl-callout/sl-callout.js';
+import { CheckboxPage } from '../components/sl-checkbox/sl-checkbox.js';
+import { ComboboxPage } from '../components/sl-combobox/sl-combobox.js';
+import { DialogPage } from '../components/sl-dialog/sl-dialog.js';
 import styles from './app.styles.scss.js';
 
 const ROUTES = [

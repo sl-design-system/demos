@@ -4,14 +4,7 @@ import { DialogComponent } from '@sl-design-system/angular/dialog';
 
 @Component({
   selector: 'app-dialog-page',
-  template: `
-    <sl-button variant="primary" fill="solid" (click)="dialog.elRef.nativeElement.showModal()">Test</sl-button>
-    <sl-dialog #dialog>
-      <h1 slot="title">Test title</h1>
-      Test description
-      <sl-button slot="primary-actions" sl-dialog-close>Close</sl-button>
-    </sl-dialog>
-  `,
+  templateUrl: './sl-dialog.component.html',
   imports: [ButtonComponent, DialogComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -1,0 +1,6 @@
+<sl-button variant="primary" fill="solid" (click)="dialog.elRef.nativeElement.showModal()">Test</sl-button>
+<sl-dialog #dialog>
+  <h1 slot="title">Test title</h1>
+  Test description
+  <sl-button slot="primary-actions" sl-dialog-close>Close</sl-button>
+</sl-dialog>
