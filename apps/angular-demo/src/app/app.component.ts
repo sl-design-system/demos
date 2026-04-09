@@ -17,5 +17,6 @@ export class AppComponent {
     { path: 'sl-checkbox', label: 'sl-checkbox' },
     { path: 'sl-combobox', label: 'sl-combobox' },
     { path: 'sl-dialog', label: 'sl-dialog' },
+    { path: 'sl-dialog-service', label: 'sl-dialog-service' },
   ];
 }

@@ -58,4 +58,11 @@ export const routes: Routes = [
         (m) => m.DialogPageComponent,
       ),
   },
+  {
+    path: 'sl-dialog-service',
+    loadComponent: () =>
+      import('./components/sl-dialog-service/sl-dialog-service.component').then(
+        (m) => m.DialogServicePageComponent,
+      ),
+  },
 ];
