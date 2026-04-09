@@ -6,12 +6,7 @@ import {
 
 @Component({
   selector: 'app-checkbox-page',
-  template: `
-    <sl-checkbox-group>
-      <sl-checkbox value="enabled">Test 1</sl-checkbox>
-      <sl-checkbox value="disabled" [disabled]="true">Test 2</sl-checkbox>
-    </sl-checkbox-group>
-  `,
+  templateUrl: './sl-checkbox.component.html',
   imports: [CheckboxComponent, CheckboxGroupComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

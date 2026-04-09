@@ -3,11 +3,7 @@ import { ButtonComponent } from '@sl-design-system/angular/button';
 
 @Component({
   selector: 'app-button-page',
-  template: `
-    <sl-button variant="info" size="lg" (click)="openBlankPage()"
-      >Button</sl-button
-    >
-  `,
+  templateUrl: './sl-button.component.html',
   imports: [ButtonComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
