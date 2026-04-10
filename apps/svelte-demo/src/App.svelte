@@ -8,6 +8,7 @@
   import Checkbox from './components/sl-checkbox/sl-checkbox.svelte';
   import Combobox from './components/sl-combobox/sl-combobox.svelte';
   import Dialog from './components/sl-dialog/sl-dialog.svelte';
+  import FormField from './components/sl-form-field/sl-form-field.svelte';
 
   const navItems = [
     { path: '/sl-accordion', label: 'sl-accordion', component: Accordion },
@@ -18,6 +19,7 @@
     { path: '/sl-checkbox', label: 'sl-checkbox', component: Checkbox },
     { path: '/sl-combobox', label: 'sl-combobox', component: Combobox },
     { path: '/sl-dialog', label: 'sl-dialog', component: Dialog },
+    { path: '/sl-form-field', label: 'sl-form-field', component: FormField },
   ];
 
   let currentPath = $state(
