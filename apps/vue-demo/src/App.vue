@@ -26,6 +26,7 @@ const navItems = [
   { path: '/sl-checkbox', label: 'sl-checkbox' },
   { path: '/sl-combobox', label: 'sl-combobox' },
   { path: '/sl-dialog', label: 'sl-dialog' },
+  { path: '/sl-form-field', label: 'sl-form-field' },
 ];
 </script>
 

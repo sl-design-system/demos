@@ -36,5 +36,9 @@ export const router = createRouter({
       path: '/sl-dialog',
       component: () => import('./components/sl-dialog/sl-dialog.vue'),
     },
+    {
+      path: '/sl-form-field',
+      component: () => import('./components/sl-form-field/sl-form-field.vue'),
+    },
   ],
 });
