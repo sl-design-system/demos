@@ -1,20 +1,14 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
 test.describe('sl-button-bar', () => {
-  let newPage: Page;
-
   test.beforeEach(async ({ page }) => {
     await page.goto('/sl-button-bar');
-  });
-
-  test.afterEach(async () => {
-    await newPage?.close();
   });
 
   test('should click the enabled sl-button and open a new page', async ({
     page,
   }) => {
-    [newPage] = await Promise.all([
+    const [newPage] = await Promise.all([
       page.context().waitForEvent('page'),
       page.locator('sl-button', { hasText: 'Test 2' }).click(),
     ]);

@@ -9,6 +9,7 @@
   import Combobox from './components/sl-combobox/sl-combobox.svelte';
   import Dialog from './components/sl-dialog/sl-dialog.svelte';
   import FormField from './components/sl-form-field/sl-form-field.svelte';
+  import Form from './components/sl-form/sl-form.svelte';
 
   const navItems = [
     { path: '/sl-accordion', label: 'sl-accordion', component: Accordion },
@@ -20,6 +21,7 @@
     { path: '/sl-combobox', label: 'sl-combobox', component: Combobox },
     { path: '/sl-dialog', label: 'sl-dialog', component: Dialog },
     { path: '/sl-form-field', label: 'sl-form-field', component: FormField },
+    { path: '/sl-form', label: 'sl-form', component: Form },
   ];
 
   let currentPath = $state(

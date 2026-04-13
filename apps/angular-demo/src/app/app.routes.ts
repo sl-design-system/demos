@@ -72,4 +72,11 @@ export const routes: Routes = [
         (m) => m.FormFieldPageComponent,
       ),
   },
+  {
+    path: 'sl-form',
+    loadComponent: () =>
+      import('./components/sl-form/sl-form.component').then(
+        (m) => m.FormPageComponent,
+      ),
+  },
 ];

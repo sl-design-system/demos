@@ -19,5 +19,6 @@ export class AppComponent {
     { path: 'sl-dialog', label: 'sl-dialog' },
     { path: 'sl-dialog-service', label: 'sl-dialog-service' },
     { path: 'sl-form-field', label: 'sl-form-field' },
+    { path: 'sl-form', label: 'sl-form' },
   ];
 }
