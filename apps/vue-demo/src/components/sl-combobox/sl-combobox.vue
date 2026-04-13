@@ -6,3 +6,8 @@
     </sl-listbox>
   </sl-combobox>
 </template>
+
+<script setup lang="ts">
+import '@sl-design-system/combobox/register.js';
+import '@sl-design-system/listbox/register.js';
+</script>

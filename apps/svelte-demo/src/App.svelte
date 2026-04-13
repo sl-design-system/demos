@@ -24,9 +24,11 @@
     { path: '/sl-form', label: 'sl-form', component: Form },
   ];
 
-  let currentPath = $state(
-    window.location.pathname === '/' ? '/sl-accordion' : window.location.pathname
-  );
+  const initialPath = window.location.pathname === '/' ? '/sl-accordion' : window.location.pathname;
+  if (window.location.pathname === '/') {
+    window.history.replaceState(null, '', '/sl-accordion');
+  }
+  let currentPath = $state(initialPath);
 
   const CurrentPage = $derived(
     navItems.find((item) => item.path === currentPath)?.component ?? Accordion
