@@ -6,12 +6,10 @@ import {
 import { Checkbox, CheckboxGroup } from '@sl-design-system/checkbox';
 
 export class CheckboxPage extends ScopedElementsMixin(LitElement) {
-  static override get scopedElements(): ScopedElementsMap {
-    return {
-      'sl-checkbox': Checkbox,
-      'sl-checkbox-group': CheckboxGroup,
-    };
-  }
+  static scopedElements: ScopedElementsMap = {
+    'sl-checkbox': Checkbox,
+    'sl-checkbox-group': CheckboxGroup,
+  };
 
   override render(): TemplateResult {
     return html`

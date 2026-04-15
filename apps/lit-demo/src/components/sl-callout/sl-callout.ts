@@ -7,12 +7,10 @@ import { Button } from '@sl-design-system/button';
 import { Callout } from '@sl-design-system/callout';
 
 export class CalloutPage extends ScopedElementsMixin(LitElement) {
-  static override get scopedElements(): ScopedElementsMap {
-    return {
-      'sl-button': Button,
-      'sl-callout': Callout,
-    };
-  }
+  static scopedElements: ScopedElementsMap = {
+    'sl-button': Button,
+    'sl-callout': Callout,
+  };
 
   private _openBlankPage(): void {
     window.open('about:blank', '_blank', 'noopener,noreferrer');

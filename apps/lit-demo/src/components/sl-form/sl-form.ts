@@ -11,16 +11,14 @@ import { Button } from '@sl-design-system/button';
 import { ButtonBar } from '@sl-design-system/button-bar';
 
 export class FormPage extends ScopedElementsMixin(LitElement) {
-  static override get scopedElements(): ScopedElementsMap {
-    return {
-      'sl-form': Form,
-      'sl-form-field': FormField,
-      'sl-text-field': TextField,
-      'sl-checkbox': Checkbox,
-      'sl-button': Button,
-      'sl-button-bar': ButtonBar,
-    };
-  }
+  static scopedElements: ScopedElementsMap = {
+    'sl-form': Form,
+    'sl-form-field': FormField,
+    'sl-text-field': TextField,
+    'sl-checkbox': Checkbox,
+    'sl-button': Button,
+    'sl-button-bar': ButtonBar,
+  };
 
   private get _form(): Form | null {
     return this.renderRoot.querySelector('sl-form');

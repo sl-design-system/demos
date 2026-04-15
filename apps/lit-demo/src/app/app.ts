@@ -30,20 +30,18 @@ const ROUTES = [
 ];
 
 export class App extends ScopedElementsMixin(LitElement) {
-  static override get scopedElements(): ScopedElementsMap {
-    return {
-      'page-accordion': AccordionPage,
-      'page-breadcrumbs': BreadcrumbsPage,
-      'page-button': ButtonPage,
-      'page-button-bar': ButtonBarPage,
-      'page-callout': CalloutPage,
-      'page-checkbox': CheckboxPage,
-      'page-combobox': ComboboxPage,
-      'page-dialog': DialogPage,
-      'page-form-field': FormFieldPage,
-      'page-form': FormPage,
-    };
-  }
+  static scopedElements: ScopedElementsMap = {
+    'page-accordion': AccordionPage,
+    'page-breadcrumbs': BreadcrumbsPage,
+    'page-button': ButtonPage,
+    'page-button-bar': ButtonBarPage,
+    'page-callout': CalloutPage,
+    'page-checkbox': CheckboxPage,
+    'page-combobox': ComboboxPage,
+    'page-dialog': DialogPage,
+    'page-form-field': FormFieldPage,
+    'page-form': FormPage,
+  };
 
   static override styles = styles;
 

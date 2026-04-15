@@ -6,12 +6,10 @@ import {
 import { Accordion, AccordionItem } from '@sl-design-system/accordion';
 
 export class AccordionPage extends ScopedElementsMixin(LitElement) {
-  static override get scopedElements(): ScopedElementsMap {
-    return {
-      'sl-accordion': Accordion,
-      'sl-accordion-item': AccordionItem,
-    };
-  }
+  static scopedElements: ScopedElementsMap = {
+    'sl-accordion': Accordion,
+    'sl-accordion-item': AccordionItem,
+  };
 
   override render(): TemplateResult {
     return html`

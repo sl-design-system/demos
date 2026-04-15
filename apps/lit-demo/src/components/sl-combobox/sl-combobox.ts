@@ -7,13 +7,11 @@ import { Combobox } from '@sl-design-system/combobox';
 import { Listbox, Option } from '@sl-design-system/listbox';
 
 export class ComboboxPage extends ScopedElementsMixin(LitElement) {
-  static override get scopedElements(): ScopedElementsMap {
-    return {
-      'sl-combobox': Combobox,
-      'sl-listbox': Listbox,
-      'sl-option': Option,
-    };
-  }
+  static scopedElements: ScopedElementsMap = {
+    'sl-combobox': Combobox,
+    'sl-listbox': Listbox,
+    'sl-option': Option,
+  };
 
   override render(): TemplateResult {
     return html`

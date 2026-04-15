@@ -39,15 +39,13 @@ test.describe('sl-dialog-service', () => {
       const dialog = page.locator('sl-dialog');
 
       await dialog.evaluate((el) => {
-        el.shadowRoot
-          ?.querySelector('dialog')
-          ?.dispatchEvent(
-            new MouseEvent('click', {
-              clientX: 10,
-              clientY: 10,
-              bubbles: true,
-            }),
-          );
+        el.shadowRoot?.querySelector('dialog')?.dispatchEvent(
+          new MouseEvent('click', {
+            clientX: 10,
+            clientY: 10,
+            bubbles: true,
+          }),
+        );
       });
       await expect(dialog).not.toBeVisible();
     });
