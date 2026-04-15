@@ -14,9 +14,9 @@ test.describe('sl-accordion', () => {
     await item.click();
     await expect(item).toHaveAttribute('open', '');
 
-    await expect.poll(() => item.evaluate(
-      (el) => el.getBoundingClientRect().height,
-    )).toBeGreaterThan(collapsedHeight);
+    await expect
+      .poll(() => item.evaluate((el) => el.getBoundingClientRect().height))
+      .toBeGreaterThan(collapsedHeight);
   });
 
   test('should not expand disabled sl-accordion item', async ({ page }) => {

@@ -11,7 +11,9 @@ test.describe('sl-combobox', () => {
     await expect(page.getByRole('option', { name: 'Test 2' })).toBeVisible();
 
     await page.getByRole('option', { name: 'Test 1' }).click();
-    const tag = page.locator('sl-combobox').locator('sl-tag', { hasText: 'Test 1' });
+    const tag = page
+      .locator('sl-combobox')
+      .locator('sl-tag', { hasText: 'Test 1' });
     await expect(tag).toBeVisible();
 
     await tag.locator('button').click();
@@ -24,7 +26,9 @@ test.describe('sl-combobox', () => {
     await page.getByRole('combobox').click({ force: true });
     await page.keyboard.type('Test 2');
     await page.keyboard.press('Enter');
-    const tag = page.locator('sl-combobox').locator('sl-tag', { hasText: 'Test 2' });
+    const tag = page
+      .locator('sl-combobox')
+      .locator('sl-tag', { hasText: 'Test 2' });
     await expect(tag).toBeVisible();
   });
 
@@ -36,7 +40,11 @@ test.describe('sl-combobox', () => {
     await page.getByRole('option', { name: 'Test 1' }).click();
     await page.getByRole('option', { name: 'Test 2' }).click();
 
-    await expect(combobox.locator('sl-tag', { hasText: 'Test 1' })).toBeVisible();
-    await expect(combobox.locator('sl-tag', { hasText: 'Test 2' })).toBeVisible();
+    await expect(
+      combobox.locator('sl-tag', { hasText: 'Test 1' }),
+    ).toBeVisible();
+    await expect(
+      combobox.locator('sl-tag', { hasText: 'Test 2' }),
+    ).toBeVisible();
   });
 });

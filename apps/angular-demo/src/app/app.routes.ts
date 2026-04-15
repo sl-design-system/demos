@@ -73,10 +73,17 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'sl-form',
+    path: 'sl-form-reactive',
     loadComponent: () =>
-      import('./components/sl-form/sl-form.component').then(
-        (m) => m.FormPageComponent,
+      import('./components/sl-form-reactive/sl-form-reactive.component').then(
+        (m) => m.FormReactivePageComponent,
+      ),
+  },
+  {
+    path: 'sl-form-template',
+    loadComponent: () =>
+      import('./components/sl-form-template/sl-form-template.component').then(
+        (m) => m.FormTemplatePageComponent,
       ),
   },
 ];

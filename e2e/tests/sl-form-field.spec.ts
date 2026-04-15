@@ -10,7 +10,7 @@ test.describe('sl-form-field', () => {
 
     await input.fill('Test');
     await expect(input).toHaveValue('Test');
-    
+
     await input.clear();
     await expect(input).toHaveValue('');
   });

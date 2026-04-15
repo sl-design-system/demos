@@ -19,9 +19,11 @@ test.describe('sl-dialog', () => {
 
   test('should close by clicking outside', async ({ page }) => {
     await page.locator('sl-dialog').evaluate((el) => {
-      el.shadowRoot?.querySelector('dialog')?.dispatchEvent(
-        new MouseEvent('click', { clientX: 10, clientY: 10, bubbles: true }),
-      );
+      el.shadowRoot
+        ?.querySelector('dialog')
+        ?.dispatchEvent(
+          new MouseEvent('click', { clientX: 10, clientY: 10, bubbles: true }),
+        );
     });
     await expect(page.locator('sl-dialog')).not.toBeVisible();
   });
