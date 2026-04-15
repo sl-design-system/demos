@@ -13,6 +13,7 @@ import { CheckboxPage } from '../components/sl-checkbox/sl-checkbox.js';
 import { ComboboxPage } from '../components/sl-combobox/sl-combobox.js';
 import { DialogPage } from '../components/sl-dialog/sl-dialog.js';
 import { FormFieldPage } from '../components/sl-form-field/sl-form-field.js';
+import { FormPage } from '../components/sl-form/sl-form.js';
 import styles from './app.styles.scss.js';
 
 const ROUTES = [
@@ -25,22 +26,22 @@ const ROUTES = [
   { path: '/sl-combobox', label: 'sl-combobox' },
   { path: '/sl-dialog', label: 'sl-dialog' },
   { path: '/sl-form-field', label: 'sl-form-field' },
+  { path: '/sl-form', label: 'sl-form' },
 ];
 
 export class App extends ScopedElementsMixin(LitElement) {
-  static override get scopedElements(): ScopedElementsMap {
-    return {
-      'page-accordion': AccordionPage,
-      'page-breadcrumbs': BreadcrumbsPage,
-      'page-button': ButtonPage,
-      'page-button-bar': ButtonBarPage,
-      'page-callout': CalloutPage,
-      'page-checkbox': CheckboxPage,
-      'page-combobox': ComboboxPage,
-      'page-dialog': DialogPage,
-      'page-form-field': FormFieldPage,
-    };
-  }
+  static scopedElements: ScopedElementsMap = {
+    'page-accordion': AccordionPage,
+    'page-breadcrumbs': BreadcrumbsPage,
+    'page-button': ButtonPage,
+    'page-button-bar': ButtonBarPage,
+    'page-callout': CalloutPage,
+    'page-checkbox': CheckboxPage,
+    'page-combobox': ComboboxPage,
+    'page-dialog': DialogPage,
+    'page-form-field': FormFieldPage,
+    'page-form': FormPage,
+  };
 
   static override styles = styles;
 
@@ -88,6 +89,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-dialog></page-dialog>`;
       case '/sl-form-field':
         return html`<page-form-field></page-form-field>`;
+      case '/sl-form':
+        return html`<page-form></page-form>`;
       default:
         return html``;
     }

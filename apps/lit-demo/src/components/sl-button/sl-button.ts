@@ -6,11 +6,9 @@ import {
 import { Button } from '@sl-design-system/button';
 
 export class ButtonPage extends ScopedElementsMixin(LitElement) {
-  static override get scopedElements(): ScopedElementsMap {
-    return {
-      'sl-button': Button,
-    };
-  }
+  static scopedElements: ScopedElementsMap = {
+    'sl-button': Button,
+  };
 
   private _openBlankPage(): void {
     window.open('about:blank', '_blank', 'noopener,noreferrer');

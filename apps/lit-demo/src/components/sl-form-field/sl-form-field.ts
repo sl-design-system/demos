@@ -7,12 +7,10 @@ import { FormField } from '@sl-design-system/form';
 import { TextField } from '@sl-design-system/text-field';
 
 export class FormFieldPage extends ScopedElementsMixin(LitElement) {
-  static override get scopedElements(): ScopedElementsMap {
-    return {
-      'sl-form-field': FormField,
-      'sl-text-field': TextField,
-    };
-  }
+  static scopedElements: ScopedElementsMap = {
+    'sl-form-field': FormField,
+    'sl-text-field': TextField,
+  };
 
   override render(): TemplateResult {
     return html`

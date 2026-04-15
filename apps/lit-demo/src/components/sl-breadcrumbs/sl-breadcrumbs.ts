@@ -6,11 +6,9 @@ import {
 import { Breadcrumbs } from '@sl-design-system/breadcrumbs';
 
 export class BreadcrumbsPage extends ScopedElementsMixin(LitElement) {
-  static override get scopedElements(): ScopedElementsMap {
-    return {
-      'sl-breadcrumbs': Breadcrumbs,
-    };
-  }
+  static scopedElements: ScopedElementsMap = {
+    'sl-breadcrumbs': Breadcrumbs,
+  };
 
   override render(): TemplateResult {
     return html`

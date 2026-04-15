@@ -7,12 +7,10 @@ import { Button } from '@sl-design-system/button';
 import { ButtonBar } from '@sl-design-system/button-bar';
 
 export class ButtonBarPage extends ScopedElementsMixin(LitElement) {
-  static override get scopedElements(): ScopedElementsMap {
-    return {
-      'sl-button': Button,
-      'sl-button-bar': ButtonBar,
-    };
-  }
+  static scopedElements: ScopedElementsMap = {
+    'sl-button': Button,
+    'sl-button-bar': ButtonBar,
+  };
 
   private _openBlankPage(): void {
     window.open('about:blank', '_blank', 'noopener,noreferrer');

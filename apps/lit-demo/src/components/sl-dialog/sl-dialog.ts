@@ -7,12 +7,10 @@ import { Button } from '@sl-design-system/button';
 import { Dialog } from '@sl-design-system/dialog';
 
 export class DialogPage extends ScopedElementsMixin(LitElement) {
-  static override get scopedElements(): ScopedElementsMap {
-    return {
-      'sl-button': Button,
-      'sl-dialog': Dialog,
-    };
-  }
+  static scopedElements: ScopedElementsMap = {
+    'sl-button': Button,
+    'sl-dialog': Dialog,
+  };
 
   private _dialog?: Dialog;
 

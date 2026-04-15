@@ -40,5 +40,9 @@ export const router = createRouter({
       path: '/sl-form-field',
       component: () => import('./components/sl-form-field/sl-form-field.vue'),
     },
+    {
+      path: '/sl-form',
+      component: () => import('./components/sl-form/sl-form.vue'),
+    },
   ],
 });
