@@ -38,15 +38,7 @@ test.describe('sl-dialog-service', () => {
     test('should close dialog by clicking outside', async ({ page }) => {
       const dialog = page.locator('sl-dialog');
 
-      await dialog.evaluate((el) => {
-        el.shadowRoot?.querySelector('dialog')?.dispatchEvent(
-          new MouseEvent('click', {
-            clientX: 10,
-            clientY: 10,
-            bubbles: true,
-          }),
-        );
-      });
+      await page.mouse.click(10, 10);
       await expect(dialog).not.toBeVisible();
     });
   });
@@ -63,14 +55,7 @@ test.describe('sl-dialog-service', () => {
     });
 
     test('should not close when clicking the backdrop', async ({ page }) => {
-      await page.evaluate(() => {
-        const native = document
-          .querySelector('sl-dialog')
-          ?.shadowRoot?.querySelector('dialog');
-        native?.dispatchEvent(
-          new MouseEvent('click', { clientX: 10, clientY: 10, bubbles: true }),
-        );
-      });
+      await page.mouse.click(10, 10);
       await expect(page.locator('sl-dialog')).not.toHaveAttribute('inert');
     });
 

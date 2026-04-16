@@ -14,6 +14,7 @@ import { ComboboxPage } from '../components/sl-combobox/sl-combobox.js';
 import { DialogPage } from '../components/sl-dialog/sl-dialog.js';
 import { FormFieldPage } from '../components/sl-form-field/sl-form-field.js';
 import { FormPage } from '../components/sl-form/sl-form.js';
+import { InlineMessagePage } from '../components/sl-inline-message/sl-inline-message.js';
 import styles from './app.styles.scss.js';
 
 const ROUTES = [
@@ -27,6 +28,7 @@ const ROUTES = [
   { path: '/sl-dialog', label: 'sl-dialog' },
   { path: '/sl-form-field', label: 'sl-form-field' },
   { path: '/sl-form', label: 'sl-form' },
+  { path: '/sl-inline-message', label: 'sl-inline-message' },
 ];
 
 export class App extends ScopedElementsMixin(LitElement) {
@@ -41,6 +43,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-dialog': DialogPage,
     'page-form-field': FormFieldPage,
     'page-form': FormPage,
+    'page-inline-message': InlineMessagePage,
   };
 
   static override styles = styles;
@@ -91,6 +94,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-form-field></page-form-field>`;
       case '/sl-form':
         return html`<page-form></page-form>`;
+      case '/sl-inline-message':
+        return html`<page-inline-message></page-inline-message>`;
       default:
         return html``;
     }

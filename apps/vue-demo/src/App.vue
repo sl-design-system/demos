@@ -28,6 +28,7 @@ const navItems = [
   { path: '/sl-dialog', label: 'sl-dialog' },
   { path: '/sl-form-field', label: 'sl-form-field' },
   { path: '/sl-form', label: 'sl-form' },
+  { path: '/sl-inline-message', label: 'sl-inline-message' },
 ];
 </script>
 
