@@ -4,27 +4,253 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "playwright test",
-    "test:ui": "playwright test --ui",
-    "test:angular:chromium": "playwright test --project=angular-chromium",
-    "test:angular:firefox": "playwright test --project=angular-firefox",
-    "test:angular:msedge": "playwright test --project=angular-msedge",
-    "test:angular:webkit": "playwright test --project=angular-webkit",
-    "test:lit:chromium": "playwright test --project=lit-chromium",
-    "test:lit:firefox": "playwright test --project=lit-firefox",
-    "test:lit:msedge": "playwright test --project=lit-msedge",
-    "test:lit:webkit": "playwright test --project=lit-webkit",
-    "test:svelte:chromium": "playwright test --project=svelte-chromium",
-    "test:svelte:firefox": "playwright test --project=svelte-firefox",
-    "test:svelte:msedge": "playwright test --project=svelte-msedge",
-    "test:svelte:webkit": "playwright test --project=svelte-webkit",
-    "test:vue:chromium": "playwright test --project=vue-chromium",
-    "test:vue:firefox": "playwright test --project=vue-firefox",
-    "test:vue:msedge": "playwright test --project=vue-msedge",
-    "test:vue:webkit": "playwright test --project=vue-webkit",
-    "test:report": "playwright show-report"
+    "test": "wireit",
+    "test:ui": "wireit",
+    "test:angular:chromium": "wireit",
+    "test:angular:firefox": "wireit",
+    "test:angular:msedge": "wireit",
+    "test:angular:webkit": "wireit",
+    "test:lit:chromium": "wireit",
+    "test:lit:firefox": "wireit",
+    "test:lit:msedge": "wireit",
+    "test:lit:webkit": "wireit",
+    "test:svelte:chromium": "wireit",
+    "test:svelte:firefox": "wireit",
+    "test:svelte:msedge": "wireit",
+    "test:svelte:webkit": "wireit",
+    "test:vue:chromium": "wireit",
+    "test:vue:firefox": "wireit",
+    "test:vue:msedge": "wireit",
+    "test:vue:webkit": "wireit",
+    "test:report": "wireit"
+  },
+  "wireit": {
+    "test": {
+      "command": "playwright test",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ],
+      "dependencies": [
+        "../apps/angular-demo:build",
+        "../apps/lit-demo:build",
+        "../apps/svelte-demo:build",
+        "../apps/vue-demo:build"
+      ]
+    },
+    "test:ui": {
+      "command": "playwright test --ui",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "service": true
+    },
+    "test:angular:chromium": {
+      "command": "playwright test --project=angular-chromium",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ]
+    },
+    "test:angular:firefox": {
+      "command": "playwright test --project=angular-firefox",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ]
+    },
+    "test:angular:msedge": {
+      "command": "playwright test --project=angular-msedge",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ]
+    },
+    "test:angular:webkit": {
+      "command": "playwright test --project=angular-webkit",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ]
+    },
+    "test:lit:chromium": {
+      "command": "playwright test --project=lit-chromium",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ]
+    },
+    "test:lit:firefox": {
+      "command": "playwright test --project=lit-firefox",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ]
+    },
+    "test:lit:msedge": {
+      "command": "playwright test --project=lit-msedge",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ]
+    },
+    "test:lit:webkit": {
+      "command": "playwright test --project=lit-webkit",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ]
+    },
+    "test:svelte:chromium": {
+      "command": "playwright test --project=svelte-chromium",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ]
+    },
+    "test:svelte:firefox": {
+      "command": "playwright test --project=svelte-firefox",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ]
+    },
+    "test:svelte:msedge": {
+      "command": "playwright test --project=svelte-msedge",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ]
+    },
+    "test:svelte:webkit": {
+      "command": "playwright test --project=svelte-webkit",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ]
+    },
+    "test:vue:chromium": {
+      "command": "playwright test --project=vue-chromium",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ]
+    },
+    "test:vue:firefox": {
+      "command": "playwright test --project=vue-firefox",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ]
+    },
+    "test:vue:msedge": {
+      "command": "playwright test --project=vue-msedge",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ]
+    },
+    "test:vue:webkit": {
+      "command": "playwright test --project=vue-webkit",
+      "files": [
+        "tests/**/*.spec.ts",
+        "playwright.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "playwright-report/**",
+        "test-results/**"
+      ]
+    },
+    "test:report": {
+      "command": "playwright show-report",
+      "service": true
+    }
   },
   "devDependencies": {
-    "@playwright/test": "^1.52.0"
+    "@playwright/test": "^1.52.0",
+    "wireit": "^0.14.12"
   }
 }
