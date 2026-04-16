@@ -18,13 +18,7 @@ test.describe('sl-dialog', () => {
   });
 
   test('should close by clicking outside', async ({ page }) => {
-    await page.locator('sl-dialog').evaluate((el) => {
-      el.shadowRoot
-        ?.querySelector('dialog')
-        ?.dispatchEvent(
-          new MouseEvent('click', { clientX: 10, clientY: 10, bubbles: true }),
-        );
-    });
+    await page.mouse.click(10, 10);
     await expect(page.locator('sl-dialog')).not.toBeVisible();
   });
 });

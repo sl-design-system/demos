@@ -86,4 +86,11 @@ export const routes: Routes = [
         (m) => m.FormTemplatePageComponent,
       ),
   },
+  {
+    path: 'sl-inline-message',
+    loadComponent: () =>
+      import('./components/sl-inline-message/sl-inline-message.component').then(
+        (m) => m.InlineMessagePageComponent,
+      ),
+  },
 ];

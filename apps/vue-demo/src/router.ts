@@ -44,5 +44,10 @@ export const router = createRouter({
       path: '/sl-form',
       component: () => import('./components/sl-form/sl-form.vue'),
     },
+    {
+      path: '/sl-inline-message',
+      component: () =>
+        import('./components/sl-inline-message/sl-inline-message.vue'),
+    },
   ],
 });

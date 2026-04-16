@@ -21,5 +21,6 @@ export class AppComponent {
     { path: 'sl-form-field', label: 'sl-form-field' },
     { path: 'sl-form-reactive', label: 'sl-form (reactive)' },
     { path: 'sl-form-template', label: 'sl-form (template)' },
+    { path: 'sl-inline-message', label: 'sl-inline-message' },
   ];
 }
