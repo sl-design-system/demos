@@ -11,6 +11,7 @@
   import FormField from './components/sl-form-field/sl-form-field.svelte';
   import Form from './components/sl-form/sl-form.svelte';
   import InlineMessage from './components/sl-inline-message/sl-inline-message.svelte';
+  import Menu from './components/sl-menu/sl-menu.svelte';
 
   const navItems = [
     { path: '/sl-accordion', label: 'sl-accordion', component: Accordion },
@@ -24,6 +25,7 @@
     { path: '/sl-form-field', label: 'sl-form-field', component: FormField },
     { path: '/sl-form', label: 'sl-form', component: Form },
     { path: '/sl-inline-message', label: 'sl-inline-message', component: InlineMessage },
+    { path: '/sl-menu', label: 'sl-menu', component: Menu },
   ];
 
   const initialPath = window.location.pathname === '/' ? '/sl-accordion' : window.location.pathname;
