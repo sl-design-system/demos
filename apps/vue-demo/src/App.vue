@@ -26,6 +26,10 @@ const navItems = [
   { path: '/sl-callout', label: 'sl-callout' },
   { path: '/sl-checkbox', label: 'sl-checkbox' },
   { path: '/sl-combobox', label: 'sl-combobox' },
+  { path: '/sl-dialog', label: 'sl-dialog' },
+  { path: '/sl-form-field', label: 'sl-form-field' },
+  { path: '/sl-form', label: 'sl-form' },
+  { path: '/sl-inline-message', label: 'sl-inline-message' },
 ];
 </script>
 

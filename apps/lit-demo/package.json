@@ -9,6 +9,7 @@
     "generate-styles": "wireit",
     "lint": "wireit",
     "lint:fix": "wireit",
+    "postinstall": "node scripts/generate-styles.js",
     "preview": "wireit"
   },
   "wireit": {

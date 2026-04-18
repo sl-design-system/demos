@@ -1,12 +1,16 @@
 <script lang="ts">
   import './app.css';
-  import Accordion from './components/sl-accordion.svelte';
-  import Breadcrumbs from './components/sl-breadcrumbs.svelte';
-  import Button from './components/sl-button.svelte';
-  import ButtonBar from './components/sl-button-bar.svelte';
-  import Callout from './components/sl-callout.svelte';
-  import Checkbox from './components/sl-checkbox.svelte';
-  import Combobox from './components/sl-combobox.svelte';
+  import Accordion from './components/sl-accordion/sl-accordion.svelte';
+  import Breadcrumbs from './components/sl-breadcrumbs/sl-breadcrumbs.svelte';
+  import Button from './components/sl-button/sl-button.svelte';
+  import ButtonBar from './components/sl-button-bar/sl-button-bar.svelte';
+  import Callout from './components/sl-callout/sl-callout.svelte';
+  import Checkbox from './components/sl-checkbox/sl-checkbox.svelte';
+  import Combobox from './components/sl-combobox/sl-combobox.svelte';
+  import Dialog from './components/sl-dialog/sl-dialog.svelte';
+  import FormField from './components/sl-form-field/sl-form-field.svelte';
+  import Form from './components/sl-form/sl-form.svelte';
+  import InlineMessage from './components/sl-inline-message/sl-inline-message.svelte';
 
   const navItems = [
     { path: '/sl-accordion', label: 'sl-accordion', component: Accordion },
@@ -16,11 +20,17 @@
     { path: '/sl-callout', label: 'sl-callout', component: Callout },
     { path: '/sl-checkbox', label: 'sl-checkbox', component: Checkbox },
     { path: '/sl-combobox', label: 'sl-combobox', component: Combobox },
+    { path: '/sl-dialog', label: 'sl-dialog', component: Dialog },
+    { path: '/sl-form-field', label: 'sl-form-field', component: FormField },
+    { path: '/sl-form', label: 'sl-form', component: Form },
+    { path: '/sl-inline-message', label: 'sl-inline-message', component: InlineMessage },
   ];
 
-  let currentPath = $state(
-    window.location.pathname === '/' ? '/sl-accordion' : window.location.pathname
-  );
+  const initialPath = window.location.pathname === '/' ? '/sl-accordion' : window.location.pathname;
+  if (window.location.pathname === '/') {
+    window.history.replaceState(null, '', '/sl-accordion');
+  }
+  let currentPath = $state(initialPath);
 
   const CurrentPage = $derived(
     navItems.find((item) => item.path === currentPath)?.component ?? Accordion

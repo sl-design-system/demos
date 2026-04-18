@@ -16,5 +16,11 @@ export class AppComponent {
     { path: 'sl-callout', label: 'sl-callout' },
     { path: 'sl-checkbox', label: 'sl-checkbox' },
     { path: 'sl-combobox', label: 'sl-combobox' },
+    { path: 'sl-dialog', label: 'sl-dialog' },
+    { path: 'sl-dialog-service', label: 'sl-dialog-service' },
+    { path: 'sl-form-field', label: 'sl-form-field' },
+    { path: 'sl-form-reactive', label: 'sl-form (reactive)' },
+    { path: 'sl-form-template', label: 'sl-form (template)' },
+    { path: 'sl-inline-message', label: 'sl-inline-message' },
   ];
 }

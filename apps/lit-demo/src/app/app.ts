@@ -4,13 +4,17 @@ import {
   ScopedElementsMixin,
   type ScopedElementsMap,
 } from '@open-wc/scoped-elements/lit-element.js';
-import { AccordionPage } from '../components/sl-accordion.js';
-import { BreadcrumbsPage } from '../components/sl-breadcrumbs.js';
-import { ButtonPage } from '../components/sl-button.js';
-import { ButtonBarPage } from '../components/sl-button-bar.js';
-import { CalloutPage } from '../components/sl-callout.js';
-import { CheckboxPage } from '../components/sl-checkbox.js';
-import { ComboboxPage } from '../components/sl-combobox.js';
+import { AccordionPage } from '../components/sl-accordion/sl-accordion.js';
+import { BreadcrumbsPage } from '../components/sl-breadcrumbs/sl-breadcrumbs.js';
+import { ButtonPage } from '../components/sl-button/sl-button.js';
+import { ButtonBarPage } from '../components/sl-button-bar/sl-button-bar.js';
+import { CalloutPage } from '../components/sl-callout/sl-callout.js';
+import { CheckboxPage } from '../components/sl-checkbox/sl-checkbox.js';
+import { ComboboxPage } from '../components/sl-combobox/sl-combobox.js';
+import { DialogPage } from '../components/sl-dialog/sl-dialog.js';
+import { FormFieldPage } from '../components/sl-form-field/sl-form-field.js';
+import { FormPage } from '../components/sl-form/sl-form.js';
+import { InlineMessagePage } from '../components/sl-inline-message/sl-inline-message.js';
 import styles from './app.styles.scss.js';
 
 const ROUTES = [
@@ -21,20 +25,26 @@ const ROUTES = [
   { path: '/sl-callout', label: 'sl-callout' },
   { path: '/sl-checkbox', label: 'sl-checkbox' },
   { path: '/sl-combobox', label: 'sl-combobox' },
+  { path: '/sl-dialog', label: 'sl-dialog' },
+  { path: '/sl-form-field', label: 'sl-form-field' },
+  { path: '/sl-form', label: 'sl-form' },
+  { path: '/sl-inline-message', label: 'sl-inline-message' },
 ];
 
 export class App extends ScopedElementsMixin(LitElement) {
-  static override get scopedElements(): ScopedElementsMap {
-    return {
-      'page-accordion': AccordionPage,
-      'page-breadcrumbs': BreadcrumbsPage,
-      'page-button': ButtonPage,
-      'page-button-bar': ButtonBarPage,
-      'page-callout': CalloutPage,
-      'page-checkbox': CheckboxPage,
-      'page-combobox': ComboboxPage,
-    };
-  }
+  static scopedElements: ScopedElementsMap = {
+    'page-accordion': AccordionPage,
+    'page-breadcrumbs': BreadcrumbsPage,
+    'page-button': ButtonPage,
+    'page-button-bar': ButtonBarPage,
+    'page-callout': CalloutPage,
+    'page-checkbox': CheckboxPage,
+    'page-combobox': ComboboxPage,
+    'page-dialog': DialogPage,
+    'page-form-field': FormFieldPage,
+    'page-form': FormPage,
+    'page-inline-message': InlineMessagePage,
+  };
 
   static override styles = styles;
 
@@ -78,6 +88,14 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-checkbox></page-checkbox>`;
       case '/sl-combobox':
         return html`<page-combobox></page-combobox>`;
+      case '/sl-dialog':
+        return html`<page-dialog></page-dialog>`;
+      case '/sl-form-field':
+        return html`<page-form-field></page-form-field>`;
+      case '/sl-form':
+        return html`<page-form></page-form>`;
+      case '/sl-inline-message':
+        return html`<page-inline-message></page-inline-message>`;
       default:
         return html``;
     }

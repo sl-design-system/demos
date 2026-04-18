@@ -36,7 +36,7 @@ const runBuild = async () => {
 
   if (isWatch) {
     await ctx.watch();
-    const esbuildServer = await ctx.serve({ servedir: outdir });
+    const esbuildServer = await ctx.serve({ servedir: outdir, port: 10009 });
 
     // Proxy that falls back to index.html for unknown paths (SPA support)
     http

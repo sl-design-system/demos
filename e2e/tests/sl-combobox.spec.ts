@@ -6,15 +6,11 @@ test.describe('sl-combobox', () => {
   });
 
   test('should select and remove option from the list', async ({ page }) => {
-    await page.locator('sl-combobox').click();
-    await expect(
-      page.locator('sl-option', { hasText: 'Test 1' }),
-    ).toBeVisible();
-    await expect(
-      page.locator('sl-option', { hasText: 'Test 2' }),
-    ).toBeVisible();
+    await page.getByRole('combobox').click({ force: true });
+    await expect(page.getByRole('option', { name: 'Test 1' })).toBeVisible();
+    await expect(page.getByRole('option', { name: 'Test 2' })).toBeVisible();
 
-    await page.locator('sl-option', { hasText: 'Test 1' }).click();
+    await page.getByRole('option', { name: 'Test 1' }).click();
     const tag = page
       .locator('sl-combobox')
       .locator('sl-tag', { hasText: 'Test 1' });
@@ -27,7 +23,7 @@ test.describe('sl-combobox', () => {
   test('should select an option by typing text and pressing Enter', async ({
     page,
   }) => {
-    await page.locator('sl-combobox').click();
+    await page.getByRole('combobox').click({ force: true });
     await page.keyboard.type('Test 2');
     await page.keyboard.press('Enter');
     const tag = page
@@ -40,9 +36,9 @@ test.describe('sl-combobox', () => {
     page,
   }) => {
     const combobox = page.locator('sl-combobox');
-    await combobox.click();
-    await page.locator('sl-option', { hasText: 'Test 1' }).click();
-    await page.locator('sl-option', { hasText: 'Test 2' }).click();
+    await page.getByRole('combobox').click({ force: true });
+    await page.getByRole('option', { name: 'Test 1' }).click();
+    await page.getByRole('option', { name: 'Test 2' }).click();
 
     await expect(
       combobox.locator('sl-tag', { hasText: 'Test 1' }),
