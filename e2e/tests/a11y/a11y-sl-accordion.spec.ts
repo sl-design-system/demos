@@ -8,8 +8,8 @@ test.describe('sl-accordion accessibility', () => {
   });
   
   test('should have no accessibility violations', async ({ page }) => {
-    const axe = new AxeBuilder({ page });
-    const results = await axe.include('main').analyze(); // Test only the main content area, exclude navigation
+    const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']); 
+    const results = await axe.analyze(); 
     expect(results.violations).toEqual([]);
   });
   
@@ -21,8 +21,8 @@ test.describe('sl-accordion accessibility', () => {
   });
 
   test('should have correct tab order', async ({ page }) => {
-
-    const activeElements = [
+    const angularNav = (await page.title()) === "Angular Demo" ? true : false;
+    const activeElements = angularNav ? [
       'Skip to main content',
       'sl-accordion',
       'sl-breadcrumbs',
@@ -31,14 +31,43 @@ test.describe('sl-accordion accessibility', () => {
       'sl-callout',
       'sl-checkbox',
       'sl-combobox',
-      'Extended content for Test 1',
-    ] as const;
-    
+      'sl-dialog',
+      'sl-dialog-service',
+      'sl-form-field',
+      'sl-form (reactive)',
+      'sl-form (template)',
+      'sl-inline-message',
+      'Test 1',
+    ] : ['Skip to main content',
+      'sl-accordion',
+      'sl-breadcrumbs',
+      'sl-button',
+      'sl-button-bar',
+      'sl-callout',
+      'sl-checkbox',
+      'sl-combobox',
+      'sl-dialog',
+      'sl-form-field',
+      'sl-form',
+      'sl-inline-message',
+      'Test 1',] as const;
+
     for (const activeElement of activeElements) {
-      await page.keyboard.press('Tab');
+      await page.keyboard.press('Alt+Tab'); // Alt is added for Webkit as option Press Tab to highlight can't be turned on
       const focusedOn = await page.evaluate(() => {
-        const selector = document.activeElement;
-        return selector ? selector.innerHTML : null;
+        function deepActive(root = document) {
+          let el = root.activeElement;
+          while (el && el.shadowRoot && el.shadowRoot.activeElement) el = el.shadowRoot.activeElement;
+          return el;
+        }
+        const el = deepActive();
+        if (!el) return null;
+        const tag = el.tagName ? el.tagName.toLowerCase() : null;
+        // Custom elements (e.g. sl-accordion) contain all child text — return tag name instead
+        if (tag && tag.includes('-')) return tag;
+        // For regular elements return only the first non-empty line of own text content
+        const text = (el.textContent || '').trim().split('\n').map(l => l.trim()).find(l => l.length > 0) || null;
+        return text || tag;
       });
       expect(focusedOn).toBe(activeElement);
     }
