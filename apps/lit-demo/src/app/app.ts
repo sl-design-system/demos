@@ -86,6 +86,7 @@ export class App extends ScopedElementsMixin(LitElement) {
   override render(): TemplateResult {
     return html`
       <div class="app-layout">
+        <a href="#main" class="skip-link">Skip to main content</a>
         <nav class="sidebar">
           <h2>Lit Demo App</h2>
           <ul>
@@ -106,7 +107,7 @@ export class App extends ScopedElementsMixin(LitElement) {
             )}
           </ul>
         </nav>
-        <main class="content">${this._renderPage()}</main>
+        <main id="main" class="content">${this._renderPage()}</main>
       </div>
     `;
   }

@@ -39,6 +39,7 @@
 </script>
 
 <div class="app-layout">
+  <a href="#main" class="skip-link">Skip to main content</a>
   <nav class="sidebar">
     <h2>Svelte Demo App</h2>
     <ul>
@@ -53,7 +54,7 @@
       {/each}
     </ul>
   </nav>
-  <main class="content">
+  <main id="main" class="content">
     <CurrentPage />
   </main>
 </div>
