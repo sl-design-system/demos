@@ -53,7 +53,7 @@ const navItems = [
   font-size: 11px;
   font-weight: 700;
   margin: 0 0 12px;
-  color: #888;
+  color: #333;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -93,4 +93,20 @@ const navItems = [
   padding: 32px;
   overflow-y: auto;
 }
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: #fff;
+  padding: 8px 16px;
+  z-index: 100;
+  transition: top 0.3s ease-in-out;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 </style>
