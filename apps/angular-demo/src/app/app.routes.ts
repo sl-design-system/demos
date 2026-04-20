@@ -93,4 +93,11 @@ export const routes: Routes = [
         (m) => m.InlineMessagePageComponent,
       ),
   },
+  {
+    path: 'sl-menu',
+    loadComponent: () =>
+      import('./components/sl-menu/sl-menu.component').then(
+        (m) => m.MenuPageComponent,
+      ),
+  },
 ];
