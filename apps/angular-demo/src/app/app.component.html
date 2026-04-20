@@ -1,8 +1,18 @@
 <div class="app-layout">
   <a href="#main" class="skip-link">Skip to main content</a>
-  <nav class="sidebar">
+  <nav class="sidebar" [class.collapsed]="navCollapsed" aria-label="Main navigation" id="app-sidebar">
+    <button
+      class="sidebar-toggle"
+      aria-controls="app-sidebar"
+      (click)="navCollapsed = !navCollapsed"
+      [attr.aria-expanded]="!navCollapsed"
+      title="Toggle navigation"
+    >
+      <span aria-hidden="true">☰</span>
+      <span class="visually-hidden">{{ navCollapsed ? 'Expand navigation' : 'Collapse navigation' }}</span>
+    </button>
     <h2>Angular Demo App</h2>
-    <ul>
+    <ul class="sidebar-list">
       @for (item of navItems; track item.path) {
         <li>
           <a [routerLink]="item.path" routerLinkActive="active">{{

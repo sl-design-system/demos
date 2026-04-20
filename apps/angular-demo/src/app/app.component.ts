@@ -23,4 +23,7 @@ export class AppComponent {
     { path: 'sl-form-template', label: 'sl-form (template)' },
     { path: 'sl-inline-message', label: 'sl-inline-message' },
   ];
+
+  // simple collapsed state for nav toggle in template
+  navCollapsed = false;
 }

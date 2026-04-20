@@ -21,39 +21,15 @@ test.describe('sl-accordion accessibility', () => {
   });
 
   test('should have correct tab order', async ({ page }) => {
-    const angularNav = (await page.title()) === "Angular Demo" ? true : false;
-    const activeElements = angularNav ? [
-      'Skip to main content',
-      'sl-accordion',
-      'sl-breadcrumbs',
-      'sl-button',
-      'sl-button-bar',
-      'sl-callout',
-      'sl-checkbox',
-      'sl-combobox',
-      'sl-dialog',
-      'sl-dialog-service',
-      'sl-form-field',
-      'sl-form (reactive)',
-      'sl-form (template)',
-      'sl-inline-message',
+
+    const activeElements = [
       'Test 1',
-    ] : ['Skip to main content',
-      'sl-accordion',
-      'sl-breadcrumbs',
-      'sl-button',
-      'sl-button-bar',
-      'sl-callout',
-      'sl-checkbox',
-      'sl-combobox',
-      'sl-dialog',
-      'sl-form-field',
-      'sl-form',
-      'sl-inline-message',
-      'Test 1',] as const;
+    ] as const;
+
+    await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
     for (const activeElement of activeElements) {
-      await page.keyboard.press('Alt+Tab'); // Alt is added for Webkit as option Press Tab to highlight can't be turned on
+      await page.keyboard.press('Tab'); 
       const focusedOn = await page.evaluate(() => {
         function deepActive(root = document) {
           let el = root.activeElement;
