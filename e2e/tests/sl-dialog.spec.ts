@@ -18,7 +18,7 @@ test.describe('sl-dialog', () => {
   });
 
   test('should close by clicking outside', async ({ page }) => {
-    await page.waitForTimeout(100);
+    await expect(page.locator('sl-dialog')).toBeVisible();
     await page.mouse.click(10, 10);
     await expect(page.locator('sl-dialog')).not.toBeVisible();
   });

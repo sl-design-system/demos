@@ -1,7 +1,7 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page  } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-function getFocusedElement(page) {
+async function getFocusedElement(page: Page): Promise<string | null> {
   return page.evaluate(() => {
     function deepActive(root = document) {
       let el = root.activeElement;
@@ -32,10 +32,10 @@ test.describe('sl-accordion accessibility', () => {
   test('should have correct aria-expanded attributes', async ({page}) => {
     const item = page.locator('summary').filter({ hasText: 'Test 1' })
 
-    expect(item).toHaveAttribute('aria-expanded', 'false');
+    await expect(item).toHaveAttribute('aria-expanded', 'false');
   
     await item.click();
-    expect(item).toHaveAttribute('aria-expanded', 'true');
+    await expect(item).toHaveAttribute('aria-expanded', 'true');
   });
 
   test('should have correct tab order', async ({ page }) => {

@@ -250,6 +250,7 @@
     }
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
     "@playwright/test": "^1.52.0",
     "wireit": "^0.14.12"
   }
