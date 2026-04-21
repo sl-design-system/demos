@@ -49,6 +49,7 @@ export class App extends ScopedElementsMixin(LitElement) {
   static override styles = styles;
 
   @state() private _currentPath = window.location.pathname;
+  @state() private _navCollapsed = false;
 
   private _onPopState = () => {
     this._currentPath = window.location.pathname;
@@ -105,9 +106,19 @@ export class App extends ScopedElementsMixin(LitElement) {
     return html`
       <div class="app-layout">
         <a href="#main" class="skip-link">Skip to main content</a>
-        <nav class="sidebar">
+        <nav class="sidebar ${this._navCollapsed ? 'collapsed' : ''}" aria-label="Main navigation" id="app-sidebar">
+          <button
+            class="sidebar-toggle"
+            aria-controls="app-sidebar"
+            @click=${() => (this._navCollapsed = !this._navCollapsed)}
+            aria-expanded="${!this._navCollapsed}"
+            title="Toggle navigation"
+          >
+            <span aria-hidden="true">☰</span>
+            <span class="visually-hidden">${this._navCollapsed ? 'Expand navigation' : 'Collapse navigation'}</span>
+          </button>
           <h2>Lit Demo App</h2>
-          <ul>
+          <ul class="sidebar-list">
             ${ROUTES.map(
               ({ path, label }) => html`
                 <li>
@@ -118,7 +129,7 @@ export class App extends ScopedElementsMixin(LitElement) {
                       e.preventDefault();
                       this._navigate(path);
                     }}
-                    >${label}</a
+                    ><span class="label">${label}</span></a
                   >
                 </li>
               `,

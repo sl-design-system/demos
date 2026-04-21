@@ -1,13 +1,21 @@
 <template>
   <div class="app-layout">
     <a href="#main" class="skip-link">Skip to main content</a>
-    <nav class="sidebar">
+    <nav class="sidebar" :class="{ collapsed: navCollapsed }" aria-label="Main navigation" id="app-sidebar">
+      <button
+        class="sidebar-toggle"
+        aria-controls="app-sidebar"
+        @click="navCollapsed = !navCollapsed"
+        :aria-expanded="!navCollapsed"
+        title="Toggle navigation"
+      >
+        <span aria-hidden="true">☰</span>
+        <span class="visually-hidden">{{ navCollapsed ? 'Expand navigation' : 'Collapse navigation' }}</span>
+      </button>
       <h2>Vue Demo App</h2>
-      <ul>
+      <ul class="sidebar-list">
         <li v-for="item in navItems" :key="item.path">
-          <router-link :to="item.path" active-class="active">{{
-            item.label
-          }}</router-link>
+          <router-link :to="item.path" active-class="active"><span class="label">{{ item.label }}</span></router-link>
         </li>
       </ul>
     </nav>
@@ -18,6 +26,10 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+
+const navCollapsed = ref(false);
+
 const navItems = [
   { path: '/sl-accordion', label: 'sl-accordion' },
   { path: '/sl-breadcrumbs', label: 'sl-breadcrumbs' },
@@ -107,6 +119,67 @@ const navItems = [
 
 .skip-link:focus {
   top: 0;
+}
+
+/* collapsed sidebar styles */
+.sidebar.collapsed {
+  width: 56px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.sidebar-title {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.sidebar .label {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.sidebar.collapsed .label {
+  display: none;
+}
+
+.sidebar-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.sidebar-toggle:focus {
+  outline: 2px solid #2c5be8;
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.sidebar-list.collapsed {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-list {
+  display: none;
 }
 
 </style>

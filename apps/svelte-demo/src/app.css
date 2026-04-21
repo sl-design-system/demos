@@ -35,6 +35,66 @@ body {
   overflow-y: auto;
 }
 
+.sidebar.collapsed {
+  width: 56px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.sidebar-title {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.sidebar .label {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.sidebar.collapsed .label {
+  display: none;
+}
+
+.sidebar-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.sidebar-toggle:focus {
+  outline: 2px solid #2c5be8;
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.sidebar-list.collapsed {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-list {
+  display: none;
+}
+
 .sidebar h2 {
   font-size: 11px;
   font-weight: 700;
