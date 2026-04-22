@@ -5,7 +5,7 @@ test.describe('sl-message-dialog', () => {
     await page.goto('/sl-message-dialog');
   });
 
-  test('should open and close message dialog when clicking the OK button', async ({ page }) => {
+  test('should open message dialog and close when clicking the OK button', async ({ page }) => {
     await page.locator('sl-button', { hasText: 'Show' }).click();
     await expect(page.getByRole('button', { name: 'OK' })).toBeVisible();
 
@@ -13,7 +13,7 @@ test.describe('sl-message-dialog', () => {
     await expect(page.getByRole('button', { name: 'OK' })).not.toBeVisible();
   });
 
-  test('should open and close message dialog when pressing Escape', async ({ page }) => {
+  test('should open message dialog and close when pressing Escape', async ({ page }) => {
     await page.locator('sl-button', { hasText: 'Show' }).click();
     await expect(page.getByRole('button', { name: 'OK' })).toBeVisible();
 
@@ -21,7 +21,7 @@ test.describe('sl-message-dialog', () => {
     await expect(page.getByRole('button', { name: 'OK' })).not.toBeVisible();
   });
 
-  test('should open and close message dialog when clicking outside', async ({ page }) => {
+  test('should open message dialog and close when clicking outside', async ({ page }) => {
     await page.locator('sl-button', { hasText: 'Show' }).click();
     await expect(page.getByRole('button', { name: 'OK' })).toBeVisible();
 

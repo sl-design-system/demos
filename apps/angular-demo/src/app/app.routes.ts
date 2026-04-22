@@ -107,4 +107,11 @@ export const routes: Routes = [
         (m) => m.MessageDialogPageComponent,
       ),
   },
+  {
+    path: 'sl-message-dialog-service',
+    loadComponent: () =>
+      import(
+        './components/sl-message-dialog-service/sl-message-dialog-service.component'
+      ).then((m) => m.MessageDialogServicePageComponent),
+  },
 ];
