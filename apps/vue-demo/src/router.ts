@@ -53,5 +53,9 @@ export const router = createRouter({
       path: '/sl-menu',
       component: () => import('./components/sl-menu/sl-menu.vue'),
     },
+    {
+      path: '/sl-tab-group',
+      component: () => import('./components/sl-tab-group/sl-tab-group.vue'),
+    },
   ],
 });
