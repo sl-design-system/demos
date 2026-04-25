@@ -100,4 +100,11 @@ export const routes: Routes = [
         (m) => m.MenuPageComponent,
       ),
   },
+  {
+    path: 'sl-popover',
+    loadComponent: () =>
+      import('./components/sl-popover/sl-popover.component').then(
+        (m) => m.PopoverPageComponent,
+      ),
+  },
 ];

@@ -87,6 +87,7 @@
     "@sl-design-system/menu": "^0.3.1",
     "@sl-design-system/message-dialog": "^1.1.4",
     "@sl-design-system/number-field": "^0.1.8",
+    "@sl-design-system/popover": "^1.2.7",
     "@sl-design-system/radio-group": "^1.1.9",
     "@sl-design-system/sanoma-learning": "^1.1.1",
     "@sl-design-system/select": "^2.1.3",

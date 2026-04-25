@@ -53,5 +53,9 @@ export const router = createRouter({
       path: '/sl-menu',
       component: () => import('./components/sl-menu/sl-menu.vue'),
     },
+    {
+      path: '/sl-popover',
+      component: () => import('./components/sl-popover/sl-popover.vue'),
+    },
   ],
 });
