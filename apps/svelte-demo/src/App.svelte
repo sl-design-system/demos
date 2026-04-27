@@ -12,6 +12,7 @@
   import Form from './components/sl-form/sl-form.svelte';
   import InlineMessage from './components/sl-inline-message/sl-inline-message.svelte';
   import Menu from './components/sl-menu/sl-menu.svelte';
+  import RadioGroup from './components/sl-radio-group/sl-radio-group.svelte';
 
   const navItems = [
     { path: '/sl-accordion', label: 'sl-accordion', component: Accordion },
@@ -26,6 +27,7 @@
     { path: '/sl-form', label: 'sl-form', component: Form },
     { path: '/sl-inline-message', label: 'sl-inline-message', component: InlineMessage },
     { path: '/sl-menu', label: 'sl-menu', component: Menu },
+    { path: '/sl-radio-group', label: 'sl-radio-group', component: RadioGroup },
   ];
 
   const initialPath = window.location.pathname === '/' ? '/sl-accordion' : window.location.pathname;

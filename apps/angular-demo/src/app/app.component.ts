@@ -23,5 +23,6 @@ export class AppComponent {
     { path: 'sl-form-template', label: 'sl-form (template)' },
     { path: 'sl-inline-message', label: 'sl-inline-message' },
     { path: 'sl-menu', label: 'sl-menu' },
+    { path: 'sl-radio-group', label: 'sl-radio-group' },
   ];
 }
