@@ -88,7 +88,7 @@ test.describe('sl-tab-group', () => {
   test('should not display content of disabled tab after clicking disabled tab', async ({
     page,
   }) => {
-    await page.getByRole('tab', { name: 'Disabled' }).click({force: true});
+    await page.getByRole('tab', { name: 'Disabled' }).click({ force: true });
     await expect(page.getByRole('tab', { name: 'Disabled' })).not.toHaveAttribute('selected');
     await expect(page.getByRole('tabpanel').filter({ has: page.getByText(PANELS.disabled) })).toBeHidden();
   });
