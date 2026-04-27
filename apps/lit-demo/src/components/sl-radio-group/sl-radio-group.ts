@@ -50,6 +50,14 @@ export class RadioGroupPage extends ScopedElementsMixin(LitElement) {
         <sl-button-bar>
           <sl-button variant="primary" @click=${this._reportValidity}>Report validity</sl-button>
         </sl-button-bar>
+
+        <sl-form-field label="Disabled radio group" hint="This radio group is disabled; no interaction is possible.">
+          <sl-radio-group disabled>
+            <sl-radio value="1">One</sl-radio>
+            <sl-radio value="2">Two</sl-radio>
+            <sl-radio value="3">Three</sl-radio>
+          </sl-radio-group>
+        </sl-form-field>
       </sl-form>
     `;
   }
