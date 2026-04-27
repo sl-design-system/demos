@@ -17,9 +17,9 @@
 
     <sl-form-field label="Disabled radio group" hint="This radio group is disabled; no interaction is possible.">
       <sl-radio-group :disabled="true">
-        <sl-radio value="1">One</sl-radio>
-        <sl-radio value="2">Two</sl-radio>
-        <sl-radio value="3">Three</sl-radio>
+        <sl-radio value="4">Four</sl-radio>
+        <sl-radio value="5">Five</sl-radio>
+        <sl-radio value="6">Six</sl-radio>
       </sl-radio-group>
     </sl-form-field>
   </sl-form>
