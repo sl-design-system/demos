@@ -13,7 +13,7 @@
     </sl-button-bar>
 
     <sl-form-field>
-      <sl-select disabled placeholder="Disabled select" size="md">
+      <sl-select :disabled="true" placeholder="Disabled select" size="md">
         <sl-option value="1">Disabled option 1</sl-option>
         <sl-option value="2">Disabled option 2</sl-option>
         <sl-option value="3">Disabled option 3</sl-option>
