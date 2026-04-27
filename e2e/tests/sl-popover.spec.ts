@@ -13,7 +13,7 @@ test.describe('sl-popover', () => {
     await expect(page.getByText(popoverText)).toBeHidden();
   });
 
-  test('should open a blank page after clicking first button', async ({
+  test('should open a blank page after clicking Action button inside popover', async ({
     page,
   }) => {
     await page.getByRole('button', { name: 'Toggle Popover' }).click();
@@ -21,7 +21,7 @@ test.describe('sl-popover', () => {
 
     const [newPage] = await Promise.all([
       page.context().waitForEvent('page'),
-      page.getByText('Action').click(),
+      page.getByRole('button', { name: 'Action' }).click(),
     ]);
 
     await expect(newPage).toHaveURL('about:blank');
@@ -33,7 +33,6 @@ test.describe('sl-popover', () => {
     await page.getByRole('button', { name: 'Toggle Popover' }).click();
     await expect(page.getByText(popoverText)).toBeVisible();
     await page.getByText('Action').click();
-    
     await expect(page.getByText(popoverText)).toBeVisible();
   });
 
@@ -51,7 +50,7 @@ test.describe('sl-popover', () => {
     await page.getByRole('button', { name: 'Toggle Popover' }).click();
     await expect(page.getByText(popoverText)).toBeVisible();
 
-    await page.mouse.click(500, 500);
+    await page.mouse.click(10, 10);
 
     await expect(
       page.getByText(popoverText),
