@@ -13,4 +13,7 @@ export class PopoverPageComponent {
     const popover = document.querySelector('sl-popover') as HTMLElement | null;
     (popover as any)?.togglePopover();
   }
+  openBlankPage() {
+    window.open('about:blank', '_blank', 'noopener,noreferrer');
+  }
 }
