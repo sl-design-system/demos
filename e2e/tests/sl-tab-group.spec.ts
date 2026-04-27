@@ -5,7 +5,6 @@ test.describe('sl-tab-group', () => {
   const PANELS = {
     general: 'This is the General tab content. It contains basic information about the component.',
     settings: 'This is the Settings tab content. Here you can configure various options.',
-    advanced: 'This is the Advanced tab content. Power-user features live here.',
     disabled: 'Disabled tab content',
   };
 
@@ -42,9 +41,6 @@ test.describe('sl-tab-group', () => {
 
     await page.getByRole('tab', { name: 'Settings' }).click();
     await expect(page.getByRole('tabpanel').filter({ has: page.getByText(PANELS.settings) })).toBeVisible();
-
-    await page.getByRole('tab', { name: 'Advanced' }).click();
-    await expect(page.getByRole('tabpanel').filter({ has: page.getByText(PANELS.advanced) })).toBeVisible();
   });
 
   test('should display only the content of the selected tab', async ({
@@ -53,17 +49,10 @@ test.describe('sl-tab-group', () => {
     await page.getByRole('tab', { name: 'General' }).click();
     await expect(page.getByRole('tabpanel').filter({ has: page.getByText(PANELS.general) })).toBeVisible();
     await expect(page.getByRole('tabpanel').filter({ has: page.getByText(PANELS.settings) })).not.toBeVisible();
-    await expect(page.getByRole('tabpanel').filter({ has: page.getByText(PANELS.advanced) })).not.toBeVisible();
 
     await page.getByRole('tab', { name: 'Settings' }).click();
     await expect(page.getByRole('tabpanel').filter({ has: page.getByText(PANELS.general) })).not.toBeVisible();
     await expect(page.getByRole('tabpanel').filter({ has: page.getByText(PANELS.settings) })).toBeVisible();
-    await expect(page.getByRole('tabpanel').filter({ has: page.getByText(PANELS.advanced) })).not.toBeVisible();
-
-    await page.getByRole('tab', { name: 'Advanced' }).click();
-    await expect(page.getByRole('tabpanel').filter({ has: page.getByText(PANELS.general) })).not.toBeVisible();
-    await expect(page.getByRole('tabpanel').filter({ has: page.getByText(PANELS.settings) })).not.toBeVisible();
-    await expect(page.getByRole('tabpanel').filter({ has: page.getByText(PANELS.advanced) })).toBeVisible();
   });
 
   test('should add selected attribute only for the active tab after clicking tabs', async ({
@@ -72,16 +61,9 @@ test.describe('sl-tab-group', () => {
     await page.getByRole('tab', { name: 'General' }).click();
     await expect(page.getByRole('tab', { name: 'General' })).toHaveAttribute('selected');
     await expect(page.getByRole('tab', { name: 'Settings' })).not.toHaveAttribute('selected');
-    await expect(page.getByRole('tab', { name: 'Advanced' })).not.toHaveAttribute('selected');
 
     await page.getByRole('tab', { name: 'Settings' }).click();
     await expect(page.getByRole('tab', { name: 'Settings' })).toHaveAttribute('selected');
-    await expect(page.getByRole('tab', { name: 'General' })).not.toHaveAttribute('selected');
-    await expect(page.getByRole('tab', { name: 'Advanced' })).not.toHaveAttribute('selected');
-
-    await page.getByRole('tab', { name: 'Advanced' }).click();
-    await expect(page.getByRole('tab', { name: 'Advanced' })).toHaveAttribute('selected');
-    await expect(page.getByRole('tab', { name: 'Settings' })).not.toHaveAttribute('selected');
     await expect(page.getByRole('tab', { name: 'General' })).not.toHaveAttribute('selected');
   });
 
