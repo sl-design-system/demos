@@ -16,6 +16,7 @@ import { FormFieldPage } from '../components/sl-form-field/sl-form-field.js';
 import { FormPage } from '../components/sl-form/sl-form.js';
 import { InlineMessagePage } from '../components/sl-inline-message/sl-inline-message.js';
 import { MenuPage } from '../components/sl-menu/sl-menu.js';
+import { SelectPage } from '../components/sl-select/sl-select.js';
 import styles from './app.styles.scss.js';
 
 const ROUTES = [
@@ -31,6 +32,7 @@ const ROUTES = [
   { path: '/sl-form', label: 'sl-form' },
   { path: '/sl-inline-message', label: 'sl-inline-message' },
   { path: '/sl-menu', label: 'sl-menu' },
+  { path: '/sl-select', label: 'sl-select' },
 ];
 
 export class App extends ScopedElementsMixin(LitElement) {
@@ -47,6 +49,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-form': FormPage,
     'page-inline-message': InlineMessagePage,
     'page-menu': MenuPage,
+    'page-select': SelectPage,
   };
 
   static override styles = styles;
@@ -101,6 +104,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-inline-message></page-inline-message>`;
       case '/sl-menu':
         return html`<page-menu></page-menu>`;
+      case '/sl-select':
+        return html`<page-select></page-select>`;
       default:
         return html``;
     }
