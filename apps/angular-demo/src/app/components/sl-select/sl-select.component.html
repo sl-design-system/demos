@@ -1,11 +1,15 @@
-<sl-form>
+<sl-form #form>
   <sl-form-field>
-    <sl-select placeholder="Select an option" size="md">
+    <sl-select #basicSelect required placeholder="Select an option" size="md">
       <sl-option value="1">Option 1</sl-option>
       <sl-option value="2">Option 2</sl-option>
       <sl-option value="3">Option 3</sl-option>
     </sl-select>
   </sl-form-field>
+
+  <sl-button-bar>
+    <sl-button (click)="reportValidity()">Report validity</sl-button>
+  </sl-button-bar>
 
   <sl-form-field>
     <sl-select [disabled]="true" placeholder="Disabled select" size="md">
