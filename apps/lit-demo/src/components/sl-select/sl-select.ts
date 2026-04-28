@@ -29,7 +29,7 @@ export class SelectPage extends ScopedElementsMixin(LitElement) {
 
   private _reportValidity(): void {
     const selectedValue = String(this._select?.value ?? '');
-    const hasSelectedOption = ['1', '2', '3'].includes(selectedValue);
+    const hasSelectedOption = ['1', '2'].includes(selectedValue);
 
     this._select?.setCustomValidity(
       hasSelectedOption ? '' : 'Please choose an option from the list.',
@@ -41,10 +41,9 @@ export class SelectPage extends ScopedElementsMixin(LitElement) {
     return html`
       <sl-form>
         <sl-form-field>
-          <sl-select id="basic-select" required placeholder="Select an option" size="md">
+          <sl-select id="basic-select" required clearable placeholder="Select an option" size="md">
             <sl-option value="1">Option 1</sl-option>
             <sl-option value="2">Option 2</sl-option>
-            <sl-option value="3">Option 3</sl-option>
           </sl-select>
         </sl-form-field>
 
@@ -56,7 +55,6 @@ export class SelectPage extends ScopedElementsMixin(LitElement) {
           <sl-select disabled placeholder="Disabled select" size="md">
             <sl-option value="1">Disabled option 1</sl-option>
             <sl-option value="2">Disabled option 2</sl-option>
-            <sl-option value="3">Disabled option 3</sl-option>
           </sl-select>
         </sl-form-field>
       </sl-form>

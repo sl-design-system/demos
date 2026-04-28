@@ -1,9 +1,8 @@
 <sl-form #form>
   <sl-form-field>
-    <sl-select #basicSelect required placeholder="Select an option" size="md">
+    <sl-select #basicSelect required [clearable]="true" placeholder="Select an option" size="md">
       <sl-option value="1">Option 1</sl-option>
       <sl-option value="2">Option 2</sl-option>
-      <sl-option value="3">Option 3</sl-option>
     </sl-select>
   </sl-form-field>
 
@@ -15,7 +14,6 @@
     <sl-select [disabled]="true" placeholder="Disabled select" size="md">
       <sl-option value="1">Disabled option 1</sl-option>
       <sl-option value="2">Disabled option 2</sl-option>
-      <sl-option value="3">Disabled option 3</sl-option>
     </sl-select>
   </sl-form-field>
 </sl-form>

@@ -26,7 +26,7 @@ export class SelectPageComponent {
 
   reportValidity(): void {
     const selectedValue = String(this.basicSelect.nativeElement.value ?? '');
-    const hasSelectedOption = ['1', '2', '3'].includes(selectedValue);
+    const hasSelectedOption = ['1', '2'].includes(selectedValue);
 
     this.basicSelect.nativeElement.setCustomValidity(
       hasSelectedOption ? '' : 'Please choose an option from the list.',

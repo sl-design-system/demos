@@ -1,10 +1,9 @@
 <template>
   <sl-form ref="formEl">
     <sl-form-field>
-      <sl-select ref="basicSelectEl" required placeholder="Select an option" size="md">
+      <sl-select ref="basicSelectEl" required :clearable="true" placeholder="Select an option" size="md">
         <sl-option value="1">Option 1</sl-option>
         <sl-option value="2">Option 2</sl-option>
-        <sl-option value="3">Option 3</sl-option>
       </sl-select>
     </sl-form-field>
 
@@ -16,7 +15,6 @@
       <sl-select :disabled="true" placeholder="Disabled select" size="md">
         <sl-option value="1">Disabled option 1</sl-option>
         <sl-option value="2">Disabled option 2</sl-option>
-        <sl-option value="3">Disabled option 3</sl-option>
       </sl-select>
     </sl-form-field>
   </sl-form>
@@ -37,7 +35,7 @@ const basicSelectEl = ref<Select | null>(null);
 
 function reportValidity() {
   const selectedValue = String(basicSelectEl.value?.value ?? '');
-  const hasSelectedOption = ['1', '2', '3'].includes(selectedValue);
+  const hasSelectedOption = ['1', '2'].includes(selectedValue);
 
   basicSelectEl.value?.setCustomValidity(
     hasSelectedOption ? '' : 'Please choose an option from the list.',
