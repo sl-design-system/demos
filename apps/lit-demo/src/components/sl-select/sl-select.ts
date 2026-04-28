@@ -53,8 +53,8 @@ export class SelectPage extends ScopedElementsMixin(LitElement) {
 
         <sl-form-field>
           <sl-select disabled placeholder="Disabled select" size="md">
-            <sl-option value="1">Disabled option 1</sl-option>
-            <sl-option value="2">Disabled option 2</sl-option>
+            <sl-option value="1">Disabled value 1</sl-option>
+            <sl-option value="2">Disabled value 2</sl-option>
           </sl-select>
         </sl-form-field>
       </sl-form>
