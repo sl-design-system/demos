@@ -18,7 +18,12 @@ export class MessageDialogPage extends ScopedElementsMixin(LitElement) {
 
   override render(): TemplateResult {
     return html`
-      <sl-button variant="primary" fill="solid" @click=${() => this._showAlert()}>Show</sl-button>
+      <sl-button
+        variant="primary"
+        fill="solid"
+        @click=${() => this._showAlert()}
+        >Show</sl-button
+      >
     `;
   }
 }

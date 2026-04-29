@@ -14,7 +14,9 @@ test.describe('sl-message-dialog-service', () => {
       await expect(page.getByRole('button', { name: 'OK' })).toBeVisible();
     });
 
-    test('should close the alert when clicking the OK button', async ({ page }) => {
+    test('should close the alert when clicking the OK button', async ({
+      page,
+    }) => {
       await page.getByRole('button', { name: 'OK' }).click();
       await expect(page.getByRole('button', { name: 'OK' })).not.toBeVisible();
     });
@@ -36,12 +38,16 @@ test.describe('sl-message-dialog-service', () => {
       await expect(page.getByRole('button', { name: 'OK' })).toBeVisible();
     });
 
-    test('should close the modal when clicking the OK button', async ({ page }) => {
+    test('should close the modal when clicking the OK button', async ({
+      page,
+    }) => {
       await page.getByRole('button', { name: 'OK' }).click();
       await expect(page.getByRole('button', { name: 'OK' })).not.toBeVisible();
     });
 
-    test('should close the modal when clicking the Cancel button', async ({ page }) => {
+    test('should close the modal when clicking the Cancel button', async ({
+      page,
+    }) => {
       await page.getByRole('button', { name: 'Cancel' }).click();
       await expect(page.getByRole('button', { name: 'OK' })).not.toBeVisible();
     });

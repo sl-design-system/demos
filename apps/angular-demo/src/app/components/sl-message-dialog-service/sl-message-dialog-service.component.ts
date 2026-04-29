@@ -23,7 +23,10 @@ export class MessageDialogServicePageComponent {
   }
 
   showModal(): void {
-    const dialogRef = this.messageDialogService.showModal<ExampleMessageDialogComponent, string>({
+    const dialogRef = this.messageDialogService.showModal<
+      ExampleMessageDialogComponent,
+      string
+    >({
       component: ExampleMessageDialogComponent,
       data: 'Hello from MessageDialogService!',
       title: 'Test',

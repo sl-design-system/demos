@@ -94,6 +94,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-number-field',
+    loadComponent: () =>
+      import('./components/sl-number-field/sl-number-field.component').then(
+        (m) => m.NumberFieldPageComponent,
+      ),
+  },
+  {
     path: 'sl-menu',
     loadComponent: () =>
       import('./components/sl-menu/sl-menu.component').then(
@@ -110,8 +117,8 @@ export const routes: Routes = [
   {
     path: 'sl-message-dialog-service',
     loadComponent: () =>
-      import(
-        './components/sl-message-dialog-service/sl-message-dialog-service.component'
-      ).then((m) => m.MessageDialogServicePageComponent),
+      import('./components/sl-message-dialog-service/sl-message-dialog-service.component').then(
+        (m) => m.MessageDialogServicePageComponent,
+      ),
   },
 ];

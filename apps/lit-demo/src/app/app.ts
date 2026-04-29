@@ -17,6 +17,7 @@ import { FormPage } from '../components/sl-form/sl-form.js';
 import { InlineMessagePage } from '../components/sl-inline-message/sl-inline-message.js';
 import { MenuPage } from '../components/sl-menu/sl-menu.js';
 import { MessageDialogPage } from '../components/sl-message-dialog/sl-message-dialog.js';
+import { NumberFieldPage } from '../components/sl-number-field/sl-number-field.js';
 import styles from './app.styles.scss.js';
 
 const ROUTES = [
@@ -33,6 +34,7 @@ const ROUTES = [
   { path: '/sl-inline-message', label: 'sl-inline-message' },
   { path: '/sl-menu', label: 'sl-menu' },
   { path: '/sl-message-dialog', label: 'sl-message-dialog' },
+  { path: '/sl-number-field', label: 'sl-number-field' },
 ];
 
 export class App extends ScopedElementsMixin(LitElement) {
@@ -50,6 +52,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-inline-message': InlineMessagePage,
     'page-menu': MenuPage,
     'page-message-dialog': MessageDialogPage,
+    'page-number-field': NumberFieldPage,
   };
 
   static override styles = styles;
@@ -106,6 +109,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-menu></page-menu>`;
       case '/sl-message-dialog':
         return html`<page-message-dialog></page-message-dialog>`;
+      case '/sl-number-field':
+        return html`<page-number-field></page-number-field>`;
       default:
         return html``;
     }

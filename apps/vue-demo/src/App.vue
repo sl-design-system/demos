@@ -31,6 +31,7 @@ const navItems = [
   { path: '/sl-inline-message', label: 'sl-inline-message' },
   { path: '/sl-menu', label: 'sl-menu' },
   { path: '/sl-message-dialog', label: 'sl-message-dialog' },
+  { path: '/sl-number-field', label: 'sl-number-field' },
 ];
 </script>
 
