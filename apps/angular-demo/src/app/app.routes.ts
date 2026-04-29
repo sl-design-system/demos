@@ -100,4 +100,18 @@ export const routes: Routes = [
         (m) => m.MenuPageComponent,
       ),
   },
+  {
+    path: 'sl-message-dialog',
+    loadComponent: () =>
+      import('./components/sl-message-dialog/sl-message-dialog.component').then(
+        (m) => m.MessageDialogPageComponent,
+      ),
+  },
+  {
+    path: 'sl-message-dialog-service',
+    loadComponent: () =>
+      import(
+        './components/sl-message-dialog-service/sl-message-dialog-service.component'
+      ).then((m) => m.MessageDialogServicePageComponent),
+  },
 ];

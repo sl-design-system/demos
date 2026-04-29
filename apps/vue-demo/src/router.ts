@@ -53,5 +53,9 @@ export const router = createRouter({
       path: '/sl-menu',
       component: () => import('./components/sl-menu/sl-menu.vue'),
     },
+    {
+      path: '/sl-message-dialog',
+      component: () => import('./components/sl-message-dialog/sl-message-dialog.vue'),
+    },
   ],
 });
