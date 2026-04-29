@@ -12,6 +12,8 @@
   import Form from './components/sl-form/sl-form.svelte';
   import InlineMessage from './components/sl-inline-message/sl-inline-message.svelte';
   import Menu from './components/sl-menu/sl-menu.svelte';
+  import MessageDialog from './components/sl-message-dialog/sl-message-dialog.svelte';
+  import NumberField from './components/sl-number-field/sl-number-field.svelte';
   import TabGroup from './components/sl-tab-group/sl-tab-group.svelte';
 
   const navItems = [
@@ -27,6 +29,8 @@
     { path: '/sl-form', label: 'sl-form', component: Form },
     { path: '/sl-inline-message', label: 'sl-inline-message', component: InlineMessage },
     { path: '/sl-menu', label: 'sl-menu', component: Menu },
+    { path: '/sl-message-dialog', label: 'sl-message-dialog', component: MessageDialog },
+    { path: '/sl-number-field', label: 'sl-number-field', component: NumberField },
     { path: '/sl-tab-group', label: 'sl-tab-group', component: TabGroup },
   ];
 

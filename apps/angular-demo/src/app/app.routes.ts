@@ -94,6 +94,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-number-field',
+    loadComponent: () =>
+      import('./components/sl-number-field/sl-number-field.component').then(
+        (m) => m.NumberFieldPageComponent,
+      ),
+  },
+  {
     path: 'sl-tab-group',
     loadComponent: () =>
       import('./components/sl-tab-group/sl-tab-group.component').then(
@@ -105,6 +112,20 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/sl-menu/sl-menu.component').then(
         (m) => m.MenuPageComponent,
+      ),
+  },
+  {
+    path: 'sl-message-dialog',
+    loadComponent: () =>
+      import('./components/sl-message-dialog/sl-message-dialog.component').then(
+        (m) => m.MessageDialogPageComponent,
+      ),
+  },
+  {
+    path: 'sl-message-dialog-service',
+    loadComponent: () =>
+      import('./components/sl-message-dialog-service/sl-message-dialog-service.component').then(
+        (m) => m.MessageDialogServicePageComponent,
       ),
   },
 ];
