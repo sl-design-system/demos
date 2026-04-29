@@ -4,9 +4,15 @@
     <sl-tab slot="tabs">Settings</sl-tab>
     <sl-tab :disabled="true" slot="tabs">Disabled</sl-tab>
 
-    <sl-tab-panel>This is the <strong>General</strong> tab content. It contains basic information about the component.
-      <sl-button @click="openBlankPage">Action</sl-button></sl-tab-panel>
-    <sl-tab-panel>This is the <strong>Settings</strong> tab content. Here you can configure various options.</sl-tab-panel>
+    <sl-tab-panel
+      >This is the <strong>General</strong> tab content. It contains basic
+      information about the component.
+      <sl-button @click="openBlankPage">Action</sl-button></sl-tab-panel
+    >
+    <sl-tab-panel
+      >This is the <strong>Settings</strong> tab content. Here you can configure
+      various options.</sl-tab-panel
+    >
     <sl-tab-panel>Disabled tab content</sl-tab-panel>
   </sl-tab-group>
 </template>
