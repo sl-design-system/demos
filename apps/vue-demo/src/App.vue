@@ -30,6 +30,7 @@ const navItems = [
   { path: '/sl-form', label: 'sl-form' },
   { path: '/sl-inline-message', label: 'sl-inline-message' },
   { path: '/sl-menu', label: 'sl-menu' },
+  { path: '/sl-number-field', label: 'sl-number-field' },
 ];
 </script>
 

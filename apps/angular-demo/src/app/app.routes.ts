@@ -94,6 +94,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-number-field',
+    loadComponent: () =>
+      import('./components/sl-number-field/sl-number-field.component').then(
+        (m) => m.NumberFieldPageComponent,
+      ),
+  },
+  {
     path: 'sl-menu',
     loadComponent: () =>
       import('./components/sl-menu/sl-menu.component').then(
