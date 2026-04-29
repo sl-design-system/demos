@@ -22,8 +22,18 @@ export class PopoverPage extends ScopedElementsMixin(LitElement) {
 
   override render(): TemplateResult {
     return html`
-      <sl-button id="popover-trigger" @click=${this._togglePopover} variant="primary">Toggle Popover</sl-button>
-      <sl-popover anchor="popover-trigger" position="bottom">I'm a popover example with <sl-button variant="primary" @click=${this._openBlankPage}>Action</sl-button></sl-popover>
+      <sl-button
+        id="popover-trigger"
+        @click=${this._togglePopover}
+        variant="primary"
+        >Toggle Popover</sl-button
+      >
+      <sl-popover anchor="popover-trigger" position="bottom"
+        >I'm a popover example with
+        <sl-button variant="primary" @click=${this._openBlankPage}
+          >Action</sl-button
+        ></sl-popover
+      >
     `;
   }
 }
