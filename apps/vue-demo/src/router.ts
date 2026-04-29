@@ -55,11 +55,13 @@ export const router = createRouter({
     },
     {
       path: '/sl-message-dialog',
-      component: () => import('./components/sl-message-dialog/sl-message-dialog.vue'),
+      component: () =>
+        import('./components/sl-message-dialog/sl-message-dialog.vue'),
     },
     {
       path: '/sl-number-field',
-      component: () => import('./components/sl-number-field/sl-number-field.vue'),
+      component: () =>
+        import('./components/sl-number-field/sl-number-field.vue'),
     },
   ],
 });
