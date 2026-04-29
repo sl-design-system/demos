@@ -12,7 +12,7 @@ export class NumberFieldPage extends ScopedElementsMixin(LitElement) {
 
   override render(): TemplateResult {
     return html`
-      <sl-number-field aria-label="Number field" .value=${1}></sl-number-field>
+      <sl-number-field aria-label="Number field" value="1" step-buttons="end"></sl-number-field>
     `;
   }
 }
