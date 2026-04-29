@@ -111,7 +111,11 @@ export class App extends ScopedElementsMixin(LitElement) {
     return html`
       <div class="app-layout">
         <a href="#main" class="skip-link">Skip to main content</a>
-        <nav class="sidebar ${this._navCollapsed ? 'collapsed' : ''}" aria-label="Main navigation" id="app-sidebar">
+        <nav
+          class="sidebar ${this._navCollapsed ? 'collapsed' : ''}"
+          aria-label="Main navigation"
+          id="app-sidebar"
+        >
           <button
             class="sidebar-toggle"
             aria-controls="app-sidebar"
@@ -120,7 +124,11 @@ export class App extends ScopedElementsMixin(LitElement) {
             title="Toggle navigation"
           >
             <span aria-hidden="true">☰</span>
-            <span class="visually-hidden">${this._navCollapsed ? 'Expand navigation' : 'Collapse navigation'}</span>
+            <span class="visually-hidden"
+              >${this._navCollapsed
+                ? 'Expand navigation'
+                : 'Collapse navigation'}</span
+            >
           </button>
           <h2>Lit Demo App</h2>
           <ul class="sidebar-list">

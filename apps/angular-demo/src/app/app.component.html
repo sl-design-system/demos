@@ -1,6 +1,11 @@
 <div class="app-layout">
   <a href="#main" class="skip-link">Skip to main content</a>
-  <nav class="sidebar" [class.collapsed]="navCollapsed" aria-label="Main navigation" id="app-sidebar">
+  <nav
+    class="sidebar"
+    [class.collapsed]="navCollapsed"
+    aria-label="Main navigation"
+    id="app-sidebar"
+  >
     <button
       class="sidebar-toggle"
       aria-controls="app-sidebar"
@@ -9,7 +14,9 @@
       title="Toggle navigation"
     >
       <span aria-hidden="true">☰</span>
-      <span class="visually-hidden">{{ navCollapsed ? 'Expand navigation' : 'Collapse navigation' }}</span>
+      <span class="visually-hidden">{{
+        navCollapsed ? 'Expand navigation' : 'Collapse navigation'
+      }}</span>
     </button>
     <h2>Angular Demo App</h2>
     <ul class="sidebar-list">

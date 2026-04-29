@@ -1,7 +1,12 @@
 <template>
   <div class="app-layout">
     <a href="#main" class="skip-link">Skip to main content</a>
-    <nav class="sidebar" :class="{ collapsed: navCollapsed }" aria-label="Main navigation" id="app-sidebar">
+    <nav
+      class="sidebar"
+      :class="{ collapsed: navCollapsed }"
+      aria-label="Main navigation"
+      id="app-sidebar"
+    >
       <button
         class="sidebar-toggle"
         aria-controls="app-sidebar"
@@ -10,12 +15,16 @@
         title="Toggle navigation"
       >
         <span aria-hidden="true">☰</span>
-        <span class="visually-hidden">{{ navCollapsed ? 'Expand navigation' : 'Collapse navigation' }}</span>
+        <span class="visually-hidden">{{
+          navCollapsed ? 'Expand navigation' : 'Collapse navigation'
+        }}</span>
       </button>
       <h2>Vue Demo App</h2>
       <ul class="sidebar-list">
         <li v-for="item in navItems" :key="item.path">
-          <router-link :to="item.path" active-class="active"><span class="label">{{ item.label }}</span></router-link>
+          <router-link :to="item.path" active-class="active"
+            ><span class="label">{{ item.label }}</span></router-link
+          >
         </li>
       </ul>
     </nav>
@@ -182,5 +191,4 @@ const navItems = [
 .sidebar.collapsed .sidebar-list {
   display: none;
 }
-
 </style>
