@@ -101,6 +101,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-tab-group',
+    loadComponent: () =>
+      import('./components/sl-tab-group/sl-tab-group.component').then(
+        (m) => m.TabGroupPageComponent,
+      ),
+  },
+  {
     path: 'sl-menu',
     loadComponent: () =>
       import('./components/sl-menu/sl-menu.component').then(

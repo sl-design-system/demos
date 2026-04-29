@@ -63,5 +63,9 @@ export const router = createRouter({
       component: () =>
         import('./components/sl-number-field/sl-number-field.vue'),
     },
+    {
+      path: '/sl-tab-group',
+      component: () => import('./components/sl-tab-group/sl-tab-group.vue'),
+    },
   ],
 });

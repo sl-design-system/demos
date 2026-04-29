@@ -26,5 +26,6 @@ export class AppComponent {
     { path: 'sl-message-dialog', label: 'sl-message-dialog' },
     { path: 'sl-message-dialog-service', label: 'sl-message-dialog-service' },
     { path: 'sl-number-field', label: 'sl-number-field' },
+    { path: 'sl-tab-group', label: 'sl-tab-group' },
   ];
 }
