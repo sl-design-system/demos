@@ -39,6 +39,7 @@
     window.history.replaceState(null, '', '/sl-accordion');
   }
   let currentPath = $state(initialPath);
+  let navCollapsed = $state(false);
 
   const CurrentPage = $derived(
     navItems.find((item) => item.path === currentPath)?.component ?? Accordion
@@ -56,22 +57,33 @@
   });
 </script>
 
-<div class="app-layout">
-  <nav class="sidebar">
+  <div class="app-layout">
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <nav class="sidebar" class:collapsed={navCollapsed} aria-label="Main navigation" id="app-sidebar">
+    <button
+      class="sidebar-toggle"
+      aria-controls="app-sidebar"
+      onclick={() => (navCollapsed = !navCollapsed)}
+      aria-expanded={!navCollapsed}
+      title="Toggle navigation"
+    >
+      <span aria-hidden="true">☰</span>
+      <span class="visually-hidden">{navCollapsed ? 'Expand navigation' : 'Collapse navigation'}</span>
+    </button>
     <h2>Svelte Demo App</h2>
-    <ul>
+    <ul class="sidebar-list">
       {#each navItems as item}
         <li>
           <a
             href={item.path}
             class:active={currentPath === item.path}
             onclick={(e) => { e.preventDefault(); navigate(item.path); }}
-          >{item.label}</a>
+          ><span class="label">{item.label}</span></a>
         </li>
       {/each}
     </ul>
   </nav>
-  <main class="content">
+  <main id="main" class="content">
     <CurrentPage />
   </main>
 </div>
