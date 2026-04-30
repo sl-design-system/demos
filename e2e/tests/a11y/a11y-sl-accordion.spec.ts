@@ -1,27 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-
-async function getFocusedElement(page: Page): Promise<string | null> {
-  return page.evaluate(() => {
-    function deepActive(root = document) {
-      let el = root.activeElement;
-      while (el && el.shadowRoot && el.shadowRoot.activeElement)
-        el = el.shadowRoot.activeElement;
-      return el;
-    }
-    const el = deepActive();
-    if (!el) return null;
-    const tag = el.tagName ? el.tagName.toLowerCase() : null;
-    if (tag && tag.includes('-')) return tag;
-    const text =
-      (el.textContent || '')
-        .trim()
-        .split('\n')
-        .map((l) => l.trim())
-        .find((l) => l.length > 0) || null;
-    return text || tag;
-  });
-}
+import { getFocusedElement } from '../../utils/getFocusedElement.js';
 
 test.describe('sl-accordion accessibility', () => {
   test.beforeEach(async ({ page }) => {
@@ -29,6 +8,7 @@ test.describe('sl-accordion accessibility', () => {
   });
 
   test('should have no accessibility violations', async ({ page }) => {
+    await page.locator('summary').filter({ hasText: 'Test 1' }).click();
     const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
