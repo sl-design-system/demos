@@ -1,6 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angular/core';
 import { ButtonComponent } from '@sl-design-system/angular/button';
-import { ButtonBarComponent } from '@sl-design-system/angular/button-bar';
 import {
   FormComponent,
   FormFieldComponent,
@@ -17,12 +16,12 @@ import { type RadioGroup } from '@sl-design-system/radio-group';
   templateUrl: './sl-radio-group.component.html',
   imports: [
     ButtonComponent,
-    ButtonBarComponent,
     FormComponent,
     FormFieldComponent,
     RadioComponent,
     RadioGroupComponent,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class RadioGroupPageComponent {
   @ViewChild('form', { read: ElementRef }) form!: ElementRef<Form>;
