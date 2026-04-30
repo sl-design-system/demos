@@ -1,8 +1,14 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ButtonComponent } from '@sl-design-system/angular/button';
 import { ButtonBarComponent } from '@sl-design-system/angular/button-bar';
-import { FormComponent, FormFieldComponent } from '@sl-design-system/angular/form';
-import { RadioComponent, RadioGroupComponent } from '@sl-design-system/angular/radio-group';
+import {
+  FormComponent,
+  FormFieldComponent,
+} from '@sl-design-system/angular/form';
+import {
+  RadioComponent,
+  RadioGroupComponent,
+} from '@sl-design-system/angular/radio-group';
 import { type Form } from '@sl-design-system/form';
 import { type RadioGroup } from '@sl-design-system/radio-group';
 

@@ -23,12 +23,11 @@
 <sl-form bind:this={formEl}>
   <sl-form-field
     label="Radio group"
-    hint="This story has both builtin validation (required) and custom validation. You need to check the middle option to make the field valid. The custom validation is done by listening to the sl-validate event and setting the custom validity on the radio group. If you never select any option, then only the builtin validation applies."
+    hint="This story has both builtin validation (required) and custom validation. You need to check the second option to make the field valid."
   >
     <sl-radio-group onsl-validate={handleValidate} required>
       <sl-radio value="1">One</sl-radio>
       <sl-radio value="2">Two</sl-radio>
-      <sl-radio value="3">Three</sl-radio>
     </sl-radio-group>
   </sl-form-field>
 
@@ -42,7 +41,6 @@
     <sl-radio-group disabled>
       <sl-radio value="4">Four</sl-radio>
       <sl-radio value="5">Five</sl-radio>
-      <sl-radio value="6">Six</sl-radio>
     </sl-radio-group>
   </sl-form-field>
 </sl-form>

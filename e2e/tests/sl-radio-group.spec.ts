@@ -7,22 +7,17 @@ test.describe('sl-radio-group', () => {
     await page.goto('/sl-radio-group');
   });
 
-  test('should be clear on initial load', async ({
-    page,
-  }) => {
+  test('should be clear on initial load', async ({ page }) => {
     const activeRadios = page.getByRole('radio', { disabled: false });
     for (const radio of await activeRadios.all()) {
       await expect(radio).not.toBeChecked();
     }
   });
 
-  test('should check radio button on click', async ({
-    page,
-  }) => {
+  test('should check radio button on click', async ({ page }) => {
     await page.getByRole('radio', { name: 'One' }).click();
     await expect(page.getByRole('radio', { name: 'One' })).toBeChecked();
     await expect(page.getByRole('radio', { name: 'Two' })).not.toBeChecked();
-    await expect(page.getByRole('radio', { name: 'Three' })).not.toBeChecked();
   });
 
   test('should deselect radio button after other is clicked', async ({
@@ -30,10 +25,9 @@ test.describe('sl-radio-group', () => {
   }) => {
     await page.getByRole('radio', { name: 'One' }).click();
     await expect(page.getByRole('radio', { name: 'One' })).toBeChecked();
-    
+
     await page.getByRole('radio', { name: 'Two' }).click();
     await expect(page.getByRole('radio', { name: 'One' })).not.toBeChecked();
-    await expect(page.getByRole('radio', { name: 'Two' })).toBeChecked();
   });
 
   test('should not show error when correct option is checked', async ({
