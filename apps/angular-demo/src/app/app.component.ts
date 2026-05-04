@@ -27,6 +27,7 @@ export class AppComponent {
     { path: 'sl-message-dialog-service', label: 'sl-message-dialog-service' },
     { path: 'sl-number-field', label: 'sl-number-field' },
     { path: 'sl-tab-group', label: 'sl-tab-group' },
+    { path: 'sl-popover', label: 'sl-popover' },
   ];
 
   // simple collapsed state for nav toggle in template

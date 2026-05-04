@@ -19,6 +19,7 @@ import { MenuPage } from '../components/sl-menu/sl-menu.js';
 import { MessageDialogPage } from '../components/sl-message-dialog/sl-message-dialog.js';
 import { NumberFieldPage } from '../components/sl-number-field/sl-number-field.js';
 import { TabGroupPage } from '../components/sl-tab-group/sl-tab-group.js';
+import { PopoverPage } from '../components/sl-popover/sl-popover.js';
 import styles from './app.styles.scss.js';
 
 const ROUTES = [
@@ -37,6 +38,7 @@ const ROUTES = [
   { path: '/sl-message-dialog', label: 'sl-message-dialog' },
   { path: '/sl-number-field', label: 'sl-number-field' },
   { path: '/sl-tab-group', label: 'sl-tab-group' },
+  { path: '/sl-popover', label: 'sl-popover' },
 ];
 
 export class App extends ScopedElementsMixin(LitElement) {
@@ -56,6 +58,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-message-dialog': MessageDialogPage,
     'page-number-field': NumberFieldPage,
     'page-tab-group': TabGroupPage,
+    'page-popover': PopoverPage,
   };
 
   static override styles = styles;
@@ -117,6 +120,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-number-field></page-number-field>`;
       case '/sl-tab-group':
         return html`<page-tab-group></page-tab-group>`;
+      case '/sl-popover':
+        return html`<page-popover></page-popover>`;
       default:
         return html``;
     }

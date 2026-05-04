@@ -67,5 +67,9 @@ export const router = createRouter({
       path: '/sl-tab-group',
       component: () => import('./components/sl-tab-group/sl-tab-group.vue'),
     },
+    {
+      path: '/sl-popover',
+      component: () => import('./components/sl-popover/sl-popover.vue'),
+    },
   ],
 });
