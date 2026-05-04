@@ -1,22 +1,44 @@
 <template>
   <div class="app-layout">
-    <nav class="sidebar">
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <nav
+      class="sidebar"
+      :class="{ collapsed: navCollapsed }"
+      aria-label="Main navigation"
+      id="app-sidebar"
+    >
+      <button
+        class="sidebar-toggle"
+        aria-controls="app-sidebar"
+        @click="navCollapsed = !navCollapsed"
+        :aria-expanded="!navCollapsed"
+        title="Toggle navigation"
+      >
+        <span aria-hidden="true">☰</span>
+        <span class="visually-hidden">{{
+          navCollapsed ? 'Expand navigation' : 'Collapse navigation'
+        }}</span>
+      </button>
       <h2>Vue Demo App</h2>
-      <ul>
+      <ul class="sidebar-list">
         <li v-for="item in navItems" :key="item.path">
-          <router-link :to="item.path" active-class="active">{{
-            item.label
-          }}</router-link>
+          <router-link :to="item.path" active-class="active"
+            ><span class="label">{{ item.label }}</span></router-link
+          >
         </li>
       </ul>
     </nav>
-    <main class="content">
+    <main id="main" class="content">
       <router-view />
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+
+const navCollapsed = ref(false);
+
 const navItems = [
   { path: '/sl-accordion', label: 'sl-accordion' },
   { path: '/sl-breadcrumbs', label: 'sl-breadcrumbs' },
@@ -30,6 +52,9 @@ const navItems = [
   { path: '/sl-form', label: 'sl-form' },
   { path: '/sl-inline-message', label: 'sl-inline-message' },
   { path: '/sl-menu', label: 'sl-menu' },
+  { path: '/sl-message-dialog', label: 'sl-message-dialog' },
+  { path: '/sl-number-field', label: 'sl-number-field' },
+  { path: '/sl-tab-group', label: 'sl-tab-group' },
   { path: '/sl-select', label: 'sl-select' },
 ];
 </script>
@@ -54,7 +79,7 @@ const navItems = [
   font-size: 11px;
   font-weight: 700;
   margin: 0 0 12px;
-  color: #888;
+  color: #333;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -94,4 +119,72 @@ const navItems = [
   padding: 32px;
   overflow-y: auto;
 }
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: #fff;
+  padding: 8px 16px;
+  z-index: 100;
+  transition: top 0.3s ease-in-out;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* collapsed sidebar styles */
+.sidebar.collapsed {
+  width: 56px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.sidebar-title {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.sidebar .label {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.sidebar.collapsed .label {
+  display: none;
+}
+
+.sidebar-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.sidebar-toggle:focus {
+  outline: 2px solid #2c5be8;
+  outline-offset: 2px;
+}
+
+.sidebar-list.collapsed {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-list {
+  display: none;
+}
+</style>
+
+<style>
+@import '../../../shared/styles/visually-hidden.css';
 </style>

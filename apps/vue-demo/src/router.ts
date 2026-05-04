@@ -54,6 +54,20 @@ export const router = createRouter({
       component: () => import('./components/sl-menu/sl-menu.vue'),
     },
     {
+      path: '/sl-message-dialog',
+      component: () =>
+        import('./components/sl-message-dialog/sl-message-dialog.vue'),
+    },
+    {
+      path: '/sl-number-field',
+      component: () =>
+        import('./components/sl-number-field/sl-number-field.vue'),
+    },
+    {
+      path: '/sl-tab-group',
+      component: () => import('./components/sl-tab-group/sl-tab-group.vue'),
+    },
+    {
       path: '/sl-select',
       component: () => import('./components/sl-select/sl-select.vue'),
     },

@@ -16,6 +16,9 @@ import { FormFieldPage } from '../components/sl-form-field/sl-form-field.js';
 import { FormPage } from '../components/sl-form/sl-form.js';
 import { InlineMessagePage } from '../components/sl-inline-message/sl-inline-message.js';
 import { MenuPage } from '../components/sl-menu/sl-menu.js';
+import { MessageDialogPage } from '../components/sl-message-dialog/sl-message-dialog.js';
+import { NumberFieldPage } from '../components/sl-number-field/sl-number-field.js';
+import { TabGroupPage } from '../components/sl-tab-group/sl-tab-group.js';
 import { SelectPage } from '../components/sl-select/sl-select.js';
 import styles from './app.styles.scss.js';
 
@@ -32,6 +35,9 @@ const ROUTES = [
   { path: '/sl-form', label: 'sl-form' },
   { path: '/sl-inline-message', label: 'sl-inline-message' },
   { path: '/sl-menu', label: 'sl-menu' },
+  { path: '/sl-message-dialog', label: 'sl-message-dialog' },
+  { path: '/sl-number-field', label: 'sl-number-field' },
+  { path: '/sl-tab-group', label: 'sl-tab-group' },
   { path: '/sl-select', label: 'sl-select' },
 ];
 
@@ -49,12 +55,16 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-form': FormPage,
     'page-inline-message': InlineMessagePage,
     'page-menu': MenuPage,
+    'page-message-dialog': MessageDialogPage,
+    'page-number-field': NumberFieldPage,
+    'page-tab-group': TabGroupPage,
     'page-select': SelectPage,
   };
 
   static override styles = styles;
 
   @state() private _currentPath = window.location.pathname;
+  @state() private _navCollapsed = false;
 
   private _onPopState = () => {
     this._currentPath = window.location.pathname;
@@ -104,6 +114,12 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-inline-message></page-inline-message>`;
       case '/sl-menu':
         return html`<page-menu></page-menu>`;
+      case '/sl-message-dialog':
+        return html`<page-message-dialog></page-message-dialog>`;
+      case '/sl-number-field':
+        return html`<page-number-field></page-number-field>`;
+      case '/sl-tab-group':
+        return html`<page-tab-group></page-tab-group>`;
       case '/sl-select':
         return html`<page-select></page-select>`;
       default:
@@ -114,9 +130,28 @@ export class App extends ScopedElementsMixin(LitElement) {
   override render(): TemplateResult {
     return html`
       <div class="app-layout">
-        <nav class="sidebar">
+        <a href="#main" class="skip-link">Skip to main content</a>
+        <nav
+          class="sidebar ${this._navCollapsed ? 'collapsed' : ''}"
+          aria-label="Main navigation"
+          id="app-sidebar"
+        >
+          <button
+            class="sidebar-toggle"
+            aria-controls="app-sidebar"
+            @click=${() => (this._navCollapsed = !this._navCollapsed)}
+            aria-expanded="${!this._navCollapsed}"
+            title="Toggle navigation"
+          >
+            <span aria-hidden="true">☰</span>
+            <span class="visually-hidden"
+              >${this._navCollapsed
+                ? 'Expand navigation'
+                : 'Collapse navigation'}</span
+            >
+          </button>
           <h2>Lit Demo App</h2>
-          <ul>
+          <ul class="sidebar-list">
             ${ROUTES.map(
               ({ path, label }) => html`
                 <li>
@@ -127,14 +162,14 @@ export class App extends ScopedElementsMixin(LitElement) {
                       e.preventDefault();
                       this._navigate(path);
                     }}
-                    >${label}</a
+                    ><span class="label">${label}</span></a
                   >
                 </li>
               `,
             )}
           </ul>
         </nav>
-        <main class="content">${this._renderPage()}</main>
+        <main id="main" class="content">${this._renderPage()}</main>
       </div>
     `;
   }
