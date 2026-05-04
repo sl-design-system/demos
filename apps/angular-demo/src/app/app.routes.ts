@@ -128,4 +128,11 @@ export const routes: Routes = [
         (m) => m.MessageDialogServicePageComponent,
       ),
   },
+  {
+    path: 'sl-radio-group',
+    loadComponent: () =>
+      import('./components/sl-radio-group/sl-radio-group.component').then(
+        (m) => m.RadioGroupPageComponent,
+      ),
+  },
 ];

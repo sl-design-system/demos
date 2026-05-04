@@ -19,6 +19,7 @@ import { MenuPage } from '../components/sl-menu/sl-menu.js';
 import { MessageDialogPage } from '../components/sl-message-dialog/sl-message-dialog.js';
 import { NumberFieldPage } from '../components/sl-number-field/sl-number-field.js';
 import { TabGroupPage } from '../components/sl-tab-group/sl-tab-group.js';
+import { RadioGroupPage } from '../components/sl-radio-group/sl-radio-group.js';
 import styles from './app.styles.scss.js';
 
 const ROUTES = [
@@ -37,6 +38,7 @@ const ROUTES = [
   { path: '/sl-message-dialog', label: 'sl-message-dialog' },
   { path: '/sl-number-field', label: 'sl-number-field' },
   { path: '/sl-tab-group', label: 'sl-tab-group' },
+  { path: '/sl-radio-group', label: 'sl-radio-group' },
 ];
 
 export class App extends ScopedElementsMixin(LitElement) {
@@ -56,6 +58,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-message-dialog': MessageDialogPage,
     'page-number-field': NumberFieldPage,
     'page-tab-group': TabGroupPage,
+    'page-radio-group': RadioGroupPage,
   };
 
   static override styles = styles;
@@ -117,6 +120,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-number-field></page-number-field>`;
       case '/sl-tab-group':
         return html`<page-tab-group></page-tab-group>`;
+      case '/sl-radio-group':
+        return html`<page-radio-group></page-radio-group>`;
       default:
         return html``;
     }

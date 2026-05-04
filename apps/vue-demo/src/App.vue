@@ -55,6 +55,7 @@ const navItems = [
   { path: '/sl-message-dialog', label: 'sl-message-dialog' },
   { path: '/sl-number-field', label: 'sl-number-field' },
   { path: '/sl-tab-group', label: 'sl-tab-group' },
+  { path: '/sl-radio-group', label: 'sl-radio-group' },
 ];
 </script>
 

@@ -12,6 +12,7 @@
   import Form from './components/sl-form/sl-form.svelte';
   import InlineMessage from './components/sl-inline-message/sl-inline-message.svelte';
   import Menu from './components/sl-menu/sl-menu.svelte';
+  import RadioGroup from './components/sl-radio-group/sl-radio-group.svelte';
   import MessageDialog from './components/sl-message-dialog/sl-message-dialog.svelte';
   import NumberField from './components/sl-number-field/sl-number-field.svelte';
   import TabGroup from './components/sl-tab-group/sl-tab-group.svelte';
@@ -32,6 +33,7 @@
     { path: '/sl-message-dialog', label: 'sl-message-dialog', component: MessageDialog },
     { path: '/sl-number-field', label: 'sl-number-field', component: NumberField },
     { path: '/sl-tab-group', label: 'sl-tab-group', component: TabGroup },
+    { path: '/sl-radio-group', label: 'sl-radio-group', component: RadioGroup },
   ];
 
   const initialPath = window.location.pathname === '/' ? '/sl-accordion' : window.location.pathname;

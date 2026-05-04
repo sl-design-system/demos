@@ -67,5 +67,9 @@ export const router = createRouter({
       path: '/sl-tab-group',
       component: () => import('./components/sl-tab-group/sl-tab-group.vue'),
     },
+    {
+      path: '/sl-radio-group',
+      component: () => import('./components/sl-radio-group/sl-radio-group.vue'),
+    },
   ],
 });
