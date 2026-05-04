@@ -36,6 +36,7 @@ test.describe('sl-select', () => {
     await page.getByRole('combobox').filter({ hasText: 'Select an option' }).click();
     await page.mouse.click(10, 10);
     await expect(page.getByRole('combobox').filter({ hasText: 'Select an option' })).toBeVisible();
+    await expect(page.getByRole('option', { name: 'Option 1' })).not.toBeVisible();
   });
 
   test('should show validation message after clicking report validity button', async ({
@@ -67,7 +68,9 @@ test.describe('sl-select', () => {
   test('should not allow to click options in disabled select', async ({
     page,
   }) => {
-    await page.getByRole('combobox').filter({ hasText: 'Disabled select' }).click({ force: true });
+    const disabledSelect = page.getByRole('combobox').filter({ hasText: 'Disabled select' });
+    await expect(disabledSelect).toHaveAttribute('disabled', '');
+    await disabledSelect.click({ force: true });
     await expect(page.getByRole('option', { name: 'Disabled value 1' })).not.toBeVisible();
     await expect(page.getByRole('option', { name: 'Disabled value 2' })).not.toBeVisible();
   });
