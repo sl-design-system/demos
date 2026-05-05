@@ -1,0 +1,23 @@
+<ul>
+  @for (item of visibleItems; track item.id) {
+    <li>{{ item.name }}</li>
+  }
+</ul>
+<sl-paginator-status
+  [page]="page"
+  [pageSize]="pageSize"
+  [totalItems]="allItems.length"
+  itemLabel="items"
+></sl-paginator-status>
+<sl-paginator
+  [page]="page"
+  [pageSize]="pageSize"
+  [totalItems]="allItems.length"
+  (slPageChange)="onPageChange($event)"
+></sl-paginator>
+<sl-paginator-page-size
+  [pageSize]="pageSize"
+  [pageSizes]="pageSizes"
+  itemLabel="Items"
+  (slPageSizeChange)="onPageSizeChange($event)"
+></sl-paginator-page-size>
