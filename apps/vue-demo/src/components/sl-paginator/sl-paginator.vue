@@ -38,15 +38,12 @@ if (!customElements.get('sl-paginator-page-size'))
 if (!customElements.get('sl-paginator-status'))
   customElements.define('sl-paginator-status', PaginatorStatus);
 
-interface Item {
-  id: number;
-  name: string;
-}
+import {
+  ALL_ITEMS,
+  type Item,
+} from '../../../../../shared/utils/paginator-items.js';
 
-const allItems: Item[] = Array.from({ length: 10 }, (_, i) => ({
-  id: i + 1,
-  name: `Item ${i + 1}`,
-}));
+const allItems: Item[] = ALL_ITEMS;
 
 const page = ref(0);
 const pageSize = ref(5);

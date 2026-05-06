@@ -9,16 +9,10 @@ import {
   PaginatorPageSize,
   PaginatorStatus,
 } from '@sl-design-system/paginator';
-
-interface Item {
-  id: number;
-  name: string;
-}
-
-const ALL_ITEMS: Item[] = Array.from({ length: 10 }, (_, i) => ({
-  id: i + 1,
-  name: `Item ${i + 1}`,
-}));
+import {
+  ALL_ITEMS,
+  type Item,
+} from '../../../../../shared/utils/paginator-items.js';
 
 export class PaginatorPage extends ScopedElementsMixin(LitElement) {
   static scopedElements: ScopedElementsMap = {

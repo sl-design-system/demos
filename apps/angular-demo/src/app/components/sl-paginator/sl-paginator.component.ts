@@ -4,11 +4,10 @@ import {
   PaginatorPageSizeComponent,
   PaginatorStatusComponent,
 } from '@sl-design-system/angular/paginator';
-
-interface Item {
-  id: number;
-  name: string;
-}
+import {
+  ALL_ITEMS,
+  type Item,
+} from '../../../../../../shared/utils/paginator-items';
 
 @Component({
   selector: 'app-paginator-page',
@@ -21,10 +20,7 @@ interface Item {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PaginatorPageComponent {
-  allItems: Item[] = Array.from({ length: 10 }, (_, i) => ({
-    id: i + 1,
-    name: `Item ${i + 1}`,
-  }));
+  allItems: Item[] = ALL_ITEMS;
 
   page = 0;
   pageSize = 5;

@@ -1,19 +1,12 @@
 <script lang="ts">
   import { Paginator, PaginatorPageSize, PaginatorStatus } from '@sl-design-system/paginator';
+  import { ALL_ITEMS, type Item } from '../../../../../shared/utils/paginator-items.js';
 
   if (!customElements.get('sl-paginator')) customElements.define('sl-paginator', Paginator);
   if (!customElements.get('sl-paginator-page-size')) customElements.define('sl-paginator-page-size', PaginatorPageSize);
   if (!customElements.get('sl-paginator-status')) customElements.define('sl-paginator-status', PaginatorStatus);
 
-  interface Item {
-    id: number;
-    name: string;
-  }
-
-  const allItems: Item[] = Array.from({ length: 10 }, (_, i) => ({
-    id: i + 1,
-    name: `Item ${i + 1}`,
-  }));
+  const allItems: Item[] = ALL_ITEMS;
 
   let page = $state(0);
   let pageSize = $state(5);
