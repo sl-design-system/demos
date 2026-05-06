@@ -56,6 +56,7 @@ const navItems = [
   { path: '/sl-number-field', label: 'sl-number-field' },
   { path: '/sl-tab-group', label: 'sl-tab-group' },
   { path: '/sl-paginator', label: 'sl-paginator' },
+  { path: '/sl-select', label: 'sl-select' },
 ];
 </script>
 

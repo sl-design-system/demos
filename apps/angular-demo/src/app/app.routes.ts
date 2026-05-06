@@ -135,4 +135,11 @@ export const routes: Routes = [
         (m) => m.PaginatorPageComponent,
       ),
   },
+  {
+    path: 'sl-select',
+    loadComponent: () =>
+      import('./components/sl-select/sl-select.component').then(
+        (m) => m.SelectPageComponent,
+      ),
+  },
 ];

@@ -16,6 +16,7 @@
   import NumberField from './components/sl-number-field/sl-number-field.svelte';
   import TabGroup from './components/sl-tab-group/sl-tab-group.svelte';
   import Paginator from './components/sl-paginator/sl-paginator.svelte';
+  import Select from './components/sl-select/sl-select.svelte';
 
   const navItems = [
     { path: '/sl-accordion', label: 'sl-accordion', component: Accordion },
@@ -34,6 +35,7 @@
     { path: '/sl-number-field', label: 'sl-number-field', component: NumberField },
     { path: '/sl-tab-group', label: 'sl-tab-group', component: TabGroup },
     { path: '/sl-paginator', label: 'sl-paginator', component: Paginator },
+    { path: '/sl-select', label: 'sl-select', component: Select },
   ];
 
   const initialPath = window.location.pathname === '/' ? '/sl-accordion' : window.location.pathname;
