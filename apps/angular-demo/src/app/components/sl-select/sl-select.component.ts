@@ -22,7 +22,11 @@ import { type Form } from '@sl-design-system/form';
 export class SelectPageComponent {
   @ViewChild('form', { read: ElementRef }) form!: ElementRef<Form>;
   @ViewChild('basicSelect', { read: ElementRef })
-  basicSelect!: ElementRef<{ value?: string; setCustomValidity: (message: string) => void; reportValidity: () => boolean }>;
+  basicSelect!: ElementRef<{
+    value?: string;
+    setCustomValidity: (message: string) => void;
+    reportValidity: () => boolean;
+  }>;
 
   reportValidity(): void {
     const selectedValue = String(this.basicSelect.nativeElement.value ?? '');

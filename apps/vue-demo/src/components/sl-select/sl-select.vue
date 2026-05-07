@@ -1,7 +1,13 @@
 <template>
   <sl-form ref="formEl">
     <sl-form-field>
-      <sl-select ref="basicSelectEl" required :clearable="true" placeholder="Select an option" size="md">
+      <sl-select
+        ref="basicSelectEl"
+        required
+        :clearable="true"
+        placeholder="Select an option"
+        size="md"
+      >
         <sl-option value="1">Option 1</sl-option>
         <sl-option value="2">Option 2</sl-option>
       </sl-select>

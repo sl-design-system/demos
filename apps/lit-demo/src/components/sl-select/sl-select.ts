@@ -41,7 +41,13 @@ export class SelectPage extends ScopedElementsMixin(LitElement) {
     return html`
       <sl-form>
         <sl-form-field>
-          <sl-select id="basic-select" required clearable placeholder="Select an option" size="md">
+          <sl-select
+            id="basic-select"
+            required
+            clearable
+            placeholder="Select an option"
+            size="md"
+          >
             <sl-option value="1">Option 1</sl-option>
             <sl-option value="2">Option 2</sl-option>
           </sl-select>
