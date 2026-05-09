@@ -9,5 +9,7 @@ setup();
 // (e.g. sl-message-dialog opened via MessageDialog.alert()) can access them.
 // app.styles.scss.js contains the same vars as light.css but scoped to :host.
 const globalSheet = new CSSStyleSheet();
-globalSheet.replaceSync(appStyles.cssText.replace(/:host\b/g, ':root'));
+globalSheet.replaceSync(
+  appStyles.cssText.replace(/:host\b/g, ':root') + '\nbody { width: 100%; }',
+);
 document.adoptedStyleSheets = [...document.adoptedStyleSheets, globalSheet];

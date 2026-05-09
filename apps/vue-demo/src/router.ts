@@ -67,5 +67,13 @@ export const router = createRouter({
       path: '/sl-tab-group',
       component: () => import('./components/sl-tab-group/sl-tab-group.vue'),
     },
+    {
+      path: '/sl-paginator',
+      component: () => import('./components/sl-paginator/sl-paginator.vue'),
+    },
+    {
+      path: '/sl-select',
+      component: () => import('./components/sl-select/sl-select.vue'),
+    },
   ],
 });
