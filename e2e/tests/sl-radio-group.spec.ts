@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('sl-radio-group', () => {
-  const errorMsg = 'Pick the middle option';
+  const errorMsg = 'Pick the second option';
 
   test.beforeEach(async ({ page }) => {
     await page.goto('/sl-radio-group');

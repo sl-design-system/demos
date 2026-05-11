@@ -40,7 +40,7 @@ export class RadioGroupPageComponent {
     }
 
     group.setCustomValidity(
-      group.value === '2' ? '' : 'Pick the middle option',
+      group.value === '2' ? '' : 'Pick the second option',
     );
   };
 

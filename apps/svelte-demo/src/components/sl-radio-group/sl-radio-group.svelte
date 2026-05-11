@@ -11,7 +11,7 @@
   function handleValidate(event: Event) {
     const radioGroup = event.target as RadioGroup<string>;
     radioGroup.setCustomValidity(
-      radioGroup.value === '2' ? '' : 'Pick the middle option'
+      radioGroup.value === '2' ? '' : 'Pick the second option'
     );
   }
 

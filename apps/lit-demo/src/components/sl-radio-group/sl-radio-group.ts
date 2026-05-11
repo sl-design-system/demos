@@ -25,7 +25,7 @@ export class RadioGroupPage extends ScopedElementsMixin(LitElement) {
   private _onValidate(event: Event): void {
     const radioGroup = event.target as RadioGroup<string>;
     radioGroup.setCustomValidity(
-      radioGroup.value === '2' ? '' : 'Pick the middle option',
+      radioGroup.value === '2' ? '' : 'Pick the second option',
     );
   }
 
@@ -38,7 +38,7 @@ export class RadioGroupPage extends ScopedElementsMixin(LitElement) {
       <sl-form>
         <sl-form-field
           label="Radio group"
-          hint="This story has both builtin validation (required) and custom validation. You need to cThis story has both builtin validation (required) and custom validation. You need to check the second option to make the field valid."
+          hint="This story has both builtin validation (required) and custom validation. You need to check the second option to make the field valid."
         >
           <sl-radio-group @sl-validate=${this._onValidate} required>
             <sl-radio value="1">One</sl-radio>
