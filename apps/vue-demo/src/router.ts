@@ -68,6 +68,14 @@ export const router = createRouter({
       component: () => import('./components/sl-tab-group/sl-tab-group.vue'),
     },
     {
+      path: '/sl-paginator',
+      component: () => import('./components/sl-paginator/sl-paginator.vue'),
+    },
+    {
+      path: '/sl-select',
+      component: () => import('./components/sl-select/sl-select.vue'),
+    },
+    {
       path: '/sl-popover',
       component: () => import('./components/sl-popover/sl-popover.vue'),
     },

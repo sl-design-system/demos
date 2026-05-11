@@ -129,6 +129,20 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-paginator',
+    loadComponent: () =>
+      import('./components/sl-paginator/sl-paginator.component').then(
+        (m) => m.PaginatorPageComponent,
+      ),
+  },
+  {
+    path: 'sl-select',
+    loadComponent: () =>
+      import('./components/sl-select/sl-select.component').then(
+        (m) => m.SelectPageComponent,
+      ),
+  },
+  {
     path: 'sl-popover',
     loadComponent: () =>
       import('./components/sl-popover/sl-popover.component').then(
