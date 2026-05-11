@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angular/core';
 import { ButtonComponent } from '@sl-design-system/angular/button';
 import '@sl-design-system/popover/register.js';
 
@@ -9,9 +9,10 @@ import '@sl-design-system/popover/register.js';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PopoverPageComponent {
+  @ViewChild('popover', { read: ElementRef }) popover!: ElementRef;
+
   togglePopover(): void {
-    const popover = document.querySelector('sl-popover') as HTMLElement | null;
-    (popover as any)?.togglePopover();
+    (this.popover.nativeElement as any).togglePopover();
   }
   openBlankPage() {
     window.open('about:blank', '_blank', 'noopener,noreferrer');

@@ -13,7 +13,7 @@ export class PopoverPage extends ScopedElementsMixin(LitElement) {
   };
 
   private _togglePopover(): void {
-    this.shadowRoot?.querySelector('sl-popover')?.togglePopover();
+    this.renderRoot.querySelector('sl-popover')?.togglePopover();
   }
 
   private _openBlankPage(): void {
