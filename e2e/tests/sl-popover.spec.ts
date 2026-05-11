@@ -29,7 +29,7 @@ test.describe('sl-popover', () => {
   }) => {
     await page.getByRole('button', { name: 'Toggle Popover' }).click();
     await expect(page.getByText(popoverText)).toBeVisible();
-    await page.getByText('Action').click();
+    await page.getByRole('button', { name: 'Action' }).click();
     await expect(page.getByText(popoverText)).toBeVisible();
   });
 
