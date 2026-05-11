@@ -15,7 +15,7 @@ import '@sl-design-system/button/register.js';
 import '@sl-design-system/popover/register.js';
 
 const togglePopover = () => {
-  const popover = document.querySelector('sl-popover');
+  const popover = document.querySelector<Popover>('sl-popover');
   popover?.togglePopover();
 };
 

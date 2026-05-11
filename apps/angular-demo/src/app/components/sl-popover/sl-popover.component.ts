@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { ButtonComponent } from '@sl-design-system/angular/button';
 import '@sl-design-system/popover/register.js';
+import { Popover } from '@sl-design-system/popover';
 
 @Component({
   selector: 'app-popover-page',
@@ -14,11 +15,12 @@ import '@sl-design-system/popover/register.js';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PopoverPageComponent {
-  @ViewChild('popover', { read: ElementRef }) popover!: ElementRef;
+  @ViewChild('popover', { read: ElementRef }) popover!: ElementRef<Popover>;
 
   togglePopover(): void {
-    (this.popover.nativeElement as any).togglePopover();
+    this.popover.nativeElement.togglePopover();
   }
+
   openBlankPage() {
     window.open('about:blank', '_blank', 'noopener,noreferrer');
   }

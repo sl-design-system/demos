@@ -1,11 +1,12 @@
 <script lang="ts">
   import '@sl-design-system/button/register.js';
   import '@sl-design-system/popover/register.js';
+  import {Popover} from '@sl-desing-system/popover';
 
-  let popoverEl: HTMLElement;
+  let popoverEl: Popover;
 
   function togglePopover() {
-    (popoverEl as any).togglePopover();
+    popoverEl.togglePopover();
   }
 
   function openBlankPage() {
