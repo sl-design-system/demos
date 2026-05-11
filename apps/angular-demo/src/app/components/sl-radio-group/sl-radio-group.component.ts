@@ -1,4 +1,9 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { ButtonComponent } from '@sl-design-system/angular/button';
 import {
   FormComponent,
@@ -26,12 +31,18 @@ import { type RadioGroup } from '@sl-design-system/radio-group';
 export class RadioGroupPageComponent {
   @ViewChild('form', { read: ElementRef }) form!: ElementRef<Form>;
 
-  onValidate(event: Event): void {
-    const radioGroup = event.target as RadioGroup<string>;
-    radioGroup.setCustomValidity(
-      radioGroup.value === '2' ? '' : 'Pick the middle option',
+  onValidate = (event: Event & { target: RadioGroup }): void => {
+    const group = event.target;
+
+    if (group.required && !group.value) {
+      group.setCustomValidity('Please select an option.');
+      return;
+    }
+
+    group.setCustomValidity(
+      group.value === '2' ? '' : 'Pick the middle option',
     );
-  }
+  };
 
   reportValidity(): void {
     this.form.nativeElement.reportValidity();
