@@ -8,4 +8,9 @@ import { DialogComponent } from '@sl-design-system/angular/dialog';
   imports: [ButtonComponent, DialogComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class DialogPageComponent {}
+export class DialogPageComponent {
+  onClose(): void {
+    const dialog = document.querySelector('sl-dialog') as any;
+    dialog?.close();
+  }
+}

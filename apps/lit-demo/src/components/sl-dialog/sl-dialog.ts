@@ -23,6 +23,10 @@ export class DialogPage extends ScopedElementsMixin(LitElement) {
     this._dialog?.showModal();
   }
 
+  private _closeDialog(): void {
+    this._dialog?.close();
+  }
+
   override render(): TemplateResult {
     return html`
       <sl-button
@@ -34,7 +38,7 @@ export class DialogPage extends ScopedElementsMixin(LitElement) {
       <sl-dialog>
         <h1 slot="title">Test title</h1>
         Test description
-        <sl-button slot="primary-actions" sl-dialog-close>Close</sl-button>
+        <sl-button slot="primary-actions" @click=${() => this._closeDialog()}>Close</sl-button>
       </sl-dialog>
     `;
   }

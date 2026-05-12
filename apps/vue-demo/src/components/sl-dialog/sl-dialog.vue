@@ -3,7 +3,7 @@
   <sl-dialog ref="dialogRef">
     <h1 slot="title">Test title</h1>
     Test description
-    <sl-button slot="primary-actions" sl-dialog-close>Close</sl-button>
+    <sl-button slot="primary-actions" @click="closeDialog">Close</sl-button>
   </sl-dialog>
 </template>
 
@@ -14,5 +14,9 @@ const dialogRef = ref<HTMLElement | null>(null);
 
 const openDialog = () => {
   (dialogRef.value as any)?.showModal();
+};
+
+const closeDialog = () => {
+  (dialogRef.value as any)?.close();
 };
 </script>
