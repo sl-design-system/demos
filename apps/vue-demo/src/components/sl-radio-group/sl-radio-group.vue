@@ -11,9 +11,7 @@
     </sl-form-field>
 
     <sl-button-bar>
-      <sl-button variant="primary" @click="reportValidity"
-        >Submit</sl-button
-      >
+      <sl-button variant="primary" @click="reportValidity">Submit</sl-button>
     </sl-button-bar>
 
     <sl-form-field

@@ -1,5 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ButtonComponent } from '@sl-design-system/angular/button';
 import { ButtonBarComponent } from '@sl-design-system/angular/button-bar';
 import {
@@ -34,7 +39,8 @@ export class RadioGroupReactivePageComponent {
   formGroup = new FormGroup({
     option: new FormControl<string | null>(null, [
       Validators.required,
-      (control) => (control.value && control.value !== '2' ? { secondOption: true } : null),
+      (control) =>
+        control.value && control.value !== '2' ? { secondOption: true } : null,
     ]),
   });
 
