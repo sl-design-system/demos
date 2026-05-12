@@ -6,6 +6,7 @@ import { routes } from './app/app.routes';
 import { setup } from '@sl-design-system/sanoma-learning';
 import '@sl-design-system/breadcrumbs/register.js';
 import '@sl-design-system/callout/register.js';
+import '@sl-design-system/popover/register.js';
 
 setup();
 

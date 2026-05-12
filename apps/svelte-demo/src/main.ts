@@ -11,6 +11,7 @@ import '@sl-design-system/combobox/register.js';
 import '@sl-design-system/dialog/register.js';
 import '@sl-design-system/listbox/register.js';
 import '@sl-design-system/menu/register.js';
+import '@sl-design-system/popover/register.js';
 import { setup } from '@sl-design-system/sanoma-learning';
 
 setup();

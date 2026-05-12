@@ -17,6 +17,7 @@
   import TabGroup from './components/sl-tab-group/sl-tab-group.svelte';
   import Paginator from './components/sl-paginator/sl-paginator.svelte';
   import Select from './components/sl-select/sl-select.svelte';
+  import Popover from './components/sl-popover/sl-popover.svelte';
 
   const navItems = [
     { path: '/sl-accordion', label: 'sl-accordion', component: Accordion },
@@ -36,6 +37,7 @@
     { path: '/sl-tab-group', label: 'sl-tab-group', component: TabGroup },
     { path: '/sl-paginator', label: 'sl-paginator', component: Paginator },
     { path: '/sl-select', label: 'sl-select', component: Select },
+    { path: '/sl-popover', label: 'sl-popover', component: Popover },
   ];
 
   const initialPath = window.location.pathname === '/' ? '/sl-accordion' : window.location.pathname;

@@ -75,5 +75,9 @@ export const router = createRouter({
       path: '/sl-select',
       component: () => import('./components/sl-select/sl-select.vue'),
     },
+    {
+      path: '/sl-popover',
+      component: () => import('./components/sl-popover/sl-popover.vue'),
+    },
   ],
 });
