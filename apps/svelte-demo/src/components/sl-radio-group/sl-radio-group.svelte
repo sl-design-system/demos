@@ -10,6 +10,12 @@
 
   function handleValidate(event: Event) {
     const radioGroup = event.target as RadioGroup<string>;
+
+    if (radioGroup.required && !radioGroup.value) {
+      radioGroup.setCustomValidity('Please select an option.');
+      return;
+    }
+
     radioGroup.setCustomValidity(
       radioGroup.value === '2' ? '' : 'Pick the second option'
     );
@@ -34,7 +40,7 @@
   <sl-button-bar>
     <!-- svelte-ignore a11y_click_events_have_key_events -->
     <!-- svelte-ignore a11y_no_static_element_interactions -->
-    <sl-button variant="primary" onclick={reportValidity}>Report validity</sl-button>
+    <sl-button variant="primary" onclick={reportValidity}>Submit</sl-button>
   </sl-button-bar>
 
   <sl-form-field label="Disabled radio group" hint="This radio group is disabled; no interaction is possible.">

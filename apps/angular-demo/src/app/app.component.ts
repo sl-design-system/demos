@@ -27,6 +27,7 @@ export class AppComponent {
     { path: 'sl-message-dialog-service', label: 'sl-message-dialog-service' },
     { path: 'sl-number-field', label: 'sl-number-field' },
     { path: 'sl-tab-group', label: 'sl-tab-group' },
-    { path: 'sl-radio-group', label: 'sl-radio-group' },
+    { path: 'sl-radio-group-reactive', label: 'sl-radio-group (reactive)' },
+    { path: 'sl-radio-group-template', label: 'sl-radio-group (template)' },
   ];
 }

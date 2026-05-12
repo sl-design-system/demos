@@ -135,4 +135,18 @@ export const routes: Routes = [
         (m) => m.RadioGroupPageComponent,
       ),
   },
+  {
+    path: 'sl-radio-group-reactive',
+    loadComponent: () =>
+      import('./components/sl-radio-group-reactive/sl-radio-group-reactive.component').then(
+        (m) => m.RadioGroupReactivePageComponent,
+      ),
+  },
+  {
+    path: 'sl-radio-group-template',
+    loadComponent: () =>
+      import('./components/sl-radio-group-template/sl-radio-group-template.component').then(
+        (m) => m.RadioGroupTemplatePageComponent,
+      ),
+  },
 ];

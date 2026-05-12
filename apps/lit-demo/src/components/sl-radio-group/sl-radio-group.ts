@@ -24,6 +24,12 @@ export class RadioGroupPage extends ScopedElementsMixin(LitElement) {
 
   private _onValidate(event: Event): void {
     const radioGroup = event.target as RadioGroup<string>;
+
+    if (radioGroup.required && !radioGroup.value) {
+      radioGroup.setCustomValidity('Please select an option.');
+      return;
+    }
+
     radioGroup.setCustomValidity(
       radioGroup.value === '2' ? '' : 'Pick the second option',
     );
@@ -48,7 +54,7 @@ export class RadioGroupPage extends ScopedElementsMixin(LitElement) {
 
         <sl-button-bar>
           <sl-button variant="primary" @click=${this._reportValidity}
-            >Report validity</sl-button
+            >Submit</sl-button
           >
         </sl-button-bar>
 
