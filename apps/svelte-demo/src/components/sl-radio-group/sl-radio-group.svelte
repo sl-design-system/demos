@@ -22,7 +22,9 @@
   }
 
   function reportValidity() {
-    formEl?.reportValidity();
+    if (formEl?.reportValidity()) {
+      window.open('about:blank', '_blank', 'noopener,noreferrer');
+    }
   }
 </script>
 

@@ -47,6 +47,8 @@ export class RadioGroupTemplatePageComponent {
   };
 
   onSubmit(): void {
-    this.form.nativeElement.reportValidity();
+    if (this.form.nativeElement.reportValidity()) {
+      window.open('about:blank', '_blank', 'noopener,noreferrer');
+    }
   }
 }

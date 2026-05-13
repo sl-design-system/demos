@@ -36,7 +36,9 @@ export class RadioGroupPage extends ScopedElementsMixin(LitElement) {
   }
 
   private _reportValidity(): void {
-    this._form?.reportValidity();
+    if (this._form?.reportValidity()) {
+      window.open('about:blank', '_blank', 'noopener,noreferrer');
+    }
   }
 
   override render(): TemplateResult {

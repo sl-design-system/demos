@@ -103,5 +103,17 @@ for (const { name, path, angularOnly } of variants) {
         await expect(radio).not.toBeChecked();
       }
     });
+
+    test('should open a new tab when the right radio option is selected', async ({
+      page,
+    }) => {
+      await page.getByRole('radio', { name: 'Two' }).click();
+
+      const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'),
+        await page.getByRole('button', { name: 'Submit' }).click(),
+      ]);
+      await expect(newPage).toHaveURL('about:blank');
+    });
   });
 }

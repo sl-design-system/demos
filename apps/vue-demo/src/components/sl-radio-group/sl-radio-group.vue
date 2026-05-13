@@ -51,6 +51,8 @@ function handleValidate(event: Event) {
 }
 
 function reportValidity() {
-  formEl.value?.reportValidity();
+  if (formEl.value?.reportValidity()) {
+    window.open('about:blank', '_blank', 'noopener,noreferrer');
+  }
 }
 </script>
