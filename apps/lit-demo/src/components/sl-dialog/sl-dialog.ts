@@ -38,7 +38,9 @@ export class DialogPage extends ScopedElementsMixin(LitElement) {
       <sl-dialog>
         <h1 slot="title">Test title</h1>
         Test description
-        <sl-button slot="primary-actions" @click=${() => this._closeDialog()}>Close</sl-button>
+        <sl-button slot="primary-actions" @click=${() => this._closeDialog()}
+          >Close</sl-button
+        >
       </sl-dialog>
     `;
   }
