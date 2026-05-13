@@ -30,6 +30,8 @@ export class AppComponent {
     { path: 'sl-paginator', label: 'sl-paginator' },
     { path: 'sl-select', label: 'sl-select' },
     { path: 'sl-popover', label: 'sl-popover' },
+    { path: 'sl-radio-group-reactive', label: 'sl-radio-group (reactive)' },
+    { path: 'sl-radio-group-template', label: 'sl-radio-group (template)' },
   ];
 
   // simple collapsed state for nav toggle in template

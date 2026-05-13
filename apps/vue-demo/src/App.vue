@@ -58,6 +58,7 @@ const navItems = [
   { path: '/sl-paginator', label: 'sl-paginator' },
   { path: '/sl-select', label: 'sl-select' },
   { path: '/sl-popover', label: 'sl-popover' },
+  { path: '/sl-radio-group', label: 'sl-radio-group' },
 ];
 </script>
 

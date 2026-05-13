@@ -79,5 +79,9 @@ export const router = createRouter({
       path: '/sl-popover',
       component: () => import('./components/sl-popover/sl-popover.vue'),
     },
+    {
+      path: '/sl-radio-group',
+      component: () => import('./components/sl-radio-group/sl-radio-group.vue'),
+    },
   ],
 });
