@@ -62,6 +62,5 @@ export class RadioGroupReactivePageComponent {
       this.form.nativeElement.reportValidity();
       return;
     }
-    window.open('about:blank', '_blank', 'noopener,noreferrer');
   }
 }

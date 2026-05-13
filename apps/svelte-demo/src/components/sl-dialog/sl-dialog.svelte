@@ -1,12 +1,14 @@
 <script lang="ts">
-  let dialogEl: HTMLElement;
+  import type { Dialog } from "@sl-design-system/dialog";
+
+  let dialogEl: Dialog | undefined;
 
   function openDialog() {
-    (dialogEl as any).showModal();
+    dialogEl?.showModal();
   }
 
   function closeDialog() {
-    (dialogEl as any).close();
+    dialogEl?.close();
   }
 </script>
 

@@ -150,13 +150,6 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'sl-radio-group',
-    loadComponent: () =>
-      import('./components/sl-radio-group/sl-radio-group.component').then(
-        (m) => m.RadioGroupPageComponent,
-      ),
-  },
-  {
     path: 'sl-radio-group-reactive',
     loadComponent: () =>
       import('./components/sl-radio-group-reactive/sl-radio-group-reactive.component').then(

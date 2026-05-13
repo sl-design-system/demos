@@ -68,11 +68,14 @@ function onPageSizeChange(e: Event) {
 }
 
 onMounted(() => {
-  pageSizeRef.value?.pageSizes = [5, 10];
-  paginatorRef.value?.addEventListener('sl-page-change', onPageChange);
-  pageSizeRef.value?.addEventListener('sl-page-size-change', onPageSizeChange);
-});
+  const pageSizeEl = pageSizeRef.value;
+  if (pageSizeEl) {
+    pageSizeEl.pageSizes = [5, 10];
+    pageSizeEl.addEventListener('sl-page-size-change', onPageSizeChange);
+  }
 
+  paginatorRef.value?.addEventListener('sl-page-change', onPageChange);
+});
 onUnmounted(() => {
   paginatorRef.value?.removeEventListener('sl-page-change', onPageChange);
   pageSizeRef.value?.removeEventListener(
