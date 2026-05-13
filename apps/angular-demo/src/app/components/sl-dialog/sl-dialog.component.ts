@@ -10,7 +10,7 @@ import { DialogComponent } from '@sl-design-system/angular/dialog';
 })
 export class DialogPageComponent {
   onClose(): void {
-    const dialog = document.querySelector('sl-dialog') as any;
+    const dialog = document.querySelector<Dialog>('sl-dialog');
     dialog?.close();
   }
 }

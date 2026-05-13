@@ -9,14 +9,15 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import type { Dialog } from '@sl-design-system/dialog';
 
-const dialogRef = ref<HTMLElement | null>(null);
+const dialogRef = ref<Dialog | null>(null);
 
 const openDialog = () => {
-  (dialogRef.value as any)?.showModal();
+  dialogRef.value?.showModal();
 };
 
 const closeDialog = () => {
-  (dialogRef.value as any)?.close();
+  dialogRef.value?.close();
 };
 </script>

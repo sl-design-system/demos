@@ -55,8 +55,8 @@ const visibleItems = computed(() =>
   ),
 );
 
-const paginatorRef = ref<HTMLElement | null>(null);
-const pageSizeRef = ref<HTMLElement | null>(null);
+const paginatorRef = ref<Paginator | null>(null);
+const pageSizeRef = ref<PaginatorPageSize | null>(null);
 
 function onPageChange(e: Event) {
   page.value = (e as CustomEvent<number>).detail;
@@ -68,9 +68,7 @@ function onPageSizeChange(e: Event) {
 }
 
 onMounted(() => {
-  if (pageSizeRef.value) {
-    (pageSizeRef.value as any).pageSizes = [5, 10];
-  }
+  pageSizeRef.value?.pageSizes = [5, 10];
   paginatorRef.value?.addEventListener('sl-page-change', onPageChange);
   pageSizeRef.value?.addEventListener('sl-page-size-change', onPageSizeChange);
 });
