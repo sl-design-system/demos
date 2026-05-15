@@ -18,6 +18,7 @@
   import TabGroup from './components/sl-tab-group/sl-tab-group.svelte';
   import Paginator from './components/sl-paginator/sl-paginator.svelte';
   import Select from './components/sl-select/sl-select.svelte';
+  import Switch from './components/sl-switch/sl-switch.svelte';
   import Popover from './components/sl-popover/sl-popover.svelte';
 
   const navItems = [
@@ -38,6 +39,7 @@
     { path: '/sl-tab-group', label: 'sl-tab-group', component: TabGroup },
     { path: '/sl-paginator', label: 'sl-paginator', component: Paginator },
     { path: '/sl-select', label: 'sl-select', component: Select },
+    { path: '/sl-switch', label: 'sl-switch', component: Switch },
     { path: '/sl-popover', label: 'sl-popover', component: Popover },
     { path: '/sl-radio-group', label: 'sl-radio-group', component: RadioGroup },
   ];
