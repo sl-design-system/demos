@@ -21,6 +21,8 @@ import { NumberFieldPage } from '../components/sl-number-field/sl-number-field.j
 import { TabGroupPage } from '../components/sl-tab-group/sl-tab-group.js';
 import { PaginatorPage } from '../components/sl-paginator/sl-paginator.js';
 import { SelectPage } from '../components/sl-select/sl-select.js';
+import { PopoverPage } from '../components/sl-popover/sl-popover.js';
+import { RadioGroupPage } from '../components/sl-radio-group/sl-radio-group.js';
 import styles from './app.styles.scss.js';
 
 const ROUTES = [
@@ -41,6 +43,8 @@ const ROUTES = [
   { path: '/sl-tab-group', label: 'sl-tab-group' },
   { path: '/sl-paginator', label: 'sl-paginator' },
   { path: '/sl-select', label: 'sl-select' },
+  { path: '/sl-popover', label: 'sl-popover' },
+  { path: '/sl-radio-group', label: 'sl-radio-group' },
 ];
 
 export class App extends ScopedElementsMixin(LitElement) {
@@ -62,6 +66,8 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-tab-group': TabGroupPage,
     'page-paginator': PaginatorPage,
     'page-select': SelectPage,
+    'page-popover': PopoverPage,
+    'page-radio-group': RadioGroupPage,
   };
 
   static override styles = styles;
@@ -127,6 +133,10 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-paginator></page-paginator>`;
       case '/sl-select':
         return html`<page-select></page-select>`;
+      case '/sl-popover':
+        return html`<page-popover></page-popover>`;
+      case '/sl-radio-group':
+        return html`<page-radio-group></page-radio-group>`;
       default:
         return html``;
     }
