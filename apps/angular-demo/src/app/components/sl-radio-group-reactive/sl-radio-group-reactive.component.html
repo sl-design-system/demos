@@ -1,0 +1,29 @@
+<sl-form #form [formGroup]="formGroup">
+  <sl-form-field
+    label="Radio group (reactive)"
+    hint="This example uses reactive forms. You need to check the second option to make the field valid."
+  >
+    <sl-radio-group
+      formControlName="option"
+      (slValidate)="onValidate($event)"
+      required
+    >
+      <sl-radio value="1">One</sl-radio>
+      <sl-radio value="2">Two</sl-radio>
+    </sl-radio-group>
+  </sl-form-field>
+
+  <sl-button-bar>
+    <sl-button variant="primary" (click)="onSubmit()">Submit</sl-button>
+  </sl-button-bar>
+
+  <sl-form-field
+    label="Disabled radio group"
+    hint="This radio group is disabled; no interaction is possible."
+  >
+    <sl-radio-group [disabled]="true">
+      <sl-radio value="4">Four</sl-radio>
+      <sl-radio value="5">Five</sl-radio>
+    </sl-radio-group>
+  </sl-form-field>
+</sl-form>
