@@ -7,5 +7,5 @@
 <sl-dialog #dialog>
   <h1 slot="title">Test title</h1>
   Test description
-  <sl-button slot="primary-actions" sl-dialog-close>Close</sl-button>
+  <sl-button slot="primary-actions" (click)="onClose()">Close</sl-button>
 </sl-dialog>
