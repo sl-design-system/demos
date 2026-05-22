@@ -7,17 +7,25 @@ test.describe('sl-switch accessibility', () => {
   });
 
   test('should have no accessibility violations', async ({ page }) => {
-    await page.locator('sl-switch').filter({ hasText: 'Text inside the switch' }).click();
+    await page
+      .locator('sl-switch')
+      .filter({ hasText: 'Text inside the switch' })
+      .click();
     const axe = new AxeBuilder({ page }).withTags(['wcag22a', 'wcag22aa']);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
 
-  test('should have no accessibility violations in 320px width of <main>', async ({ page }) => {
+  test('should have no accessibility violations in 320px width of <main>', async ({
+    page,
+  }) => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-switch'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
-    await page.locator('sl-switch').filter({ hasText: 'Text inside the switch' }).click();
+    await page
+      .locator('sl-switch')
+      .filter({ hasText: 'Text inside the switch' })
+      .click();
     const axe = new AxeBuilder({ page }).withTags(['wcag22a', 'wcag22aa']);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
@@ -37,12 +45,17 @@ test.describe('sl-switch accessibility', () => {
   });
 
   test('should have accessible name', async ({ page }) => {
-    const item = page.locator('sl-switch').filter({ hasText: 'Text inside the switch' }).getByRole('switch');
+    const item = page
+      .locator('sl-switch')
+      .filter({ hasText: 'Text inside the switch' })
+      .getByRole('switch');
     await expect(item).toHaveAccessibleName('Text inside the switch');
   });
 
   test('should have correct aria-checked attributes', async ({ page }) => {
-    const item = page.locator('sl-switch').filter({ hasText: 'Text inside the switch' });
+    const item = page
+      .locator('sl-switch')
+      .filter({ hasText: 'Text inside the switch' });
     const input = item.getByRole('switch');
 
     await expect(input).toHaveAttribute('aria-checked', 'false');
@@ -51,8 +64,11 @@ test.describe('sl-switch accessibility', () => {
     await expect(input).toHaveAttribute('aria-checked', 'true');
   });
 
-  test('should have correct tab order', async ({ page,}) => {
-    const item = page.locator('sl-switch').filter({ hasText: 'Text inside the switch' }).getByRole('switch');
+  test('should have correct tab order', async ({ page }) => {
+    const item = page
+      .locator('sl-switch')
+      .filter({ hasText: 'Text inside the switch' })
+      .getByRole('switch');
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
@@ -61,7 +77,10 @@ test.describe('sl-switch accessibility', () => {
   });
 
   test(`should be keyboard operable`, async ({ page }) => {
-    const item = page.locator('sl-switch').filter({ hasText: 'Text inside the switch' }).getByRole('switch');
+    const item = page
+      .locator('sl-switch')
+      .filter({ hasText: 'Text inside the switch' })
+      .getByRole('switch');
 
     await expect(item).toHaveAttribute('aria-checked', 'false');
     await item.focus();

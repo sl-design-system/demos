@@ -6,15 +6,18 @@ test.describe('sl-switch', () => {
   });
 
   test('should toggle switch on click', async ({ page }) => {
-    const item = page.locator('sl-switch').filter({ hasText: 'Text inside the switch' });
-    
+    const item = page
+      .locator('sl-switch')
+      .filter({ hasText: 'Text inside the switch' });
     await expect(item).not.toHaveAttribute('checked');
     await item.click();
     await expect(item).toHaveAttribute('checked');
   });
 
   test('should change icon on toggle', async ({ page }) => {
-    const item = page.locator('sl-switch').filter({ hasText: 'Text inside the switch' });
+    const item = page
+      .locator('sl-switch')
+      .filter({ hasText: 'Text inside the switch' });
     const icon = item.locator('sl-icon');
 
     await expect(icon).toHaveAttribute('name', 'xmark');
@@ -22,10 +25,10 @@ test.describe('sl-switch', () => {
     await expect(icon).toHaveAttribute('name', 'check');
   });
 
-  test('should not allow to toggle disabled switch', async ({
-    page,
-  }) => {
-    const item = page.locator('sl-switch').filter({ hasText: 'Disabled switch' });
+  test('should not allow to toggle disabled switch', async ({ page }) => {
+    const item = page
+      .locator('sl-switch')
+      .filter({ hasText: 'Disabled switch' });
     await expect(item).toHaveAttribute('disabled', '');
     await expect(item).not.toHaveAttribute('checked');
     await item.click({ force: true });
