@@ -2,7 +2,7 @@ import '@webcomponents/scoped-custom-element-registry';
 import { createApp } from 'vue';
 import App from './App.vue';
 import { router } from './router';
-import './app.css';
+import './app.scss';
 import '@sl-design-system/button/register.js';
 import '@sl-design-system/button-bar/register.js';
 import '@sl-design-system/accordion/register.js';

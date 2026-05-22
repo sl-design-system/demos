@@ -6,6 +6,7 @@ import type { Dialog } from '@sl-design-system/dialog';
 @Component({
   selector: 'app-dialog-page',
   templateUrl: './sl-dialog.component.html',
+  styleUrls: ['./sl-dialog.component.scss'],
   imports: [ButtonComponent, DialogComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

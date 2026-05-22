@@ -8,6 +8,7 @@ import {
 @Component({
   selector: 'app-combobox-page',
   templateUrl: './sl-combobox.component.html',
+  styleUrls: ['./sl-combobox.component.scss'],
   imports: [ComboboxComponent, ListboxComponent, OptionComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

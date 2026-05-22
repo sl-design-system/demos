@@ -1,4 +1,6 @@
-<div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start;">
+<div class="switch-container">
   <sl-switch value="12345">Text inside the switch</sl-switch>
   <sl-switch value="12345" disabled>Disabled switch</sl-switch>
 </div>
+
+<style lang="scss" src="./sl-switch.scss"></style>

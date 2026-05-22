@@ -10,6 +10,7 @@ import { type Form } from '@sl-design-system/form';
 @Component({
   selector: 'app-select-page',
   templateUrl: './sl-select.component.html',
+  styleUrls: ['./sl-select.component.scss'],
   imports: [
     ButtonComponent,
     ButtonBarComponent,

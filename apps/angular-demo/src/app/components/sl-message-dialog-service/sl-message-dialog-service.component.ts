@@ -13,6 +13,7 @@ export class ExampleMessageDialogComponent {
 @Component({
   selector: 'app-message-dialog-service-page',
   templateUrl: './sl-message-dialog-service.component.html',
+  styleUrls: ['./sl-message-dialog-service.component.scss'],
   imports: [ButtonComponent],
 })
 export class MessageDialogServicePageComponent {

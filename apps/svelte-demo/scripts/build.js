@@ -1,6 +1,8 @@
 import esbuild from 'esbuild';
 import sveltePlugin from 'esbuild-svelte';
 import sveltePreprocess from 'svelte-preprocess';
+import * as sass from 'sass';
+import path from 'node:path';
 import fs from 'fs/promises';
 
 const isWatch = process.argv.includes('--watch');
@@ -11,9 +13,11 @@ const buildOptions = {
   outfile: 'dist/main.js',
   plugins: [
     sveltePlugin({
+      compilerOptions: {
+        css: 'injected',
+      },
       preprocess: sveltePreprocess({
         typescript: true,
-        postcss: true,
       }),
     }),
   ],
@@ -22,11 +26,39 @@ const buildOptions = {
   resolveExtensions: ['.ts', '.js', '.svelte', '.css'],
 };
 
+const compileAppStylesheet = async () => {
+  const inputPath = 'src/app.scss';
+  const source = await fs.readFile(inputPath, 'utf-8');
+  const sourceDir = path.dirname(inputPath);
+  let importedCss = '';
+  let scssWithoutCssImports = '';
+
+  for (const line of source.split(/\r?\n/)) {
+    const importMatch = line.trim().match(/^@import\s+url\(['"](.*\.css)['"]\);$/);
+
+    if (importMatch) {
+      const importPath = importMatch[1];
+      const resolvedPath = path.resolve(sourceDir, importPath);
+      const importedSource = await fs.readFile(resolvedPath, 'utf-8');
+      importedCss += importedSource + '\n';
+    } else {
+      scssWithoutCssImports += line + '\n';
+    }
+  }
+
+  const compiledStylesheet = sass.compileString(scssWithoutCssImports, {
+    style: 'expanded',
+  });
+
+  return importedCss + compiledStylesheet.css;
+};
+
 const copyStaticFiles = async () => {
   try {
     await fs.mkdir('dist', { recursive: true });
     await fs.copyFile('src/index.html', 'dist/index.html');
-    await fs.copyFile('src/app.css', 'dist/main.css');
+    const compiledStylesheet = await compileAppStylesheet();
+    await fs.writeFile('dist/main.css', compiledStylesheet, 'utf-8');
   } catch (err) {
     console.error('Error copying static files:', err);
     process.exit(1);

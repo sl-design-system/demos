@@ -63,7 +63,7 @@ const navItems = [
 ];
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .app-layout {
   display: flex;
   height: 100vh;
@@ -189,6 +189,6 @@ const navItems = [
 }
 </style>
 
-<style>
+<style lang="scss">
 @import '../../../shared/styles/visually-hidden.css';
 </style>

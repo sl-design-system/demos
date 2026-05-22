@@ -4,6 +4,7 @@ import '@sl-design-system/switch/register.js';
 @Component({
   selector: 'app-switch-page',
   templateUrl: './sl-switch.component.html',
+  styleUrls: ['./sl-switch.component.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SwitchPageComponent {}

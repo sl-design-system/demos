@@ -1,5 +1,4 @@
 <script lang="ts">
-  import './app.css';
   import Accordion from './components/sl-accordion/sl-accordion.svelte';
   import Breadcrumbs from './components/sl-breadcrumbs/sl-breadcrumbs.svelte';
   import Button from './components/sl-button/sl-button.svelte';

@@ -1,4 +1,5 @@
 import { context } from 'esbuild';
+import { sassPlugin } from 'esbuild-sass-plugin';
 import vue from 'esbuild-plugin-vue-next';
 import fs from 'node:fs/promises';
 import http from 'node:http';
@@ -18,14 +19,16 @@ const buildOptions = {
   format: 'esm',
   minify: !isWatch,
   sourcemap: isWatch ? 'inline' : true,
-  plugins: [ vue({ templateOptions: { compilerOptions: { isCustomElement: (tag) => tag.startsWith('sl-') } } }) ],
+  plugins: [
+    sassPlugin(),
+    vue({ templateOptions: { compilerOptions: { isCustomElement: (tag) => tag.startsWith('sl-') } } }),
+  ],
 };
 
 const runBuild = async () => {
   await fs.rm(outdir, { recursive: true, force: true });
   await fs.mkdir(outdir, { recursive: true });
   await fs.cp(path.resolve(rootDir, 'public'), outdir, { recursive: true });
-  await fs.copyFile(path.resolve(rootDir, 'src', 'app.css'), path.resolve(outdir, 'app.css'));
 
   const ctx = await context(buildOptions);
 

@@ -7,6 +7,7 @@ import {
 @Component({
   selector: 'app-checkbox-page',
   templateUrl: './sl-checkbox.component.html',
+  styleUrls: ['./sl-checkbox.component.scss'],
   imports: [CheckboxComponent, CheckboxGroupComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

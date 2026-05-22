@@ -17,6 +17,7 @@ import { type RadioGroup } from '@sl-design-system/radio-group';
 @Component({
   selector: 'app-radio-group-template-page',
   templateUrl: './sl-radio-group-template.component.html',
+  styleUrls: ['./sl-radio-group-template.component.scss'],
   imports: [
     FormsModule,
     ButtonComponent,
