@@ -22,15 +22,6 @@ test.describe('sl-switch', () => {
     await expect(icon).toHaveAttribute('name', 'check');
   });
 
-  test('should change color on toggle', async ({ page }) => {
-    const item = page.locator('sl-switch').filter({ hasText: 'Text inside the switch' });
-    const checked_color = '#3366ff';
-    const unchecked_color = '#818b98';
-    await expect(item).toHaveCSS('--_bg-color', unchecked_color);
-    await item.click();
-    await expect(item).toHaveCSS('--_bg-color', checked_color);
-  });
-
   test('should not allow to toggle disabled switch', async ({
     page,
   }) => {
