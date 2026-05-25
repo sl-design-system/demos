@@ -17,6 +17,7 @@ const buildOptions = {
         css: 'injected',
       },
       preprocess: sveltePreprocess({
+        scss: {},
         typescript: true,
       }),
     }),
