@@ -1,4 +1,4 @@
-import { css, html, LitElement, TemplateResult } from 'lit';
+import { html, LitElement, TemplateResult } from 'lit';
 import { state } from 'lit/decorators.js';
 import {
   ScopedElementsMixin,
@@ -13,6 +13,7 @@ import {
   ALL_ITEMS,
   type Item,
 } from '../../../../../shared/utils/paginator-items.js';
+import styles from './sl-paginator.scss.js';
 
 export class PaginatorPage extends ScopedElementsMixin(LitElement) {
   static scopedElements: ScopedElementsMap = {
@@ -21,16 +22,7 @@ export class PaginatorPage extends ScopedElementsMixin(LitElement) {
     'sl-paginator-status': PaginatorStatus,
   };
 
-  static override styles = css`
-    :host {
-      display: block;
-    }
-
-    .paginator-wrapper {
-      display: block;
-      width: 100%;
-    }
-  `;
+  static override styles = styles;
 
   @state() private _page = 0;
   @state() private _pageSize = 5;
