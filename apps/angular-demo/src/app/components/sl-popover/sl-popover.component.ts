@@ -11,6 +11,7 @@ import { Popover } from '@sl-design-system/popover';
 @Component({
   selector: 'app-popover-page',
   templateUrl: './sl-popover.component.html',
+  styleUrls: ['./sl-popover.component.scss'],
   imports: [ButtonComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

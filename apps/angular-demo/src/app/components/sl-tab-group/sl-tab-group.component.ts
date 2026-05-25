@@ -9,6 +9,7 @@ import {
 @Component({
   selector: 'app-tab-group-page',
   templateUrl: './sl-tab-group.component.html',
+  styleUrls: ['./sl-tab-group.component.scss'],
   imports: [
     ButtonComponent,
     TabComponent,

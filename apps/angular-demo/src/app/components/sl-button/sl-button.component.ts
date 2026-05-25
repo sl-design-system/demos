@@ -4,6 +4,7 @@ import { ButtonComponent } from '@sl-design-system/angular/button';
 @Component({
   selector: 'app-button-page',
   templateUrl: './sl-button.component.html',
+  styleUrls: ['./sl-button.component.scss'],
   imports: [ButtonComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

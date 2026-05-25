@@ -5,7 +5,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   selector: 'app-root',
   templateUrl: './app.component.html',
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   navItems = [
@@ -29,6 +29,7 @@ export class AppComponent {
     { path: 'sl-tab-group', label: 'sl-tab-group' },
     { path: 'sl-paginator', label: 'sl-paginator' },
     { path: 'sl-select', label: 'sl-select' },
+    { path: 'sl-switch', label: 'sl-switch' },
     { path: 'sl-popover', label: 'sl-popover' },
     { path: 'sl-radio-group-reactive', label: 'sl-radio-group (reactive)' },
     { path: 'sl-radio-group-template', label: 'sl-radio-group (template)' },

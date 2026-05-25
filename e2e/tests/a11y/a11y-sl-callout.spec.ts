@@ -30,19 +30,21 @@ test.describe('sl-callout accessibility', () => {
     }
   });
 
-  test('should have correct tab order in webkit', async ({ page, browserName }) => {
+  test('should have correct tab order in webkit', async ({
+    page,
+    browserName,
+  }) => {
     test.skip(browserName !== 'webkit');
-      const activeElements = ['Open link', 'Open page'] as const;
+    const activeElements = ['Open link', 'Open page'] as const;
 
-      await page.getByRole('button', { name: 'Collapse navigation' }).click();
+    await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
-      for (const activeElement of activeElements) {
-        const item = page.locator(`text=${activeElement}`);
-        await page.keyboard.press('Alt+Tab');
-        await expect(item).toBeFocused();
-      }
+    for (const activeElement of activeElements) {
+      const item = page.locator(`text=${activeElement}`);
+      await page.keyboard.press('Alt+Tab');
+      await expect(item).toBeFocused();
     }
-  );
+  });
 
   test(`link should be keyboard operable`, async ({ page }) => {
     const item = page.getByRole('link', { name: 'Open link' });

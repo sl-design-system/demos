@@ -4,6 +4,7 @@ import { ButtonComponent } from '@sl-design-system/angular/button';
 @Component({
   selector: 'app-callout-page',
   templateUrl: './sl-callout.component.html',
+  styleUrls: ['./sl-callout.component.scss'],
   imports: [ButtonComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

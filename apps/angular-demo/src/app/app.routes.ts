@@ -143,6 +143,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-switch',
+    loadComponent: () =>
+      import('./components/sl-switch/sl-switch.component').then(
+        (m) => m.SwitchPageComponent,
+      ),
+  },
+  {
     path: 'sl-popover',
     loadComponent: () =>
       import('./components/sl-popover/sl-popover.component').then(

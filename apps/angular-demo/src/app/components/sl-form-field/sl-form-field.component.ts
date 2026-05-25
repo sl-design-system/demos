@@ -5,6 +5,7 @@ import { TextFieldComponent } from '@sl-design-system/angular/text-field';
 @Component({
   selector: 'app-form-field-page',
   templateUrl: './sl-form-field.component.html',
+  styleUrls: ['./sl-form-field.component.scss'],
   imports: [FormFieldComponent, TextFieldComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

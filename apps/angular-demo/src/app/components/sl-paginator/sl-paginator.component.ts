@@ -12,6 +12,7 @@ import {
 @Component({
   selector: 'app-paginator-page',
   templateUrl: './sl-paginator.component.html',
+  styleUrls: ['./sl-paginator.component.scss'],
   imports: [
     PaginatorComponent,
     PaginatorPageSizeComponent,
