@@ -1,9 +1,4 @@
 .text-area-container {
   inline-size: 100%;
-}
-
-.text-area-container > sl-text-area {
-  display: block;
-  inline-size: min(100%, 32rem);
-  max-inline-size: 32rem;
+  padding: 1rem;
 }
