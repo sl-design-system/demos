@@ -6,7 +6,7 @@ test.describe('sl-text-area', () => {
   });
 
   test('should type and clear text in the enabled field', async ({ page }) => {
-    const input = page.getByRole('textbox', { name: 'Text area' });
+    const input = page.getByRole('textbox', { name: 'Text area', exact: true });
 
     await input.fill('Test');
     await expect(input).toHaveValue('Test');
@@ -16,7 +16,7 @@ test.describe('sl-text-area', () => {
   });
 
   test('should accept multi-line input with newlines', async ({ page }) => {
-    const input = page.getByRole('textbox', { name: 'Text area' });
+    const input = page.getByRole('textbox', { name: 'Text area', exact: true });
 
     await input.fill('Test');
     await page.keyboard.press('Enter');
@@ -28,7 +28,10 @@ test.describe('sl-text-area', () => {
   });
 
   test('should not allow typing in the disabled field', async ({ page }) => {
-    const input = page.getByRole('textbox', { name: 'Disabled text area' });
+    const input = page.getByRole('textbox', {
+      name: 'Disabled text area',
+      exact: true,
+    });
     await expect(input).toBeDisabled();
 
     await input.fill('Test', { force: true });

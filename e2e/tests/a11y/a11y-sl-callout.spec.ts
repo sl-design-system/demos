@@ -7,8 +7,10 @@ test.describe('sl-callout accessibility', () => {
     await page.goto('/sl-callout');
   });
 
-  test('should have no accessibility violations in standard viewport', async ({ page }) => {
-    const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']);
+  test('should have no accessibility violations in standard viewport', async ({
+    page,
+  }) => {
+    const axe = new AxeBuilder({ page }).withTags(['wcag22a', 'wcag22aa']);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });

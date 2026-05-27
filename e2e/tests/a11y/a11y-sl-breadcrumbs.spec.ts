@@ -13,7 +13,7 @@ test.describe('sl-breadcrumbs accessibility', () => {
   }) => {
     await page.setViewportSize({ width: 1200, height: 800 });
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
-    const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']);
+    const axe = new AxeBuilder({ page }).withTags(['wcag22a', 'wcag22aa']);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
@@ -24,7 +24,7 @@ test.describe('sl-breadcrumbs accessibility', () => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-breadcrumbs'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
-    const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']);
+    const axe = new AxeBuilder({ page }).withTags(['wcag22a', 'wcag22aa']);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });

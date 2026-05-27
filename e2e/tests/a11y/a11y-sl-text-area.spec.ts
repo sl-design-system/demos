@@ -8,9 +8,9 @@ test.describe('sl-text-area accessibility', () => {
   });
 
   test('should have no accessibility violations', async ({ page }) => {
-    await page
-      .locator('sl-text-area')
-      .filter({ hasText: 'Text area' });
+    await expect(
+      page.getByRole('textbox', { name: 'Text area', exact: true }),
+    ).toBeVisible();
     const axe = new AxeBuilder({ page }).withTags(['wcag22a', 'wcag22aa']);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
@@ -38,13 +38,13 @@ test.describe('sl-text-area accessibility', () => {
 
   test('should have accessible name', async ({ page }) => {
     const item = page
-      .locator('sl-text-area').getByPlaceholder('Type your message');
+      .locator('sl-text-area')
+      .getByPlaceholder('Type your message');
     await expect(item).toHaveAccessibleName('Text area');
   });
 
   test('should have correct tab order', async ({ page }) => {
-    const item = page
-      .getByRole('textbox', { name: 'Text area', exact: true });
+    const item = page.getByRole('textbox', { name: 'Text area', exact: true });
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
@@ -53,8 +53,7 @@ test.describe('sl-text-area accessibility', () => {
   });
 
   test(`should be keyboard operable`, async ({ page }) => {
-    const item = page
-      .getByRole('textbox', { name: 'Text area', exact: true });
+    const item = page.getByRole('textbox', { name: 'Text area', exact: true });
 
     await item.focus();
     await page.keyboard.type('Hello world');

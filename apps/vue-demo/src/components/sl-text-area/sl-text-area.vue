@@ -11,7 +11,7 @@
       aria-label="Disabled text area"
       placeholder="Disabled text area"
       rows="4"
-      disabled="true"
+      :disabled="true"
     ></sl-text-area>
   </div>
 </template>

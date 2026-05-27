@@ -7,7 +7,9 @@ test.describe('sl-switch accessibility', () => {
     await page.goto('/sl-switch');
   });
 
-  test('should have no accessibility violations in standard viewport', async ({ page }) => {
+  test('should have no accessibility violations in standard viewport', async ({
+    page,
+  }) => {
     await page
       .locator('sl-switch')
       .filter({ hasText: 'Text inside the switch' })
