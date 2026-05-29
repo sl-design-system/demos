@@ -17,6 +17,7 @@ import { type Form } from '@sl-design-system/form';
 @Component({
   selector: 'app-form-template-page',
   templateUrl: './sl-form-template.component.html',
+  styleUrls: ['./sl-form-template.component.scss'],
   imports: [
     FormsModule,
     ButtonComponent,

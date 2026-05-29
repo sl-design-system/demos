@@ -8,6 +8,7 @@ import {
 @Component({
   selector: 'app-menu-page',
   templateUrl: './sl-menu.component.html',
+  styleUrls: ['./sl-menu.component.scss'],
   imports: [MenuButtonComponent, MenuComponent, MenuItemComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

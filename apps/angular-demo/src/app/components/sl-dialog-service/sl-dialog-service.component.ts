@@ -31,6 +31,7 @@ export class ExampleDialogComponent {
 @Component({
   selector: 'app-dialog-service-page',
   templateUrl: './sl-dialog-service.component.html',
+  styleUrls: ['./sl-dialog-service.component.scss'],
   imports: [ButtonComponent],
 })
 export class DialogServicePageComponent {

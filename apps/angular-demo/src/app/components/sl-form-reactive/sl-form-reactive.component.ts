@@ -17,6 +17,7 @@ import { type Form } from '@sl-design-system/form';
 @Component({
   selector: 'app-form-reactive-page',
   templateUrl: './sl-form-reactive.component.html',
+  styleUrls: ['./sl-form-reactive.component.scss'],
   imports: [
     ReactiveFormsModule,
     ButtonComponent,

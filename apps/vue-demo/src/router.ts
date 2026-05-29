@@ -75,5 +75,17 @@ export const router = createRouter({
       path: '/sl-select',
       component: () => import('./components/sl-select/sl-select.vue'),
     },
+    {
+      path: '/sl-switch',
+      component: () => import('./components/sl-switch/sl-switch.vue'),
+    },
+    {
+      path: '/sl-popover',
+      component: () => import('./components/sl-popover/sl-popover.vue'),
+    },
+    {
+      path: '/sl-radio-group',
+      component: () => import('./components/sl-radio-group/sl-radio-group.vue'),
+    },
   ],
 });

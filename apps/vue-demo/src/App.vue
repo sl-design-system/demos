@@ -57,10 +57,13 @@ const navItems = [
   { path: '/sl-tab-group', label: 'sl-tab-group' },
   { path: '/sl-paginator', label: 'sl-paginator' },
   { path: '/sl-select', label: 'sl-select' },
+  { path: '/sl-switch', label: 'sl-switch' },
+  { path: '/sl-popover', label: 'sl-popover' },
+  { path: '/sl-radio-group', label: 'sl-radio-group' },
 ];
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .app-layout {
   display: flex;
   height: 100vh;
@@ -186,6 +189,6 @@ const navItems = [
 }
 </style>
 
-<style>
+<style lang="scss">
 @import '../../../shared/styles/visually-hidden.css';
 </style>

@@ -2,7 +2,7 @@ import '@webcomponents/scoped-custom-element-registry';
 import { createApp } from 'vue';
 import App from './App.vue';
 import { router } from './router';
-import './app.css';
+import './app.scss';
 import '@sl-design-system/button/register.js';
 import '@sl-design-system/button-bar/register.js';
 import '@sl-design-system/accordion/register.js';
@@ -13,6 +13,8 @@ import '@sl-design-system/combobox/register.js';
 import '@sl-design-system/dialog/register.js';
 import '@sl-design-system/listbox/register.js';
 import '@sl-design-system/menu/register.js';
+import '@sl-design-system/popover/register.js';
+import '@sl-design-system/switch/register.js';
 import { setup } from '@sl-design-system/sanoma-learning';
 
 setup();
