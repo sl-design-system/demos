@@ -1,12 +1,15 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { hasMainHorizontalOverflow } from '../../utils/checkForHorizontalScroll.js';
 
 test.describe('sl-switch accessibility', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/sl-switch');
   });
 
-  test('should have no accessibility violations', async ({ page }) => {
+  test('should have no accessibility violations in standard viewport', async ({
+    page,
+  }) => {
     await page
       .locator('sl-switch')
       .filter({ hasText: 'Text inside the switch' })
@@ -36,12 +39,8 @@ test.describe('sl-switch accessibility', () => {
     await page.goto('/sl-switch'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
-    const hasHorizontalOverflow = await page.evaluate(() => {
-      const el = document.documentElement;
-      return el.scrollWidth > el.clientWidth;
-    });
-
-    expect(hasHorizontalOverflow).toBe(false);
+    const hasOverflow = await hasMainHorizontalOverflow(page);
+    expect(hasOverflow).toBe(false);
   });
 
   test('should have accessible name', async ({ page }) => {

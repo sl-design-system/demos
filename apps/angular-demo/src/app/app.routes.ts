@@ -101,6 +101,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-text-area',
+    loadComponent: () =>
+      import('./components/sl-text-area/sl-text-area.component').then(
+        (m) => m.TextAreaPageComponent,
+      ),
+  },
+  {
     path: 'sl-tab-group',
     loadComponent: () =>
       import('./components/sl-tab-group/sl-tab-group.component').then(
