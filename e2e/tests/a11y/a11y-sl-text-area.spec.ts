@@ -37,9 +37,7 @@ test.describe('sl-text-area accessibility', () => {
   });
 
   test('should have accessible name', async ({ page }) => {
-    const item = page
-      .locator('sl-text-area')
-      .getByPlaceholder('Type your message');
+    const item = page.getByRole('textbox', { name: 'Text area', exact: true });
     await expect(item).toHaveAccessibleName('Text area');
   });
 

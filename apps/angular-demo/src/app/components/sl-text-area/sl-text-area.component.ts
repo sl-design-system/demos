@@ -6,6 +6,5 @@ import { TextAreaComponent } from '@sl-design-system/angular/text-area';
   templateUrl: './sl-text-area.component.html',
   styleUrls: ['./sl-text-area.component.scss'],
   imports: [TextAreaComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class TextAreaPageComponent {}
