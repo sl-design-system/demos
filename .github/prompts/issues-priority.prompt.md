@@ -19,7 +19,7 @@ Use GitHub MCP to analyze open issues in the repository sl-design-system/compone
 
 ## Goal
 
-Identify the most important issues that should be addressed first and explain why, taking into account component maturity status and accessibility impact.
+Identify the most important issues that should be addressed first and explain why, taking into account component maturity status and accessibility impact. Also identify the top 5 components with the highest issue volume, showing currently open issues for each component and their maturity status.
 
 ## Component maturity status
 
@@ -71,6 +71,17 @@ Use the reference table below to determine each component's status. Use maturity
 | Toggle group | preview |
 | Tooltip | stable |
 | Tree | preview |
+
+## Component counting rules
+
+- Determine component from explicit evidence only (labels, issue title, issue body, linked metadata).
+- Use the component names from the maturity reference table as canonical names.
+- If component cannot be determined, classify as none and exclude from Top 5 ranking.
+- Do not infer component status outside the provided reference table.
+- For counting:
+   - Currently open = open issues currently in repository for that component.
+   - Sort Top 5 by currently open descending then component name ascending.
+
 
 ## Scope
 
@@ -165,7 +176,22 @@ Return the report in English and use exactly these sections:
 - summarize the main risk areas
 - highlight what deserves immediate attention
 
-## 2. Top issues to address first
+## 2. Top 5 components by issue volume
+
+Provide a table with:
+
+| Rank | Component | Status | Total reported | Currently open | Why this matters now | Representative open issues |
+|------|-----------|--------|----------------|----------------|--------------------|---------------------------|
+
+Rules:
+
+- Include exactly 5 components.
+- Component and Status must come only from the reference table; if unknown, use none.
+- Do not include none rows in the Top 5 ranking.
+- Representative open issues must be 1-3 Markdown links to open issues for that component.
+- If data is incomplete, state assumptions in section 8.
+
+## 3. Top issues to address first
 
 Provide a table with:
 | Rank | Issue | Title | Component | Status | Priority | Why it matters | Recommended next step |
@@ -178,7 +204,7 @@ Rules:
 - recommended next step must be advisory only
 - do not suggest performing any GitHub write action directly from tools
 
-## 3. Thematic clusters
+## 4. Thematic clusters
 
 Group the most important issues into clusters such as:
 
@@ -197,7 +223,7 @@ For each cluster provide:
 - why the cluster matters
 - what should be addressed first inside the cluster
 
-## 4. Immediate actions
+## 5. Immediate actions
 
 List the 5 most important actions the team should take next.
 Each item must include:
@@ -208,7 +234,7 @@ Each item must include:
 
 These are recommendations only, not changes.
 
-## 5. Quick wins
+## 6. Quick wins
 
 List 3-5 quick wins that appear low effort and high value.
 For each quick win include:
@@ -217,7 +243,7 @@ For each quick win include:
 - why it is a quick win
 - expected benefit
 
-## 6. Neglected risks
+## 7. Neglected risks
 
 List issues that appear risky because they are:
 
@@ -226,7 +252,7 @@ List issues that appear risky because they are:
 - repeatedly active
 - high impact but unresolved
 
-## 7. Data gaps and caveats
+## 8. Data gaps and caveats
 
 Explicitly state:
 
