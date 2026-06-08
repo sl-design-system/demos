@@ -14,6 +14,7 @@
   import RadioGroup from './components/sl-radio-group/sl-radio-group.svelte';
   import MessageDialog from './components/sl-message-dialog/sl-message-dialog.svelte';
   import NumberField from './components/sl-number-field/sl-number-field.svelte';
+  import TextArea from './components/sl-text-area/sl-text-area.svelte';
   import TabGroup from './components/sl-tab-group/sl-tab-group.svelte';
   import Paginator from './components/sl-paginator/sl-paginator.svelte';
   import Select from './components/sl-select/sl-select.svelte';
@@ -35,6 +36,7 @@
     { path: '/sl-menu', label: 'sl-menu', component: Menu },
     { path: '/sl-message-dialog', label: 'sl-message-dialog', component: MessageDialog },
     { path: '/sl-number-field', label: 'sl-number-field', component: NumberField },
+    { path: '/sl-text-area', label: 'sl-text-area', component: TextArea },
     { path: '/sl-tab-group', label: 'sl-tab-group', component: TabGroup },
     { path: '/sl-paginator', label: 'sl-paginator', component: Paginator },
     { path: '/sl-select', label: 'sl-select', component: Select },

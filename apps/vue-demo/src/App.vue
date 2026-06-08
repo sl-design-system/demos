@@ -54,6 +54,7 @@ const navItems = [
   { path: '/sl-menu', label: 'sl-menu' },
   { path: '/sl-message-dialog', label: 'sl-message-dialog' },
   { path: '/sl-number-field', label: 'sl-number-field' },
+  { path: '/sl-text-area', label: 'sl-text-area' },
   { path: '/sl-tab-group', label: 'sl-tab-group' },
   { path: '/sl-paginator', label: 'sl-paginator' },
   { path: '/sl-select', label: 'sl-select' },
