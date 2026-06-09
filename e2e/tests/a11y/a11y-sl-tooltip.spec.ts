@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { hasMainHorizontalOverflow } from '../../utils/checkForHorizontalScroll.js';
-import { computedDescription } from '../../utils/ComputedDescription.js';
+import { computedDescription } from '../../utils/computedDescription.js';
 
 test.describe('sl-tooltip accessibility', () => {
-  const tooltipText = "This is the tooltip message";
+  const tooltipText = 'This is the tooltip message';
 
   test.beforeEach(async ({ page }) => {
     await page.goto('/sl-tooltip');
@@ -40,16 +40,18 @@ test.describe('sl-tooltip accessibility', () => {
 
   test('should display tooltip on focus and hide on blur', async ({ page }) => {
     const item = page.getByRole('button', { name: 'Button' });
-    
+
     await item.focus();
     await expect(page.getByText(tooltipText)).toBeVisible();
     await item.blur();
     await expect(page.getByText(tooltipText)).toBeHidden();
   });
 
-  test(`should hide tooltip when button clicked with space`, async ({ page }) => {
+  test(`should hide tooltip when button clicked with space`, async ({
+    page,
+  }) => {
     const item = page.getByRole('button', { name: 'Button' });
-    
+
     await item.focus();
     await expect(page.getByText(tooltipText)).toBeVisible();
 
@@ -64,5 +66,5 @@ test.describe('sl-tooltip accessibility', () => {
 
     expect(descriptions).toContain(tooltipText);
     await expect(tooltip).toHaveAttribute('role', 'tooltip');
-});
+  });
 });

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('sl-tooltip', () => {
-  const tooltipText = "This is the tooltip message";
+  const tooltipText = 'This is the tooltip message';
   test.beforeEach(async ({ page }) => {
     await page.goto('/sl-tooltip');
   });
@@ -10,7 +10,7 @@ test.describe('sl-tooltip', () => {
     await expect(page.getByText(tooltipText)).toBeHidden();
   });
 
-  test('should still display tooltip after clicking action', async ({
+  test('should hide tooltip after clicking the trigger button', async ({
     page,
   }) => {
     await page.getByRole('button', { name: 'Button' }).hover();

@@ -1,7 +1,9 @@
 <template>
   <div class="tooltip-example">
     <sl-button aria-describedby="tooltip" variant="primary">Button</sl-button>
-    <sl-tooltip id="tooltip" position="top">This is the tooltip message</sl-tooltip>
+    <sl-tooltip id="tooltip" position="top"
+      >This is the tooltip message</sl-tooltip
+    >
   </div>
 </template>
 

@@ -1,13 +1,14 @@
-export async function computedDescription(item: any): Promise<string[]> {
-  return await item.evaluate((el) => {
-    const button = el as HTMLElement;
-    const fromElements = Array.from(button.ariaDescribedByElements ?? [])
+import type { Locator } from '@playwright/test';
+
+export async function computedDescription(item: Locator): Promise<string[]> {
+  return item.evaluate((el) => {
+    const element = el as HTMLElement;
+    const fromElements = Array.from(element.ariaDescribedByElements ?? [])
       .map((node) => node.textContent?.trim() ?? '')
       .filter(Boolean);
-    const fromAriaDescription = button.ariaDescription?.trim();
-
-      return fromAriaDescription
-        ? [...new Set([...fromElements, fromAriaDescription])]
-        : fromElements;
-    });
+    const fromAriaDescription = element.ariaDescription?.trim();
+    return fromAriaDescription
+      ? [...new Set([...fromElements, fromAriaDescription])]
+      : fromElements;
+  });
 }
