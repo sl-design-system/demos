@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { hasMainHorizontalOverflow } from '../../utils/checkForHorizontalScroll.js';
+import { computedDescription } from '../../utils/ComputedDescription.js';
 
 test.describe('sl-tooltip accessibility', () => {
   const tooltipText = "This is the tooltip message";
@@ -58,9 +59,10 @@ test.describe('sl-tooltip accessibility', () => {
 
   test(`should have correct ARIA attributes`, async ({ page }) => {
     const item = page.getByRole('button', { name: 'Button' });
-    const tooltip = page.getByRole('tooltip');
+    const tooltip = page.locator('sl-tooltip');
+    const descriptions = await computedDescription(item);
 
-    await expect(item).toHaveAttribute('aria-describedby', 'tooltip');
+    expect(descriptions).toContain(tooltipText);
     await expect(tooltip).toHaveAttribute('role', 'tooltip');
-  });
+});
 });
