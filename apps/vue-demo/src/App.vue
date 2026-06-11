@@ -60,6 +60,7 @@ const navItems = [
   { path: '/sl-select', label: 'sl-select' },
   { path: '/sl-switch', label: 'sl-switch' },
   { path: '/sl-popover', label: 'sl-popover' },
+  { path: '/sl-tooltip', label: 'sl-tooltip' },
   { path: '/sl-radio-group', label: 'sl-radio-group' },
 ];
 </script>

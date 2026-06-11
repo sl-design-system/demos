@@ -24,6 +24,7 @@ import { PaginatorPage } from '../components/sl-paginator/sl-paginator.js';
 import { SelectPage } from '../components/sl-select/sl-select.js';
 import { SwitchPage } from '../components/sl-switch/sl-switch.js';
 import { PopoverPage } from '../components/sl-popover/sl-popover.js';
+import { TooltipPage } from '../components/sl-tooltip/sl-tooltip.js';
 import { RadioGroupPage } from '../components/sl-radio-group/sl-radio-group.js';
 import styles from './app.styles.scss.js';
 
@@ -48,6 +49,7 @@ const ROUTES = [
   { path: '/sl-select', label: 'sl-select' },
   { path: '/sl-switch', label: 'sl-switch' },
   { path: '/sl-popover', label: 'sl-popover' },
+  { path: '/sl-tooltip', label: 'sl-tooltip' },
   { path: '/sl-radio-group', label: 'sl-radio-group' },
 ];
 
@@ -73,6 +75,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-select': SelectPage,
     'page-switch': SwitchPage,
     'page-popover': PopoverPage,
+    'page-tooltip': TooltipPage,
     'page-radio-group': RadioGroupPage,
   };
 
@@ -145,6 +148,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-switch></page-switch>`;
       case '/sl-popover':
         return html`<page-popover></page-popover>`;
+      case '/sl-tooltip':
+        return html`<page-tooltip></page-tooltip>`;
       case '/sl-radio-group':
         return html`<page-radio-group></page-radio-group>`;
       default:
