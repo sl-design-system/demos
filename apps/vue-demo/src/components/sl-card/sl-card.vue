@@ -15,7 +15,7 @@
       charm of Danish culture against the backdrop of serene canals.
     </p>
     <sl-button-bar slot="actions">
-      <sl-button variant="primary">Download</sl-button>
+      <sl-button variant="primary" @click="openBlankPage">Download</sl-button>
     </sl-button-bar>
   </sl-card>
 </template>
@@ -25,6 +25,9 @@ import '@sl-design-system/badge/register.js';
 import '@sl-design-system/button/register.js';
 import '@sl-design-system/button-bar/register.js';
 import '@sl-design-system/card/register.js';
+const openBlankPage = () => {
+  window.open('about:blank', '_blank', 'noopener,noreferrer');
+};
 </script>
 
 <style scoped lang="scss">

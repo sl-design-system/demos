@@ -19,6 +19,10 @@ export class CardPage extends ScopedElementsMixin(LitElement) {
 
 static override styles = styles;
 
+  private _openBlankPage(): void {
+    window.open('about:blank', '_blank', 'noopener,noreferrer');
+  }
+
   override render(): TemplateResult {
     return html`
       <sl-card orientation="horizontal">
@@ -37,7 +41,7 @@ static override styles = styles;
           the charm of Danish culture against the backdrop of serene canals.
         </p>
         <sl-button-bar slot="actions">
-          <sl-button variant="primary">Download</sl-button>
+          <sl-button variant="primary" @click=${this._openBlankPage}>Download</sl-button>
         </sl-button-bar>
       </sl-card>
     `;

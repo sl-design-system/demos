@@ -3,6 +3,9 @@
   import '@sl-design-system/button/register.js';
   import '@sl-design-system/button-bar/register.js';
   import '@sl-design-system/card/register.js';
+    function openBlankPage() {
+    window.open('about:blank', '_blank', 'noopener,noreferrer');
+  }
 </script>
 
 <sl-card orientation="horizontal" class="card">
@@ -21,7 +24,8 @@
     Danish culture against the backdrop of serene canals.
   </p>
   <sl-button-bar slot="actions">
-    <sl-button variant="primary">Download</sl-button>
+    <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
+    <sl-button variant="primary" onclick={openBlankPage}>Download</sl-button>
   </sl-button-bar>
 </sl-card>
 
