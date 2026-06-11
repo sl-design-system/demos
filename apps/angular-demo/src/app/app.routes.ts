@@ -38,6 +38,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-card',
+    loadComponent: () =>
+      import('./components/sl-card/sl-card.component').then(
+        (m) => m.CardPageComponent,
+      ),
+  },
+  {
     path: 'sl-checkbox',
     loadComponent: () =>
       import('./components/sl-checkbox/sl-checkbox.component').then(

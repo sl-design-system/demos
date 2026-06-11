@@ -1,0 +1,19 @@
+/* Page-level overrides for the sl-card demo.
+   Internal shadow DOM styles are owned by the sl-card web component itself. */
+
+:host {
+  display: block;
+}
+
+sl-card {
+  /* Make the image occupy exactly half the card width */
+  --sl-card-media-size: 50%;
+
+  inline-size: 100%;
+}
+
+sl-card h2 {
+    font: inherit;
+    font-size: 1.5rem;
+    font-weight: 700;
+}

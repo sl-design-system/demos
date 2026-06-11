@@ -84,6 +84,10 @@ export const router = createRouter({
       component: () => import('./components/sl-switch/sl-switch.vue'),
     },
     {
+      path: '/sl-card',
+      component: () => import('./components/sl-card/sl-card.vue'),
+    },
+    {
       path: '/sl-popover',
       component: () => import('./components/sl-popover/sl-popover.vue'),
     },

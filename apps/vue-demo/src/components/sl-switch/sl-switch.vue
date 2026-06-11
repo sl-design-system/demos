@@ -5,4 +5,6 @@
   </div>
 </template>
 
-<style scoped lang="scss" src="./sl-switch.scss"></style>
+<style scoped lang="scss">
+@use './sl-switch.scss';
+</style>
