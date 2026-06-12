@@ -125,7 +125,8 @@ const navItems = [
   flex: 1;
   min-width: 0;
   padding: 32px;
-  overflow-y: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .skip-link {

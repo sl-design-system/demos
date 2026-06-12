@@ -1,14 +1,6 @@
 /* Page-level overrides for the sl-card demo.
    Internal shadow DOM styles are owned by the sl-card web component itself. */
 
-main {
-  overflow: hidden;
-}
-
-nav {
-  overflow: hidden;
-}
-
 :host {
   display: block;
 }
