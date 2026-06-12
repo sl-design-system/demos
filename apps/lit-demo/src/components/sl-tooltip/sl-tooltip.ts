@@ -15,7 +15,9 @@ export class TooltipPage extends ScopedElementsMixin(LitElement) {
   override render(): TemplateResult {
     return html`
       <div class="tooltip-example">
-        <sl-button aria-describedby="tooltip" variant="primary">Button</sl-button>
+        <sl-button aria-describedby="tooltip" variant="primary"
+          >Button</sl-button
+        >
         <sl-tooltip id="tooltip" position="top">
           This is the tooltip message
         </sl-tooltip>

@@ -204,7 +204,9 @@ export class App extends ScopedElementsMixin(LitElement) {
             )}
           </ul>
         </nav>
-        <main id="main" class="content" tabindex="-1">${this._renderPage()}</main>
+        <main id="main" class="content" tabindex="-1">
+          ${this._renderPage()}
+        </main>
       </div>
     `;
   }
