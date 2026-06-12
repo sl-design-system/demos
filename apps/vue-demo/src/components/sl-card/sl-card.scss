@@ -3,12 +3,17 @@ sl-card {
   --sl-card-horizontal-breakpoint: 500px;
 
   inline-size: 100%;
+  min-inline-size: 0;
 }
 
 sl-card h2 {
   font: inherit;
   font-size: 1.5rem;
   font-weight: 700;
+}
+
+.card-wrapper {
+  inline-size: 100%;
 }
 
 img[slot='media'] {

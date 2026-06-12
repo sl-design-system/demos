@@ -1,8 +1,15 @@
+:host {
+  display: block;
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+
 sl-card {
   --sl-card-media-size: unset;
   --sl-card-horizontal-breakpoint: 500px;
 
   inline-size: 100%;
+  min-inline-size: 0;
 }
 
 sl-card h2 {

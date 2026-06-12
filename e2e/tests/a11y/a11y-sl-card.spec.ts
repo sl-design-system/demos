@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { hasMainHorizontalOverflow } from '../../utils/checkForHorizontalScroll.js';
 
 test.describe('sl-card accessibility', () => {
   test.beforeEach(async ({ page }) => {
@@ -30,12 +31,8 @@ test.describe('sl-card accessibility', () => {
     await page.goto('/sl-card'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
-    const item = page.getByRole('main');
-    const card = page.locator('sl-card').first();
-
-    const itemWidth = await item.evaluate((el) => el.clientWidth);
-    const cardWidth = await card.evaluate((el) => el.scrollWidth);
-    expect(cardWidth).toBeLessThanOrEqual(itemWidth);
+    const hasOverflow = await hasMainHorizontalOverflow(page);
+    expect(hasOverflow).toBe(false);
   });
 
   test('should have correct tab order', async ({ page }) => {
