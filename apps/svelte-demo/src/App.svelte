@@ -96,7 +96,7 @@
       {/each}
     </ul>
   </nav>
-  <main id="main" class="content">
+  <main id="main" class="content" tabindex="-1">
     <CurrentPage />
   </main>
 </div>

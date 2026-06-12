@@ -28,7 +28,7 @@
         </li>
       </ul>
     </nav>
-    <main id="main" class="content">
+    <main id="main" class="content" tabindex="-1">
       <router-view />
     </main>
   </div>
@@ -122,8 +122,9 @@ const navItems = [
 
 .content {
   flex: 1;
+  min-width: 0;
   padding: 32px;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .skip-link {

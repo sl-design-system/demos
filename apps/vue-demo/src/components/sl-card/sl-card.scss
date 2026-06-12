@@ -1,5 +1,15 @@
+main {
+  overflow: hidden;
+}
+
+nav {
+    overflow: hidden;
+}
+
 sl-card {
-    --sl-card-media-size: 50%;
+    --sl-card-media-size: unset;
+    --sl-card-horizontal-breakpoint: 500px;
+
     inline-size: 100%;
 }
 
@@ -7,4 +17,9 @@ sl-card h2 {
     font: inherit;
     font-size: 1.5rem;
     font-weight: 700;
+}
+
+img[slot='media'] {
+    max-inline-size: 100%;
+    block-size: auto;
 }
