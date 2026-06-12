@@ -19,6 +19,7 @@
   import Paginator from './components/sl-paginator/sl-paginator.svelte';
   import Select from './components/sl-select/sl-select.svelte';
   import Switch from './components/sl-switch/sl-switch.svelte';
+  import Card from './components/sl-card/sl-card.svelte';
   import Popover from './components/sl-popover/sl-popover.svelte';
   import Tooltip from './components/sl-tooltip/sl-tooltip.svelte';
 
@@ -42,6 +43,7 @@
     { path: '/sl-paginator', label: 'sl-paginator', component: Paginator },
     { path: '/sl-select', label: 'sl-select', component: Select },
     { path: '/sl-switch', label: 'sl-switch', component: Switch },
+    { path: '/sl-card', label: 'sl-card', component: Card },
     { path: '/sl-popover', label: 'sl-popover', component: Popover },
     { path: '/sl-tooltip', label: 'sl-tooltip', component: Tooltip },
     { path: '/sl-radio-group', label: 'sl-radio-group', component: RadioGroup },
@@ -96,7 +98,7 @@
       {/each}
     </ul>
   </nav>
-  <main id="main" class="content">
+  <main id="main" class="content" tabindex="-1">
     <CurrentPage />
   </main>
 </div>

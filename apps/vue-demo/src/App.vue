@@ -28,7 +28,7 @@
         </li>
       </ul>
     </nav>
-    <main id="main" class="content">
+    <main id="main" class="content" tabindex="-1">
       <router-view />
     </main>
   </div>
@@ -59,6 +59,7 @@ const navItems = [
   { path: '/sl-paginator', label: 'sl-paginator' },
   { path: '/sl-select', label: 'sl-select' },
   { path: '/sl-switch', label: 'sl-switch' },
+  { path: '/sl-card', label: 'sl-card' },
   { path: '/sl-popover', label: 'sl-popover' },
   { path: '/sl-tooltip', label: 'sl-tooltip' },
   { path: '/sl-radio-group', label: 'sl-radio-group' },
@@ -122,8 +123,10 @@ const navItems = [
 
 .content {
   flex: 1;
+  min-width: 0;
   padding: 32px;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .skip-link {

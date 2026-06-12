@@ -6,6 +6,14 @@ export async function hasMainHorizontalOverflow(page: Page): Promise<boolean> {
 
   return main.evaluate((el) => {
     const node = el as HTMLElement;
-    return node.scrollWidth > node.clientWidth;
+    const overflowX = getComputedStyle(node).overflowX;
+
+    // Hidden/clip content is not user-scrollable horizontally.
+    if (overflowX === 'hidden' || overflowX === 'clip') {
+      return false;
+    }
+
+    // WebKit can report tiny fractional differences without actual user-visible overflow.
+    return node.scrollWidth - node.clientWidth > 1;
   });
 }

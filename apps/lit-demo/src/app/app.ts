@@ -23,6 +23,7 @@ import { TabGroupPage } from '../components/sl-tab-group/sl-tab-group.js';
 import { PaginatorPage } from '../components/sl-paginator/sl-paginator.js';
 import { SelectPage } from '../components/sl-select/sl-select.js';
 import { SwitchPage } from '../components/sl-switch/sl-switch.js';
+import { CardPage } from '../components/sl-card/sl-card.js';
 import { PopoverPage } from '../components/sl-popover/sl-popover.js';
 import { TooltipPage } from '../components/sl-tooltip/sl-tooltip.js';
 import { RadioGroupPage } from '../components/sl-radio-group/sl-radio-group.js';
@@ -48,6 +49,7 @@ const ROUTES = [
   { path: '/sl-paginator', label: 'sl-paginator' },
   { path: '/sl-select', label: 'sl-select' },
   { path: '/sl-switch', label: 'sl-switch' },
+  { path: '/sl-card', label: 'sl-card' },
   { path: '/sl-popover', label: 'sl-popover' },
   { path: '/sl-tooltip', label: 'sl-tooltip' },
   { path: '/sl-radio-group', label: 'sl-radio-group' },
@@ -74,6 +76,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-paginator': PaginatorPage,
     'page-select': SelectPage,
     'page-switch': SwitchPage,
+    'page-card': CardPage,
     'page-popover': PopoverPage,
     'page-tooltip': TooltipPage,
     'page-radio-group': RadioGroupPage,
@@ -146,6 +149,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-select></page-select>`;
       case '/sl-switch':
         return html`<page-switch></page-switch>`;
+      case '/sl-card':
+        return html`<page-card></page-card>`;
       case '/sl-popover':
         return html`<page-popover></page-popover>`;
       case '/sl-tooltip':
@@ -199,7 +204,9 @@ export class App extends ScopedElementsMixin(LitElement) {
             )}
           </ul>
         </nav>
-        <main id="main" class="content">${this._renderPage()}</main>
+        <main id="main" class="content" tabindex="-1">
+          ${this._renderPage()}
+        </main>
       </div>
     `;
   }
