@@ -1,0 +1,154 @@
+# Issue Priority Report — sl-design-system/components
+
+## 1. Executive summary
+
+- **576 open issues** across the repository; **124 (22%)** are accessibility-related — the single largest risk category
+- **Accessibility gaps in stable components** (Select, Accordion, Button, Form, Dialog) pose the greatest immediate risk since these are in production use across multiple teams
+- **Select (stable)** is the most frequently cited stable component in high-priority issues, with contrast, labelling, focus management, and scrollbar interaction bugs
+- **Grid component** has numerous open issues (selection, grouping, basics) but is **not in the component status reference table** — many Grid issues reference stable components (Select, Accordion, Button) used within Grid
+- **Tooltip (stable)** has a confirmed behavioral bug ([#2969](https://github.com/sl-design-system/components/issues/2969)) — it does not dismiss on mouse leave, causing visual clutter in production
+- **Combobox** (draft) and **Tag** (preview) have deeply investigated screen-reader interaction issues that block accessible multi-select patterns
+- Only **5 issues** carry the `bug` label, suggesting significant under-labelling — many issues described as bugs lack the label
+- **Form validation** ([#1989](https://github.com/sl-design-system/components/issues/1989)) is a high-impact enhancement requested by a team with 60+ forms, affecting developer experience at scale
+
+## 2. Top issues to address first
+
+| Rank | Issue | Title | Component | Status | Priority | Why it matters | Recommended next step |
+|------|------:|-------|-----------|--------|----------|----------------|-----------------------|
+| 1 | [#2705](https://github.com/sl-design-system/components/issues/2705) | Select — Low Contrast Indicator in Keyboard Navigation | Select | stable | Critical | Focus indicator contrast ratio 1.1:1 (needs 3:1 minimum); fails WCAG 2.4.7. Design done in Figma, awaiting code implementation. Milestoned, 3 comments. | Implement the updated Figma design in code; this is the final remaining task. |
+| 2 | [#3104](https://github.com/sl-design-system/components/issues/3104) | Select — Some select components do not have visible label | Select | stable | Critical | Missing visible labels violate WCAG 3.3.2 (Labels or Instructions). Affects documentation and Storybook stories. Already assigned. | Update documentation and Storybook variants to include visible labels; add guidance for the no-label variant. |
+| 3 | [#3150](https://github.com/sl-design-system/components/issues/3150) | sl-select dropdown closes when clicking scrollbar inside modal dialog | Dialog | stable | Critical | Production bug: users cannot scroll a Select listbox inside a modal dialog. Assigned and labelled `bug`. External team (MyPortal) blocked. | Apply the suggested `mousedown preventDefault` fix on the listbox within dialog context. |
+| 4 | [#2896](https://github.com/sl-design-system/components/issues/2896) | Grid Selection — Missing selected state for single select | Select | stable | Critical | Single-select rows communicate nothing to assistive technology users upon activation. Breaks screen-reader usability entirely. | Add `aria-selected` or equivalent role/state to single-select row buttons. |
+| 5 | [#3013](https://github.com/sl-design-system/components/issues/3013) | Avatar — Badge without `role` specified | Avatar | stable | High | Badges in Avatar Sizes variant use `aria-label` without a valid role, making it inaccessible. Has a clear proposed fix. | Add `role="text"` (or appropriate role) to badge elements within Avatar. |
+| 6 | [#3154](https://github.com/sl-design-system/components/issues/3154) | Accordion — NVDA announces two buttons as one in browse mode | Accordion | stable | High | Screen reader browse mode merges two separate buttons into one announcement, confusing NVDA users. | Debug the DOM structure causing merged announcements; consider separator elements. |
+| 7 | [#3155](https://github.com/sl-design-system/components/issues/3155) | Accordion — VoiceOver announces "empty group" in Toggle Externally | Accordion | stable | High | VoiceOver reveals an empty group landmark, confusing macOS/iOS users. Tagged as Snack (quick fix candidate). | Investigate the group role container and ensure it has content or is hidden when empty. |
+| 8 | [#3153](https://github.com/sl-design-system/components/issues/3153) | Accordion — Disabled items not announced as disabled | Accordion | stable | High | Disabled accordion items are not announced as 'disabled' or 'dimmed' to assistive technology. Tagged as Snack. | Add `aria-disabled="true"` to disabled accordion item headers. |
+| 9 | [#2969](https://github.com/sl-design-system/components/issues/2969) | Tooltip — Does not disappear when mouse leaves | Tooltip | stable | High | Tooltip remains visible after mouse-out, obscuring content behind it. 3 comments, assigned. Reported by Max Online product team. | Fix the dismiss logic to close on `mouseleave` from both trigger and tooltip. |
+| 10 | [#2630](https://github.com/sl-design-system/components/issues/2630) | Form Controls — Clear Button Pattern | Form | stable | High | Inconsistent clear-button behavior across form controls (Text Field has one; Date/Time fields don't). Accessibility and UX pattern issue. Assigned. | Complete the investigation, define the pattern, and implement consistently. |
+| 11 | [#2884](https://github.com/sl-design-system/components/issues/2884) | Grid Selection — Keyboard focus resets to table start on selection | Select | stable | High | Selecting or deselecting a row via keyboard resets focus to the beginning of the table. Severe keyboard usability issue. | Preserve focus position after selection state changes. |
+| 12 | [#2881](https://github.com/sl-design-system/components/issues/2881) | Grid Basic — Menu button variant has empty table header | Button | stable | High | An empty `<th>` for the menu-button column provides no context to screen readers. | Add visually-hidden header text or `aria-label` to the column header. |
+| 13 | [#3159](https://github.com/sl-design-system/components/issues/3159) | Dialog — Close button not responsive on mobile | Dialog | stable | High | Close button overlaps the primary action button on mobile viewports. Reported by a core maintainer. | Apply responsive hiding or repositioning of the close button when the mobile media query activates. |
+| 14 | [#2869](https://github.com/sl-design-system/components/issues/2869) | Tag list — Interaction unclear for assistive technology users | Tag | preview | High | Tag list uses arrow-key navigation within a non-interactive `list` role, confusing screen readers. Has milestone (Combobox: preview). | Add `aria-describedby` instructions or consider refactoring to Layout Grid pattern per WAI-APG. |
+| 15 | [#2868](https://github.com/sl-design-system/components/issues/2868) | Tag — Missing button role and native interactions | Tag | preview | High | Removable/overflow tags lack proper roles; mobile screen-reader users cannot delete items. Has milestone. | Add `role="button"` and enable activation via click/Enter/Space in addition to Backspace/Delete. |
+| 16 | [#2861](https://github.com/sl-design-system/components/issues/2861) | Combobox — Tag list inaccessible with screen readers | Combobox | draft | High | Multi-select combobox tag-list interaction is broken across NVDA, VoiceOver, and TalkBack. Extensively documented. | Discuss the interaction model; consider hiding tag-list arrow-key navigation from AT while preserving listbox deselection. |
+| 17 | [#1606](https://github.com/sl-design-system/components/issues/1606) | Documentation — Rename tabs on detail pages | Tabs | stable | High | Developers cannot find technical information; reorganization proposed but stalled since Oct 2024. 1 comment. | Finalize wireframes for the proposed tab reorganization and begin development. |
+| 18 | [#2500](https://github.com/sl-design-system/components/issues/2500) | Grid Basics — Accessibility audit | none | none | High | Umbrella a11y audit for Grid basics with 8 comments, assigned, and linked to a milestone. Multiple child issues already filed. | Continue audit; track and resolve child issues systematically. |
+| 19 | [#2889](https://github.com/sl-design-system/components/issues/2889) | Grid Basics — Badge not rendering properly on initial load | Badge | stable | High | Badges in Grid render unstyled on first load (lifecycle/timing bug). 5 comments. Has milestone. | Investigate component registration timing and ensure Badge styles are loaded before first Grid render. |
+| 20 | [#1989](https://github.com/sl-design-system/components/issues/1989) | Form — Add `reportValidity` API; no error on untouched controls | Form | stable | Medium | Team with 60+ forms needs property-based `reportValidity` and dirty/touched state support. 3 comments. | Add a `reportValidity` property to `sl-form` and support untouched-control suppression. |
+
+## 3. Thematic clusters
+
+### Accessibility — Select & Grid interactions
+- **Issues**: [#2705](https://github.com/sl-design-system/components/issues/2705), [#3104](https://github.com/sl-design-system/components/issues/3104), [#2896](https://github.com/sl-design-system/components/issues/2896), [#2884](https://github.com/sl-design-system/components/issues/2884), [#2883](https://github.com/sl-design-system/components/issues/2883), [#3017](https://github.com/sl-design-system/components/issues/3017), [#3137](https://github.com/sl-design-system/components/issues/3137), [#2799](https://github.com/sl-design-system/components/issues/2799), [#2500](https://github.com/sl-design-system/components/issues/2500)
+- **Common pattern**: Select within Grid contexts has recurring contrast, focus management, labelling, and state-communication failures
+- **Why it matters**: Select is stable and Grid is moving toward preview; these issues block accessible data-table patterns used by multiple product teams
+- **Address first**: [#2705](https://github.com/sl-design-system/components/issues/2705) (contrast — design done, code needed) and [#2896](https://github.com/sl-design-system/components/issues/2896) (missing selected state)
+
+### Accessibility — Accordion
+- **Issues**: [#3154](https://github.com/sl-design-system/components/issues/3154), [#3155](https://github.com/sl-design-system/components/issues/3155), [#3153](https://github.com/sl-design-system/components/issues/3153), [#2883](https://github.com/sl-design-system/components/issues/2883)
+- **Common pattern**: Screen reader announcements (NVDA browse mode, VoiceOver "empty group", disabled state) are all broken in Accordion — a stable, widely-used component
+- **Why it matters**: Accordion is a fundamental layout component; these issues affect every page using expandable sections
+- **Address first**: [#3153](https://github.com/sl-design-system/components/issues/3153) (disabled state — tagged as Snack/quick fix)
+
+### Accessibility — Tag & Combobox multi-select
+- **Issues**: [#2869](https://github.com/sl-design-system/components/issues/2869), [#2868](https://github.com/sl-design-system/components/issues/2868), [#2861](https://github.com/sl-design-system/components/issues/2861), [#2845](https://github.com/sl-design-system/components/issues/2845)
+- **Common pattern**: Tag list and Combobox share an interaction model (arrow-key navigation within a list) that is fundamentally inaccessible across all major screen readers
+- **Why it matters**: Multi-select patterns are table-stakes for forms; Combobox is moving toward preview and these block that transition
+- **Address first**: [#2868](https://github.com/sl-design-system/components/issues/2868) (Tag button role — foundational fix that [#2869](https://github.com/sl-design-system/components/issues/2869) and [#2861](https://github.com/sl-design-system/components/issues/2861) depend on)
+
+### Component correctness / bugs — Stable
+- **Issues**: [#3150](https://github.com/sl-design-system/components/issues/3150), [#2969](https://github.com/sl-design-system/components/issues/2969), [#3159](https://github.com/sl-design-system/components/issues/3159), [#2889](https://github.com/sl-design-system/components/issues/2889), [#3140](https://github.com/sl-design-system/components/issues/3140), [#3054](https://github.com/sl-design-system/components/issues/3054)
+- **Common pattern**: Functional bugs in stable components — Select scrollbar in Dialog, Tooltip not dismissing, Dialog close-button overlap, Badge rendering race condition, Form validation message not displaying
+- **Why it matters**: These are production-facing bugs in stable components; they erode trust in the design system
+- **Address first**: [#3150](https://github.com/sl-design-system/components/issues/3150) (Select scrollbar in Dialog — already assigned, clear fix proposed)
+
+### Component correctness / bugs — Preview & Draft
+- **Issues**: [#2826](https://github.com/sl-design-system/components/issues/2826), [#2608](https://github.com/sl-design-system/components/issues/2608), [#2603](https://github.com/sl-design-system/components/issues/2603), [#2983](https://github.com/sl-design-system/components/issues/2983), [#3058](https://github.com/sl-design-system/components/issues/3058), [#2708](https://github.com/sl-design-system/components/issues/2708)
+- **Common pattern**: Tree focus/keyboard issues, Menu mouse operability, Time Field missing label, Paginator contrast
+- **Why it matters**: These block the preview → stable promotion path for their respective components
+- **Address first**: [#3058](https://github.com/sl-design-system/components/issues/3058) (Time Field missing programmatic label — WCAG failure)
+
+### Shared foundations / tokens / styling
+- **Issues**: [#2710](https://github.com/sl-design-system/components/issues/2710), [#2484](https://github.com/sl-design-system/components/issues/2484), [#2834](https://github.com/sl-design-system/components/issues/2834), [#2833](https://github.com/sl-design-system/components/issues/2833), [#2207](https://github.com/sl-design-system/components/issues/2207)
+- **Common pattern**: Scaling definitions for typography/icons, focus-ring colors on inverted backgrounds, new theme requests, font-family guidelines
+- **Why it matters**: Token and scaling decisions cascade to every component; getting them wrong creates systemic issues
+- **Address first**: [#2710](https://github.com/sl-design-system/components/issues/2710) (Scaling definitions) and [#2484](https://github.com/sl-design-system/components/issues/2484) (focus ring on inverted backgrounds — accessibility critical)
+
+### Documentation / developer experience
+- **Issues**: [#1606](https://github.com/sl-design-system/components/issues/1606), [#2590](https://github.com/sl-design-system/components/issues/2590), [#2581](https://github.com/sl-design-system/components/issues/2581), [#2485](https://github.com/sl-design-system/components/issues/2485), [#2943](https://github.com/sl-design-system/components/issues/2943), [#2633](https://github.com/sl-design-system/components/issues/2633)
+- **Common pattern**: Documentation pages are hard to navigate for developers, component status docs outdated, accessibility information insufficient, Storybook examples need improvement
+- **Why it matters**: Poor documentation slows adoption and leads to incorrect usage, which in turn creates accessibility issues downstream
+- **Address first**: [#1606](https://github.com/sl-design-system/components/issues/1606) (tab reorganization — stalled since Oct 2024, highest impact)
+
+### Release / maintenance risk
+- **Issues**: [#138](https://github.com/sl-design-system/components/issues/138), [#1431](https://github.com/sl-design-system/components/issues/1431), [#1471](https://github.com/sl-design-system/components/issues/1471), [#2915](https://github.com/sl-design-system/components/issues/2915), [#3157](https://github.com/sl-design-system/components/issues/3157)
+- **Common pattern**: Long-standing component requests (Snackbar since Jan 2023, Status Light since Aug 2024), naming issues (`Error` → `SlError`), process improvements
+- **Why it matters**: Undelivered requests erode stakeholder confidence; naming inconsistencies create integration friction
+- **Address first**: [#2915](https://github.com/sl-design-system/components/issues/2915) (Rename Error to SlError — breaking change that should be planned for a major release)
+
+## 4. Immediate actions
+
+1. **Fix Select focus indicator contrast ([#2705](https://github.com/sl-design-system/components/issues/2705))**
+   - Why now: Design is finalized in Figma; only code implementation remains. WCAG failure at 1.1:1 contrast on a stable component.
+   - Issues covered: [#2705](https://github.com/sl-design-system/components/issues/2705)
+
+2. **Resolve Select-in-Dialog scrollbar bug ([#3150](https://github.com/sl-design-system/components/issues/3150))**
+   - Why now: Production bug with a clear proposed fix, already assigned. External team (MyPortal) blocked.
+   - Issues covered: [#3150](https://github.com/sl-design-system/components/issues/3150)
+
+3. **Fix Accordion screen-reader announcements ([#3153](https://github.com/sl-design-system/components/issues/3153), [#3154](https://github.com/sl-design-system/components/issues/3154), [#3155](https://github.com/sl-design-system/components/issues/3155))**
+   - Why now: Three related a11y issues in a stable component — two tagged as Snack (quick fix). Can be batched in one PR.
+   - Issues covered: [#3153](https://github.com/sl-design-system/components/issues/3153), [#3154](https://github.com/sl-design-system/components/issues/3154), [#3155](https://github.com/sl-design-system/components/issues/3155)
+
+4. **Fix Tooltip dismiss behavior ([#2969](https://github.com/sl-design-system/components/issues/2969))**
+   - Why now: Actively blocking a product team (Max Online); tooltip obscures dashboard content. Already assigned.
+   - Issues covered: [#2969](https://github.com/sl-design-system/components/issues/2969)
+
+5. **Add button role to interactive Tags ([#2868](https://github.com/sl-design-system/components/issues/2868))**
+   - Why now: Foundational fix that unblocks [#2869](https://github.com/sl-design-system/components/issues/2869) (tag list interaction) and [#2861](https://github.com/sl-design-system/components/issues/2861) (combobox screen reader access). Milestone is Combobox preview.
+   - Issues covered: [#2868](https://github.com/sl-design-system/components/issues/2868), partially [#2869](https://github.com/sl-design-system/components/issues/2869), [#2861](https://github.com/sl-design-system/components/issues/2861)
+
+## 5. Quick wins
+
+1. **[#3153](https://github.com/sl-design-system/components/issues/3153) — Accordion disabled items not announced as disabled**
+   - Why quick win: Adding `aria-disabled="true"` to disabled accordion headers is a minimal code change. Tagged 🍎🍔🍦Snack.
+   - Expected benefit: Screen-reader users immediately understand which items are interactive.
+
+2. **[#3095](https://github.com/sl-design-system/components/issues/3095) — Avatar "picture" readable by screen readers**
+   - Why quick win: Decorative images should have `aria-hidden="true"` or empty `alt`. Tagged 🍎🍔🍦Snack.
+   - Expected benefit: Removes noise for screen-reader users browsing Avatar components.
+
+3. **[#3016](https://github.com/sl-design-system/components/issues/3016) — Switch custom icons missing labels**
+   - Why quick win: Adding `aria-label` to custom-icon switch variants. Tagged 🍎🍔🍦Snack.
+   - Expected benefit: Screen-reader users can distinguish between switch options.
+
+4. **[#3035](https://github.com/sl-design-system/components/issues/3035) — Tooltip directive references non-existing tooltip ID**
+   - Why quick win: Fix an incorrect `aria-describedby` ID reference in a Storybook variant. Straightforward markup correction.
+   - Expected benefit: Removes a broken ARIA reference that confuses assistive technology.
+
+5. **[#3155](https://github.com/sl-design-system/components/issues/3155) — Accordion VoiceOver "empty group" announcement**
+   - Why quick win: Empty group container can be conditionally hidden or given appropriate content. Tagged 🍎🍔🍦Snack.
+   - Expected benefit: Eliminates confusing VoiceOver announcement for macOS/iOS users.
+
+## 6. Neglected risks
+
+| Issue | Age | Why it's a risk |
+|-------|-----|-----------------|
+| [#138](https://github.com/sl-design-system/components/issues/138) — Snackbar module | Open since Jan 2023 (3+ years) | 7 comments, no assignee, no milestone. Notification/toast pattern is a core UI need. Lack of an official component forces ad-hoc implementations that may not be accessible. |
+| [#1431](https://github.com/sl-design-system/components/issues/1431) — Status Light setup | Open since Aug 2024 (1.5+ years) | 8 comments from multiple teams (Magister, MAX, TEAS, Sesame). High demand, zero progress. Teams may build their own inconsistent implementations. |
+| [#1606](https://github.com/sl-design-system/components/issues/1606) — Documentation tab reorganization | Open since Oct 2024 (1.5+ years) | Developers struggle to find technical info. Wireframes never finalized. Directly impacts adoption and correct usage of components. |
+| [#1471](https://github.com/sl-design-system/components/issues/1471) — Answer Choice setup | Open since Aug 2024 | 3 comments, no assignee. Component request with no movement. |
+| [#1585](https://github.com/sl-design-system/components/issues/1585) — Toolbar setup | Open since Oct 2024 | 2 comments, no assignee. Toolbar is a foundational pattern needed for accessible keyboard navigation in complex UIs. |
+| [#1775](https://github.com/sl-design-system/components/issues/1775) — Chromatic a11y testing tool | Open since Feb 2025 | Would provide automated accessibility regression detection. No automated a11y testing increases the risk of shipping new a11y bugs. |
+| [#2147](https://github.com/sl-design-system/components/issues/2147) — Form Components a11y | Open since Jul 2025 | Broad accessibility issue for all form components. No labels, no comments, no assignee. Likely represents a significant gap. |
+
+## 7. Data gaps and caveats
+
+- **Under-labelling**: Only 5 of 576 issues have the `bug` label, yet many describe clear bugs (e.g., [#2969](https://github.com/sl-design-system/components/issues/2969) tooltip not dismissing, [#2889](https://github.com/sl-design-system/components/issues/2889) badge not rendering). Issue type metadata (`Bug`, `Feature`, `Chore`) is more commonly used than labels, but is not consistently applied.
+- **Grid, Calendar, and Date Field are not in the component status reference table**: These components appear frequently in the backlog but have no defined maturity status. All are marked as `none/none` in this report. Grid milestones reference "preview stage."
+- **No priority or severity labels**: The repository does not use priority or severity labels, so all prioritization is inferred from content, comments, and context.
+- **Milestone coverage is sparse**: Most issues lack milestones. Where milestones exist (e.g., "Paginator: preview stage", "Combobox: preview stage", "Grid - basics: preview stage"), they provide useful signals about planned work.
+- **Assignee coverage**: Many high-priority issues lack assignees, making it unclear whether work is planned or in progress.
+- **Linked PR data**: No linked PRs were systematically checked; some issues may have active work not reflected in this report.
+- **Component mapping is heuristic**: Components were identified from issue titles using keyword matching. Some issues may match multiple components (e.g., "[Menu button]" could match "button" or "menu"). Manual review of borderline cases is recommended.
+- **Confidence level**: High confidence for the top 10 issues (clear evidence of impact and severity). Medium confidence for positions 11–20 where relative ordering depends on factors not fully observable from issue metadata alone.
