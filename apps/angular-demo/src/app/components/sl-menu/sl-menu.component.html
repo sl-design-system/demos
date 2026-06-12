@@ -1,0 +1,10 @@
+<sl-menu-button>
+  <span slot="button">Menu</span>
+  <sl-menu-item (click)="openBlankPage()">Test 1</sl-menu-item>
+  <sl-menu-item>
+    Test 2
+    <sl-menu slot="submenu">
+      <sl-menu-item (click)="openBlankPage()">Test 3</sl-menu-item>
+    </sl-menu>
+  </sl-menu-item>
+</sl-menu-button>

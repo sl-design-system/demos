@@ -5,43 +5,190 @@ export const routes: Routes = [
   {
     path: 'sl-accordion',
     loadComponent: () =>
-      import('./components/sl-accordion.component').then(
+      import('./components/sl-accordion/sl-accordion.component').then(
         (m) => m.AccordionPageComponent,
       ),
   },
   {
     path: 'sl-breadcrumbs',
     loadComponent: () =>
-      import('./components/sl-breadcrumbs.component').then(
+      import('./components/sl-breadcrumbs/sl-breadcrumbs.component').then(
         (m) => m.BreadcrumbsPageComponent,
       ),
   },
   {
     path: 'sl-button',
     loadComponent: () =>
-      import('./components/sl-button.component').then(
+      import('./components/sl-button/sl-button.component').then(
         (m) => m.ButtonPageComponent,
       ),
   },
   {
     path: 'sl-button-bar',
     loadComponent: () =>
-      import('./components/sl-button-bar.component').then(
+      import('./components/sl-button-bar/sl-button-bar.component').then(
         (m) => m.ButtonBarPageComponent,
       ),
   },
   {
     path: 'sl-callout',
     loadComponent: () =>
-      import('./components/sl-callout.component').then(
+      import('./components/sl-callout/sl-callout.component').then(
         (m) => m.CalloutPageComponent,
+      ),
+  },
+  {
+    path: 'sl-card',
+    loadComponent: () =>
+      import('./components/sl-card/sl-card.component').then(
+        (m) => m.CardPageComponent,
       ),
   },
   {
     path: 'sl-checkbox',
     loadComponent: () =>
-      import('./components/sl-checkbox.component').then(
+      import('./components/sl-checkbox/sl-checkbox.component').then(
         (m) => m.CheckboxPageComponent,
+      ),
+  },
+  {
+    path: 'sl-combobox',
+    loadComponent: () =>
+      import('./components/sl-combobox/sl-combobox.component').then(
+        (m) => m.ComboboxPageComponent,
+      ),
+  },
+  {
+    path: 'sl-dialog',
+    loadComponent: () =>
+      import('./components/sl-dialog/sl-dialog.component').then(
+        (m) => m.DialogPageComponent,
+      ),
+  },
+  {
+    path: 'sl-dialog-service',
+    loadComponent: () =>
+      import('./components/sl-dialog-service/sl-dialog-service.component').then(
+        (m) => m.DialogServicePageComponent,
+      ),
+  },
+  {
+    path: 'sl-form-field',
+    loadComponent: () =>
+      import('./components/sl-form-field/sl-form-field.component').then(
+        (m) => m.FormFieldPageComponent,
+      ),
+  },
+  {
+    path: 'sl-form-reactive',
+    loadComponent: () =>
+      import('./components/sl-form-reactive/sl-form-reactive.component').then(
+        (m) => m.FormReactivePageComponent,
+      ),
+  },
+  {
+    path: 'sl-form-template',
+    loadComponent: () =>
+      import('./components/sl-form-template/sl-form-template.component').then(
+        (m) => m.FormTemplatePageComponent,
+      ),
+  },
+  {
+    path: 'sl-inline-message',
+    loadComponent: () =>
+      import('./components/sl-inline-message/sl-inline-message.component').then(
+        (m) => m.InlineMessagePageComponent,
+      ),
+  },
+  {
+    path: 'sl-number-field',
+    loadComponent: () =>
+      import('./components/sl-number-field/sl-number-field.component').then(
+        (m) => m.NumberFieldPageComponent,
+      ),
+  },
+  {
+    path: 'sl-text-area',
+    loadComponent: () =>
+      import('./components/sl-text-area/sl-text-area.component').then(
+        (m) => m.TextAreaPageComponent,
+      ),
+  },
+  {
+    path: 'sl-tab-group',
+    loadComponent: () =>
+      import('./components/sl-tab-group/sl-tab-group.component').then(
+        (m) => m.TabGroupPageComponent,
+      ),
+  },
+  {
+    path: 'sl-menu',
+    loadComponent: () =>
+      import('./components/sl-menu/sl-menu.component').then(
+        (m) => m.MenuPageComponent,
+      ),
+  },
+  {
+    path: 'sl-message-dialog',
+    loadComponent: () =>
+      import('./components/sl-message-dialog/sl-message-dialog.component').then(
+        (m) => m.MessageDialogPageComponent,
+      ),
+  },
+  {
+    path: 'sl-message-dialog-service',
+    loadComponent: () =>
+      import('./components/sl-message-dialog-service/sl-message-dialog-service.component').then(
+        (m) => m.MessageDialogServicePageComponent,
+      ),
+  },
+  {
+    path: 'sl-paginator',
+    loadComponent: () =>
+      import('./components/sl-paginator/sl-paginator.component').then(
+        (m) => m.PaginatorPageComponent,
+      ),
+  },
+  {
+    path: 'sl-select',
+    loadComponent: () =>
+      import('./components/sl-select/sl-select.component').then(
+        (m) => m.SelectPageComponent,
+      ),
+  },
+  {
+    path: 'sl-switch',
+    loadComponent: () =>
+      import('./components/sl-switch/sl-switch.component').then(
+        (m) => m.SwitchPageComponent,
+      ),
+  },
+  {
+    path: 'sl-popover',
+    loadComponent: () =>
+      import('./components/sl-popover/sl-popover.component').then(
+        (m) => m.PopoverPageComponent,
+      ),
+  },
+  {
+    path: 'sl-tooltip',
+    loadComponent: () =>
+      import('./components/sl-tooltip/sl-tooltip.component').then(
+        (m) => m.TooltipPageComponent,
+      ),
+  },
+  {
+    path: 'sl-radio-group-reactive',
+    loadComponent: () =>
+      import('./components/sl-radio-group-reactive/sl-radio-group-reactive.component').then(
+        (m) => m.RadioGroupReactivePageComponent,
+      ),
+  },
+  {
+    path: 'sl-radio-group-template',
+    loadComponent: () =>
+      import('./components/sl-radio-group-template/sl-radio-group-template.component').then(
+        (m) => m.RadioGroupTemplatePageComponent,
       ),
   },
 ];

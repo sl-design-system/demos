@@ -1,0 +1,13 @@
+<sl-form #form [formGroup]="formGroup">
+  <sl-form-field label="Name">
+    <sl-text-field formControlName="name" required></sl-text-field>
+  </sl-form-field>
+
+  <sl-form-field label="I agree">
+    <sl-checkbox formControlName="agreed" required>I agree</sl-checkbox>
+  </sl-form-field>
+
+  <sl-button-bar>
+    <sl-button variant="primary" (click)="onSubmit()">Confirm</sl-button>
+  </sl-button-bar>
+</sl-form>

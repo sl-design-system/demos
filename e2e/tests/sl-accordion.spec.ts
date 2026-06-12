@@ -7,32 +7,25 @@ test.describe('sl-accordion', () => {
 
   test('should expand sl-accordion item', async ({ page }) => {
     const item = page.locator('sl-accordion-item', { hasText: 'Test 1' });
-    const collapsedHeight = await item.evaluate(
-      (el) => el.getBoundingClientRect().height,
-    );
+    const collapsedHeight = (await item.boundingBox())!.height;
 
     await item.click();
     await expect(item).toHaveAttribute('open', '');
 
-    const currentHeight = await item.evaluate(
-      (el) => el.getBoundingClientRect().height,
-    );
-    expect(currentHeight).toBeGreaterThan(collapsedHeight);
+    await expect
+      .poll(async () => (await item.boundingBox())!.height)
+      .toBeGreaterThan(collapsedHeight);
   });
 
   test('should not expand disabled sl-accordion item', async ({ page }) => {
     const item = page.locator('sl-accordion-item', { hasText: 'Test 2' });
-    const collapsedHeight = await item.evaluate(
-      (el) => el.getBoundingClientRect().height,
-    );
+    const collapsedHeight = (await item.boundingBox())!.height;
 
     await expect(item).toHaveAttribute('disabled', '');
     await item.click({ force: true });
     await expect(item).not.toHaveAttribute('open', '');
 
-    const currentHeight = await item.evaluate(
-      (el) => el.getBoundingClientRect().height,
-    );
+    const currentHeight = (await item.boundingBox())!.height;
     expect(currentHeight).toEqual(collapsedHeight);
   });
 });

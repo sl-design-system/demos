@@ -1,20 +1,14 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
 test.describe('sl-breadcrumbs', () => {
-  let newPage: Page;
-
   test.beforeEach(async ({ page }) => {
     await page.goto('/sl-breadcrumbs');
-  });
-
-  test.afterEach(async () => {
-    await newPage?.close();
   });
 
   test('should click the sl-breadcrumbs child item and open a new page', async ({
     page,
   }) => {
-    [newPage] = await Promise.all([
+    const [newPage] = await Promise.all([
       page.context().waitForEvent('page'),
       page.locator('sl-breadcrumbs>a', { hasText: 'Test 1' }).click(),
     ]);
