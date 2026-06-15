@@ -9,6 +9,10 @@ export const router = createRouter({
       component: () => import('./components/sl-accordion/sl-accordion.vue'),
     },
     {
+      path: '/sl-avatar',
+      component: () => import('./components/sl-avatar/sl-avatar.vue'),
+    },
+    {
       path: '/sl-breadcrumbs',
       component: () => import('./components/sl-breadcrumbs/sl-breadcrumbs.vue'),
     },
