@@ -41,6 +41,7 @@ const navCollapsed = ref(false);
 
 const navItems = [
   { path: '/sl-accordion', label: 'sl-accordion' },
+  { path: '/sl-avatar', label: 'sl-avatar' },
   { path: '/sl-breadcrumbs', label: 'sl-breadcrumbs' },
   { path: '/sl-button', label: 'sl-button' },
   { path: '/sl-button-bar', label: 'sl-button-bar' },
