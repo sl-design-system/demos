@@ -37,7 +37,7 @@ test.describe('sl-avatar accessibility', () => {
   });
 
   test('should have correct tab order', async ({ page, browserName }) => {
-    const activeElements = ['Jan Janssen\n            Jan Janssen'] as const;
+    const activeElements = ['Jan Janssen'] as const;
     const nextFocusKey = browserName === 'webkit' ? 'Alt+Tab' : 'Tab';
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
