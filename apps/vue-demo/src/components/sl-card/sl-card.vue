@@ -13,8 +13,8 @@
       <p slot="body">
         Immerse yourself in the vibrant hues of Nyhavn, Copenhagen's iconic
         waterfront. This picturesque scene, adorned with colorful facades and
-        historic ships, invites you to explore the charm of Danish culture against
-        the backdrop of serene canals.
+        historic ships, invites you to explore the charm of Danish culture
+        against the backdrop of serene canals.
       </p>
       <sl-button-bar slot="actions">
         <sl-button variant="primary" @click="openBlankPage">Download</sl-button>

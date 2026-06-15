@@ -32,45 +32,45 @@ Use the reference table below to determine each component's status. Use maturity
 
 ### Component status reference
 
-| Component | Status |
-|---|---|
-| Accordion | stable |
-| Avatar | stable |
-| Badge | stable |
-| Breadcrumbs | stable |
-| Button | stable |
-| Button bar | stable |
-| Callout | preview |
-| Card | stable |
-| Checkbox | stable |
-| Combobox | draft |
-| Dialog | stable |
-| Form | stable |
-| Form field | preview |
-| Icon | stable |
-| Inline message | stable |
-| Menu | preview |
+| Component      | Status  |
+| -------------- | ------- |
+| Accordion      | stable  |
+| Avatar         | stable  |
+| Badge          | stable  |
+| Breadcrumbs    | stable  |
+| Button         | stable  |
+| Button bar     | stable  |
+| Callout        | preview |
+| Card           | stable  |
+| Checkbox       | stable  |
+| Combobox       | draft   |
+| Dialog         | stable  |
+| Form           | stable  |
+| Form field     | preview |
+| Icon           | stable  |
+| Inline message | stable  |
+| Menu           | preview |
 | Message dialog | preview |
-| Number field | preview |
-| Paginator | draft |
-| Panel | draft |
-| Popover | stable |
-| Progress bar | preview |
-| Radio group | stable |
-| Search field | preview |
-| Select | stable |
-| Skeleton | stable |
-| Spinner | stable |
-| Switch | stable |
-| Tabs | stable |
-| Tag | preview |
-| Text area | stable |
-| Text field | stable |
-| Time field | draft |
-| Toggle button | preview |
-| Toggle group | preview |
-| Tooltip | stable |
-| Tree | preview |
+| Number field   | preview |
+| Paginator      | draft   |
+| Panel          | draft   |
+| Popover        | stable  |
+| Progress bar   | preview |
+| Radio group    | stable  |
+| Search field   | preview |
+| Select         | stable  |
+| Skeleton       | stable  |
+| Spinner        | stable  |
+| Switch         | stable  |
+| Tabs           | stable  |
+| Tag            | preview |
+| Text area      | stable  |
+| Text field     | stable  |
+| Time field     | draft   |
+| Toggle button  | preview |
+| Toggle group   | preview |
+| Tooltip        | stable  |
+| Tree           | preview |
 
 ## Component counting rules
 
@@ -79,9 +79,8 @@ Use the reference table below to determine each component's status. Use maturity
 - If component cannot be determined, classify as none and exclude from Top 5 ranking.
 - Do not infer component status outside the provided reference table.
 - For counting:
-   - Currently open = open issues currently in repository for that component.
-   - Sort Top 5 by currently open descending then component name ascending.
-
+  - Currently open = open issues currently in repository for that component.
+  - Sort Top 5 by currently open descending then component name ascending.
 
 ## Scope
 
@@ -181,7 +180,7 @@ Return the report in English and use exactly these sections:
 Provide a table with:
 
 | Rank | Component | Status | Total reported | Currently open | Why this matters now | Representative open issues |
-|------|-----------|--------|----------------|----------------|--------------------|---------------------------|
+| ---- | --------- | ------ | -------------- | -------------- | -------------------- | -------------------------- |
 
 Rules:
 
@@ -269,6 +268,7 @@ Explicitly state:
 ## Save the report
 
 After generating the report, save it as a Markdown file at the workspace root: `issues-priority-report.md`.
+
 - If information is incomplete, say so clearly
 - If two issues are related, mention the relationship
 - If linked PRs suggest work is already in progress, mention that
