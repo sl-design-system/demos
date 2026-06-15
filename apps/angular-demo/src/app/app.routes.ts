@@ -3,6 +3,13 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   { path: '', redirectTo: 'sl-accordion', pathMatch: 'full' },
   {
+    path: 'sl-avatar',
+    loadComponent: () =>
+      import('./components/sl-avatar/sl-avatar.component').then(
+        (m) => m.AvatarPageComponent,
+      ),
+  },
+  {
     path: 'sl-accordion',
     loadComponent: () =>
       import('./components/sl-accordion/sl-accordion.component').then(

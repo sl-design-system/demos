@@ -5,6 +5,7 @@ import {
   type ScopedElementsMap,
 } from '@open-wc/scoped-elements/lit-element.js';
 import { AccordionPage } from '../components/sl-accordion/sl-accordion.js';
+import { AvatarPage } from '../components/sl-avatar/sl-avatar.js';
 import { BreadcrumbsPage } from '../components/sl-breadcrumbs/sl-breadcrumbs.js';
 import { ButtonPage } from '../components/sl-button/sl-button.js';
 import { ButtonBarPage } from '../components/sl-button-bar/sl-button-bar.js';
@@ -31,6 +32,7 @@ import styles from './app.styles.scss.js';
 
 const ROUTES = [
   { path: '/sl-accordion', label: 'sl-accordion' },
+  { path: '/sl-avatar', label: 'sl-avatar' },
   { path: '/sl-breadcrumbs', label: 'sl-breadcrumbs' },
   { path: '/sl-button', label: 'sl-button' },
   { path: '/sl-button-bar', label: 'sl-button-bar' },
@@ -58,6 +60,7 @@ const ROUTES = [
 export class App extends ScopedElementsMixin(LitElement) {
   static scopedElements: ScopedElementsMap = {
     'page-accordion': AccordionPage,
+    'page-avatar': AvatarPage,
     'page-breadcrumbs': BreadcrumbsPage,
     'page-button': ButtonPage,
     'page-button-bar': ButtonBarPage,
@@ -113,6 +116,8 @@ export class App extends ScopedElementsMixin(LitElement) {
     switch (this._currentPath) {
       case '/sl-accordion':
         return html`<page-accordion></page-accordion>`;
+      case '/sl-avatar':
+        return html`<page-avatar></page-avatar>`;
       case '/sl-breadcrumbs':
         return html`<page-breadcrumbs></page-breadcrumbs>`;
       case '/sl-button':
