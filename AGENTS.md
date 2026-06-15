@@ -17,3 +17,8 @@
    - Template-driven forms
    - This requirement applies only to Angular.
    - For Lit, Vue, and Svelte, do not add both form variants unless explicitly requested.
+
+4. In Angular demos, add `CUSTOM_ELEMENTS_SCHEMA` only when necessary:
+   - Include `CUSTOM_ELEMENTS_SCHEMA` only when using raw web components (custom elements) that are NOT wrapped by Angular wrappers from `@sl-design-system/angular`.
+   - Do NOT include it when importing Angular wrapper components, as Angular can validate those elements without the schema.
+   - Example: A component that imports `AvatarComponent` from `@sl-design-system/angular/avatar` does not need `CUSTOM_ELEMENTS_SCHEMA`; a component that uses raw `<sl-breadcrumbs>` with manual `register.js` imports does.
