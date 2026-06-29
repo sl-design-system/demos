@@ -62,6 +62,7 @@
 ## 4. Specific Accessibility Enhancements Made
 
 ### Keyboard Navigation
+
 - Fixed broken arrow-key focus order in Toolbar dropdown menus ([#2958](https://github.com/sl-design-system/components/issues/2958)) — **Toolbar**
 - Fixed incorrect arrow key behavior in Tree when child button has focus ([#2827](https://github.com/sl-design-system/components/issues/2827)) — **Tree**
 - Fixed missing focus return to menu button when closing submenu with Escape ([#2959](https://github.com/sl-design-system/components/issues/2959)) — **Menu**
@@ -72,6 +73,7 @@
 - Improved Date Field keyboard input retaining form values ([#2043](https://github.com/sl-design-system/components/issues/2043)) — **Date Field**
 
 ### ARIA Attributes
+
 - Fixed `aria-rowindex="0"` (invalid) on Grid rows → starts from 1 ([#2880](https://github.com/sl-design-system/components/issues/2880)) — **Grid**
 - Fixed Grid grouping accordions missing `aria-expanded` ([#2883](https://github.com/sl-design-system/components/issues/2883)) — **Grid**
 - Added screen-reader-only text to empty Grid table headers ([#2879](https://github.com/sl-design-system/components/issues/2879), [#2881](https://github.com/sl-design-system/components/issues/2881)) — **Grid**
@@ -89,6 +91,7 @@
 - Fixed Accordion disabled items not announced as disabled/dimmed ([#3153](https://github.com/sl-design-system/components/issues/3153)) — **Accordion**
 
 ### Screen Reader Support
+
 - Fixed Time Field screen reader announcing time as a number ([#2738](https://github.com/sl-design-system/components/issues/2738)) — **Time Field**
 - Fixed Calendar dates being announced twice by NVDA ([#2989](https://github.com/sl-design-system/components/issues/2989)) — **Calendar**
 - Fixed Calendar missing min/max date range information for screen readers ([#2990](https://github.com/sl-design-system/components/issues/2990)) — **Calendar**
@@ -110,11 +113,13 @@
 - Fixed Toolbar tooltips/icon-only buttons lacking accessible names ([#2998](https://github.com/sl-design-system/components/issues/2998)) — **Toolbar**
 
 ### Semantic HTML
+
 - Updated Inline Message title to render as a heading element ([#2847](https://github.com/sl-design-system/components/issues/2847)) — **Inline Message**
 - Fixed Callout examples to use `<a>` links instead of `<sl-button fill="link">` ([#2870](https://github.com/sl-design-system/components/issues/2870)) — **Callout**
 - Fixed Toolbar example using only 1 button (ARIA toolbar role requires ≥3 elements) ([#2960](https://github.com/sl-design-system/components/issues/2960)) — **Toolbar**
 
 ### Color Contrast
+
 - Fixed Calendar days-of-week and week numbers failing contrast ([#2986](https://github.com/sl-design-system/components/issues/2986)) — **Calendar**
 - Fixed Calendar event indicators with low contrast in light and dark modes ([#2987](https://github.com/sl-design-system/components/issues/2987)) — **Calendar**
 - Fixed Select keyboard focus indicator at only 1.1:1 contrast ([#2705](https://github.com/sl-design-system/components/issues/2705)) — **Select**
@@ -125,6 +130,7 @@
 - Fixed Toolbar inverted ghost variant showing clipped/low-contrast focus indicator ([#3169](https://github.com/sl-design-system/components/issues/3169)) — **Toolbar**
 
 ### Automated Testing Infrastructure
+
 - Completed axe-core automated a11y audit of Storybook components ([#3003](https://github.com/sl-design-system/components/issues/3003))
 - Fixed false-positive issues in Storybook a11y addon ([#3036](https://github.com/sl-design-system/components/issues/3036))
 - Established accessibility testing tooling for the documentation website ([#709](https://github.com/sl-design-system/components/issues/709))
@@ -136,6 +142,7 @@
 ## 5. Accessibility Impact Themes
 
 ### Theme 1: Keyboard Usability
+
 **What improved:** Comprehensive fixes to keyboard navigation across Toolbar, Tree, Menu, Calendar, Date Field, Combobox, and Button (Safari). Users relying solely on a keyboard can now navigate all these components fully and predictably.
 
 **Evidence:** [#2958](https://github.com/sl-design-system/components/issues/2958), [#2827](https://github.com/sl-design-system/components/issues/2827), [#2959](https://github.com/sl-design-system/components/issues/2959), [#2937](https://github.com/sl-design-system/components/issues/2937), [#3053](https://github.com/sl-design-system/components/issues/3053), [#3186](https://github.com/sl-design-system/components/issues/3186)
@@ -145,6 +152,7 @@
 ---
 
 ### Theme 2: Screen Reader Support
+
 **What improved:** A large number of issues affecting how NVDA and VoiceOver interpret and announce component state, content, and structure were resolved across Calendar, Select, Combobox, Time Field, Toolbar, Panel, Toggle Button, Menu, and more.
 
 **Evidence:** [#2738](https://github.com/sl-design-system/components/issues/2738), [#2989](https://github.com/sl-design-system/components/issues/2989), [#3097](https://github.com/sl-design-system/components/issues/3097), [#2743](https://github.com/sl-design-system/components/issues/2743), [#3058](https://github.com/sl-design-system/components/issues/3058), [#3028](https://github.com/sl-design-system/components/issues/3028), [#3045](https://github.com/sl-design-system/components/issues/3045)
@@ -154,6 +162,7 @@
 ---
 
 ### Theme 3: ARIA Correctness
+
 **What improved:** Incorrect or missing ARIA attributes fixed across Grid, Combobox, Menu, Tag List, Toggle Button, Toolbar, Calendar, Accordion, Panel, and Number Field — covering `aria-rowindex`, `aria-expanded`, `aria-selected`, `aria-checked`, `aria-labelledby`, `aria-disabled`, and `role`.
 
 **Evidence:** [#2880](https://github.com/sl-design-system/components/issues/2880), [#2883](https://github.com/sl-design-system/components/issues/2883), [#3006](https://github.com/sl-design-system/components/issues/3006), [#3007](https://github.com/sl-design-system/components/issues/3007), [#2922](https://github.com/sl-design-system/components/issues/2922), [#2994](https://github.com/sl-design-system/components/issues/2994), [#3031](https://github.com/sl-design-system/components/issues/3031)
@@ -163,6 +172,7 @@
 ---
 
 ### Theme 4: Color Contrast & Visual Clarity
+
 **What improved:** Multiple dark-mode and light-mode contrast failures resolved across Calendar, Toolbar, Menu, Select, and form components. Focus indicators improved.
 
 **Evidence:** [#2986](https://github.com/sl-design-system/components/issues/2986), [#2987](https://github.com/sl-design-system/components/issues/2987), [#2705](https://github.com/sl-design-system/components/issues/2705), [#2962](https://github.com/sl-design-system/components/issues/2962), [#3024](https://github.com/sl-design-system/components/issues/3024), [#3025](https://github.com/sl-design-system/components/issues/3025), [#3027](https://github.com/sl-design-system/components/issues/3027)
@@ -172,6 +182,7 @@
 ---
 
 ### Theme 5: Accessibility Testing Infrastructure
+
 **What improved:** Automated accessibility testing established in Storybook (axe-core), e2e + a11y tests rolled out for 6 components in Demos app, false positives fixed, screen reader automation researched.
 
 **Evidence:** [#3003](https://github.com/sl-design-system/components/issues/3003), [#3036](https://github.com/sl-design-system/components/issues/3036), [#709](https://github.com/sl-design-system/components/issues/709), [#3295](https://github.com/sl-design-system/components/issues/3295), [#3371](https://github.com/sl-design-system/components/issues/3371)–[#3434](https://github.com/sl-design-system/components/issues/3434)
@@ -181,6 +192,7 @@
 ---
 
 ### Theme 6: Semantic Structure & Documentation Quality
+
 **What improved:** Semantic HTML corrected (headings, links). Documentation and Storybook examples updated to show best practices.
 
 **Evidence:** [#2847](https://github.com/sl-design-system/components/issues/2847), [#2870](https://github.com/sl-design-system/components/issues/2870), [#3016](https://github.com/sl-design-system/components/issues/3016), [#3017](https://github.com/sl-design-system/components/issues/3017), [#3104](https://github.com/sl-design-system/components/issues/3104), [#3110](https://github.com/sl-design-system/components/issues/3110)
@@ -203,28 +215,28 @@
 ## 7. Suggested Next Steps
 
 1. **Expand automated a11y test coverage to all components in Demos app**
-   - *Action:* Continue rolling out e2e + axe-core tests for remaining untested components.
-   - *Expected outcome:* Regressions caught before release; sustained WCAG compliance without manual effort.
-   - *Relevant context:* [#3371](https://github.com/sl-design-system/components/issues/3371)–[#3434](https://github.com/sl-design-system/components/issues/3434)
+   - _Action:_ Continue rolling out e2e + axe-core tests for remaining untested components.
+   - _Expected outcome:_ Regressions caught before release; sustained WCAG compliance without manual effort.
+   - _Relevant context:_ [#3371](https://github.com/sl-design-system/components/issues/3371)–[#3434](https://github.com/sl-design-system/components/issues/3434)
 
 2. **Complete open accessibility milestones for Combobox and Grid before stable release**
-   - *Action:* Resolve all accessibility issues in [Combobox milestone](https://github.com/sl-design-system/components/milestone/25) and [Grid milestone](https://github.com/sl-design-system/components/milestone/23) before marking stable.
-   - *Expected outcome:* Components ship only when meeting minimum WCAG AA compliance, reducing risk.
-   - *Relevant issues:* [#2742](https://github.com/sl-design-system/components/issues/2742), [#2743](https://github.com/sl-design-system/components/issues/2743), [#2879](https://github.com/sl-design-system/components/issues/2879)
+   - _Action:_ Resolve all accessibility issues in [Combobox milestone](https://github.com/sl-design-system/components/milestone/25) and [Grid milestone](https://github.com/sl-design-system/components/milestone/23) before marking stable.
+   - _Expected outcome:_ Components ship only when meeting minimum WCAG AA compliance, reducing risk.
+   - _Relevant issues:_ [#2742](https://github.com/sl-design-system/components/issues/2742), [#2743](https://github.com/sl-design-system/components/issues/2743), [#2879](https://github.com/sl-design-system/components/issues/2879)
 
 3. **Pilot screen reader automation with guidepup**
-   - *Action:* Based on research from [#3295](https://github.com/sl-design-system/components/issues/3295), implement guidepup for 2–3 critical components in the automated test suite.
-   - *Expected outcome:* Detect screen reader regressions automatically, reducing reliance on manual testing.
+   - _Action:_ Based on research from [#3295](https://github.com/sl-design-system/components/issues/3295), implement guidepup for 2–3 critical components in the automated test suite.
+   - _Expected outcome:_ Detect screen reader regressions automatically, reducing reliance on manual testing.
 
 4. **Establish cross-browser (Safari) accessibility testing process**
-   - *Action:* Add Safari keyboard navigation testing to the accessibility checklist for all component audits.
-   - *Expected outcome:* Prevent Safari-specific failures from reaching production.
-   - *Relevant context:* [#3186](https://github.com/sl-design-system/components/issues/3186)
+   - _Action:_ Add Safari keyboard navigation testing to the accessibility checklist for all component audits.
+   - _Expected outcome:_ Prevent Safari-specific failures from reaching production.
+   - _Relevant context:_ [#3186](https://github.com/sl-design-system/components/issues/3186)
 
 5. **Conduct accessibility audits for all components currently in preview stage**
-   - *Action:* Schedule formal a11y audits for components added in 2026 that have not yet been formally audited, following the established audit pattern.
-   - *Expected outcome:* All components verified against WCAG 2.1 AA before being recommended for production use.
-   - *Relevant context:* Audit pattern established via [#2568](https://github.com/sl-design-system/components/issues/2568), [#2515](https://github.com/sl-design-system/components/issues/2515), [#2748](https://github.com/sl-design-system/components/issues/2748)
+   - _Action:_ Schedule formal a11y audits for components added in 2026 that have not yet been formally audited, following the established audit pattern.
+   - _Expected outcome:_ All components verified against WCAG 2.1 AA before being recommended for production use.
+   - _Relevant context:_ Audit pattern established via [#2568](https://github.com/sl-design-system/components/issues/2568), [#2515](https://github.com/sl-design-system/components/issues/2515), [#2748](https://github.com/sl-design-system/components/issues/2748)
 
 ---
 

@@ -78,6 +78,7 @@ Return the report in English and use exactly these sections:
 Group findings into 3-6 themes (for example: keyboard usability, screen reader support, focus behavior, semantic improvements, documentation quality).
 
 For each theme provide:
+
 - what improved
 - evidence (issue/PR links)
 - why it matters for users and product quality
