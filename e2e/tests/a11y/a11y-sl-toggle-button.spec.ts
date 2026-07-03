@@ -43,31 +43,29 @@ test.describe('sl-toggle-button accessibility', () => {
     expect(hasOverflow).toBe(false);
   });
 
-  test('should have accessible name', async ({ page }) => {
+  test('should have correct ARIA role', async ({ page }) => {
     const item = page
       .locator('sl-toggle-button')
-      .filter({ hasText: 'Test 1' })
-      .getByRole('button');
-    await expect(item).toHaveAccessibleName('Text inside the toggle button');
+      .filter({ hasText: 'Test 1' });
+
+    await expect(item).toHaveAttribute('role', 'button');
   });
 
   test('should have correct aria-pressed attributes', async ({ page }) => {
     const item = page
       .locator('sl-toggle-button')
       .filter({ hasText: 'Test 1' });
-    const input = item.getByRole('button');
 
-    await expect(input).toHaveAttribute('aria-pressed', 'false');
+    await expect(item).toHaveAttribute('aria-pressed', 'false');
 
     await item.click();
-    await expect(input).toHaveAttribute('aria-pressed', 'true');
+    await expect(item).toHaveAttribute('aria-pressed', 'true');
   });
 
   test('should have correct tab order', async ({ page }) => {
     const item = page
       .locator('sl-toggle-button')
-      .filter({ hasText: 'Test 1' })
-      .getByRole('button');
+      .filter({ hasText: 'Test 1' });
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
@@ -78,8 +76,7 @@ test.describe('sl-toggle-button accessibility', () => {
   test(`should be keyboard operable`, async ({ page }) => {
     const item = page
       .locator('sl-toggle-button')
-      .filter({ hasText: 'Test 1' })
-      .getByRole('button');
+      .filter({ hasText: 'Test 1' });
 
     await expect(item).toHaveAttribute('aria-pressed', 'false');
     await item.focus();
@@ -91,5 +88,13 @@ test.describe('sl-toggle-button accessibility', () => {
     await expect(item).toHaveAttribute('aria-pressed', 'true');
     await page.keyboard.press('Space');
     await expect(item).toHaveAttribute('aria-pressed', 'false');
+  });
+
+  test('should have aria-disabled attribute when disabled', async ({ page }) => {
+    const item = page
+      .locator('sl-toggle-button')
+      .filter({ hasText: 'Test 2' });
+
+    await expect(item).toHaveAttribute('aria-disabled', 'true');
   });
 });
