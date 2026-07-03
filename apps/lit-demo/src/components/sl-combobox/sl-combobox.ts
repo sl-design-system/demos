@@ -15,12 +15,12 @@ export class ComboboxPage extends ScopedElementsMixin(LitElement) {
 
   override render(): TemplateResult {
     return html`
-      <sl-combobox multiple>
-        <sl-listbox>
-          <sl-option value="0">Test 1</sl-option>
-          <sl-option value="1">Test 2</sl-option>
-        </sl-listbox>
+      <sl-combobox
+        filter-results
+        .options=${Array.from({ length: 100 }, (_, i) => `Option ${i + 1}`)}>
       </sl-combobox>
+
+      <sl-text-field></sl-text-field>
     `;
   }
 }
