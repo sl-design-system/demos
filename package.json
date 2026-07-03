@@ -101,6 +101,7 @@
     "@sl-design-system/text-area": "^1.1.8",
     "@sl-design-system/text-field": "^1.6.9",
     "@sl-design-system/time-field": "^0.1.1",
+    "@sl-design-system/toggle-button": "^0.0.16",
     "@sl-design-system/tooltip": "^2.0.0",
     "rxjs": "^7.8.2",
     "zone.js": "^0.15.1"

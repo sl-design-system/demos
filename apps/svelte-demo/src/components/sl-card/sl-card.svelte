@@ -32,7 +32,7 @@
 </div>
 
 <style lang="scss">
-  @import './sl-card.scss';
+  @use './sl-card.scss';
 
   .card-wrapper {
     inline-size: 100%;
