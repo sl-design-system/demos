@@ -9,6 +9,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   navItems = [
+    { path: 'sl-avatar', label: 'sl-avatar' },
     { path: 'sl-accordion', label: 'sl-accordion' },
     { path: 'sl-breadcrumbs', label: 'sl-breadcrumbs' },
     { path: 'sl-button', label: 'sl-button' },

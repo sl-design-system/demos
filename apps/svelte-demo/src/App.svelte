@@ -1,5 +1,6 @@
 <script lang="ts">
   import Accordion from './components/sl-accordion/sl-accordion.svelte';
+  import Avatar from './components/sl-avatar/sl-avatar.svelte';
   import Breadcrumbs from './components/sl-breadcrumbs/sl-breadcrumbs.svelte';
   import Button from './components/sl-button/sl-button.svelte';
   import ButtonBar from './components/sl-button-bar/sl-button-bar.svelte';
@@ -26,6 +27,7 @@
 
   const navItems = [
     { path: '/sl-accordion', label: 'sl-accordion', component: Accordion },
+    { path: '/sl-avatar', label: 'sl-avatar', component: Avatar },
     { path: '/sl-breadcrumbs', label: 'sl-breadcrumbs', component: Breadcrumbs },
     { path: '/sl-button', label: 'sl-button', component: Button },
     { path: '/sl-button-bar', label: 'sl-button-bar', component: ButtonBar },

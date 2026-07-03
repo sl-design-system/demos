@@ -8,6 +8,14 @@
   }
 </script>
 
+<style lang="scss">
+  @use './sl-card.scss';
+
+  .card-wrapper {
+    inline-size: 100%;
+  }
+</style>
+
 <div class="card-wrapper">
   <sl-card orientation="horizontal" class="card">
     <img
