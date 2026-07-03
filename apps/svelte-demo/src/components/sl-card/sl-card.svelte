@@ -38,11 +38,3 @@
     </sl-button-bar>
   </sl-card>
 </div>
-
-<style lang="scss">
-  @use './sl-card.scss';
-
-  .card-wrapper {
-    inline-size: 100%;
-  }
-</style>
