@@ -178,6 +178,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-toggle-button',
+    loadComponent: () =>
+      import('./components/sl-toggle-button/sl-toggle-button.component').then(
+        (m) => m.ToggleButtonPageComponent,
+      ),
+  },
+  {
     path: 'sl-tooltip',
     loadComponent: () =>
       import('./components/sl-tooltip/sl-tooltip.component').then(
