@@ -44,17 +44,13 @@ test.describe('sl-toggle-button accessibility', () => {
   });
 
   test('should have correct ARIA role', async ({ page }) => {
-    const item = page
-      .locator('sl-toggle-button')
-      .filter({ hasText: 'Test 1' });
+    const item = page.locator('sl-toggle-button').filter({ hasText: 'Test 1' });
 
     await expect(item).toHaveAttribute('role', 'button');
   });
 
   test('should have correct aria-pressed attributes', async ({ page }) => {
-    const item = page
-      .locator('sl-toggle-button')
-      .filter({ hasText: 'Test 1' });
+    const item = page.locator('sl-toggle-button').filter({ hasText: 'Test 1' });
 
     await expect(item).toHaveAttribute('aria-pressed', 'false');
 
@@ -63,9 +59,7 @@ test.describe('sl-toggle-button accessibility', () => {
   });
 
   test('should have correct tab order', async ({ page }) => {
-    const item = page
-      .locator('sl-toggle-button')
-      .filter({ hasText: 'Test 1' });
+    const item = page.locator('sl-toggle-button').filter({ hasText: 'Test 1' });
     const disabledItem = page
       .locator('sl-toggle-button')
       .filter({ hasText: 'Test 2' });
@@ -80,9 +74,7 @@ test.describe('sl-toggle-button accessibility', () => {
   });
 
   test(`should be keyboard operable`, async ({ page }) => {
-    const item = page
-      .locator('sl-toggle-button')
-      .filter({ hasText: 'Test 1' });
+    const item = page.locator('sl-toggle-button').filter({ hasText: 'Test 1' });
 
     await expect(item).toHaveAttribute('aria-pressed', 'false');
     await item.focus();
@@ -96,10 +88,10 @@ test.describe('sl-toggle-button accessibility', () => {
     await expect(item).toHaveAttribute('aria-pressed', 'false');
   });
 
-  test('should have aria-disabled attribute when disabled', async ({ page }) => {
-    const item = page
-      .locator('sl-toggle-button')
-      .filter({ hasText: 'Test 2' });
+  test('should have aria-disabled attribute when disabled', async ({
+    page,
+  }) => {
+    const item = page.locator('sl-toggle-button').filter({ hasText: 'Test 2' });
 
     await expect(item).toHaveAttribute('aria-disabled', 'true');
   });
