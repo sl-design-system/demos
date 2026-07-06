@@ -60,7 +60,7 @@ test.describe('sl-checkbox accessibility', () => {
       .locator('sl-checkbox')
       .filter({ hasText: 'Test 2' })
       .getByRole('checkbox');
-    
+
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
     await page.keyboard.press('Tab');
@@ -70,9 +70,7 @@ test.describe('sl-checkbox accessibility', () => {
   });
 
   test(`should be keyboard operable`, async ({ page }) => {
-    const item = page
-      .locator('sl-checkbox')
-      .filter({ hasText: 'Test 1' });
+    const item = page.locator('sl-checkbox').filter({ hasText: 'Test 1' });
 
     const input = item.getByRole('checkbox', { name: 'Test 1' });
 
