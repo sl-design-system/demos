@@ -66,11 +66,17 @@ test.describe('sl-toggle-button accessibility', () => {
     const item = page
       .locator('sl-toggle-button')
       .filter({ hasText: 'Test 1' });
+    const disabledItem = page
+      .locator('sl-toggle-button')
+      .filter({ hasText: 'Test 2' });
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
     await page.keyboard.press('Tab');
     await expect(item).toBeFocused();
+    await page.keyboard.press('Tab');
+    await expect(item).not.toBeFocused();
+    await expect(disabledItem).toBeFocused();
   });
 
   test(`should be keyboard operable`, async ({ page }) => {
