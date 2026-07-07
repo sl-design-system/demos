@@ -83,6 +83,19 @@ test.describe('sl-combobox accessibility', () => {
     await expect(listbox).not.toBeVisible();
   });
 
+  test(`should have options with aria attributes`, async ({ page }) => {
+    const item = page.locator('sl-combobox').getByRole('combobox');
+    const listbox = page.locator('sl-listbox');
+    
+    await item.click();
+
+    await expect(listbox.locator('sl-option', { hasText: 'Test 1' })).toHaveAttribute('role', 'option');
+    await expect(listbox.locator('sl-option', { hasText: 'Test 1' })).toHaveAttribute('aria-selected', 'false');
+    await listbox.locator('sl-option', { hasText: 'Test 1' }).click();
+
+    await expect(listbox.locator('sl-option', { hasText: 'Test 1' })).toHaveAttribute('aria-selected', 'true');
+  });
+
   test(`should have keyboard navigable taglist`, async ({ page }) => {
     const item = page
       .getByRole('combobox');
@@ -104,5 +117,17 @@ test.describe('sl-combobox accessibility', () => {
     await page.keyboard.press('Tab');
 
     await expect(item).toBeFocused();
+  });
+
+  test(`should have tags with aria attributes`, async ({ page }) => {
+  const item = page.locator('sl-combobox').getByRole('combobox');
+  const listbox = page.locator('sl-listbox');
+  const tag = item.locator('sl-tag', { hasText: 'Test 1' });
+
+  await item.click();
+  await listbox.locator('sl-option', { hasText: 'Test 1' }).click();
+
+  await expect(tag.locator('button')).toHaveAttribute('aria-label', 'Remove tag Test 1');
+  await expect(tag.locator('button')).toHaveAttribute('aria-describedby', 'navigation-description');
   });
 });
