@@ -12,7 +12,7 @@ test.describe('sl-accordion accessibility', () => {
     page,
   }) => {
     await page.locator('summary').filter({ hasText: 'Test 1' }).click();
-    const axe = new AxeBuilder({ page }).withTags(['wcag22a', 'wcag22aa']);
+    const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
@@ -24,7 +24,7 @@ test.describe('sl-accordion accessibility', () => {
     await page.goto('/sl-accordion'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
     await page.locator('sl-accordion').filter({ hasText: 'Test 1' }).click();
-    const axe = new AxeBuilder({ page }).withTags(['wcag22a', 'wcag22aa']);
+    const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
