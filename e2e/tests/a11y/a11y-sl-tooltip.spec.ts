@@ -13,7 +13,7 @@ test.describe('sl-tooltip accessibility', () => {
   test('should have no accessibility violations in standard viewport', async ({
     page,
   }) => {
-    const axe = new AxeBuilder({ page }).withTags(['wcag22a', 'wcag22aa']);
+    const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
@@ -24,7 +24,7 @@ test.describe('sl-tooltip accessibility', () => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-tooltip'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
-    const axe = new AxeBuilder({ page }).withTags(['wcag22a', 'wcag22aa']);
+    const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
