@@ -30,6 +30,7 @@ export default [
         project: [
           './tsconfig.json',
           './apps/angular-demo/tsconfig.app.json',
+          './apps/capacitor-demo/tsconfig.json',
           './apps/lit-demo/tsconfig.json',
           './apps/svelte-demo/tsconfig.json',
           './apps/vue-demo/tsconfig.json',

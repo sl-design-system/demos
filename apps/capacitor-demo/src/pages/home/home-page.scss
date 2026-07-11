@@ -1,0 +1,35 @@
+:host {
+  display: block;
+}
+
+.greeting {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  margin-block-end: 24px;
+}
+
+.greeting h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.greeting p {
+  color: var(--app-fg-muted);
+  margin: 4px 0 0;
+}
+
+h3 {
+  color: var(--app-fg-muted);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+}
+
+.course-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

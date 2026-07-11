@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+h2 {
+  font-size: 20px;
+  margin: 0 0 12px;
+}
+
+h2 + h2,
+sl-form-field + h2 {
+  margin-block-start: 32px;
+}
+
+sl-form-field {
+  margin-block-end: 16px;
+}
+
+a {
+  color: var(--app-accent);
+}

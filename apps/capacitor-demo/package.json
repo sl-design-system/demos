@@ -1,0 +1,106 @@
+{
+  "name": "capacitor-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "wireit",
+    "cap:sync": "wireit",
+    "dev": "wireit",
+    "generate-styles": "wireit",
+    "ios": "wireit",
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "postinstall": "node scripts/generate-styles.js",
+    "preview": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "command": "node scripts/build.js",
+      "files": [
+        "scripts/build.js",
+        "src/**/*",
+        "index.html",
+        "tsconfig.json"
+      ],
+      "dependencies": [
+        "generate-styles"
+      ],
+      "output": [
+        "dist/**/*"
+      ]
+    },
+    "cap:sync": {
+      "command": "cap sync ios",
+      "dependencies": [
+        "build"
+      ],
+      "files": [
+        "capacitor.config.ts"
+      ],
+      "output": []
+    },
+    "dev": {
+      "command": "node scripts/build.js --watch",
+      "dependencies": [
+        "generate-styles"
+      ],
+      "service": true
+    },
+    "generate-styles": {
+      "command": "node scripts/generate-styles.js",
+      "files": [
+        "scripts/generate-styles.js",
+        "src/**/*.scss",
+        "package.json"
+      ],
+      "output": [
+        "src/**/*.scss.js"
+      ]
+    },
+    "ios": {
+      "command": "cap open ios",
+      "dependencies": [
+        "cap:sync"
+      ],
+      "output": []
+    },
+    "lint": {
+      "command": "eslint \"src/**/*.{ts,js}\"",
+      "files": [
+        "src/**/*.{ts,js}"
+      ]
+    },
+    "lint:fix": {
+      "command": "eslint \"src/**/*.{ts,js}\" --fix",
+      "files": [
+        "src/**/*.{ts,js}"
+      ]
+    },
+    "preview": {
+      "command": "wds --root-dir dist --open",
+      "dependencies": [
+        "build"
+      ]
+    }
+  },
+  "dependencies": {
+    "@capacitor/core": "^8.4.1",
+    "@capacitor/device": "^8.0.2",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/ios": "^8.4.1",
+    "@capacitor/preferences": "^8.0.1",
+    "@capacitor/status-bar": "^8.0.2",
+    "@open-wc/scoped-elements": "^3.0.5",
+    "@webcomponents/scoped-custom-element-registry": "^0.0.10",
+    "lit": "^3.3.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.4.1",
+    "@web/dev-server": "^0.4.6",
+    "esbuild": "^0.25.8",
+    "sass": "^1.89.2",
+    "typescript": "^5.8.3",
+    "wireit": "^0.14.12"
+  }
+}

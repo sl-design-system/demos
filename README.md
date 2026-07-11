@@ -71,6 +71,7 @@ Use `yarn workspace <name> <script>` to serve or build individual demos:
 
 ```bash
 yarn workspace angular-demo start    # ng serve on localhost:4200
+yarn workspace capacitor-demo dev    # watch build and preview (see its README for iOS)
 yarn workspace lit-demo dev          # watch build and preview
 yarn workspace svelte-demo dev       # watch build and preview
 yarn workspace vue-demo dev          # watch build and preview
@@ -80,6 +81,7 @@ yarn workspace vue-demo dev          # watch build and preview
 
 ```bash
 yarn workspace angular-demo build
+yarn workspace capacitor-demo build
 yarn workspace lit-demo build
 yarn workspace svelte-demo build
 yarn workspace vue-demo build

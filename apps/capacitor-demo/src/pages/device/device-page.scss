@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info {
+  display: grid;
+  gap: 8px 16px;
+  grid-template-columns: auto 1fr;
+  margin: 0;
+}
+
+.info dt {
+  color: var(--app-fg-muted);
+}
+
+.info dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
