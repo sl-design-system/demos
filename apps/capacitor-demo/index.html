@@ -54,6 +54,64 @@
         width: 100%;
         height: 100%;
       }
+
+      /* iOS-like push/pop animations for route changes. The app shell sets
+         data-nav-direction on <html> while a view transition runs; the
+         page content carries view-transition-name: page-view. Pushes slide
+         in from the right, pops (back button, swipe-back) slide out to the
+         right. The app bar and tab bar stay put. */
+      ::view-transition-old(root),
+      ::view-transition-new(root) {
+        animation: none;
+      }
+
+      ::view-transition-old(page-view),
+      ::view-transition-new(page-view) {
+        animation-duration: 0.28s;
+        animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+      }
+
+      html[data-nav-direction='forward']::view-transition-new(page-view) {
+        animation-name: slide-in-from-right;
+      }
+
+      html[data-nav-direction='forward']::view-transition-old(page-view) {
+        animation-name: slide-out-to-left;
+      }
+
+      html[data-nav-direction='back']::view-transition-new(page-view) {
+        animation-name: slide-in-from-left;
+      }
+
+      html[data-nav-direction='back']::view-transition-old(page-view) {
+        animation-name: slide-out-to-right;
+      }
+
+      @keyframes slide-in-from-right {
+        from {
+          transform: translateX(100%);
+        }
+      }
+
+      @keyframes slide-out-to-left {
+        to {
+          opacity: 0.6;
+          transform: translateX(-28%);
+        }
+      }
+
+      @keyframes slide-in-from-left {
+        from {
+          opacity: 0.6;
+          transform: translateX(-28%);
+        }
+      }
+
+      @keyframes slide-out-to-right {
+        to {
+          transform: translateX(100%);
+        }
+      }
     </style>
   </head>
   <body>

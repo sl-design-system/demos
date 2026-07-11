@@ -8,7 +8,11 @@ A mobile demo application built with [Capacitor](https://capacitorjs.com), [Lit]
 - **Floating "glass" tab bar** like native iOS apps: a `backdrop-filter` blurred capsule that hovers above the home indicator while the content scrolls behind it. The five primary pages live in the tab bar.
 - **Drawer menu** with a mobile style top app bar listing all pages, including safe-area insets for the iPhone notch/home indicator.
 - **Theme switcher** with light, dark and follow-system modes. The selection toggles the `light.css`/`dark.css` stylesheets from `@sl-design-system/sanoma-learning`, is persisted with the Capacitor Preferences plugin (`UserDefaults` on iOS, `localStorage` on the web) and keeps the native iOS status bar style in sync.
+- **Animated navigation**: route changes run through the [View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API) with iOS-style push/pop animations — pushes slide in from the right, pops slide out to the right. The direction is derived from Navigation API history entry indices, and `prefers-reduced-motion` disables the animations.
+- **Swipe from the left edge to go back**, like the native iOS navigation stack: an interactive pointer-tracked gesture (`src/gestures.ts`) where the page follows the finger and commits or springs back based on distance and velocity. This is implemented in the web layer rather than with `WKWebView.allowsBackForwardNavigationGestures`, so it behaves identically in the browser and doesn't rely on WKWebView's snapshot animation, which does not play well with same-document (hash) navigations.
 - **Native plugins**: the Device page reads device and battery information via `@capacitor/device` and triggers the Taptic Engine via `@capacitor/haptics`, degrading gracefully in the browser.
+
+> **Note:** this workspace uses TypeScript 7, whose `lib.dom` ships the Navigation API types (the rest of the monorepo is on TypeScript 5.x, where `window.navigation` is unknown). Type checking this app requires the workspace-local `typescript` dependency.
 
 ## Development (browser)
 

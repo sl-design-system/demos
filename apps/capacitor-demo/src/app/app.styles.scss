@@ -156,6 +156,40 @@
   overflow: hidden auto;
   padding-block: 16px calc(var(--sa-bottom) + 104px);
   padding-inline: calc(var(--sa-start) + 16px) calc(var(--sa-end) + 16px);
+  view-transition-name: page-view;
+}
+
+/* Swipe-back gesture: the content follows the finger while dragging from
+   the left edge, then either slides out (commit) or springs back (cancel).
+   See gestures.ts. */
+.content.swipe-dragging {
+  box-shadow: -8px 0 24px var(--app-glass-shadow);
+  transform: translateX(var(--swipe-x, 0));
+  transition: none;
+  will-change: transform;
+}
+
+.content.swipe-commit {
+  box-shadow: -8px 0 24px var(--app-glass-shadow);
+  transform: translateX(105%);
+  transition: transform 0.22s ease-out;
+}
+
+.content.swipe-cancel {
+  transform: translateX(0);
+  transition: transform 0.2s ease-out;
+}
+
+/* Invisible strip along the left edge that captures the swipe-back
+   gesture. It stops above the tab bar and stays below the drawer and its
+   backdrop, so neither is obstructed. */
+.edge-swipe {
+  inline-size: 22px;
+  inset-block: 0 140px;
+  inset-inline-start: 0;
+  position: fixed;
+  touch-action: none;
+  z-index: 6;
 }
 
 /* Floating "glass" tab bar, like native iOS apps: a capsule that hovers

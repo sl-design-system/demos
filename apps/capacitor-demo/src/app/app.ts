@@ -4,6 +4,7 @@ import {
   ScopedElementsMixin,
   type ScopedElementsMap,
 } from '@open-wc/scoped-elements/lit-element.js';
+import { EdgeSwipeBack } from '../gestures.js';
 import { CoursesPage } from '../pages/courses/courses-page.js';
 import { DevicePage } from '../pages/device/device-page.js';
 import { GradesPage } from '../pages/grades/grades-page.js';
@@ -39,10 +40,20 @@ const TAB_ROUTES = ROUTES.slice(0, 5);
 
 const DEFAULT_ROUTE = 'home';
 
+type SwipePhase = 'idle' | 'dragging' | 'commit' | 'cancel';
+
+const SWIPE_COMMIT_DURATION = 220;
+const SWIPE_CANCEL_DURATION = 200;
+
 /**
  * Application shell: a mobile style top app bar with a drawer menu, a
  * floating "glass" bottom tab bar like native iOS apps, a quick theme
  * toggle and a router built on the Navigation API (see router.ts).
+ *
+ * Route changes are animated with the View Transitions API — pushes slide
+ * in from the right, pops slide out to the right, like a native iOS
+ * navigation stack — and swiping from the left edge navigates backwards
+ * (see gestures.ts).
  */
 export class App extends ScopedElementsMixin(LitElement) {
   static scopedElements: ScopedElementsMap = {
@@ -63,12 +74,68 @@ export class App extends ScopedElementsMixin(LitElement) {
     DEFAULT_ROUTE,
   );
 
+  #edgeSwipe = new EdgeSwipeBack({
+    canGoBack: () => this.#router.canGoBack,
+    onStart: () => {
+      this._swipePhase = 'dragging';
+    },
+    onMove: (dx) => {
+      this.style.setProperty('--swipe-x', `${dx}px`);
+    },
+    onCommit: () => {
+      this._swipePhase = 'commit';
+
+      window.setTimeout(() => {
+        this.#skipTransition = true;
+        this.#router.back();
+      }, SWIPE_COMMIT_DURATION);
+    },
+    onCancel: () => {
+      this._swipePhase = 'cancel';
+
+      window.setTimeout(() => this.#resetSwipe(), SWIPE_CANCEL_DURATION);
+    },
+  });
+
+  #skipTransition = false;
+
   @state() private _route = DEFAULT_ROUTE;
   @state() private _menuOpen = false;
+  @state() private _swipePhase: SwipePhase = 'idle';
 
   private _onRouteChange = (): void => {
-    this._route = this.#router.route;
-    this._menuOpen = false;
+    const apply = (): void => {
+      this._route = this.#router.route;
+      this._menuOpen = false;
+      this.#resetSwipe();
+    };
+
+    const reduceMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+
+    if (this.#skipTransition || reduceMotion || !document.startViewTransition) {
+      this.#skipTransition = false;
+      apply();
+
+      return;
+    }
+
+    // Drive the ::view-transition animation direction from the router,
+    // so pushes and pops slide opposite ways (see index.html)
+    document.documentElement.setAttribute(
+      'data-nav-direction',
+      this.#router.direction,
+    );
+
+    const transition = document.startViewTransition(async () => {
+      apply();
+      await this.updateComplete;
+    });
+
+    void transition.finished.finally(() => {
+      document.documentElement.removeAttribute('data-nav-direction');
+    });
   };
 
   private _onThemeChange = (): void => {
@@ -90,6 +157,19 @@ export class App extends ScopedElementsMixin(LitElement) {
 
     this.#router.removeEventListener('route-change', this._onRouteChange);
     themeManager.removeEventListener('theme-change', this._onThemeChange);
+  }
+
+  override firstUpdated(): void {
+    const edge = this.renderRoot.querySelector<HTMLElement>('.edge-swipe');
+
+    if (edge) {
+      this.#edgeSwipe.attach(edge);
+    }
+  }
+
+  #resetSwipe(): void {
+    this._swipePhase = 'idle';
+    this.style.removeProperty('--swipe-x');
   }
 
   private _toggleTheme(): void {
@@ -176,7 +256,15 @@ export class App extends ScopedElementsMixin(LitElement) {
           </ul>
         </nav>
 
-        <main class="content">${this._renderPage()}</main>
+        <main
+          class="content ${this._swipePhase !== 'idle'
+            ? `swipe-${this._swipePhase}`
+            : ''}"
+        >
+          ${this._renderPage()}
+        </main>
+
+        <div class="edge-swipe" aria-hidden="true"></div>
 
         <nav class="tab-bar" aria-label="Primary">
           ${TAB_ROUTES.map(
