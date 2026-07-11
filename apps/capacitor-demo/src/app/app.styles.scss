@@ -154,6 +154,66 @@
   flex: 1;
   min-block-size: 0;
   overflow: hidden auto;
-  padding-block: 16px calc(var(--sa-bottom) + 24px);
+  padding-block: 16px calc(var(--sa-bottom) + 104px);
   padding-inline: calc(var(--sa-start) + 16px) calc(var(--sa-end) + 16px);
+}
+
+/* Floating "glass" tab bar, like native iOS apps: a capsule that hovers
+   above the home indicator while the page content scrolls behind it and
+   shines through the backdrop blur. */
+.tab-bar {
+  backdrop-filter: blur(20px) saturate(180%);
+  background: var(--app-glass);
+  border: 1px solid var(--app-glass-border);
+  border-radius: 28px;
+  box-shadow: 0 8px 24px var(--app-glass-shadow);
+  display: flex;
+  gap: 2px;
+  inset-block-end: calc(var(--sa-bottom) + 12px);
+  inset-inline: max(var(--sa-start), 16px) max(var(--sa-end), 16px);
+  margin-inline: auto;
+  max-inline-size: 420px;
+  padding: 6px;
+  position: fixed;
+  z-index: 5;
+}
+
+.tab-bar a {
+  align-items: center;
+  border-radius: 22px;
+  color: var(--app-fg-muted);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-size: 11px;
+  font-weight: 500;
+  gap: 2px;
+  min-inline-size: 0;
+  padding: 6px 4px;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.tab-bar a.active {
+  background: var(--app-accent-soft);
+  color: var(--app-accent);
+  font-weight: 600;
+}
+
+.tab-bar a:focus-visible {
+  outline: 2px solid var(--app-accent);
+}
+
+.tab-icon {
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.tab-label {
+  max-inline-size: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

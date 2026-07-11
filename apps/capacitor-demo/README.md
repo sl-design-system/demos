@@ -4,8 +4,9 @@ A mobile demo application built with [Capacitor](https://capacitorjs.com), [Lit]
 
 ## Features
 
-- **Multiple pages** (Home, Courses, Profile, Device, Settings) behind a hash based router — hash routing keeps reloads working when the app is served from the `capacitor://` origin on iOS.
-- **Drawer menu** with a mobile style top app bar, including safe-area insets for the iPhone notch/home indicator.
+- **Multiple pages** (Home, Courses, Schedule, Messages, Grades, Profile, Device, Settings) behind a router built on the [Navigation API](https://developer.mozilla.org/en-US/docs/Web/API/Navigation_API): plain `<a href="#/page">` anchors are intercepted centrally in `src/router.ts`, so no per-link click handlers are needed. It falls back to `hashchange` on browsers without the Navigation API. Hash URLs keep reloads working when the app is served from the `capacitor://` origin on iOS.
+- **Floating "glass" tab bar** like native iOS apps: a `backdrop-filter` blurred capsule that hovers above the home indicator while the content scrolls behind it. The five primary pages live in the tab bar.
+- **Drawer menu** with a mobile style top app bar listing all pages, including safe-area insets for the iPhone notch/home indicator.
 - **Theme switcher** with light, dark and follow-system modes. The selection toggles the `light.css`/`dark.css` stylesheets from `@sl-design-system/sanoma-learning`, is persisted with the Capacitor Preferences plugin (`UserDefaults` on iOS, `localStorage` on the web) and keeps the native iOS status bar style in sync.
 - **Native plugins**: the Device page reads device and battery information via `@capacitor/device` and triggers the Taptic Engine via `@capacitor/haptics`, degrading gracefully in the browser.
 

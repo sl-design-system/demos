@@ -1,4 +1,4 @@
-import { html, LitElement, TemplateResult } from 'lit';
+import { html, LitElement, nothing, TemplateResult } from 'lit';
 import { state } from 'lit/decorators.js';
 import {
   ScopedElementsMixin,
@@ -6,9 +6,13 @@ import {
 } from '@open-wc/scoped-elements/lit-element.js';
 import { CoursesPage } from '../pages/courses/courses-page.js';
 import { DevicePage } from '../pages/device/device-page.js';
+import { GradesPage } from '../pages/grades/grades-page.js';
 import { HomePage } from '../pages/home/home-page.js';
+import { MessagesPage } from '../pages/messages/messages-page.js';
 import { ProfilePage } from '../pages/profile/profile-page.js';
+import { SchedulePage } from '../pages/schedule/schedule-page.js';
 import { SettingsPage } from '../pages/settings/settings-page.js';
+import { Router } from '../router.js';
 import { themeManager } from '../theme.js';
 import styles from './app.styles.scss.js';
 
@@ -21,35 +25,50 @@ interface Route {
 const ROUTES: Route[] = [
   { path: 'home', label: 'Home', icon: '🏠' },
   { path: 'courses', label: 'Courses', icon: '📚' },
+  { path: 'schedule', label: 'Schedule', icon: '📅' },
+  { path: 'messages', label: 'Messages', icon: '💬' },
+  { path: 'grades', label: 'Grades', icon: '🎓' },
   { path: 'profile', label: 'Profile', icon: '👤' },
   { path: 'device', label: 'Device', icon: '📱' },
   { path: 'settings', label: 'Settings', icon: '⚙️' },
 ];
 
+// The first five routes are promoted to the floating tab bar; the drawer
+// menu lists everything.
+const TAB_ROUTES = ROUTES.slice(0, 5);
+
 const DEFAULT_ROUTE = 'home';
 
 /**
- * Application shell: a mobile style top app bar with a slide-in drawer menu,
- * a quick theme toggle and a hash based router. Hash routing is used because
- * Capacitor serves the app from the local `capacitor://` origin, where
- * path based routing would break on a reload.
+ * Application shell: a mobile style top app bar with a drawer menu, a
+ * floating "glass" bottom tab bar like native iOS apps, a quick theme
+ * toggle and a router built on the Navigation API (see router.ts).
  */
 export class App extends ScopedElementsMixin(LitElement) {
   static scopedElements: ScopedElementsMap = {
     'page-courses': CoursesPage,
     'page-device': DevicePage,
+    'page-grades': GradesPage,
     'page-home': HomePage,
+    'page-messages': MessagesPage,
     'page-profile': ProfilePage,
+    'page-schedule': SchedulePage,
     'page-settings': SettingsPage,
   };
 
   static override styles = styles;
 
+  #router = new Router(
+    ROUTES.map(({ path }) => path),
+    DEFAULT_ROUTE,
+  );
+
   @state() private _route = DEFAULT_ROUTE;
   @state() private _menuOpen = false;
 
-  private _onHashChange = (): void => {
-    this._route = this._parseRoute();
+  private _onRouteChange = (): void => {
+    this._route = this.#router.route;
+    this._menuOpen = false;
   };
 
   private _onThemeChange = (): void => {
@@ -59,32 +78,18 @@ export class App extends ScopedElementsMixin(LitElement) {
   override connectedCallback(): void {
     super.connectedCallback();
 
-    window.addEventListener('hashchange', this._onHashChange);
+    this.#router.addEventListener('route-change', this._onRouteChange);
     themeManager.addEventListener('theme-change', this._onThemeChange);
 
-    if (!window.location.hash) {
-      window.location.replace(`#/${DEFAULT_ROUTE}`);
-    }
-
-    this._route = this._parseRoute();
+    this.#router.start();
+    this._route = this.#router.route;
   }
 
   override disconnectedCallback(): void {
     super.disconnectedCallback();
 
-    window.removeEventListener('hashchange', this._onHashChange);
+    this.#router.removeEventListener('route-change', this._onRouteChange);
     themeManager.removeEventListener('theme-change', this._onThemeChange);
-  }
-
-  private _parseRoute(): string {
-    const path = window.location.hash.replace(/^#\/?/, '');
-
-    return ROUTES.some((route) => route.path === path) ? path : DEFAULT_ROUTE;
-  }
-
-  private _navigate(path: string): void {
-    window.location.hash = `#/${path}`;
-    this._menuOpen = false;
   }
 
   private _toggleTheme(): void {
@@ -95,6 +100,12 @@ export class App extends ScopedElementsMixin(LitElement) {
     switch (this._route) {
       case 'courses':
         return html`<page-courses></page-courses>`;
+      case 'schedule':
+        return html`<page-schedule></page-schedule>`;
+      case 'messages':
+        return html`<page-messages></page-messages>`;
+      case 'grades':
+        return html`<page-grades></page-grades>`;
       case 'profile':
         return html`<page-profile></page-profile>`;
       case 'device':
@@ -143,7 +154,7 @@ export class App extends ScopedElementsMixin(LitElement) {
         <nav
           class="drawer ${this._menuOpen ? 'open' : ''}"
           id="app-drawer"
-          aria-label="Main navigation"
+          aria-label="All pages"
         >
           <h2>SLDS Demo</h2>
           <ul>
@@ -153,10 +164,8 @@ export class App extends ScopedElementsMixin(LitElement) {
                   <a
                     href="#/${path}"
                     class=${this._route === path ? 'active' : ''}
-                    @click=${(event: Event) => {
-                      event.preventDefault();
-                      this._navigate(path);
-                    }}
+                    aria-current=${this._route === path ? 'page' : nothing}
+                    @click=${() => (this._menuOpen = false)}
                   >
                     <span aria-hidden="true">${icon}</span>
                     <span class="label">${label}</span>
@@ -168,6 +177,21 @@ export class App extends ScopedElementsMixin(LitElement) {
         </nav>
 
         <main class="content">${this._renderPage()}</main>
+
+        <nav class="tab-bar" aria-label="Primary">
+          ${TAB_ROUTES.map(
+            ({ path, label, icon }) => html`
+              <a
+                href="#/${path}"
+                class=${this._route === path ? 'active' : ''}
+                aria-current=${this._route === path ? 'page' : nothing}
+              >
+                <span class="tab-icon" aria-hidden="true">${icon}</span>
+                <span class="tab-label">${label}</span>
+              </a>
+            `,
+          )}
+        </nav>
       </div>
     `;
   }

@@ -1,0 +1,49 @@
+:host {
+  display: block;
+}
+
+h2 {
+  font-size: 20px;
+  margin: 0 0 12px;
+}
+
+.agenda {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+}
+
+.agenda li {
+  align-items: center;
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: 12px;
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+}
+
+.time {
+  color: var(--app-accent);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.details {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.subject {
+  font-weight: 600;
+}
+
+.room {
+  color: var(--app-fg-muted);
+  font-size: 14px;
+}
