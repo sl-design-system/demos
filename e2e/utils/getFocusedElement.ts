@@ -2,20 +2,52 @@ import type { Page } from '@playwright/test';
 
 export async function getFocusedElement(page: Page): Promise<string | null> {
   return page.evaluate(() => {
-    let el = document.activeElement;
-    while (el?.shadowRoot?.activeElement) {
-      el = el.shadowRoot.activeElement;
-    }
+    let el = document.activeElement as Element | null;
 
     if (!el) return null;
 
-    // Clone the element to avoid modifying the DOM
-    const clone = el.cloneNode(true) as Element;
+    // Traverse through shadow DOM levels, keeping track of previous element
+    let prevEl: Element | null = null;
+    while (el?.shadowRoot?.activeElement) {
+      prevEl = el;
+      el = el.shadowRoot.activeElement as Element;
+    }
 
-    // Remove all aria-hidden elements and their content
-    const hiddenElements = clone.querySelectorAll('[aria-hidden="true"]');
-    hiddenElements.forEach((hiddenEl) => hiddenEl.remove());
+    // el is now the deepest element, prevEl is the second-to-deepest
 
-    return clone.textContent?.trim() ?? null;
+    if (!el) return null;
+
+    // Check for aria-label on deepest element (highest priority)
+    if (el.hasAttribute('aria-label')) {
+      return (el.getAttribute('aria-label') ?? '').trim();
+    }
+
+    // Try to get innerText from the deepest element
+    const deepestText = el.innerText?.trim();
+    
+    if (deepestText) {
+      return deepestText;
+    }
+
+    // If deepest has no innerText, try the second-to-deepest element
+    if (prevEl) {
+      // Check for aria-label on second-to-deepest
+      if (prevEl.hasAttribute('aria-label')) {
+        return (prevEl.getAttribute('aria-label') ?? '').trim();
+      }
+
+      const prevText = prevEl.innerText?.trim();
+      if (prevText) {
+        return prevText;
+      }
+
+      // Fallback to textContent of second-to-deepest
+      const prevContentText = prevEl.textContent?.trim();
+      return prevContentText || null;
+    }
+
+    // Fallback: use textContent of deepest if innerText is empty
+    const contentText = el.textContent?.trim();
+    return contentText || null;
   });
 }

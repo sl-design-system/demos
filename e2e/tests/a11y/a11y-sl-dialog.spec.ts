@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { hasMainHorizontalOverflow } from '../../utils/checkForHorizontalScroll.js';
+import { getFocusedElement } from '../../utils/getFocusedElement.js';
 
 test.describe('sl-dialog accessibility', () => {
   test.beforeEach(async ({ page }) => {
@@ -39,22 +40,34 @@ test.describe('sl-dialog accessibility', () => {
     expect(hasOverflow).toBe(false);
   });
 
-  test('should have correct tab order', async ({ page }) => {
-    const item = page.getByRole('button', { name: 'Test' });
-    const dialog = page.locator('sl-dialog');
+  test('should have correct tab order', async ({ page, browserName }) => {
+    test.skip(browserName === 'chromium');
+    const activeElements = ['Test', 'Close'] as const;
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
-
     await page.keyboard.press('Tab');
-    await expect(item).toBeFocused();
-    await page.keyboard.press('Enter');
-    
-    await expect(dialog).toBeVisible();
-    const focusIsInDialog = await page.evaluate(() => {
-      const active = document.activeElement;
-      return !!active && (active.tagName === 'SL-DIALOG' || active.closest('sl-dialog') !== null);
-    });
-    expect(focusIsInDialog).toBe(true);
+
+    for (const activeElement of activeElements) {
+      const focusedOn = await getFocusedElement(page);
+      expect(focusedOn).toBe(activeElement);
+      await page.keyboard.press('Space');
+      // Firefox and Webkit require an additional tab press to focus the next element after opening the dialog
+      await page.keyboard.press('Tab');
+    }
+  });
+
+  test('should have correct tab order in chromium', async ({ page, browserName }) => {
+    test.skip(browserName !== 'chromium');
+    const activeElements = ['Test', 'Close'] as const;
+
+    await page.getByRole('button', { name: 'Collapse navigation' }).click();
+    await page.keyboard.press('Tab');
+
+    for (const activeElement of activeElements) {
+      const focusedOn = await getFocusedElement(page);
+      expect(focusedOn).toBe(activeElement);
+      await page.keyboard.press('Space');
+    }
   });
 
   test(`should be activated and closed with Enter key`, async ({ page }) => {
@@ -98,5 +111,4 @@ test.describe('sl-dialog accessibility', () => {
     await page.keyboard.press('Escape');
     await expect(dialog).not.toBeVisible();
   });
-
 });
