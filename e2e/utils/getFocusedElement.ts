@@ -18,12 +18,11 @@ export async function getFocusedElement(page: Page): Promise<string | null> {
     if (!el) return null;
 
     // Check for aria-label on deepest element (highest priority)
-    if (el.hasAttribute('aria-label')) {
-      return (el.getAttribute('aria-label') ?? '').trim();
-    }
+    const ariaLabel = el.getAttribute('aria-label')?.trim();
+    if (ariaLabel) return ariaLabel;
 
-    // Try to get innerText from the deepest element
-    const deepestText = el.innerText?.trim();
+    // Try to get innerText from the deepest element (HTMLElement only)
+    const deepestText = el instanceof HTMLElement ? el.innerText.trim() : '';
     
     if (deepestText) {
       return deepestText;
@@ -31,12 +30,11 @@ export async function getFocusedElement(page: Page): Promise<string | null> {
 
     // If deepest has no innerText, try the second-to-deepest element
     if (prevEl) {
-      // Check for aria-label on second-to-deepest
-      if (prevEl.hasAttribute('aria-label')) {
-        return (prevEl.getAttribute('aria-label') ?? '').trim();
-      }
+      // Check for aria-label on second-to-deepest (only return if non-empty)
+      const prevAriaLabel = prevEl.getAttribute('aria-label')?.trim();
+      if (prevAriaLabel) return prevAriaLabel;
 
-      const prevText = prevEl.innerText?.trim();
+      const prevText = prevEl instanceof HTMLElement ? prevEl.innerText.trim() : '';
       if (prevText) {
         return prevText;
       }

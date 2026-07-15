@@ -50,6 +50,7 @@ test.describe('sl-dialog accessibility', () => {
     for (const activeElement of activeElements) {
       const focusedOn = await getFocusedElement(page);
       expect(focusedOn).toBe(activeElement);
+      expect(page.getByRole('button', { name: activeElement })).toBeVisible();
       await page.keyboard.press('Space');
       // Firefox and Webkit require an additional tab press to focus the next element after opening the dialog
       await page.keyboard.press('Tab');
@@ -66,6 +67,7 @@ test.describe('sl-dialog accessibility', () => {
     for (const activeElement of activeElements) {
       const focusedOn = await getFocusedElement(page);
       expect(focusedOn).toBe(activeElement);
+      expect(page.getByRole('button', { name: activeElement })).toBeVisible();
       await page.keyboard.press('Space');
     }
   });
