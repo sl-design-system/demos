@@ -50,14 +50,14 @@ test.describe('sl-dialog accessibility', () => {
 
     let focusedOn = await getFocusedElement(page);
     expect(focusedOn).toBe('Test');
-    expect(page.getByRole('button', { name: 'Test' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Test' })).toBeVisible();
 
     await page.keyboard.press('Space');
     await page.keyboard.press('Tab');
 
     focusedOn = await getFocusedElement(page);
     expect(focusedOn).toBe('Close');
-    expect(page.getByRole('button', { name: 'Close' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Close' })).toBeVisible();
 
     await page.keyboard.press('Space');
 
@@ -74,13 +74,13 @@ test.describe('sl-dialog accessibility', () => {
 
     let focusedOn = await getFocusedElement(page);
     expect(focusedOn).toBe('Test');
-    expect(page.getByRole('button', { name: 'Test' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Test' })).toBeVisible();
 
     await page.keyboard.press('Space');
 
     focusedOn = await getFocusedElement(page);
     expect(focusedOn).toBe('Close');
-    expect(page.getByRole('button', { name: 'Close' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Close' })).toBeVisible();
 
     await page.keyboard.press('Space');
 

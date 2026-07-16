@@ -34,8 +34,9 @@ export async function getFocusedElement(page: Page): Promise<string | null> {
       if (prevAriaLabel) return prevAriaLabel;
 
       const prevText = prevEl instanceof HTMLElement ? prevEl.innerText.trim() : '';
+      const MAX_PREV_TEXT_LENGTH = 100;
       // Only use prevText if it's reasonably short (avoid large container text like combobox options)
-      if (prevText && prevText.length < 100) {
+      if (prevText && prevText.length < MAX_PREV_TEXT_LENGTH) {
         return prevText;
       }
     }
