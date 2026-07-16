@@ -32,9 +32,11 @@ test.describe('sl-dialog accessibility', () => {
   });
 
   test('component fits without horizontal scroll', async ({ page }) => {
+    const item = page.getByRole('button', { name: 'Test' });
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-dialog'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
+    await item.click();
 
     const hasOverflow = await hasMainHorizontalOverflow(page);
     expect(hasOverflow).toBe(false);
@@ -42,34 +44,49 @@ test.describe('sl-dialog accessibility', () => {
 
   test('should have correct tab order', async ({ page, browserName }) => {
     test.skip(browserName === 'chromium');
-    const activeElements = ['Test', 'Close'] as const;
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
     await page.keyboard.press('Tab');
 
-    for (const activeElement of activeElements) {
-      const focusedOn = await getFocusedElement(page);
-      expect(focusedOn).toBe(activeElement);
-      expect(page.getByRole('button', { name: activeElement })).toBeVisible();
-      await page.keyboard.press('Space');
-      // Firefox and Webkit require an additional tab press to focus the next element after opening the dialog
-      await page.keyboard.press('Tab');
-    }
+    let focusedOn = await getFocusedElement(page);
+    expect(focusedOn).toBe('Test');
+    expect(page.getByRole('button', { name: 'Test' })).toBeVisible();
+
+    await page.keyboard.press('Space');
+    await page.keyboard.press('Tab');
+
+    focusedOn = await getFocusedElement(page);
+    expect(focusedOn).toBe('Close');
+    expect(page.getByRole('button', { name: 'Close' })).toBeVisible();
+
+    await page.keyboard.press('Space');
+
+    await expect(page.getByRole('button', { name: 'Close' })).not.toBeVisible();
+    focusedOn = await getFocusedElement(page);
+    expect(focusedOn).toBe('Test');
   });
 
   test('should have correct tab order in chromium', async ({ page, browserName }) => {
     test.skip(browserName !== 'chromium');
-    const activeElements = ['Test', 'Close'] as const;
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
     await page.keyboard.press('Tab');
 
-    for (const activeElement of activeElements) {
-      const focusedOn = await getFocusedElement(page);
-      expect(focusedOn).toBe(activeElement);
-      expect(page.getByRole('button', { name: activeElement })).toBeVisible();
-      await page.keyboard.press('Space');
-    }
+    let focusedOn = await getFocusedElement(page);
+    expect(focusedOn).toBe('Test');
+    expect(page.getByRole('button', { name: 'Test' })).toBeVisible();
+
+    await page.keyboard.press('Space');
+
+    focusedOn = await getFocusedElement(page);
+    expect(focusedOn).toBe('Close');
+    expect(page.getByRole('button', { name: 'Close' })).toBeVisible();
+
+    await page.keyboard.press('Space');
+
+    await expect(page.getByRole('button', { name: 'Close' })).not.toBeVisible();
+    focusedOn = await getFocusedElement(page);
+    expect(focusedOn).toBe('Test');
   });
 
   test(`should be activated and closed with Enter key`, async ({ page }) => {

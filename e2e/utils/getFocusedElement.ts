@@ -30,18 +30,14 @@ export async function getFocusedElement(page: Page): Promise<string | null> {
 
     // If deepest has no innerText, try the second-to-deepest element
     if (prevEl) {
-      // Check for aria-label on second-to-deepest (only return if non-empty)
       const prevAriaLabel = prevEl.getAttribute('aria-label')?.trim();
       if (prevAriaLabel) return prevAriaLabel;
 
       const prevText = prevEl instanceof HTMLElement ? prevEl.innerText.trim() : '';
-      if (prevText) {
+      // Only use prevText if it's reasonably short (avoid large container text like combobox options)
+      if (prevText && prevText.length < 100) {
         return prevText;
       }
-
-      // Fallback to textContent of second-to-deepest
-      const prevContentText = prevEl.textContent?.trim();
-      return prevContentText || null;
     }
 
     // Fallback: use textContent of deepest if innerText is empty
