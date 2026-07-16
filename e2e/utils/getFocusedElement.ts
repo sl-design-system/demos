@@ -28,6 +28,24 @@ export async function getFocusedElement(page: Page): Promise<string | null> {
       return deepestText;
     }
 
+    // If deepest is an input, check for associated label via id/for attributes
+    if (el instanceof HTMLInputElement) {
+      const inputId = el.getAttribute('id');
+      if (inputId) {
+        // First try to find label in the same shadow root as the input
+        const root = el.getRootNode() as Document | ShadowRoot;
+        let label = root.querySelector(`label[for="${inputId}"]`) as HTMLLabelElement | null;
+        
+        // If not found and we're in a shadow DOM, also try the document root
+        if (!label && root instanceof ShadowRoot) {
+          label = document.querySelector(`label[for="${inputId}"]`) as HTMLLabelElement | null;
+        }
+        
+        const labelText = label?.textContent?.trim();
+        if (labelText) return labelText;
+      }
+    }
+
     // If deepest has no innerText, try the second-to-deepest element
     if (prevEl) {
       const prevAriaLabel = prevEl.getAttribute('aria-label')?.trim();
