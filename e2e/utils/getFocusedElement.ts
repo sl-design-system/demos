@@ -28,24 +28,35 @@ export async function getFocusedElement(page: Page): Promise<string | null> {
       return deepestText;
     }
 
-    // If deepest is an input, check for associated label via id/for attributes
-    if (el instanceof HTMLInputElement) {
+    // If deepest is a form control (input, textarea, select), check for associated label via id/for attributes
+    if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement || el instanceof HTMLSelectElement) {
       const associatedLabelText = el.labels?.[0]?.textContent?.trim();
       if (associatedLabelText) return associatedLabelText;
-      const inputId = el.getAttribute('id');
       
-      if (inputId) {
-        const root = el.getRootNode() as Document | ShadowRoot;
-        const findLabel = (scope: Document | ShadowRoot) =>
-           Array.from(scope.querySelectorAll('label')).find(
-             (l) => l instanceof HTMLLabelElement && l.htmlFor === inputId,
-           ) as HTMLLabelElement | undefined;
-         const label =
-           findLabel(root) ??
-           (root instanceof ShadowRoot ? findLabel(el.ownerDocument) : undefined);
-         const labelText = label?.textContent?.trim();
-         if (labelText) return labelText;
-       }
+      const elementId = el.getAttribute('id');
+      if (elementId) {
+        // Traverse up the composed tree to find label in any shadow root or document
+        let currentRoot: Document | ShadowRoot = el.getRootNode() as Document | ShadowRoot;
+        
+        while (currentRoot) {
+          const label = Array.from(currentRoot.querySelectorAll('label')).find(
+            (l) => l instanceof HTMLLabelElement && l.htmlFor === elementId,
+          ) as HTMLLabelElement | undefined;
+          
+          if (label) {
+            const labelText = label.textContent?.trim();
+            if (labelText) return labelText;
+          }
+          
+          // Move up to parent shadow root
+          if (currentRoot instanceof ShadowRoot) {
+            currentRoot = currentRoot.host.getRootNode() as Document | ShadowRoot;
+          } else {
+            // We're at the document, no more parents
+            break;
+          }
+        }
+      }
     }
 
     // If deepest has no innerText, try the second-to-deepest element
