@@ -40,7 +40,9 @@ export async function getFocusedElement(page: Page): Promise<string | null> {
            Array.from(scope.querySelectorAll('label')).find(
              (l) => l instanceof HTMLLabelElement && l.htmlFor === inputId,
            ) as HTMLLabelElement | undefined;
-         const label = findLabel(root) ?? (root instanceof ShadowRoot ? findLabel(document) : undefined);
+         const label =
+           findLabel(root) ??
+           (root instanceof ShadowRoot ? findLabel(el.ownerDocument) : undefined);
          const labelText = label?.textContent?.trim();
          if (labelText) return labelText;
        }
