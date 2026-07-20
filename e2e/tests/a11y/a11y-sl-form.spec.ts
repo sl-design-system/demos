@@ -1,4 +1,4 @@
-import { test, expect, type Page } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { getFocusedElement } from '../../utils/getFocusedElement.js';
 import { hasMainHorizontalOverflow } from '../../utils/checkForHorizontalScroll.js';
