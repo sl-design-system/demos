@@ -5,8 +5,16 @@ import { hasMainHorizontalOverflow } from '../../utils/checkForHorizontalScroll.
 
 const variants = [
   { name: 'sl-form a11y', path: '/sl-form', angularOnly: false },
-  { name: 'sl-form (reactive) a11y', path: '/sl-form-reactive', angularOnly: true },
-  { name: 'sl-form (template) a11y', path: '/sl-form-template', angularOnly: true },
+  {
+    name: 'sl-form (reactive) a11y',
+    path: '/sl-form-reactive',
+    angularOnly: true,
+  },
+  {
+    name: 'sl-form (template) a11y',
+    path: '/sl-form-template',
+    angularOnly: true,
+  },
 ];
 
 for (const { name, path, angularOnly } of variants) {
@@ -23,7 +31,14 @@ for (const { name, path, angularOnly } of variants) {
     test('should have no accessibility violations in standard viewport', async ({
       page,
     }) => {
-      const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']);
+      const axe = new AxeBuilder({ page }).withTags([
+        'wcag2a',
+        'wcag2aa',
+        'wcag21a',
+        'wcag21aa',
+        'wcag22a',
+        'wcag22aa',
+      ]);
       const results = await axe.analyze();
       expect(results.violations).toEqual([]);
     });
@@ -34,7 +49,14 @@ for (const { name, path, angularOnly } of variants) {
       await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
       await page.goto(path); // for Firefox to properly apply the viewport size before page load
       await page.getByRole('button', { name: 'Collapse navigation' }).click();
-      const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']);
+      const axe = new AxeBuilder({ page }).withTags([
+        'wcag2a',
+        'wcag2aa',
+        'wcag21a',
+        'wcag21aa',
+        'wcag22a',
+        'wcag22aa',
+      ]);
       const results = await axe.analyze();
       expect(results.violations).toEqual([]);
     });
@@ -49,8 +71,14 @@ for (const { name, path, angularOnly } of variants) {
     });
 
     test('should have correct accessible names', async ({ page }) => {
-      const input = page.locator('sl-form-field').filter({ hasText: 'Name' }).getByRole('textbox');
-      const checkbox = page.locator('sl-form-field').filter({ hasText: 'I agree' }).getByRole('checkbox');
+      const input = page
+        .locator('sl-form-field')
+        .filter({ hasText: 'Name' })
+        .getByRole('textbox');
+      const checkbox = page
+        .locator('sl-form-field')
+        .filter({ hasText: 'I agree' })
+        .getByRole('checkbox');
 
       await expect(input).toHaveAccessibleName('Name');
       await expect(checkbox).toHaveAccessibleName('I agree');
@@ -69,9 +97,15 @@ for (const { name, path, angularOnly } of variants) {
     });
 
     test(`should be keyboard operable`, async ({ page }) => {
-      const input = page.locator('sl-form-field').filter({ hasText: 'Name' }).getByRole('textbox');
-      const checkbox = page.locator('sl-form-field').filter({ hasText: 'I agree' }).getByRole('checkbox');
-      
+      const input = page
+        .locator('sl-form-field')
+        .filter({ hasText: 'Name' })
+        .getByRole('textbox');
+      const checkbox = page
+        .locator('sl-form-field')
+        .filter({ hasText: 'I agree' })
+        .getByRole('checkbox');
+
       await page.getByRole('button', { name: 'Collapse navigation' }).click();
       await page.keyboard.press('Tab');
       await page.keyboard.type('Test 1');
@@ -89,17 +123,31 @@ for (const { name, path, angularOnly } of variants) {
     });
 
     test(`should have accessible descriptions`, async ({ page }) => {
-      const input = page.locator('sl-form-field').filter({ hasText: 'Name' }).getByRole('textbox');
-      const checkbox = page.locator('sl-form-field').filter({ hasText: 'I agree' }).getByRole('checkbox');
+      const input = page
+        .locator('sl-form-field')
+        .filter({ hasText: 'Name' })
+        .getByRole('textbox');
+      const checkbox = page
+        .locator('sl-form-field')
+        .filter({ hasText: 'I agree' })
+        .getByRole('checkbox');
       const button = page.getByRole('button', { name: 'Confirm' });
-      
-      await expect(input).not.toHaveAccessibleDescription('Please fill in this field.');
-      await expect(checkbox).not.toHaveAccessibleDescription('Please check this box.');
-      
+
+      await expect(input).not.toHaveAccessibleDescription(
+        'Please fill in this field.',
+      );
+      await expect(checkbox).not.toHaveAccessibleDescription(
+        'Please check this box.',
+      );
+
       await button.click();
 
-      await expect(input).toHaveAccessibleDescription('Please fill in this field.');
-      await expect(checkbox).toHaveAccessibleDescription('Please check this box.');
+      await expect(input).toHaveAccessibleDescription(
+        'Please fill in this field.',
+      );
+      await expect(checkbox).toHaveAccessibleDescription(
+        'Please check this box.',
+      );
     });
   });
 }

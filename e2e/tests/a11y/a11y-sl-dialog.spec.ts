@@ -12,7 +12,14 @@ test.describe('sl-dialog accessibility', () => {
     const item = page.getByRole('button', { name: 'Test' });
     await item.click();
 
-    const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']);
+    const axe = new AxeBuilder({ page }).withTags([
+      'wcag2a',
+      'wcag2aa',
+      'wcag21a',
+      'wcag21aa',
+      'wcag22a',
+      'wcag22aa',
+    ]);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
@@ -26,7 +33,14 @@ test.describe('sl-dialog accessibility', () => {
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
     await item.click();
 
-    const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']);
+    const axe = new AxeBuilder({ page }).withTags([
+      'wcag2a',
+      'wcag2aa',
+      'wcag21a',
+      'wcag21aa',
+      'wcag22a',
+      'wcag22aa',
+    ]);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
@@ -66,7 +80,10 @@ test.describe('sl-dialog accessibility', () => {
     expect(focusedOn).toBe('Test');
   });
 
-  test('should have correct tab order in chromium', async ({ page, browserName }) => {
+  test('should have correct tab order in chromium', async ({
+    page,
+    browserName,
+  }) => {
     test.skip(browserName !== 'chromium');
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
