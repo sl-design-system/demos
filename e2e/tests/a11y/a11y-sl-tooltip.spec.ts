@@ -31,7 +31,7 @@ test.describe('sl-tooltip accessibility', () => {
     page,
   }) => {
     const item = page.getByRole('button', { name: 'Button' });
-    
+
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-tooltip'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
