@@ -9,7 +9,14 @@ test.describe('sl-form-field accessibility', () => {
   });
 
   test('should have no accessibility violations', async ({ page }) => {
-    const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']);
+    const axe = new AxeBuilder({ page }).withTags([
+      'wcag2a',
+      'wcag2aa',
+      'wcag21a',
+      'wcag21aa',
+      'wcag22a',
+      'wcag22aa',
+    ]);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
@@ -21,7 +28,14 @@ test.describe('sl-form-field accessibility', () => {
     await page.goto('/sl-form-field'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
-    const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']);
+    const axe = new AxeBuilder({ page }).withTags([
+      'wcag2a',
+      'wcag2aa',
+      'wcag21a',
+      'wcag21aa',
+      'wcag22a',
+      'wcag22aa',
+    ]);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
@@ -68,7 +82,7 @@ test.describe('sl-form-field accessibility', () => {
       .locator('sl-form-field')
       .filter({ hasText: 'Enabled' })
       .getByRole('textbox');
-    
+
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
     await page.keyboard.press('Tab');
     await page.keyboard.type('Test 1');

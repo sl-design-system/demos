@@ -14,7 +14,14 @@ test.describe('sl-switch accessibility', () => {
       .locator('sl-switch')
       .filter({ hasText: 'Text inside the switch' })
       .click();
-    const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']);
+    const axe = new AxeBuilder({ page }).withTags([
+      'wcag2a',
+      'wcag2aa',
+      'wcag21a',
+      'wcag21aa',
+      'wcag22a',
+      'wcag22aa',
+    ]);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
@@ -29,7 +36,14 @@ test.describe('sl-switch accessibility', () => {
       .locator('sl-switch')
       .filter({ hasText: 'Text inside the switch' })
       .click();
-    const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']);
+    const axe = new AxeBuilder({ page }).withTags([
+      'wcag2a',
+      'wcag2aa',
+      'wcag21a',
+      'wcag21aa',
+      'wcag22a',
+      'wcag22aa',
+    ]);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
