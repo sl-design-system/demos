@@ -108,6 +108,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-link',
+    loadComponent: () =>
+      import('./components/sl-link/sl-link.component').then(
+        (m) => m.LinkPageComponent,
+      ),
+  },
+  {
     path: 'sl-number-field',
     loadComponent: () =>
       import('./components/sl-number-field/sl-number-field.component').then(

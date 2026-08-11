@@ -52,6 +52,7 @@ const navItems = [
   { path: '/sl-form-field', label: 'sl-form-field' },
   { path: '/sl-form', label: 'sl-form' },
   { path: '/sl-inline-message', label: 'sl-inline-message' },
+  { path: '/sl-link', label: 'sl-link' },
   { path: '/sl-menu', label: 'sl-menu' },
   { path: '/sl-message-dialog', label: 'sl-message-dialog' },
   { path: '/sl-number-field', label: 'sl-number-field' },

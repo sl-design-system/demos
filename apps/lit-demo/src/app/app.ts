@@ -16,6 +16,7 @@ import { DialogPage } from '../components/sl-dialog/sl-dialog.js';
 import { FormFieldPage } from '../components/sl-form-field/sl-form-field.js';
 import { FormPage } from '../components/sl-form/sl-form.js';
 import { InlineMessagePage } from '../components/sl-inline-message/sl-inline-message.js';
+import { LinkPage } from '../components/sl-link/sl-link.js';
 import { MenuPage } from '../components/sl-menu/sl-menu.js';
 import { MessageDialogPage } from '../components/sl-message-dialog/sl-message-dialog.js';
 import { NumberFieldPage } from '../components/sl-number-field/sl-number-field.js';
@@ -44,6 +45,7 @@ const ROUTES = [
   { path: '/sl-form-field', label: 'sl-form-field' },
   { path: '/sl-form', label: 'sl-form' },
   { path: '/sl-inline-message', label: 'sl-inline-message' },
+  { path: '/sl-link', label: 'sl-link' },
   { path: '/sl-menu', label: 'sl-menu' },
   { path: '/sl-message-dialog', label: 'sl-message-dialog' },
   { path: '/sl-number-field', label: 'sl-number-field' },
@@ -73,6 +75,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-form-field': FormFieldPage,
     'page-form': FormPage,
     'page-inline-message': InlineMessagePage,
+    'page-link': LinkPage,
     'page-menu': MenuPage,
     'page-message-dialog': MessageDialogPage,
     'page-number-field': NumberFieldPage,
@@ -141,6 +144,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-form></page-form>`;
       case '/sl-inline-message':
         return html`<page-inline-message></page-inline-message>`;
+      case '/sl-link':
+        return html`<page-link></page-link>`;
       case '/sl-menu':
         return html`<page-menu></page-menu>`;
       case '/sl-message-dialog':

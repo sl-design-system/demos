@@ -1,0 +1,15 @@
+.link-demo {
+  display: grid;
+  gap: 12px;
+  max-width: 480px;
+}
+
+h2 {
+  margin: 16px 0 0;
+  font-size: 16px;
+}
+
+a,
+sl-link {
+  width: fit-content;
+}
