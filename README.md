@@ -123,6 +123,8 @@ The example below shows how to set up a local `sl-button` component (`@sl-design
 
    For continuous development, we recommend using the **portal protocol** with the component repo’s own watch/build script so changes propagate faster without reinstalling.
 
+   When linking to your local `@sl-design-system/angular` package, make sure you link to the `dist` folder; `"portal:../components/packages/angular/dist"` and the angular wrapper is created by running `yarn build` in `packages/angular` in the `components` repo.
+
 2. **Using a File Dependency**
 
    If you prefer a [file-based dependency](https://yarnpkg.com/protocol/file), point directly to your local component folder:
