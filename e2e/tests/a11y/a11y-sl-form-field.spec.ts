@@ -1,10 +1,11 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { hasMainHorizontalOverflow } from '../../utils/checkForHorizontalScroll.js';
+import { getFocusedElement } from '../../utils/getFocusedElement.js';
 
-test.describe('sl-button-bar accessibility', () => {
+test.describe('sl-form-field accessibility', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/sl-button-bar');
+    await page.goto('/sl-form-field');
   });
 
   test('should have no accessibility violations', async ({ page }) => {
@@ -24,8 +25,9 @@ test.describe('sl-button-bar accessibility', () => {
     page,
   }) => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
-    await page.goto('/sl-button-bar'); // for Firefox to properly apply the viewport size before page load
+    await page.goto('/sl-form-field'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
+
     const axe = new AxeBuilder({ page }).withTags([
       'wcag2a',
       'wcag2aa',
@@ -40,7 +42,7 @@ test.describe('sl-button-bar accessibility', () => {
 
   test('component fits without horizontal scroll', async ({ page }) => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
-    await page.goto('/sl-button-bar'); // for Firefox to properly apply the viewport size before page load
+    await page.goto('/sl-form-field'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
     const hasOverflow = await hasMainHorizontalOverflow(page);
@@ -48,35 +50,43 @@ test.describe('sl-button-bar accessibility', () => {
   });
 
   test('should have correct tab order', async ({ page }) => {
-    const item = page.getByRole('button', { name: 'Test 2' });
-
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
+    await page.keyboard.press('Tab');
+
+    let focusedOn = await getFocusedElement(page);
+    expect(focusedOn).toBe('Enabled');
 
     await page.keyboard.press('Tab');
-    await expect(item).toBeFocused();
+
+    focusedOn = await getFocusedElement(page);
+    expect(focusedOn).not.toBe('Disabled');
   });
 
-  test(`should be activated with Enter key`, async ({ page }) => {
-    const item = page.getByRole('button', { name: 'Test 2' });
+  test('should have accessible name', async ({ page }) => {
+    const active = page
+      .locator('sl-form-field')
+      .filter({ hasText: 'Enabled' })
+      .getByRole('textbox');
 
-    const pagePromise = page.context().waitForEvent('page');
-    await item.focus();
-    await page.keyboard.press('Enter');
-    const newPage = await pagePromise;
+    const disabled = page
+      .locator('sl-form-field')
+      .filter({ hasText: 'Disabled' })
+      .getByRole('textbox');
 
-    await expect(newPage).toHaveURL('about:blank');
-    await newPage.close();
+    await expect(active).toHaveAccessibleName('Enabled');
+    await expect(disabled).toHaveAccessibleName('Disabled');
   });
 
-  test(`should be activated with Space key`, async ({ page }) => {
-    const item = page.getByRole('button', { name: 'Test 2' });
+  test(`should be keyboard operable`, async ({ page }) => {
+    const item = page
+      .locator('sl-form-field')
+      .filter({ hasText: 'Enabled' })
+      .getByRole('textbox');
 
-    const pagePromise = page.context().waitForEvent('page');
-    await item.focus();
-    await page.keyboard.press('Space');
-    const newPage = await pagePromise;
+    await page.getByRole('button', { name: 'Collapse navigation' }).click();
+    await page.keyboard.press('Tab');
+    await page.keyboard.type('Test 1');
 
-    await expect(newPage).toHaveURL('about:blank');
-    await newPage.close();
+    await expect(item).toHaveValue('Test 1');
   });
 });
