@@ -19,7 +19,7 @@ test.describe('sl-combobox accessibility', () => {
       'wcag22aa',
     ]);
     const results = await axe.analyze();
-    await expect(results.violations).toEqual([]);
+    expect(results.violations).toEqual([]);
   });
 
   test('should have no accessibility violations in 320px width of <main>', async ({
