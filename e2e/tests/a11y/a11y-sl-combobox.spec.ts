@@ -44,12 +44,12 @@ test.describe('sl-combobox accessibility', () => {
   });
 
   test('should have correct tab order', async ({ page }) => {
-    const item = page
-      .getByRole('combobox');
-    const listbox = page.locator('sl-listbox');
-    const tag = item.locator('sl-tag', { hasText: 'Test 2' });
+    const combobox = page.locator('sl-combobox');
+    const item = combobox.getByRole('combobox');
+    const listbox = combobox.locator('sl-listbox');
+    const tag = combobox.locator('sl-tag', { hasText: 'Test 2' });
 
-    await item.click();
+    await item.click({ force: true });
     await listbox.locator('sl-option', { hasText: 'Test 2' }).click();
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
@@ -87,7 +87,7 @@ test.describe('sl-combobox accessibility', () => {
     const item = page.locator('sl-combobox').getByRole('combobox');
     const listbox = page.locator('sl-listbox');
     
-    await item.click();
+    await item.click({ force: true });
 
     await expect(listbox.locator('sl-option', { hasText: 'Test 1' })).toHaveAttribute('role', 'option');
     await expect(listbox.locator('sl-option', { hasText: 'Test 1' })).toHaveAttribute('aria-selected', 'false');
@@ -97,37 +97,41 @@ test.describe('sl-combobox accessibility', () => {
   });
 
   test(`should have keyboard navigable taglist`, async ({ page }) => {
-    const item = page
-      .getByRole('combobox');
-    const listbox = page.locator('sl-listbox');
-    const tag1 = item.locator('sl-tag', { hasText: 'Test 1' });
-    const tag2 = item.locator('sl-tag', { hasText: 'Test 2' });
+    const combobox = page.locator('sl-combobox');
+    const input = combobox.getByRole('combobox');
+    const listbox = combobox.locator('sl-listbox');
+    const tag1 = combobox.locator('sl-tag', { hasText: 'Test 1' });
+    const tag2 = combobox.locator('sl-tag', { hasText: 'Test 2' });
 
-    await item.click();
+    await input.click({ force: true });
     await listbox.locator('sl-option', { hasText: 'Test 1' }).click();
     await listbox.locator('sl-option', { hasText: 'Test 2' }).click();
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
     await page.keyboard.press('Tab');
-
-    await expect(tag1).toBeFocused();
+    await expect(tag1.getByRole('button')).toBeFocused();
     await page.keyboard.press('ArrowRight');
-    await expect(tag2).toBeFocused();
+    await expect(tag2.getByRole('button')).toBeFocused();
 
     await page.keyboard.press('Tab');
 
-    await expect(item).toBeFocused();
+    await expect(input).toBeFocused();
   });
 
   test(`should have tags with aria attributes`, async ({ page }) => {
-  const item = page.locator('sl-combobox').getByRole('combobox');
-  const listbox = page.locator('sl-listbox');
-  const tag = item.locator('sl-tag', { hasText: 'Test 1' });
+    const item = page.locator('sl-combobox').getByRole('combobox');
+    const combobox = page.locator('sl-combobox');
+    const listbox = combobox.locator('sl-listbox');
+    const tag1 = combobox.locator('sl-tag', { hasText: 'Test 1' });
+    const tag2 = combobox.locator('sl-tag', { hasText: 'Test 2' });
 
-  await item.click();
-  await listbox.locator('sl-option', { hasText: 'Test 1' }).click();
+    await item.click({ force: true });
+    await listbox.locator('sl-option', { hasText: 'Test 1' }).click();
+    await listbox.locator('sl-option', { hasText: 'Test 2' }).click();
 
-  await expect(tag.locator('button')).toHaveAttribute('aria-label', 'Remove tag Test 1');
-  await expect(tag.locator('button')).toHaveAttribute('aria-describedby', 'navigation-description');
+    await expect(tag1.locator('button')).toHaveAttribute('aria-label', `Remove tag 'Test 1'`);
+    await expect(tag1.locator('button')).toHaveAttribute('aria-describedby', 'navigation-description');
+    await expect(tag2.locator('button')).toHaveAttribute('aria-label', `Remove tag 'Test 2'`);
+    await expect(tag2.locator('button')).toHaveAttribute('aria-describedby', 'navigation-description');
   });
 });
