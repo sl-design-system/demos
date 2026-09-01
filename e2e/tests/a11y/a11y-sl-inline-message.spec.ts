@@ -50,22 +50,34 @@ test.describe('sl-inline-message accessibility', () => {
   });
 
   test('should have correct tab order', async ({ page }) => {
-      const activeElements = ['Close'] as const;
+    const activeElements = ['Close'] as const;
 
-      await page.getByRole('button', { name: 'Collapse navigation' }).click();
+    await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
-      for (const activeElement of activeElements) {
-        await page.keyboard.press('Tab');
-        const focusedOn = await getFocusedElement(page);
-        expect(focusedOn).toBe(activeElement);
-      }
+    for (const activeElement of activeElements) {
+      await page.keyboard.press('Tab');
+      const focusedOn = await getFocusedElement(page);
+      expect(focusedOn).toBe(activeElement);
+    }
   });
 
-  test(`should be activated and closed with Space key`, async ({ page }) => {
+  test(`should be closed with Space key`, async ({ page }) => {
     const item = page.getByRole('button', { name: 'Close' });
+    const inlineMessage = page.locator('sl-inline-message');
 
     await item.focus();
     await page.keyboard.press('Space');
     await expect(item).not.toBeVisible();
+    await expect(inlineMessage).not.toBeVisible();
+  });
+
+  test(`should be closed with Enter key`, async ({ page }) => {
+    const item = page.getByRole('button', { name: 'Close' });
+    const inlineMessage = page.locator('sl-inline-message');
+
+    await item.focus();
+    await page.keyboard.press('Enter');
+    await expect(item).not.toBeVisible();
+    await expect(inlineMessage).not.toBeVisible();
   });
 });
