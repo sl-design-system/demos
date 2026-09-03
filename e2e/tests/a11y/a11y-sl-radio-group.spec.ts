@@ -160,7 +160,7 @@ for (const { name, path, angularOnly } of variants) {
       await page.keyboard.press('ArrowDown');
       await expect(one).not.toBeFocused();
       await expect(two).toBeFocused();
-      await page.keyboard.press('ArrowDown');
+      await page.keyboard.press('Tab');
       await expect(two).not.toBeFocused();
       await expect(four).not.toBeFocused(); //shouldn't be focused as it's disabled
     });
