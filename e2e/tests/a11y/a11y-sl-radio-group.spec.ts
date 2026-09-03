@@ -19,6 +19,14 @@ const variants = [
 for (const { name, path, angularOnly } of variants) {
   const requiredErrorMsg = 'Please select an option.';
   const invalidSelectionErrorMsg = 'Pick the second option';
+  const activeHint =
+    'This story has both builtin validation (required) and custom validation. You need to check the second option to make the field valid.';
+  const reactiveHint =
+    'This example uses reactive forms. You need to check the second option to make the field valid.';
+  const templateHint =
+    'This example uses template-driven forms. You need to check the second option to make the field valid.';
+  const disabledHint =
+    'This radio group is disabled; no interaction is possible.';
 
   test.describe(name, () => {
     test.beforeEach(async ({ page }, testInfo) => {
@@ -73,40 +81,66 @@ for (const { name, path, angularOnly } of variants) {
     });
 
     test('should have group description', async ({ page }) => {
-      test.skip(path == '/sl-radio-group-reactive' || path == '/sl-radio-group-template');
+      test.skip(
+        path == '/sl-radio-group-reactive' ||
+          path == '/sl-radio-group-template',
+      );
 
-      const group = page.locator('sl-form-field', { hasText: 'Active' }).locator('sl-radio-group');
-      const disabled = page.locator('sl-form-field', { hasText: 'Disabled' }).locator('sl-radio-group');
+      const group = page
+        .locator('sl-form-field', { hasText: 'Active' })
+        .locator('sl-radio-group');
+      const disabled = page
+        .locator('sl-form-field', { hasText: 'Disabled' })
+        .locator('sl-radio-group');
 
-      await expect(group).toHaveAccessibleDescription('This story has both builtin validation (required) and custom validation. You need to check the second option to make the field valid.');
-      await expect(disabled).toHaveAccessibleDescription('This radio group is disabled; no interaction is possible.');
+      await expect(group).toHaveAccessibleDescription(activeHint);
+      await expect(disabled).toHaveAccessibleDescription(disabledHint);
     });
 
-    test('should have group description (angular reactive)', async ({ page }) => {
+    test('should have group description (angular reactive)', async ({
+      page,
+    }) => {
       test.skip(path !== '/sl-radio-group-reactive');
 
-      const group = page.locator('sl-form-field', { hasText: 'Active' }).locator('sl-radio-group');
-      const disabled = page.locator('sl-form-field', { hasText: 'Disabled' }).locator('sl-radio-group');
+      const group = page
+        .locator('sl-form-field', { hasText: 'Active' })
+        .locator('sl-radio-group');
+      const disabled = page
+        .locator('sl-form-field', { hasText: 'Disabled' })
+        .locator('sl-radio-group');
 
-      await expect(group).toHaveAccessibleDescription('This example uses reactive forms. You need to check the second option to make the field valid.');
-      await expect(disabled).toHaveAccessibleDescription('This radio group is disabled; no interaction is possible.');
+      await expect(group).toHaveAccessibleDescription(reactiveHint);
+      await expect(disabled).toHaveAccessibleDescription(disabledHint);
     });
 
-    test('should have group description (angular template-driven)', async ({ page }) => {
+    test('should have group description (angular template-driven)', async ({
+      page,
+    }) => {
       test.skip(path !== '/sl-radio-group-template');
 
-      const group = page.locator('sl-form-field', { hasText: 'Active' }).locator('sl-radio-group');
-      const disabled = page.locator('sl-form-field', { hasText: 'Disabled' }).locator('sl-radio-group');
+      const group = page
+        .locator('sl-form-field', { hasText: 'Active' })
+        .locator('sl-radio-group');
+      const disabled = page
+        .locator('sl-form-field', { hasText: 'Disabled' })
+        .locator('sl-radio-group');
 
-      await expect(group).toHaveAccessibleDescription('This example uses template-driven forms. You need to check the second option to make the field valid.');
-      await expect(disabled).toHaveAccessibleDescription('This radio group is disabled; no interaction is possible.');
+      await expect(group).toHaveAccessibleDescription(templateHint);
+      await expect(disabled).toHaveAccessibleDescription(disabledHint);
     });
 
-    test('should have correct ARIA role', async ({ page }) => {
+    test('should have correct ARIA role and accessibility name', async ({
+      page,
+    }) => {
       const one = page.locator('sl-radio').filter({ hasText: 'One' });
       const two = page.locator('sl-radio').filter({ hasText: 'Two' });
       const four = page.locator('sl-radio').filter({ hasText: 'Four' });
       const five = page.locator('sl-radio').filter({ hasText: 'Five' });
+
+      await expect(one).toHaveAccessibleName('One');
+      await expect(two).toHaveAccessibleName('Two');
+      await expect(four).toHaveAccessibleName('Four');
+      await expect(five).toHaveAccessibleName('Five');
 
       await expect(one).toHaveAttribute('role', 'radio');
       await expect(two).toHaveAttribute('role', 'radio');
@@ -114,52 +148,153 @@ for (const { name, path, angularOnly } of variants) {
       await expect(five).toHaveAttribute('role', 'radio');
     });
 
-    test('should have correct aria-checked attributes', async ({ page }) => {
-      const item = page.locator('sl-radio').filter({ hasText: 'One' });
-
-
-      await expect(item).toHaveAttribute('aria-checked', 'false');
-
-      await item.click();
-      await expect(item).toHaveAttribute('aria-checked', 'true');
-    });
-
     test('should have correct tab order', async ({ page }) => {
-      const item = page.locator('sl-radio').filter({ hasText: 'One' });
-      const disabledItem = page
-        .locator('sl-radio-button')
-        .filter({ hasText: 'Two' });
+      const one = page.locator('sl-radio').filter({ hasText: 'One' });
+      const two = page.locator('sl-radio').filter({ hasText: 'Two' });
+      const four = page.locator('sl-radio').filter({ hasText: 'Four' });
 
       await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
       await page.keyboard.press('Tab');
-      await expect(item).toBeFocused();
-      await page.keyboard.press('Tab');
-      await expect(item).not.toBeFocused();
-      await expect(disabledItem).toBeFocused();
+      await expect(one).toBeFocused();
+      await page.keyboard.press('ArrowDown');
+      await expect(one).not.toBeFocused();
+      await expect(two).toBeFocused();
+      await page.keyboard.press('ArrowDown');
+      await expect(two).not.toBeFocused();
+      await expect(four).not.toBeFocused(); //shouldn't be focused as it's disabled
     });
 
-    test(`should be keyboard operable`, async ({ page }) => {
-      const item = page.locator('sl-radio-button').filter({ hasText: 'One' });
+    test(`should be keyboard operable with enter and space`, async ({
+      page,
+    }) => {
+      const one = page.locator('sl-radio').filter({ hasText: 'One' });
+      const two = page.locator('sl-radio').filter({ hasText: 'Two' });
 
-      await expect(item).toHaveAttribute('aria-checked', 'false');
-      await item.focus();
+      await expect(one).toHaveAttribute('aria-checked', 'false');
+      await expect(two).toHaveAttribute('aria-checked', 'false');
+
+      await one.focus();
       await page.keyboard.press('Enter');
-      await expect(item).toHaveAttribute('aria-checked', 'true');
+
+      await expect(one).toHaveAttribute('aria-checked', 'true');
+      await expect(two).toHaveAttribute('aria-checked', 'false');
+
+      await two.focus();
       await page.keyboard.press('Enter');
-      await expect(item).toHaveAttribute('aria-checked', 'false');
+
+      await expect(one).toHaveAttribute('aria-checked', 'false');
+      await expect(two).toHaveAttribute('aria-checked', 'true');
+
+      await one.focus();
       await page.keyboard.press('Space');
-      await expect(item).toHaveAttribute('aria-checked', 'true');
+
+      await expect(one).toHaveAttribute('aria-checked', 'true');
+      await expect(two).toHaveAttribute('aria-checked', 'false');
+
+      await two.focus();
       await page.keyboard.press('Space');
-      await expect(item).toHaveAttribute('aria-checked', 'false');
+
+      await expect(one).toHaveAttribute('aria-checked', 'false');
+      await expect(two).toHaveAttribute('aria-checked', 'true');
+    });
+
+    test(`should be keyboard operable with arrow keys`, async ({ page }) => {
+      const one = page.locator('sl-radio').filter({ hasText: 'One' });
+      const two = page.locator('sl-radio').filter({ hasText: 'Two' });
+
+      await expect(one).toHaveAttribute('aria-checked', 'false');
+      await expect(two).toHaveAttribute('aria-checked', 'false');
+
+      await one.focus();
+      await page.keyboard.press('ArrowDown');
+
+      await expect(one).toHaveAttribute('aria-checked', 'false');
+      await expect(two).toHaveAttribute('aria-checked', 'true');
+
+      await page.keyboard.press('ArrowUp');
+
+      await expect(one).toHaveAttribute('aria-checked', 'true');
+      await expect(two).toHaveAttribute('aria-checked', 'false');
     });
 
     test('should have aria-disabled attribute when disabled', async ({
       page,
     }) => {
-      const item = page.locator('sl-radio-button').filter({ hasText: 'Two' });
+      const four = page.locator('sl-radio').filter({ hasText: 'Four' });
+      const five = page.locator('sl-radio').filter({ hasText: 'Five' });
 
-      await expect(item).toHaveAttribute('aria-disabled', 'true');
+      await expect(four).toHaveAttribute('disabled');
+      await expect(five).toHaveAttribute('disabled');
+    });
+
+    test('should have error message as accessibility description', async ({
+      page,
+    }) => {
+      test.skip(
+        path == '/sl-radio-group-reactive' ||
+          path == '/sl-radio-group-template',
+      );
+      const group = page
+        .locator('sl-form-field', { hasText: 'Active' })
+        .locator('sl-radio-group');
+      const one = page.locator('sl-radio').filter({ hasText: 'One' });
+
+      await page.getByRole('button', { name: 'Submit' }).click();
+
+      await expect(group).toHaveAccessibleDescription(
+        activeHint + ' ' + requiredErrorMsg,
+      );
+
+      await one.click();
+
+      await expect(group).toHaveAccessibleDescription(
+        activeHint + ' ' + invalidSelectionErrorMsg,
+      );
+    });
+
+    test('should have error message as accessibility description (angular reactive)', async ({
+      page,
+    }) => {
+      test.skip(path !== '/sl-radio-group-reactive');
+      const group = page
+        .locator('sl-form-field', { hasText: 'Active' })
+        .locator('sl-radio-group');
+      const one = page.locator('sl-radio').filter({ hasText: 'One' });
+
+      await page.getByRole('button', { name: 'Submit' }).click();
+
+      await expect(group).toHaveAccessibleDescription(
+        reactiveHint + ' ' + requiredErrorMsg,
+      );
+
+      await one.click();
+
+      await expect(group).toHaveAccessibleDescription(
+        reactiveHint + ' ' + invalidSelectionErrorMsg,
+      );
+    });
+
+    test('should have error message as accessibility description (angular template)', async ({
+      page,
+    }) => {
+      test.skip(path !== '/sl-radio-group-template');
+      const group = page
+        .locator('sl-form-field', { hasText: 'Active' })
+        .locator('sl-radio-group');
+      const one = page.locator('sl-radio').filter({ hasText: 'One' });
+
+      await page.getByRole('button', { name: 'Submit' }).click();
+
+      await expect(group).toHaveAccessibleDescription(
+        templateHint + ' ' + requiredErrorMsg,
+      );
+
+      await one.click();
+
+      await expect(group).toHaveAccessibleDescription(
+        templateHint + ' ' + invalidSelectionErrorMsg,
+      );
     });
   });
 }
