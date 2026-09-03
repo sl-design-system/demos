@@ -132,10 +132,10 @@ for (const { name, path, angularOnly } of variants) {
     test('should have correct ARIA role and accessibility name', async ({
       page,
     }) => {
-       const one = page.getByRole('radio', { name: 'One' });
-       const two = page.getByRole('radio', { name: 'Two' });
-       const four = page.getByRole('radio', { name: 'Four' });
-       const five = page.getByRole('radio', { name: 'Five' });
+      const one = page.getByRole('radio', { name: 'One' });
+      const two = page.getByRole('radio', { name: 'Two' });
+      const four = page.getByRole('radio', { name: 'Four' });
+      const five = page.getByRole('radio', { name: 'Five' });
 
       await expect(one).toHaveAccessibleName('One');
       await expect(two).toHaveAccessibleName('Two');
