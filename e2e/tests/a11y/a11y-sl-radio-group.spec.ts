@@ -132,20 +132,15 @@ for (const { name, path, angularOnly } of variants) {
     test('should have correct ARIA role and accessibility name', async ({
       page,
     }) => {
-      const one = page.locator('sl-radio').filter({ hasText: 'One' });
-      const two = page.locator('sl-radio').filter({ hasText: 'Two' });
-      const four = page.locator('sl-radio').filter({ hasText: 'Four' });
-      const five = page.locator('sl-radio').filter({ hasText: 'Five' });
+       const one = page.getByRole('radio', { name: 'One' });
+       const two = page.getByRole('radio', { name: 'Two' });
+       const four = page.getByRole('radio', { name: 'Four' });
+       const five = page.getByRole('radio', { name: 'Five' });
 
       await expect(one).toHaveAccessibleName('One');
       await expect(two).toHaveAccessibleName('Two');
       await expect(four).toHaveAccessibleName('Four');
       await expect(five).toHaveAccessibleName('Five');
-
-      await expect(one).toHaveAttribute('role', 'radio');
-      await expect(two).toHaveAttribute('role', 'radio');
-      await expect(four).toHaveAttribute('role', 'radio');
-      await expect(five).toHaveAttribute('role', 'radio');
     });
 
     test('should have correct tab order', async ({ page }) => {
