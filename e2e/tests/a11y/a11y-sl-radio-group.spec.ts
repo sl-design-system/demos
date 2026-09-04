@@ -3,28 +3,30 @@ import AxeBuilder from '@axe-core/playwright';
 import { hasMainHorizontalOverflow } from '../../utils/checkForHorizontalScroll.js';
 
 const variants = [
-  { name: 'sl-radio-group', path: '/sl-radio-group', angularOnly: false },
+  {
+    name: 'sl-radio-group',
+    path: '/sl-radio-group',
+    angularOnly: false,
+    hint: 'This story has both builtin validation (required) and custom validation. You need to check the second option to make the field valid.',
+  },
   {
     name: 'sl-radio-group (reactive)',
     path: '/sl-radio-group-reactive',
     angularOnly: true,
+    hint: 'This example uses reactive forms. You need to check the second option to make the field valid.',
   },
   {
     name: 'sl-radio-group (template)',
     path: '/sl-radio-group-template',
     angularOnly: true,
+    hint: 'This example uses template-driven forms. You need to check the second option to make the field valid.',
   },
 ];
 
-for (const { name, path, angularOnly } of variants) {
+for (const { name, path, angularOnly, hint } of variants) {
   const requiredErrorMsg = 'Please select an option.';
   const invalidSelectionErrorMsg = 'Pick the second option';
-  const activeHint =
-    'This story has both builtin validation (required) and custom validation. You need to check the second option to make the field valid.';
-  const reactiveHint =
-    'This example uses reactive forms. You need to check the second option to make the field valid.';
-  const templateHint =
-    'This example uses template-driven forms. You need to check the second option to make the field valid.';
+  const activeHint = hint;
   const disabledHint =
     'This radio group is disabled; no interaction is possible.';
 
@@ -81,11 +83,6 @@ for (const { name, path, angularOnly } of variants) {
     });
 
     test('should have group description', async ({ page }) => {
-      test.skip(
-        path == '/sl-radio-group-reactive' ||
-          path == '/sl-radio-group-template',
-      );
-
       const group = page
         .locator('sl-form-field', { hasText: 'Active' })
         .locator('sl-radio-group');
@@ -97,37 +94,6 @@ for (const { name, path, angularOnly } of variants) {
       await expect(disabled).toHaveAccessibleDescription(disabledHint);
     });
 
-    test('should have group description (angular reactive)', async ({
-      page,
-    }) => {
-      test.skip(path !== '/sl-radio-group-reactive');
-
-      const group = page
-        .locator('sl-form-field', { hasText: 'Active' })
-        .locator('sl-radio-group');
-      const disabled = page
-        .locator('sl-form-field', { hasText: 'Disabled' })
-        .locator('sl-radio-group');
-
-      await expect(group).toHaveAccessibleDescription(reactiveHint);
-      await expect(disabled).toHaveAccessibleDescription(disabledHint);
-    });
-
-    test('should have group description (angular template-driven)', async ({
-      page,
-    }) => {
-      test.skip(path !== '/sl-radio-group-template');
-
-      const group = page
-        .locator('sl-form-field', { hasText: 'Active' })
-        .locator('sl-radio-group');
-      const disabled = page
-        .locator('sl-form-field', { hasText: 'Disabled' })
-        .locator('sl-radio-group');
-
-      await expect(group).toHaveAccessibleDescription(templateHint);
-      await expect(disabled).toHaveAccessibleDescription(disabledHint);
-    });
 
     test('should have correct ARIA role and accessibility name', async ({
       page,
@@ -224,12 +190,8 @@ for (const { name, path, angularOnly } of variants) {
     });
 
     test('should have error message as accessibility description', async ({
-      page,
+      page
     }) => {
-      test.skip(
-        path == '/sl-radio-group-reactive' ||
-          path == '/sl-radio-group-template',
-      );
       const group = page
         .locator('sl-form-field', { hasText: 'Active' })
         .locator('sl-radio-group');
@@ -245,50 +207,6 @@ for (const { name, path, angularOnly } of variants) {
 
       await expect(group).toHaveAccessibleDescription(
         activeHint + ' ' + invalidSelectionErrorMsg,
-      );
-    });
-
-    test('should have error message as accessibility description (angular reactive)', async ({
-      page,
-    }) => {
-      test.skip(path !== '/sl-radio-group-reactive');
-      const group = page
-        .locator('sl-form-field', { hasText: 'Active' })
-        .locator('sl-radio-group');
-      const one = page.locator('sl-radio').filter({ hasText: 'One' });
-
-      await page.getByRole('button', { name: 'Submit' }).click();
-
-      await expect(group).toHaveAccessibleDescription(
-        reactiveHint + ' ' + requiredErrorMsg,
-      );
-
-      await one.click();
-
-      await expect(group).toHaveAccessibleDescription(
-        reactiveHint + ' ' + invalidSelectionErrorMsg,
-      );
-    });
-
-    test('should have error message as accessibility description (angular template)', async ({
-      page,
-    }) => {
-      test.skip(path !== '/sl-radio-group-template');
-      const group = page
-        .locator('sl-form-field', { hasText: 'Active' })
-        .locator('sl-radio-group');
-      const one = page.locator('sl-radio').filter({ hasText: 'One' });
-
-      await page.getByRole('button', { name: 'Submit' }).click();
-
-      await expect(group).toHaveAccessibleDescription(
-        templateHint + ' ' + requiredErrorMsg,
-      );
-
-      await one.click();
-
-      await expect(group).toHaveAccessibleDescription(
-        templateHint + ' ' + invalidSelectionErrorMsg,
       );
     });
   });
