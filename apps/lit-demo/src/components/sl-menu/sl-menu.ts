@@ -27,7 +27,9 @@ export class MenuPage extends ScopedElementsMixin(LitElement) {
             <sl-menu-item @click=${this._openBlankPage}>Test 3</sl-menu-item>
           </sl-menu>
         </sl-menu-item>
-        <sl-menu-item aria-disabled="true" @click=${this._openBlankPage}>Test 4</sl-menu-item>
+        <sl-menu-item aria-disabled="true" @click=${this._openBlankPage}
+          >Test 4</sl-menu-item
+        >
       </sl-menu-button>
     `;
   }
