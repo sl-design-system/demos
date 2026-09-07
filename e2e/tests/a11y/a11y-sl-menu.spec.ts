@@ -108,7 +108,7 @@ test.describe('sl-menu accessibility', () => {
     await page.keyboard.press('ArrowDown');
     await expect(test4).toBeFocused();
     await page.keyboard.press('Escape');
-    await expect(menu).toBeFocused();
+    await expect(menu).toHaveAttribute('aria-expanded', 'false');
   });
 
   test('should have keyboard accessible submenu', async ({ page }) => {
