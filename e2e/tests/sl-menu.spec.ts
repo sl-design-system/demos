@@ -46,4 +46,13 @@ test.describe('sl-menu', () => {
       page.getByRole('menuitem', { name: 'Test 1' }),
     ).not.toBeVisible();
   });
+
+  test('should not activate disabled menu item', async ({ page }) => {
+    await page.getByRole('button', { name: 'Menu' }).click();
+    await expect(page.getByRole('menuitem', { name: 'Test 4' })).toBeVisible();
+
+    await page.getByRole('menuitem', { name: 'Test 4' }).click({ force: true });
+
+    await expect(page).toHaveURL('/sl-menu');
+  });
 });
