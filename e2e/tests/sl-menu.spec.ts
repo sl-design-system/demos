@@ -49,10 +49,12 @@ test.describe('sl-menu', () => {
 
   test('should not activate disabled menu item', async ({ page }) => {
     await page.getByRole('button', { name: 'Menu' }).click();
-    await expect(page.getByRole('menuitem', { name: 'Test 4' })).toBeVisible();
+    const disabledItem = page.getByRole('menuitem', { name: 'Test 4' });
+    await expect(disabledItem).toBeVisible();
 
-    await page.getByRole('menuitem', { name: 'Test 4' }).click({ force: true });
-
+    const pagesBefore = page.context().pages().length;
+    await disabledItem.click({ force: true });
+    expect(page.context().pages().length).toEqual(pagesBefore);
     await expect(page).toHaveURL('/sl-menu');
   });
 });

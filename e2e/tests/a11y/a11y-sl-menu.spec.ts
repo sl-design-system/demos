@@ -141,7 +141,7 @@ test.describe('sl-menu accessibility', () => {
 
     const [newPage] = await Promise.all([
       page.context().waitForEvent('page'),
-      await page.keyboard.press('Space'),
+      page.keyboard.press('Space'),
     ]);
 
     await expect(newPage).toHaveURL('about:blank');
@@ -158,7 +158,7 @@ test.describe('sl-menu accessibility', () => {
 
     const [newPage] = await Promise.all([
       page.context().waitForEvent('page'),
-      await page.keyboard.press('Space'),
+      page.keyboard.press('Space'),
     ]);
 
     await expect(newPage).toHaveURL('about:blank');
@@ -178,8 +178,8 @@ test.describe('sl-menu accessibility', () => {
 
     await menu.click();
     await test4.focus();
+    const pagesBefore = page.context().pages().length;
     await page.keyboard.press('Space');
-
-    await expect(page).toHaveURL('/sl-menu');
+    expect(page.context().pages().length).toEqual(pagesBefore);
   });
 });
