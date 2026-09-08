@@ -101,6 +101,11 @@ export const router = createRouter({
         import('./components/sl-toggle-button/sl-toggle-button.vue'),
     },
     {
+      path: '/sl-toggle-group',
+      component: () =>
+        import('./components/sl-toggle-group/sl-toggle-group.vue'),
+    },
+    {
       path: '/sl-tooltip',
       component: () => import('./components/sl-tooltip/sl-tooltip.vue'),
     },
