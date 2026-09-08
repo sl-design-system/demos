@@ -8,6 +8,9 @@
         <sl-menu-item @click="openBlankPage">Test 3</sl-menu-item>
       </sl-menu>
     </sl-menu-item>
+    <sl-menu-item aria-disabled="true" @click="openBlankPage"
+      >Test 4</sl-menu-item
+    >
   </sl-menu-button>
 </template>
 
