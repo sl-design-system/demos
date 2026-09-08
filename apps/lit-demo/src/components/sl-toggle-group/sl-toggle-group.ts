@@ -8,6 +8,7 @@ import { ToggleGroup } from '@sl-design-system/toggle-group';
 
 export class ToggleGroupPage extends ScopedElementsMixin(LitElement) {
   static scopedElements: ScopedElementsMap = {
+    // @ts-expect-error ToggleButton resolves against a duplicate Lit dependency in toggle-group.
     'sl-toggle-button': ToggleButton,
     'sl-toggle-group': ToggleGroup,
   };
