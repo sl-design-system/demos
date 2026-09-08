@@ -90,6 +90,35 @@ test.describe('sl-toggle-group accessibility', () => {
     await page.keyboard.press('ArrowRight');
     await expect(item1).toBeFocused();
     await expect(disabledItem).not.toBeFocused();
+    await page.keyboard.press('ArrowLeft');
+    await expect(item1).not.toBeFocused();
+    await expect(item2).toBeFocused();
+  });
+
+  test('should be only one tab stop', async ({ page }) => {
+    const item1 = page.locator('sl-toggle-button').filter({ hasText: 'Test 1' });
+    const item2 = page.locator('sl-toggle-button').filter({ hasText: 'Test 2' });
+
+    await page.getByRole('button', { name: 'Collapse navigation' }).click();
+
+    await page.keyboard.press('Tab');
+    await expect(item1).toBeFocused();
+    await page.keyboard.press('Tab');
+    await expect(item1).not.toBeFocused();
+    await expect(item2).not.toBeFocused();
+  });
+
+  test('should not toggle button on focus', async ({ page }) => {
+    const item1 = page.locator('sl-toggle-button').filter({ hasText: 'Test 1' });
+    const item2 = page.locator('sl-toggle-button').filter({ hasText: 'Test 2' });
+
+    await page.getByRole('button', { name: 'Collapse navigation' }).click();
+
+    await page.keyboard.press('Tab');
+    await expect(item1).toHaveAttribute('aria-pressed', 'false');
+    await page.keyboard.press('ArrowRight');
+    await expect(item2).toHaveAttribute('aria-pressed', 'false');
+    await expect(item1).toHaveAttribute('aria-pressed', 'false');
   });
 
   test(`should be keyboard operable`, async ({ page }) => {
