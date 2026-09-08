@@ -23,6 +23,7 @@
   import Card from './components/sl-card/sl-card.svelte';
   import Popover from './components/sl-popover/sl-popover.svelte';
   import ToggleButton from './components/sl-toggle-button/sl-toggle-button.svelte';
+  import ToggleGroup from './components/sl-toggle-group/sl-toggle-group.svelte';
   import Tooltip from './components/sl-tooltip/sl-tooltip.svelte';
 
   const navItems = [
@@ -49,6 +50,7 @@
     { path: '/sl-card', label: 'sl-card', component: Card },
     { path: '/sl-popover', label: 'sl-popover', component: Popover },
     { path: '/sl-toggle-button', label: 'sl-toggle-button', component: ToggleButton },
+    { path: '/sl-toggle-group', label: 'sl-toggle-group', component: ToggleGroup },
     { path: '/sl-tooltip', label: 'sl-tooltip', component: Tooltip },
     { path: '/sl-radio-group', label: 'sl-radio-group', component: RadioGroup },
   ];
