@@ -30,6 +30,9 @@
     </nav>
     <main id="main" class="content" tabindex="-1">
       <router-view />
+      <div class="tabindex-btn">
+        <button>Focus me</button>
+      </div>
     </main>
   </div>
 </template>
@@ -194,6 +197,9 @@ const navItems = [
 
 .sidebar.collapsed .sidebar-list {
   display: none;
+}
+.tabindex-btn {
+  padding:10px;
 }
 </style>
 
