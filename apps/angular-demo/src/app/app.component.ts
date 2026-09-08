@@ -35,6 +35,7 @@ export class AppComponent {
     { path: 'sl-switch', label: 'sl-switch' },
     { path: 'sl-popover', label: 'sl-popover' },
     { path: 'sl-toggle-button', label: 'sl-toggle-button' },
+    { path: 'sl-toggle-group', label: 'sl-toggle-group' },
     { path: 'sl-tooltip', label: 'sl-tooltip' },
     { path: 'sl-radio-group-reactive', label: 'sl-radio-group (reactive)' },
     { path: 'sl-radio-group-template', label: 'sl-radio-group (template)' },
