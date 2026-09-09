@@ -7,8 +7,3 @@
     >
   </sl-toggle-group>
 </template>
-
-<script setup lang="ts">
-import '@sl-design-system/toggle-button/register.js';
-import '@sl-design-system/toggle-group/register.js';
-</script>
