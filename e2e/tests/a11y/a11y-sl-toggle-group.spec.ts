@@ -59,7 +59,9 @@ test.describe('sl-toggle-group accessibility', () => {
 
   test('should have correct ARIA role', async ({ page }) => {
     const group = page.locator('sl-toggle-group');
-    const item = group.locator('sl-toggle-button').filter({ hasText: 'Test 1' });
+    const item = group
+      .locator('sl-toggle-button')
+      .filter({ hasText: 'Test 1' });
 
     await expect(group).toHaveAttribute('role', 'region');
     await expect(item).toHaveAttribute('role', 'button');
@@ -76,9 +78,15 @@ test.describe('sl-toggle-group accessibility', () => {
   });
 
   test('should have correct tab order', async ({ page }) => {
-    const item1 = page.locator('sl-toggle-button').filter({ hasText: 'Test 1' });
-    const item2 = page.locator('sl-toggle-button').filter({ hasText: 'Test 2' });
-    const disabledItem = page.locator('sl-toggle-button').filter({ hasText: 'Test 3' });
+    const item1 = page
+      .locator('sl-toggle-button')
+      .filter({ hasText: 'Test 1' });
+    const item2 = page
+      .locator('sl-toggle-button')
+      .filter({ hasText: 'Test 2' });
+    const disabledItem = page
+      .locator('sl-toggle-button')
+      .filter({ hasText: 'Test 3' });
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
@@ -96,8 +104,12 @@ test.describe('sl-toggle-group accessibility', () => {
   });
 
   test('should be only one tab stop', async ({ page }) => {
-    const item1 = page.locator('sl-toggle-button').filter({ hasText: 'Test 1' });
-    const item2 = page.locator('sl-toggle-button').filter({ hasText: 'Test 2' });
+    const item1 = page
+      .locator('sl-toggle-button')
+      .filter({ hasText: 'Test 1' });
+    const item2 = page
+      .locator('sl-toggle-button')
+      .filter({ hasText: 'Test 2' });
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
@@ -109,8 +121,12 @@ test.describe('sl-toggle-group accessibility', () => {
   });
 
   test('should not toggle button on focus', async ({ page }) => {
-    const item1 = page.locator('sl-toggle-button').filter({ hasText: 'Test 1' });
-    const item2 = page.locator('sl-toggle-button').filter({ hasText: 'Test 2' });
+    const item1 = page
+      .locator('sl-toggle-button')
+      .filter({ hasText: 'Test 1' });
+    const item2 = page
+      .locator('sl-toggle-button')
+      .filter({ hasText: 'Test 2' });
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
