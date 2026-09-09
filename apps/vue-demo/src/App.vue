@@ -30,6 +30,9 @@
     </nav>
     <main id="main" class="content" tabindex="-1">
       <router-view />
+      <div class="tabindex-btn">
+        <button type="button">Focus me</button>
+      </div>
     </main>
   </div>
 </template>
@@ -63,6 +66,7 @@ const navItems = [
   { path: '/sl-card', label: 'sl-card' },
   { path: '/sl-popover', label: 'sl-popover' },
   { path: '/sl-toggle-button', label: 'sl-toggle-button' },
+  { path: '/sl-toggle-group', label: 'sl-toggle-group' },
   { path: '/sl-tooltip', label: 'sl-tooltip' },
   { path: '/sl-radio-group', label: 'sl-radio-group' },
 ];
@@ -193,6 +197,9 @@ const navItems = [
 
 .sidebar.collapsed .sidebar-list {
   display: none;
+}
+.tabindex-btn {
+  padding: 10px;
 }
 </style>
 

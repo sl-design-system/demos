@@ -185,6 +185,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-toggle-group',
+    loadComponent: () =>
+      import('./components/sl-toggle-group/sl-toggle-group.component').then(
+        (m) => m.ToggleGroupPageComponent,
+      ),
+  },
+  {
     path: 'sl-tooltip',
     loadComponent: () =>
       import('./components/sl-tooltip/sl-tooltip.component').then(
