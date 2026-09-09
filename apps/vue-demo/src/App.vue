@@ -31,7 +31,7 @@
     <main id="main" class="content" tabindex="-1">
       <router-view />
       <div class="tabindex-btn">
-        <button>Focus me</button>
+        <button type="button">Focus me</button>
       </div>
     </main>
   </div>
@@ -199,7 +199,7 @@ const navItems = [
   display: none;
 }
 .tabindex-btn {
-  padding:10px;
+  padding: 10px;
 }
 </style>
 

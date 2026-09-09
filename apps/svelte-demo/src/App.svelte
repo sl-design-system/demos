@@ -107,7 +107,7 @@
   <main id="main" class="content" tabindex="-1">
     <CurrentPage />
     <div class="tabindex-btn">
-      <button>Focus me</button>
+      <button type="button">Focus me</button>
     </div>
   </main>
 </div>
