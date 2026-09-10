@@ -6,7 +6,10 @@ test.describe('sl-text-field', () => {
   });
 
   test('should type and clear text in the enabled field', async ({ page }) => {
-    const input = page.getByRole('textbox', { name: 'Text field', exact: true });
+    const input = page.getByRole('textbox', {
+      name: 'Text field',
+      exact: true,
+    });
 
     await input.fill('Test');
     await expect(input).toHaveValue('Test');
@@ -16,7 +19,10 @@ test.describe('sl-text-field', () => {
   });
 
   test('should show the placeholder text when empty', async ({ page }) => {
-    const input = page.getByRole('textbox', { name: 'Text field', exact: true });
+    const input = page.getByRole('textbox', {
+      name: 'Text field',
+      exact: true,
+    });
 
     await expect(input).toHaveAttribute('placeholder', 'Type your message');
     await expect(input).toHaveValue('');
