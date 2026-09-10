@@ -15,6 +15,13 @@ test.describe('sl-text-area', () => {
     await expect(input).toHaveValue('');
   });
 
+  test('should show the placeholder text when empty', async ({ page }) => {
+    const input = page.getByRole('textbox', { name: 'Text area', exact: true });
+
+    await expect(input).toHaveAttribute('placeholder', 'Type your message');
+    await expect(input).toHaveValue('');
+  });
+
   test('should accept multi-line input with newlines', async ({ page }) => {
     const input = page.getByRole('textbox', { name: 'Text area', exact: true });
 
