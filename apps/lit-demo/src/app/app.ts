@@ -20,6 +20,7 @@ import { MenuPage } from '../components/sl-menu/sl-menu.js';
 import { MessageDialogPage } from '../components/sl-message-dialog/sl-message-dialog.js';
 import { NumberFieldPage } from '../components/sl-number-field/sl-number-field.js';
 import { TextAreaPage } from '../components/sl-text-area/sl-text-area.js';
+import { TextFieldPage } from '../components/sl-text-field/sl-text-field.js';
 import { TabGroupPage } from '../components/sl-tab-group/sl-tab-group.js';
 import { PaginatorPage } from '../components/sl-paginator/sl-paginator.js';
 import { SelectPage } from '../components/sl-select/sl-select.js';
@@ -49,6 +50,7 @@ const ROUTES = [
   { path: '/sl-message-dialog', label: 'sl-message-dialog' },
   { path: '/sl-number-field', label: 'sl-number-field' },
   { path: '/sl-text-area', label: 'sl-text-area' },
+  { path: '/sl-text-field', label: 'sl-text-field' },
   { path: '/sl-tab-group', label: 'sl-tab-group' },
   { path: '/sl-paginator', label: 'sl-paginator' },
   { path: '/sl-select', label: 'sl-select' },
@@ -79,6 +81,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-message-dialog': MessageDialogPage,
     'page-number-field': NumberFieldPage,
     'page-text-area': TextAreaPage,
+    'page-text-field': TextFieldPage,
     'page-tab-group': TabGroupPage,
     'page-paginator': PaginatorPage,
     'page-select': SelectPage,
@@ -152,6 +155,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-number-field></page-number-field>`;
       case '/sl-text-area':
         return html`<page-text-area></page-text-area>`;
+      case '/sl-text-field':
+        return html`<page-text-field></page-text-field>`;
       case '/sl-tab-group':
         return html`<page-tab-group></page-tab-group>`;
       case '/sl-paginator':
