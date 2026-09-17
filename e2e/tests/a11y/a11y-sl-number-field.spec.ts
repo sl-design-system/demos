@@ -56,7 +56,7 @@ test.describe('sl-number-field accessibility', () => {
     await expect(item).toHaveAccessibleName('Number field');
   });
 
-  test('should have correct tab order', async ({ page }) => {
+  test('should have correct tab order, and step-buttons should not be focusable', async ({ page }) => {
     const activeElements = ['Number field', 'Focus me'] as const;
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
