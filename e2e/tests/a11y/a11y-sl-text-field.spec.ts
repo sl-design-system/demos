@@ -1,16 +1,16 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { getFocusedElement } from '../../utils/getFocusedElement.js';
 import { hasMainHorizontalOverflow } from '../../utils/checkForHorizontalScroll.js';
+import { getFocusedElement } from '../../utils/getFocusedElement.js';
 
-test.describe('sl-text-area accessibility', () => {
+test.describe('sl-text-field accessibility', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/sl-text-area');
+    await page.goto('/sl-text-field');
   });
 
   test('should have no accessibility violations', async ({ page }) => {
     await expect(
-      page.getByRole('textbox', { name: 'Text area', exact: true }),
+      page.getByRole('textbox', { name: 'Text field', exact: true }),
     ).toBeVisible();
     const axe = new AxeBuilder({ page }).withTags([
       'wcag2a',
@@ -28,7 +28,7 @@ test.describe('sl-text-area accessibility', () => {
     page,
   }) => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
-    await page.goto('/sl-text-area'); // for Firefox to properly apply the viewport size before page load
+    await page.goto('/sl-text-field'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
     const axe = new AxeBuilder({ page }).withTags([
       'wcag2a',
@@ -44,7 +44,7 @@ test.describe('sl-text-area accessibility', () => {
 
   test('component fits without horizontal scroll', async ({ page }) => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
-    await page.goto('/sl-text-area'); // for Firefox to properly apply the viewport size before page load
+    await page.goto('/sl-text-field'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
     const hasOverflow = await hasMainHorizontalOverflow(page);
@@ -52,12 +52,12 @@ test.describe('sl-text-area accessibility', () => {
   });
 
   test('should have accessible name', async ({ page }) => {
-    const item = page.getByRole('textbox', { name: 'Text area', exact: true });
-    await expect(item).toHaveAccessibleName('Text area');
+    const item = page.getByRole('textbox', { name: 'Text field', exact: true });
+    await expect(item).toHaveAccessibleName('Text field');
   });
 
   test('should have correct tab order', async ({ page }) => {
-    const activeElements = ['Text area', 'Focus me'] as const;
+    const activeElements = ['Text field', 'Focus me'] as const;
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
@@ -69,7 +69,7 @@ test.describe('sl-text-area accessibility', () => {
   });
 
   test(`should be keyboard operable`, async ({ page }) => {
-    const item = page.getByRole('textbox', { name: 'Text area', exact: true });
+    const item = page.getByRole('textbox', { name: 'Text field', exact: true });
 
     await item.focus();
     await page.keyboard.type('Hello world');

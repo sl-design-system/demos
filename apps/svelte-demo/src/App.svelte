@@ -24,6 +24,7 @@
   import Popover from './components/sl-popover/sl-popover.svelte';
   import ToggleButton from './components/sl-toggle-button/sl-toggle-button.svelte';
   import ToggleGroup from './components/sl-toggle-group/sl-toggle-group.svelte';
+  import TextField from './components/sl-text-field/sl-text-field.svelte';
   import Tooltip from './components/sl-tooltip/sl-tooltip.svelte';
 
   const navItems = [
@@ -47,6 +48,7 @@
     { path: '/sl-paginator', label: 'sl-paginator', component: Paginator },
     { path: '/sl-select', label: 'sl-select', component: Select },
     { path: '/sl-switch', label: 'sl-switch', component: Switch },
+    { path: '/sl-text-field', label: 'sl-text-field', component: TextField },
     { path: '/sl-card', label: 'sl-card', component: Card },
     { path: '/sl-popover', label: 'sl-popover', component: Popover },
     { path: '/sl-toggle-button', label: 'sl-toggle-button', component: ToggleButton },
