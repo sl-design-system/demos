@@ -1,0 +1,97 @@
+import { test, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+import { getFocusedElement } from '../../utils/getFocusedElement.js';
+import { hasMainHorizontalOverflow } from '../../utils/checkForHorizontalScroll.js';
+
+test.describe('sl-number-field accessibility', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/sl-number-field');
+  });
+
+  test('should have no accessibility violations', async ({ page }) => {
+    const axe = new AxeBuilder({ page }).withTags([
+      'wcag2a',
+      'wcag2aa',
+      'wcag21a',
+      'wcag21aa',
+      'wcag22a',
+      'wcag22aa',
+    ]);
+    const results = await axe.analyze();
+    expect(results.violations).toEqual([]);
+  });
+
+  test('should have no accessibility violations in 320px width of <main>', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
+    await page.goto('/sl-number-field'); // for Firefox to properly apply the viewport size before page load
+    await page.getByRole('button', { name: 'Collapse navigation' }).click();
+    const axe = new AxeBuilder({ page }).withTags([
+      'wcag2a',
+      'wcag2aa',
+      'wcag21a',
+      'wcag21aa',
+      'wcag22a',
+      'wcag22aa',
+    ]);
+    const results = await axe.analyze();
+    expect(results.violations).toEqual([]);
+  });
+
+  test('component fits without horizontal scroll', async ({ page }) => {
+    await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
+    await page.goto('/sl-number-field'); // for Firefox to properly apply the viewport size before page load
+    await page.getByRole('button', { name: 'Collapse navigation' }).click();
+
+    const hasOverflow = await hasMainHorizontalOverflow(page);
+    expect(hasOverflow).toBe(false);
+  });
+
+  test('should have accessible name', async ({ page }) => {
+    const item = page.getByRole('textbox', {
+      name: 'Number field',
+      exact: true,
+    });
+    await expect(item).toHaveAccessibleName('Number field');
+  });
+
+  test('should have correct tab order, and step-buttons should not be focusable', async ({ page }) => {
+    const activeElements = ['Number field', 'Focus me'] as const;
+
+    await page.getByRole('button', { name: 'Collapse navigation' }).click();
+
+    for (const activeElement of activeElements) {
+      await page.keyboard.press('Tab');
+      const focusedOn = await getFocusedElement(page);
+      expect(focusedOn).toBe(activeElement);
+    }
+  });
+
+  test(`should be keyboard operable`, async ({ page }) => {
+    const item = page.getByRole('textbox', {
+      name: 'Number field',
+      exact: true,
+    });
+
+    await item.focus();
+    await page.keyboard.press('Backspace');
+    await expect(item).toHaveValue('');
+    await page.keyboard.type('123 $');
+    await expect(item).toHaveValue('123 $');
+  });
+
+  test(`should have keyboard operable spinbutton`, async ({ page }) => {
+    const item = page.getByRole('textbox', {
+      name: 'Number field',
+      exact: true,
+    });
+
+    await item.focus();
+    await expect(item).toHaveValue('1');
+    await page.keyboard.press('ArrowUp');
+    await expect(item).toHaveValue('2');
+    await page.keyboard.press('ArrowDown');
+    await expect(item).toHaveValue('1');
+  });
+});
