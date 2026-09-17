@@ -49,7 +49,10 @@ test.describe('sl-number-field accessibility', () => {
   });
 
   test('should have accessible name', async ({ page }) => {
-    const item = page.getByRole('textbox', { name: 'Number field', exact: true });
+    const item = page.getByRole('textbox', {
+      name: 'Number field',
+      exact: true,
+    });
     await expect(item).toHaveAccessibleName('Number field');
   });
 
@@ -66,7 +69,10 @@ test.describe('sl-number-field accessibility', () => {
   });
 
   test(`should be keyboard operable`, async ({ page }) => {
-    const item = page.getByRole('textbox', { name: 'Number field', exact: true });
+    const item = page.getByRole('textbox', {
+      name: 'Number field',
+      exact: true,
+    });
 
     await item.focus();
     await page.keyboard.press('Backspace');
@@ -76,7 +82,10 @@ test.describe('sl-number-field accessibility', () => {
   });
 
   test(`should have keyboard operable spinbutton`, async ({ page }) => {
-    const item = page.getByRole('textbox', { name: 'Number field', exact: true });
+    const item = page.getByRole('textbox', {
+      name: 'Number field',
+      exact: true,
+    });
 
     await item.focus();
     await expect(item).toHaveValue('1');
