@@ -80,7 +80,7 @@ test.describe('sl-tabs accessibility', () => {
   test('should have correct tab order in mobile view', async ({
     page,
     browserName,
-  }, testInfo) => {
+  }) => {
     test.fixme(browserName === 'firefox'); // Skip this test for Firefox and Edge due to tab order issues
     const activeElements = ['General', 'Show all', 'Focus me'] as const;
 
@@ -148,7 +148,7 @@ test.describe('sl-tabs accessibility', () => {
     page,
   }) => {
     const generalTab = page.locator('sl-tab', { hasText: 'General' });
-    const generalButton = page.locator('sl-tab-panel', { hasText: 'Action' });
+    const generalButton = page.getByRole('button', { name: 'Action' });
 
     const pagePromise = page.context().waitForEvent('page');
 
@@ -157,6 +157,7 @@ test.describe('sl-tabs accessibility', () => {
     await expect(generalButton).toBeVisible();
 
     await page.keyboard.press('Tab');
+    await expect(generalButton).toBeFocused();
     await page.keyboard.press('Space');
 
     const newPage = await pagePromise;
@@ -171,10 +172,10 @@ test.describe('sl-tabs accessibility', () => {
     await expect(disabledTab).toHaveAttribute('disabled');
   });
 
-  test(`should have not keyboard accessible disabled tab`, async ({ page }) => {
+  test(`should not have keyboard accessible disabled tab`, async ({ page }) => {
     const disabledTab = page.locator('sl-tab', { hasText: 'Disabled' });
     const disabledContent = page.locator('sl-tab-panel', {
-      hasText: 'Disabled tab content.',
+      hasText: 'Disabled tab content',
     });
 
     await disabledTab.focus();
