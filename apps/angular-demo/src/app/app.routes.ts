@@ -122,6 +122,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-text-field',
+    loadComponent: () =>
+      import('./components/sl-text-field/sl-text-field.component').then(
+        (m) => m.TextFieldPageComponent,
+      ),
+  },
+  {
     path: 'sl-tab-group',
     loadComponent: () =>
       import('./components/sl-tab-group/sl-tab-group.component').then(

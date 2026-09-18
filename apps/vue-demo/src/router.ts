@@ -106,6 +106,10 @@ export const router = createRouter({
         import('./components/sl-toggle-group/sl-toggle-group.vue'),
     },
     {
+      path: '/sl-text-field',
+      component: () => import('./components/sl-text-field/sl-text-field.vue'),
+    },
+    {
       path: '/sl-tooltip',
       component: () => import('./components/sl-tooltip/sl-tooltip.vue'),
     },

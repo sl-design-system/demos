@@ -3,15 +3,12 @@ import AxeBuilder from '@axe-core/playwright';
 import { getFocusedElement } from '../../utils/getFocusedElement.js';
 import { hasMainHorizontalOverflow } from '../../utils/checkForHorizontalScroll.js';
 
-test.describe('sl-text-area accessibility', () => {
+test.describe('sl-number-field accessibility', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/sl-text-area');
+    await page.goto('/sl-number-field');
   });
 
   test('should have no accessibility violations', async ({ page }) => {
-    await expect(
-      page.getByRole('textbox', { name: 'Text area', exact: true }),
-    ).toBeVisible();
     const axe = new AxeBuilder({ page }).withTags([
       'wcag2a',
       'wcag2aa',
@@ -28,7 +25,7 @@ test.describe('sl-text-area accessibility', () => {
     page,
   }) => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
-    await page.goto('/sl-text-area'); // for Firefox to properly apply the viewport size before page load
+    await page.goto('/sl-number-field'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
     const axe = new AxeBuilder({ page }).withTags([
       'wcag2a',
@@ -44,7 +41,7 @@ test.describe('sl-text-area accessibility', () => {
 
   test('component fits without horizontal scroll', async ({ page }) => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
-    await page.goto('/sl-text-area'); // for Firefox to properly apply the viewport size before page load
+    await page.goto('/sl-number-field'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
     const hasOverflow = await hasMainHorizontalOverflow(page);
@@ -52,12 +49,15 @@ test.describe('sl-text-area accessibility', () => {
   });
 
   test('should have accessible name', async ({ page }) => {
-    const item = page.getByRole('textbox', { name: 'Text area', exact: true });
-    await expect(item).toHaveAccessibleName('Text area');
+    const item = page.getByRole('textbox', {
+      name: 'Number field',
+      exact: true,
+    });
+    await expect(item).toHaveAccessibleName('Number field');
   });
 
-  test('should have correct tab order', async ({ page }) => {
-    const activeElements = ['Text area', 'Focus me'] as const;
+  test('should have correct tab order, and step-buttons should not be focusable', async ({ page }) => {
+    const activeElements = ['Number field', 'Focus me'] as const;
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
@@ -69,10 +69,29 @@ test.describe('sl-text-area accessibility', () => {
   });
 
   test(`should be keyboard operable`, async ({ page }) => {
-    const item = page.getByRole('textbox', { name: 'Text area', exact: true });
+    const item = page.getByRole('textbox', {
+      name: 'Number field',
+      exact: true,
+    });
 
     await item.focus();
-    await page.keyboard.type('Hello world');
-    await expect(item).toHaveValue('Hello world');
+    await page.keyboard.press('Backspace');
+    await expect(item).toHaveValue('');
+    await page.keyboard.type('123 $');
+    await expect(item).toHaveValue('123 $');
+  });
+
+  test(`should have keyboard operable spinbutton`, async ({ page }) => {
+    const item = page.getByRole('textbox', {
+      name: 'Number field',
+      exact: true,
+    });
+
+    await item.focus();
+    await expect(item).toHaveValue('1');
+    await page.keyboard.press('ArrowUp');
+    await expect(item).toHaveValue('2');
+    await page.keyboard.press('ArrowDown');
+    await expect(item).toHaveValue('1');
   });
 });

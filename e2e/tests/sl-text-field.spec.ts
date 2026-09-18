@@ -1,12 +1,15 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('sl-text-area', () => {
+test.describe('sl-text-field', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/sl-text-area');
+    await page.goto('/sl-text-field');
   });
 
   test('should type and clear text in the enabled field', async ({ page }) => {
-    const input = page.getByRole('textbox', { name: 'Text area', exact: true });
+    const input = page.getByRole('textbox', {
+      name: 'Text field',
+      exact: true,
+    });
 
     await input.fill('Test');
     await expect(input).toHaveValue('Test');
@@ -16,27 +19,18 @@ test.describe('sl-text-area', () => {
   });
 
   test('should show the placeholder text when empty', async ({ page }) => {
-    const input = page.getByRole('textbox', { name: 'Text area', exact: true });
+    const input = page.getByRole('textbox', {
+      name: 'Text field',
+      exact: true,
+    });
 
     await expect(input).toHaveAttribute('placeholder', 'Type your message');
     await expect(input).toHaveValue('');
   });
 
-  test('should accept multi-line input with newlines', async ({ page }) => {
-    const input = page.getByRole('textbox', { name: 'Text area', exact: true });
-
-    await input.fill('Test');
-    await page.keyboard.press('Enter');
-    await input.pressSequentially('1234');
-    await expect(input).toHaveValue('Test\n1234');
-
-    await input.clear();
-    await expect(input).toHaveValue('');
-  });
-
   test('should not allow typing in the disabled field', async ({ page }) => {
     const input = page.getByRole('textbox', {
-      name: 'Disabled text area',
+      name: 'Disabled text field',
       exact: true,
     });
     await expect(input).toBeDisabled();
