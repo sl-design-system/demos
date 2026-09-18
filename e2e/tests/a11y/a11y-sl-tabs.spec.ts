@@ -58,11 +58,11 @@ test.describe('sl-tabs accessibility', () => {
     await expect(disabledTab).not.toHaveAttribute('aria-selected');
 
     await generalTab.click();
-    expect(await generalTab.getAttribute('aria-selected')).toBe('true');
+    await expect(generalTab).toHaveAttribute('aria-selected', 'true');
 
     await settingsTab.click();
-    expect(await generalTab.getAttribute('aria-selected')).toBe('false');
-    expect(await settingsTab.getAttribute('aria-selected')).toBe('true');
+    await expect(generalTab).toHaveAttribute('aria-selected', 'false');
+    await expect(settingsTab).toHaveAttribute('aria-selected', 'true');
   });
 
   test('should have correct tab order', async ({ page }) => {
@@ -77,7 +77,10 @@ test.describe('sl-tabs accessibility', () => {
     }
   });
 
-  test('should have correct tab order in mobile view', async ({ page, browserName }, testInfo) => {
+  test('should have correct tab order in mobile view', async ({
+    page,
+    browserName,
+  }, testInfo) => {
     test.fixme(browserName === 'firefox'); // Skip this test for Firefox and Edge due to tab order issues
     const activeElements = ['General', 'Show all', 'Focus me'] as const;
 
@@ -96,46 +99,88 @@ test.describe('sl-tabs accessibility', () => {
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
     await page.keyboard.press('Tab');
-    expect(await getFocusedElement(page)).toBe('General');
+    await expect(getFocusedElement(page)).resolves.toBe('General');
     await page.keyboard.press('ArrowRight');
-    expect(await getFocusedElement(page)).toBe('Settings');
+    await expect(getFocusedElement(page)).resolves.toBe('Settings');
 
     await page.keyboard.press('ArrowRight');
-    expect(await getFocusedElement(page)).not.toBe('Disabled');
-    expect(await getFocusedElement(page)).toBe('General');
+    await expect(getFocusedElement(page)).resolves.not.toBe('Disabled');
+    await expect(getFocusedElement(page)).resolves.toBe('General');
 
     await page.keyboard.press('ArrowLeft');
-    expect(await getFocusedElement(page)).toBe('Settings');
+    await expect(getFocusedElement(page)).resolves.toBe('Settings');
   });
 
-  test(`should be activated with Space key`, async ({ page }) => {
+  test(`should be activated with Space and Enter key`, async ({ page }) => {
     const generalTab = page.locator('sl-tab', { hasText: 'General' });
+    const generalContent = page.locator('sl-tab-panel', {
+      hasText:
+        'This is the General tab content. It contains basic information about the component.',
+    });
     const settingsTab = page.locator('sl-tab', { hasText: 'Settings' });
-    const disabledTab = page.locator('sl-tab', { hasText: 'Disabled' });
+    const settingsContent = page.locator('sl-tab-panel', {
+      hasText:
+        'This is the Settings tab content. Here you can configure various options.',
+    });
 
     await generalTab.focus();
     await page.keyboard.press('Space');
+    await expect(generalTab).toHaveAttribute('aria-selected', 'true');
+    await expect(generalContent).toBeVisible();
+
+    await settingsTab.focus();
+    await page.keyboard.press('Space');
+    await expect(settingsTab).toHaveAttribute('aria-selected', 'true');
+    await expect(settingsContent).toBeVisible();
+
+    await generalTab.focus();
+    await page.keyboard.press('Enter');
+    await expect(generalTab).toHaveAttribute('aria-selected', 'true');
+    await expect(generalContent).toBeVisible();
+
+    await settingsTab.focus();
+    await page.keyboard.press('Enter');
+    await expect(settingsTab).toHaveAttribute('aria-selected', 'true');
+    await expect(settingsContent).toBeVisible();
+  });
+
+  test(`should have keyboard operable elements inside tabs`, async ({
+    page,
+  }) => {
+    const generalTab = page.locator('sl-tab', { hasText: 'General' });
+    const generalButton = page.locator('sl-tab-panel', { hasText: 'Action' });
 
     const pagePromise = page.context().waitForEvent('page');
+
     await generalTab.focus();
     await page.keyboard.press('Space');
+    await expect(generalButton).toBeVisible();
+
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Space');
+
     const newPage = await pagePromise;
 
     await expect(newPage).toHaveURL('about:blank');
     await newPage.close();
   });
 
-  test(`should have keyboard operable elements inside tabs`, async ({ page }) => {
-    const generalTab = page.locator('sl-tab', { hasText: 'General' });
-    const settingsTab = page.locator('sl-tab', { hasText: 'Settings' });
+  test(`should have disabled attribute`, async ({ page }) => {
     const disabledTab = page.locator('sl-tab', { hasText: 'Disabled' });
 
-    const pagePromise = page.context().waitForEvent('page');
-    await generalTab.focus();
-    await page.keyboard.press('Space');
-    const newPage = await pagePromise;
+    await expect(disabledTab).toHaveAttribute('disabled');
+  });
 
-    await expect(newPage).toHaveURL('about:blank');
-    await newPage.close();
+  test(`should have not keyboard accessible disabled tab`, async ({ page }) => {
+    const disabledTab = page.locator('sl-tab', { hasText: 'Disabled' });
+    const disabledContent = page.locator('sl-tab-panel', {
+      hasText: 'Disabled tab content.',
+    });
+
+    await disabledTab.focus();
+    await page.keyboard.press('Space');
+
+    await expect(disabledTab).not.toHaveAttribute('aria-selected');
+    await expect(disabledContent).not.toBeVisible();
   });
 });
