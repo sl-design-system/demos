@@ -5,6 +5,7 @@
         ref="basicSelectEl"
         required
         :clearable="true"
+        aria-label="Label"
         placeholder="Select an option"
         size="md"
       >
@@ -18,7 +19,13 @@
     </sl-button-bar>
 
     <sl-form-field>
-      <sl-select :disabled="true" placeholder="Disabled select" size="md">
+      <sl-select
+        :disabled="true"
+        aria-label="Disabled"
+        placeholder="Disabled select"
+        size="md"
+        id="disabled"
+      >
         <sl-option value="1">Disabled value 1</sl-option>
         <sl-option value="2">Disabled value 2</sl-option>
       </sl-select>
