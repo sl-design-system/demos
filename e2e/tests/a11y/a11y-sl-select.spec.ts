@@ -12,15 +12,14 @@ test.describe('sl-select accessibility', () => {
     page,
   }) => {
     await page.locator('#disabled').evaluate((element) => element.remove());
-    const axe = new AxeBuilder({ page })
-      .withTags([
-        'wcag2a',
-        'wcag2aa',
-        'wcag21a',
-        'wcag21aa',
-        'wcag22a',
-        'wcag22aa',
-      ]);
+    const axe = new AxeBuilder({ page }).withTags([
+      'wcag2a',
+      'wcag2aa',
+      'wcag21a',
+      'wcag21aa',
+      'wcag22a',
+      'wcag22aa',
+    ]);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
@@ -32,15 +31,14 @@ test.describe('sl-select accessibility', () => {
     await page.goto('/sl-select'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
     await page.locator('#disabled').evaluate((element) => element.remove());
-    const axe = new AxeBuilder({ page })
-      .withTags([
-        'wcag2a',
-        'wcag2aa',
-        'wcag21a',
-        'wcag21aa',
-        'wcag22a',
-        'wcag22aa',
-      ]);
+    const axe = new AxeBuilder({ page }).withTags([
+      'wcag2a',
+      'wcag2aa',
+      'wcag21a',
+      'wcag21aa',
+      'wcag22a',
+      'wcag22aa',
+    ]);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
@@ -126,9 +124,9 @@ test.describe('sl-select accessibility', () => {
     await expect(clearButton).toBeVisible();
 
     await clearButton.click({ force: true });
-    await expect(page.getByRole('combobox', { name: 'Label' })).toMatchAriaSnapshot(
-      `- combobox "Label": Select an option`,
-    );
+    await expect(
+      page.getByRole('combobox', { name: 'Label' }),
+    ).toMatchAriaSnapshot(`- combobox "Label": Select an option`);
   });
 
   test(`should have options with aria attributes`, async ({ page }) => {
