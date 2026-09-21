@@ -115,7 +115,7 @@ test.describe('sl-select accessibility', () => {
   test(`should have keyboard accessible clear button`, async ({ page }) => {
     const item = page.getByRole('combobox', { name: 'Label' });
     const option1 = page.getByRole('option', { name: 'Option 1' });
-    const clearButton = page.getByRole('button', { name: 'Clear' });
+    const clearButton = page.getByRole('button', { name: 'Clear selection' });
 
     await item.click({ force: true });
     await expect(option1).toBeVisible();
@@ -123,7 +123,8 @@ test.describe('sl-select accessibility', () => {
 
     await expect(clearButton).toBeVisible();
 
-    await clearButton.click({ force: true });
+    await clearButton.focus();
+    await page.keyboard.press('Space');
     await expect(
       page.getByRole('combobox', { name: 'Label' }),
     ).toMatchAriaSnapshot(`- combobox "Label": Select an option`);
