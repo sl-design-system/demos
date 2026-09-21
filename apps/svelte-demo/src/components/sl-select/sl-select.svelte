@@ -23,7 +23,7 @@
 
 <sl-form bind:this={formEl}>
   <sl-form-field>
-    <sl-select bind:this={basicSelectEl} required clearable placeholder="Select an option" size="md">
+    <sl-select bind:this={basicSelectEl} aria-label="Label" required clearable placeholder="Select an option" size="md">
       <sl-option value="1">Option 1</sl-option>
       <sl-option value="2">Option 2</sl-option>
     </sl-select>
@@ -36,7 +36,7 @@
   </sl-button-bar>
 
   <sl-form-field>
-    <sl-select disabled placeholder="Disabled select" size="md">
+    <sl-select aria-label="Disabled" disabled id="disabled" placeholder="Disabled select" size="md">
       <sl-option value="1">Disabled value 1</sl-option>
       <sl-option value="2">Disabled value 2</sl-option>
     </sl-select>
