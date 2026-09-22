@@ -57,7 +57,7 @@ test.describe('sl-popover accessibility', () => {
     expect(hasOverflow).toBe(false);
   });
 
-  test('should have correct tab order', async ({ page, browserName }) => {
+  test('should have correct tab order', async ({ page }) => {
     const activeElements = ['Toggle Popover', 'Focus me'] as const;
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
@@ -90,7 +90,7 @@ test.describe('sl-popover accessibility', () => {
     await expect(page.getByText(popoverText)).toBeHidden();
   });
 
-  test(`should close popover when with Esc`, async ({ page }) => {
+  test(`should allow focus inside opened popover`, async ({ page }) => {
     const item = page.getByRole('button', { name: 'Toggle Popover' });
     const action = page.getByRole('button', { name: 'Action' });
     const button = page.getByRole('button', { name: 'Focus me' });
@@ -108,7 +108,7 @@ test.describe('sl-popover accessibility', () => {
     await expect(button).toBeFocused();
   });
 
-  test(`should allow focus inside opened popover`, async ({ page }) => {
+  test(`should close popover when with Esc`, async ({ page }) => {
     const item = page.getByRole('button', { name: 'Toggle Popover' });
 
     await item.click();
@@ -124,7 +124,9 @@ test.describe('sl-popover accessibility', () => {
     await expect(item).toHaveAttribute('aria-expanded', 'false');
 
     await item.click();
-
     await expect(item).toHaveAttribute('aria-expanded', 'true');
+
+    await item.click();
+    await expect(item).toHaveAttribute('aria-expanded', 'false');
   });
 });
