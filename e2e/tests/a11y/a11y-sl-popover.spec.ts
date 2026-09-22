@@ -4,7 +4,7 @@ import { hasMainHorizontalOverflow } from '../../utils/checkForHorizontalScroll.
 import { getFocusedElement } from '../../utils/getFocusedElement.js';
 
 test.describe('sl-popover accessibility', () => {
-  const popoverText = 'I\'m a popover example with';
+  const popoverText = "I'm a popover example with";
 
   test.beforeEach(async ({ page }) => {
     await page.goto('/sl-popover');
