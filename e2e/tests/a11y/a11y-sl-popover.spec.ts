@@ -108,7 +108,7 @@ test.describe('sl-popover accessibility', () => {
     await expect(button).toBeFocused();
   });
 
-  test(`should close popover when with Esc`, async ({ page }) => {
+  test(`should close popover with Esc`, async ({ page }) => {
     const item = page.getByRole('button', { name: 'Toggle Popover' });
 
     await item.click();
