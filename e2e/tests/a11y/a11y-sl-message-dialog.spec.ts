@@ -136,8 +136,8 @@ test.describe('sl-message-dialog accessibility', () => {
 
   test(`should be closed with Escape key`, async ({ page }) => {
     const item = page.getByRole('button', { name: 'Show' });
-    const closeButton = page.getByRole('button', { name: 'OK' });
     const dialog = page.locator('dialog');
+    const closeButton = page.getByRole('button', { name: 'OK' });
 
     await item.focus();
     await page.keyboard.press('Enter');
@@ -146,5 +146,21 @@ test.describe('sl-message-dialog accessibility', () => {
     await closeButton.focus();
     await page.keyboard.press('Escape');
     await expect(dialog).not.toBeVisible();
+  });
+
+  test('should have ARIA attributes', async ({ page }) => {
+    const item = page.getByRole('button', { name: 'Show' });
+    const dialog = page.locator('dialog');
+
+    await item.click();
+    await expect(dialog).toHaveAttribute('role', 'alertdialog');
+  });
+
+  test('should have title', async ({ page }) => {
+    const item = page.getByRole('button', { name: 'Show' });
+    const dialog = page.locator('dialog');
+
+    await item.click();
+    await expect(dialog).toHaveAccessibleName('Test');
   });
 });
