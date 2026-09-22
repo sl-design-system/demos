@@ -11,6 +11,7 @@ test.describe('sl-message-dialog accessibility', () => {
   test('should have no accessibility violations', async ({ page }) => {
     const item = page.getByRole('button', { name: 'Show' });
     await item.click();
+    await expect(page.locator('dialog')).toBeVisible();
 
     const axe = new AxeBuilder({ page }).withTags([
       'wcag2a',
@@ -32,6 +33,7 @@ test.describe('sl-message-dialog accessibility', () => {
     await page.goto('/sl-message-dialog'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
     await item.click();
+    await expect(page.locator('dialog')).toBeVisible();
 
     const axe = new AxeBuilder({ page }).withTags([
       'wcag2a',
@@ -80,7 +82,7 @@ test.describe('sl-message-dialog accessibility', () => {
     expect(focusedOn).toBe('Show');
   });
 
-  test('should have correct tab order in chromium', async ({
+  test('should have correct tab order in chromium, webkit and msedge', async ({
     page,
     browserName,
   }) => {
