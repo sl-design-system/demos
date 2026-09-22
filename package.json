@@ -2,6 +2,9 @@
   "name": "demos-monorepo",
   "packageManager": "yarn@4.9.2",
   "private": true,
+  "resolutions": {
+    "@sl-design-system/listbox": "0.2.3"
+  },
   "type": "module",
   "workspaces": [
     "apps/*",
