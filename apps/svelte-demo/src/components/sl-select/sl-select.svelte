@@ -4,7 +4,6 @@
   import '@sl-design-system/form/register.js';
   import '@sl-design-system/button/register.js';
   import '@sl-design-system/button-bar/register.js';
-  import '@sl-design-system/listbox/register.js';
   import '@sl-design-system/select/register.js';
 
   let formEl = $state<Form | null>(null);
