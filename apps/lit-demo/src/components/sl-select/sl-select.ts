@@ -43,6 +43,7 @@ export class SelectPage extends ScopedElementsMixin(LitElement) {
         <sl-form-field>
           <sl-select
             id="basic-select"
+            aria-label="Label"
             required
             clearable
             placeholder="Select an option"
@@ -58,7 +59,13 @@ export class SelectPage extends ScopedElementsMixin(LitElement) {
         </sl-button-bar>
 
         <sl-form-field>
-          <sl-select disabled placeholder="Disabled select" size="md">
+          <sl-select
+            aria-label="Disabled select"
+            disabled
+            id="disabled"
+            placeholder="Disabled"
+            size="md"
+          >
             <sl-option value="1">Disabled value 1</sl-option>
             <sl-option value="2">Disabled value 2</sl-option>
           </sl-select>
