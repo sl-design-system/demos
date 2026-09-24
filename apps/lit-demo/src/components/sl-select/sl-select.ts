@@ -60,10 +60,10 @@ export class SelectPage extends ScopedElementsMixin(LitElement) {
 
         <sl-form-field>
           <sl-select
-            aria-label="Disabled"
+            aria-label="Disabled select"
             disabled
             id="disabled"
-            placeholder="Disabled select"
+            placeholder="Disabled"
             size="md"
           >
             <sl-option value="1">Disabled value 1</sl-option>

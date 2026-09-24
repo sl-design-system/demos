@@ -21,8 +21,8 @@
     <sl-form-field>
       <sl-select
         :disabled="true"
-        aria-label="Disabled"
-        placeholder="Disabled select"
+        aria-label="Disabled select"
+        placeholder="Disabled"
         size="md"
         id="disabled"
       >
