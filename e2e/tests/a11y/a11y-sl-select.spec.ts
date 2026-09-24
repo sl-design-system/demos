@@ -57,7 +57,7 @@ test.describe('sl-select accessibility', () => {
     const disabled = page.getByRole('combobox', { name: 'Disabled' });
 
     await expect(active).toHaveAccessibleName('Label');
-    await expect(disabled).toHaveAccessibleName('Disabled');
+    await expect(disabled).toHaveAccessibleName('Disabled select');
   });
 
   test('should have aria-expanded attribute', async ({ page }) => {
