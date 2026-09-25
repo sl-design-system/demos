@@ -26,6 +26,7 @@
   import ToggleGroup from './components/sl-toggle-group/sl-toggle-group.svelte';
   import TextField from './components/sl-text-field/sl-text-field.svelte';
   import Tooltip from './components/sl-tooltip/sl-tooltip.svelte';
+  import Tree from './components/sl-tree/sl-tree.svelte';
 
   const navItems = [
     { path: '/sl-accordion', label: 'sl-accordion', component: Accordion },
@@ -55,6 +56,7 @@
     { path: '/sl-toggle-group', label: 'sl-toggle-group', component: ToggleGroup },
     { path: '/sl-tooltip', label: 'sl-tooltip', component: Tooltip },
     { path: '/sl-radio-group', label: 'sl-radio-group', component: RadioGroup },
+    { path: '/sl-tree', label: 'sl-tree', component: Tree },
   ];
 
   const initialPath = window.location.pathname === '/' ? '/sl-accordion' : window.location.pathname;

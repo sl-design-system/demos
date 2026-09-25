@@ -117,5 +117,9 @@ export const router = createRouter({
       path: '/sl-radio-group',
       component: () => import('./components/sl-radio-group/sl-radio-group.vue'),
     },
+    {
+      path: '/sl-tree',
+      component: () => import('./components/sl-tree/sl-tree.vue'),
+    },
   ],
 });

@@ -43,16 +43,11 @@ export class TreePage extends ScopedElementsMixin(LitElement) {
     },
   );
 
-  private _openBlankPage(): void {
-    window.open('about:blank', '_blank', 'noopener,noreferrer');
-  }
-
   override render(): TemplateResult {
     return html`
       <sl-tree
         aria-label="Product navigation"
         .dataSource=${this._dataSource}
-        @sl-select=${this._openBlankPage}
       >
       </sl-tree>
     `;
