@@ -1,8 +1,5 @@
 <template>
-  <sl-tree
-    ref="treeElement"
-    aria-label="Product navigation"
-  ></sl-tree>
+  <sl-tree ref="treeElement" aria-label="Product navigation"></sl-tree>
 </template>
 
 <script setup lang="ts">
@@ -39,10 +36,10 @@ const dataSource = new NestedTreeDataSource<TreeItem>(
     },
   ],
   {
-    getChildren: item => item.children,
-    getId: item => item.id,
-    getLabel: item => item.label,
-    isExpandable: item => Boolean(item.children?.length),
+    getChildren: (item) => item.children,
+    getId: (item) => item.id,
+    getLabel: (item) => item.label,
+    isExpandable: (item) => Boolean(item.children?.length),
   },
 );
 

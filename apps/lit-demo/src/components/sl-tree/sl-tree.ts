@@ -36,19 +36,16 @@ export class TreePage extends ScopedElementsMixin(LitElement) {
       },
     ],
     {
-      getChildren: item => item.children,
-      getId: item => item.id,
-      getLabel: item => item.label,
-      isExpandable: item => Boolean(item.children?.length),
+      getChildren: (item) => item.children,
+      getId: (item) => item.id,
+      getLabel: (item) => item.label,
+      isExpandable: (item) => Boolean(item.children?.length),
     },
   );
 
   override render(): TemplateResult {
     return html`
-      <sl-tree
-        aria-label="Product navigation"
-        .dataSource=${this._dataSource}
-      >
+      <sl-tree aria-label="Product navigation" .dataSource=${this._dataSource}>
       </sl-tree>
     `;
   }
