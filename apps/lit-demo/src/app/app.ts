@@ -31,6 +31,7 @@ import { TooltipPage } from '../components/sl-tooltip/sl-tooltip.js';
 import { RadioGroupPage } from '../components/sl-radio-group/sl-radio-group.js';
 import { ToggleButtonPage } from '../components/sl-toggle-button/sl-toggle-button.js';
 import { ToggleGroupPage } from '../components/sl-toggle-group/sl-toggle-group.js';
+import { TreePage } from '../components/sl-tree/sl-tree.js';
 import styles from './app.styles.scss.js';
 
 const ROUTES = [
@@ -57,6 +58,7 @@ const ROUTES = [
   { path: '/sl-switch', label: 'sl-switch' },
   { path: '/sl-card', label: 'sl-card' },
   { path: '/sl-popover', label: 'sl-popover' },
+  { path: '/sl-tree', label: 'sl-tree' },
   { path: '/sl-toggle-button', label: 'sl-toggle-button' },
   { path: '/sl-toggle-group', label: 'sl-toggle-group' },
   { path: '/sl-tooltip', label: 'sl-tooltip' },
@@ -88,6 +90,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-switch': SwitchPage,
     'page-card': CardPage,
     'page-popover': PopoverPage,
+    'page-tree': TreePage,
     'page-toggle-button': ToggleButtonPage,
     'page-toggle-group': ToggleGroupPage,
     'page-tooltip': TooltipPage,
@@ -177,6 +180,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-tooltip></page-tooltip>`;
       case '/sl-radio-group':
         return html`<page-radio-group></page-radio-group>`;
+      case '/sl-tree':
+        return html`<page-tree></page-tree>`;
       default:
         return html``;
     }

@@ -1,7 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ButtonComponent } from '@sl-design-system/angular/button';
 import { DialogComponent } from '@sl-design-system/angular/dialog';
-import type { Dialog } from '@sl-design-system/dialog';
 
 @Component({
   selector: 'app-dialog-page',
@@ -12,7 +11,7 @@ import type { Dialog } from '@sl-design-system/dialog';
 })
 export class DialogPageComponent {
   onClose(): void {
-    const dialog = document.querySelector<Dialog>('sl-dialog');
+    const dialog = document.querySelector('sl-dialog');
     dialog?.close();
   }
 }
