@@ -50,7 +50,9 @@ test.describe('sl-tree accessibility', () => {
     expect(hasOverflow).toBe(false);
   });
 
-  test('nodes should have correct aria-expanded attributes', async ({ page }) => {
+  test('nodes should have correct aria-expanded attributes', async ({
+    page,
+  }) => {
     const tree = page.locator('sl-tree');
     const productsNode = tree.locator('sl-tree-node', { hasText: 'Products' });
     const settingsNode = tree.locator('sl-tree-node', { hasText: 'Settings' });
@@ -76,7 +78,9 @@ test.describe('sl-tree accessibility', () => {
     await expect(adminNode).toHaveAttribute('aria-expanded', 'true');
   });
 
-  test('nodes should have correct aria-selected attributes', async ({ page }) => {
+  test('nodes should have correct aria-selected attributes', async ({
+    page,
+  }) => {
     const tree = page.locator('sl-tree');
     const productsNode = tree.locator('sl-tree-node', { hasText: 'Products' });
     const settingsNode = tree.locator('sl-tree-node', { hasText: 'Settings' });
@@ -93,10 +97,14 @@ test.describe('sl-tree accessibility', () => {
     await expect(settingsNode).toHaveAttribute('aria-selected', 'true');
   });
 
-  test('leaves should have correct aria-expanded attributes', async ({ page }) => {
+  test('leaves should have correct aria-expanded attributes', async ({
+    page,
+  }) => {
     const tree = page.locator('sl-tree');
     const productsNode = tree.locator('sl-tree-node', { hasText: 'Products' });
-    const analyticsLeaf = tree.locator('sl-tree-node', { hasText: 'Analytics' });
+    const analyticsLeaf = tree.locator('sl-tree-node', {
+      hasText: 'Analytics',
+    });
     const reportsLeaf = tree.locator('sl-tree-node', { hasText: 'Reports' });
     const settingsNode = tree.locator('sl-tree-node', { hasText: 'Settings' });
     const profileLeaf = tree.locator('sl-tree-node', { hasText: 'Profile' });
@@ -166,7 +174,9 @@ test.describe('sl-tree accessibility', () => {
   test(`should be expandable with arrow keys`, async ({ page }) => {
     const tree = page.locator('sl-tree');
     const productsNode = tree.locator('sl-tree-node', { hasText: 'Products' });
-    const analyticsLeaf = tree.locator('sl-tree-node', { hasText: 'Analytics' });
+    const analyticsLeaf = tree.locator('sl-tree-node', {
+      hasText: 'Analytics',
+    });
     const reportsLeaf = tree.locator('sl-tree-node', { hasText: 'Reports' });
     const settingsNode = tree.locator('sl-tree-node', { hasText: 'Settings' });
     const profileLeaf = tree.locator('sl-tree-node', { hasText: 'Profile' });
