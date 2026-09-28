@@ -97,7 +97,7 @@ test.describe('sl-tree accessibility', () => {
     await expect(settingsNode).toHaveAttribute('aria-selected', 'true');
   });
 
-  test('leaves should have correct aria-expanded attributes', async ({
+  test('leaves should have correct aria-selected attributes', async ({
     page,
   }) => {
     const tree = page.locator('sl-tree');
