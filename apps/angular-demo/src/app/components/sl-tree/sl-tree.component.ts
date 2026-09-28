@@ -48,7 +48,7 @@ export class TreePageComponent {
       getChildren: (item) => item.children,
       getId: (item) => item.id,
       getLabel: (item) => item.label,
-       isSelectable: (item) => !item.disabled,
+      isSelectable: (item) => !item.disabled,
       isExpandable: (item) => Boolean(item.children?.length),
     },
   );

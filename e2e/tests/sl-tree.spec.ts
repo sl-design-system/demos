@@ -8,7 +8,9 @@ test.describe('sl-tree', () => {
   test('should render the tree component', async ({ page }) => {
     const tree = page.locator('sl-tree');
     const productsNode = tree.locator('sl-tree-node', { hasText: 'Products' });
-    const analyticsLeaf = tree.locator('sl-tree-node', { hasText: 'Analytics' });
+    const analyticsLeaf = tree.locator('sl-tree-node', {
+      hasText: 'Analytics',
+    });
     const adminNode = tree.locator('sl-tree-node', { hasText: 'Admin' });
     const reportsLeaf = tree.locator('sl-tree-node', { hasText: 'Reports' });
     const settingsNode = tree.locator('sl-tree-node', { hasText: 'Settings' });
@@ -16,7 +18,7 @@ test.describe('sl-tree', () => {
     const membersLeaf = tree.locator('sl-tree-node', { hasText: 'Members' });
     const usersLeaf = tree.locator('sl-tree-node', { hasText: 'Users' });
     const rolesLeaf = tree.locator('sl-tree-node', { hasText: 'Roles' });
-    
+
     await expect(tree).toBeVisible();
     await expect(productsNode).toBeVisible();
     await expect(analyticsLeaf).not.toBeVisible();
@@ -29,10 +31,14 @@ test.describe('sl-tree', () => {
     await expect(rolesLeaf).not.toBeVisible();
   });
 
-  test('should have "expandable" and "selectable" attributes', async ({ page }) => {
+  test('should have "expandable" and "selectable" attributes', async ({
+    page,
+  }) => {
     const tree = page.locator('sl-tree');
     const productsNode = tree.locator('sl-tree-node', { hasText: 'Products' });
-    const analyticsLeaf = tree.locator('sl-tree-node', { hasText: 'Analytics' });
+    const analyticsLeaf = tree.locator('sl-tree-node', {
+      hasText: 'Analytics',
+    });
     const reportsLeaf = tree.locator('sl-tree-node', { hasText: 'Reports' });
     const settingsNode = tree.locator('sl-tree-node', { hasText: 'Settings' });
     const profileLeaf = tree.locator('sl-tree-node', { hasText: 'Profile' });
@@ -73,7 +79,9 @@ test.describe('sl-tree', () => {
   test('should have expandable nodes', async ({ page }) => {
     const tree = page.locator('sl-tree');
     const productsNode = tree.locator('sl-tree-node', { hasText: 'Products' });
-    const analyticsLeaf = tree.locator('sl-tree-node', { hasText: 'Analytics' });
+    const analyticsLeaf = tree.locator('sl-tree-node', {
+      hasText: 'Analytics',
+    });
     const reportsLeaf = tree.locator('sl-tree-node', { hasText: 'Reports' });
 
     await expect(productsNode).toBeVisible();
@@ -138,7 +146,9 @@ test.describe('sl-tree', () => {
   test('should have selectable leaves', async ({ page }) => {
     const tree = page.locator('sl-tree');
     const productsNode = tree.locator('sl-tree-node', { hasText: 'Products' });
-    const analyticsLeaf = tree.locator('sl-tree-node', { hasText: 'Analytics' });
+    const analyticsLeaf = tree.locator('sl-tree-node', {
+      hasText: 'Analytics',
+    });
     const reportsLeaf = tree.locator('sl-tree-node', { hasText: 'Reports' });
 
     await productsNode.locator('.expander-inner').click();
@@ -154,7 +164,7 @@ test.describe('sl-tree', () => {
     await expect(reportsLeaf).toHaveAttribute('selected');
     await expect(analyticsLeaf).not.toHaveAttribute('selected');
     await expect(productsNode).not.toHaveAttribute('selected');
-  });  
+  });
 
   test('should have non-selectable nodes', async ({ page }) => {
     const tree = page.locator('sl-tree');
