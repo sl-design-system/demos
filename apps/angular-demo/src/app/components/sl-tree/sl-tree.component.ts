@@ -5,6 +5,7 @@ import { NestedTreeDataSource } from '@sl-design-system/tree';
 interface TreeItem {
   id: string;
   label: string;
+  disabled?: boolean;
   children?: TreeItem[];
 }
 
@@ -30,7 +31,16 @@ export class TreePageComponent {
         label: 'Settings',
         children: [
           { id: 'profile', label: 'Profile' },
-          { id: 'members', label: 'Members' },
+          { id: 'members', label: 'Members', disabled: true },
+        ],
+      },
+      {
+        id: 'admin',
+        label: 'Admin',
+        disabled: true,
+        children: [
+          { id: 'users', label: 'Users' },
+          { id: 'roles', label: 'Roles' },
         ],
       },
     ],
@@ -38,6 +48,7 @@ export class TreePageComponent {
       getChildren: (item) => item.children,
       getId: (item) => item.id,
       getLabel: (item) => item.label,
+       isSelectable: (item) => !item.disabled,
       isExpandable: (item) => Boolean(item.children?.length),
     },
   );

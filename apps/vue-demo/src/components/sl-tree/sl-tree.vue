@@ -9,6 +9,7 @@ import { NestedTreeDataSource, Tree } from '@sl-design-system/tree';
 interface TreeItem {
   id: string;
   label: string;
+  disabled?: boolean;
   children?: TreeItem[];
 }
 
@@ -31,7 +32,16 @@ const dataSource = new NestedTreeDataSource<TreeItem>(
       label: 'Settings',
       children: [
         { id: 'profile', label: 'Profile' },
-        { id: 'members', label: 'Members' },
+        { id: 'members', label: 'Members', disabled: true },
+      ],
+    },
+    {
+      id: 'admin',
+      label: 'Admin',
+      disabled: true,
+      children: [
+        { id: 'users', label: 'Users' },
+        { id: 'roles', label: 'Roles' },
       ],
     },
   ],
@@ -39,6 +49,7 @@ const dataSource = new NestedTreeDataSource<TreeItem>(
     getChildren: (item) => item.children,
     getId: (item) => item.id,
     getLabel: (item) => item.label,
+      isSelectable: (item) => !item.disabled,
     isExpandable: (item) => Boolean(item.children?.length),
   },
 );
