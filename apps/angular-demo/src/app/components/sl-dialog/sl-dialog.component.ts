@@ -12,7 +12,7 @@ import { type Dialog } from '@sl-design-system/dialog'
 })
 export class DialogPageComponent {
   onClose(): void {
-    const dialog = document.querySelector<HTMLDialogElement>('sl-dialog');
+    const dialog = document.querySelector<Dialog>('sl-dialog');
     dialog?.close();
   }
 }
