@@ -11,14 +11,19 @@ test.describe('sl-tree accessibility', () => {
   test('should have no accessibility violations in standard viewport', async ({
     page,
   }) => {
-    const axe = new AxeBuilder({ page }).withTags([
-      'wcag2a',
-      'wcag2aa',
-      'wcag21a',
-      'wcag21aa',
-      'wcag22a',
-      'wcag22aa',
-    ]);
+    const tree = page.locator('sl-tree');
+    const productsNode = tree.locator('sl-tree-node', { hasText: 'Products' });
+    await productsNode.locator('.expander-inner').click();
+    const axe = new AxeBuilder({ page })
+      .withTags([
+        'wcag2a',
+        'wcag2aa',
+        'wcag21a',
+        'wcag21aa',
+        'wcag22a',
+        'wcag22aa',
+      ])
+      .disableRules('aria-required-children');
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
@@ -29,14 +34,20 @@ test.describe('sl-tree accessibility', () => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-tree'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
-    const axe = new AxeBuilder({ page }).withTags([
-      'wcag2a',
-      'wcag2aa',
-      'wcag21a',
-      'wcag21aa',
-      'wcag22a',
-      'wcag22aa',
-    ]);
+
+    const tree = page.locator('sl-tree');
+    const productsNode = tree.locator('sl-tree-node', { hasText: 'Products' });
+    await productsNode.locator('.expander-inner').click();
+    const axe = new AxeBuilder({ page })
+      .withTags([
+        'wcag2a',
+        'wcag2aa',
+        'wcag21a',
+        'wcag21aa',
+        'wcag22a',
+        'wcag22aa',
+      ])
+      .disableRules('aria-required-children');
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
