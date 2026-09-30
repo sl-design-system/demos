@@ -206,6 +206,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-tree',
+    loadComponent: () =>
+      import('./components/sl-tree/sl-tree.component').then(
+        (m) => m.TreePageComponent,
+      ),
+  },
+  {
     path: 'sl-radio-group-reactive',
     loadComponent: () =>
       import('./components/sl-radio-group-reactive/sl-radio-group-reactive.component').then(
