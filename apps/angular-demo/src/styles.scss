@@ -1,8 +1,5 @@
-html,
-body {
-  margin: 0;
-  height: 100%;
-  font-family:
+:root {
+  --app-font-family:
     source-sans-pro,
     Inter,
     -apple-system,
@@ -15,4 +12,12 @@ body {
     'Apple Color Emoji',
     'Segoe UI Emoji',
     'Segoe UI Symbol';
+  --sl-text-new-body-md: 400 14px/20px var(--app-font-family);
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: var(--app-font-family);
 }
