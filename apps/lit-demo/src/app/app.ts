@@ -29,6 +29,7 @@ import { CardPage } from '../components/sl-card/sl-card.js';
 import { PopoverPage } from '../components/sl-popover/sl-popover.js';
 import { TooltipPage } from '../components/sl-tooltip/sl-tooltip.js';
 import { RadioGroupPage } from '../components/sl-radio-group/sl-radio-group.js';
+import { TagPage } from '../components/sl-tag/sl-tag.js';
 import { ToggleButtonPage } from '../components/sl-toggle-button/sl-toggle-button.js';
 import { ToggleGroupPage } from '../components/sl-toggle-group/sl-toggle-group.js';
 import { TreePage } from '../components/sl-tree/sl-tree.js';
@@ -58,6 +59,7 @@ const ROUTES = [
   { path: '/sl-switch', label: 'sl-switch' },
   { path: '/sl-card', label: 'sl-card' },
   { path: '/sl-popover', label: 'sl-popover' },
+  { path: '/sl-tag', label: 'sl-tag' },
   { path: '/sl-tree', label: 'sl-tree' },
   { path: '/sl-toggle-button', label: 'sl-toggle-button' },
   { path: '/sl-toggle-group', label: 'sl-toggle-group' },
@@ -68,6 +70,7 @@ const ROUTES = [
 export class App extends ScopedElementsMixin(LitElement) {
   static scopedElements: ScopedElementsMap = {
     'page-accordion': AccordionPage,
+    'page-tag': TagPage,
     'page-avatar': AvatarPage,
     'page-breadcrumbs': BreadcrumbsPage,
     'page-button': ButtonPage,
@@ -174,6 +177,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-popover></page-popover>`;
       case '/sl-toggle-button':
         return html`<page-toggle-button></page-toggle-button>`;
+      case '/sl-tag':
+        return html`<page-tag></page-tag>`;
       case '/sl-toggle-group':
         return html`<page-toggle-group></page-toggle-group>`;
       case '/sl-tooltip':
