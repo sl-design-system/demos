@@ -161,7 +161,7 @@ test.describe('sl-tag accessibility', () => {
     await expect(disabledButton).toHaveAttribute('aria-disabled', 'true');
   });
 
-  test(`should not have keyboard accessible disabled tab`, async ({ page }) => {
+  test(`should not remove a disabled tag with Space and Enter key`, async ({ page }) => {
     const disabledTag = page.locator('sl-tag', { hasText: 'Chemistry' });
     const disabledButton = page.getByRole('button', {
       name: "Remove tag 'Chemistry'",
@@ -170,6 +170,11 @@ test.describe('sl-tag accessibility', () => {
     await expect(disabledTag).toBeVisible();
     await disabledButton.focus();
     await page.keyboard.press('Space');
+
+    await expect(disabledTag).toBeVisible();
+    await expect(disabledButton).toBeVisible();
+
+    await page.keyboard.press('Enter');
 
     await expect(disabledTag).toBeVisible();
     await expect(disabledButton).toBeVisible();

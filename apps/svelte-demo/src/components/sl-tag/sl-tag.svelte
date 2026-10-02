@@ -7,5 +7,5 @@
 <sl-tag-list class="tags" aria-label="Subjects">
   <sl-tag removable>Mathematics</sl-tag>
   <sl-tag removable>Physics</sl-tag>
-  <sl-tag disabled=${true} removable>Chemistry</sl-tag>
+  <sl-tag disabled removable>Chemistry</sl-tag>
 </sl-tag-list>
