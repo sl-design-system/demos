@@ -6,7 +6,9 @@ test.describe('sl-tag', () => {
   });
 
   test('should render tags', async ({ page }) => {
-    const mathematics = page.locator('sl-tag').filter({ hasText: 'Mathematics' });
+    const mathematics = page
+      .locator('sl-tag')
+      .filter({ hasText: 'Mathematics' });
     const physics = page.locator('sl-tag').filter({ hasText: 'Physics' });
     const chemistry = page.locator('sl-tag').filter({ hasText: 'Chemistry' });
 
@@ -17,15 +19,21 @@ test.describe('sl-tag', () => {
 
   test('should remove tag on click', async ({ page }) => {
     const item = page.locator('sl-tag').filter({ hasText: 'Mathematics' });
+    const button = page.getByRole('button', {
+      name: "Remove tag 'Mathematics'",
+    });
+
     await expect(item).toBeVisible();
-    await item.locator('sl-icon[slot="remove-button"]').click();
+    await button.click();
     await expect(item).not.toBeVisible();
   });
 
   test('should not allow to remove disabled tag', async ({ page }) => {
     const item = page.locator('sl-tag').filter({ hasText: 'Chemistry' });
+    const button = page.getByRole('button', { name: "Remove tag 'Chemistry'" });
+
     await expect(item).toHaveAttribute('disabled', '');
-    await item.locator('sl-icon[slot="remove-button"]').click({ force: true });
+    await button.click({ force: true });
     await expect(item).toBeVisible();
   });
 });
