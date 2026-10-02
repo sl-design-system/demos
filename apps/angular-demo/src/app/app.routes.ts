@@ -185,6 +185,11 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-tag',
+    loadComponent: () =>
+      import('./components/sl-tag/sl-tag.component').then((m) => m.TagPageComponent),
+  },
+  {
     path: 'sl-toggle-button',
     loadComponent: () =>
       import('./components/sl-toggle-button/sl-toggle-button.component').then(

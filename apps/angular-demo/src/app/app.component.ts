@@ -35,6 +35,7 @@ export class AppComponent {
     { path: 'sl-select', label: 'sl-select' },
     { path: 'sl-switch', label: 'sl-switch' },
     { path: 'sl-popover', label: 'sl-popover' },
+    { path: 'sl-tag', label: 'sl-tag' },
     { path: 'sl-toggle-button', label: 'sl-toggle-button' },
     { path: 'sl-toggle-group', label: 'sl-toggle-group' },
     { path: 'sl-tooltip', label: 'sl-tooltip' },

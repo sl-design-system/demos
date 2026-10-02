@@ -41,8 +41,7 @@ export async function getFocusedElement(page: Page): Promise<string | null> {
       if (elementId) {
         // Traverse up the composed tree to find label in any shadow root or document
         let currentRoot: Document | ShadowRoot = el.getRootNode() as
-          | Document
-          | ShadowRoot;
+          Document | ShadowRoot;
 
         while (currentRoot) {
           const label = Array.from(currentRoot.querySelectorAll('label')).find(
@@ -57,8 +56,7 @@ export async function getFocusedElement(page: Page): Promise<string | null> {
           // Move up to parent shadow root
           if (currentRoot instanceof ShadowRoot) {
             currentRoot = currentRoot.host.getRootNode() as
-              | Document
-              | ShadowRoot;
+              Document | ShadowRoot;
           } else {
             // We're at the document, no more parents
             break;
