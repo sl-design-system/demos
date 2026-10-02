@@ -5,12 +5,15 @@ import {
 } from '@open-wc/scoped-elements/lit-element.js';
 import { Tag } from '@sl-design-system/tag';
 import { TagList } from '@sl-design-system/tag';
+import styles from './sl-tag.scss.js';
 
 export class TagPage extends ScopedElementsMixin(LitElement) {
   static scopedElements: ScopedElementsMap = {
     'sl-tag': Tag,
     'sl-tag-list': TagList,
   };
+
+  static override styles = styles;
 
   override render(): TemplateResult {
     return html`
