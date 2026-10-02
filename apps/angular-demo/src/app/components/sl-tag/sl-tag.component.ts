@@ -3,8 +3,8 @@ import '@sl-design-system/tag/register.js';
 
 @Component({
   selector: 'app-tag-page',
-  templateUrl: './sl-tag.html',
-  styleUrls: ['./sl-tag.scss'],
+  templateUrl: './sl-tag.component.html',
+  styleUrls: ['./sl-tag.component.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class TagPageComponent {}
