@@ -210,9 +210,9 @@ export class App extends ScopedElementsMixin(LitElement) {
           >
             <span aria-hidden="true">☰</span>
             <span class="visually-hidden"
-              >${this._navCollapsed
-                ? 'Expand navigation'
-                : 'Collapse navigation'}</span
+              >${
+                this._navCollapsed ? 'Expand navigation' : 'Collapse navigation'
+              }</span
             >
           </button>
           <h2>Lit Demo App</h2>

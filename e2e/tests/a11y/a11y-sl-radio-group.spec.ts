@@ -94,7 +94,6 @@ for (const { name, path, angularOnly, hint } of variants) {
       await expect(disabled).toHaveAccessibleDescription(disabledHint);
     });
 
-
     test('should have correct ARIA role and accessibility name', async ({
       page,
     }) => {
@@ -190,7 +189,7 @@ for (const { name, path, angularOnly, hint } of variants) {
     });
 
     test('should have error message as accessibility description', async ({
-      page
+      page,
     }) => {
       const group = page
         .locator('sl-form-field', { hasText: 'Active' })
