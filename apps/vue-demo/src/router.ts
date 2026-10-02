@@ -96,6 +96,10 @@ export const router = createRouter({
       component: () => import('./components/sl-popover/sl-popover.vue'),
     },
     {
+      path: '/sl-tag',
+      component: () => import('./components/sl-tag/sl-tag.vue'),
+    },
+    {
       path: '/sl-toggle-button',
       component: () =>
         import('./components/sl-toggle-button/sl-toggle-button.vue'),
