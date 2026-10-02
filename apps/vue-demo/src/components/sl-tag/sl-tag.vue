@@ -6,6 +6,10 @@
   </sl-tag-list>
 </template>
 
+<style scoped lang="scss">
+@use './sl-tag.scss';
+</style>
+
 <script setup lang="ts">
 import '@sl-design-system/tag/register.js';
 </script>
