@@ -32,6 +32,7 @@ import { RadioGroupPage } from '../components/sl-radio-group/sl-radio-group.js';
 import { TagPage } from '../components/sl-tag/sl-tag.js';
 import { ToggleButtonPage } from '../components/sl-toggle-button/sl-toggle-button.js';
 import { ToggleGroupPage } from '../components/sl-toggle-group/sl-toggle-group.js';
+import { ToolBarPage } from '../components/sl-tool-bar/sl-tool-bar.js';
 import { TreePage } from '../components/sl-tree/sl-tree.js';
 import styles from './app.styles.scss.js';
 
@@ -63,6 +64,7 @@ const ROUTES = [
   { path: '/sl-tree', label: 'sl-tree' },
   { path: '/sl-toggle-button', label: 'sl-toggle-button' },
   { path: '/sl-toggle-group', label: 'sl-toggle-group' },
+  { path: '/sl-tool-bar', label: 'sl-tool-bar' },
   { path: '/sl-tooltip', label: 'sl-tooltip' },
   { path: '/sl-radio-group', label: 'sl-radio-group' },
 ];
@@ -96,6 +98,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-tree': TreePage,
     'page-toggle-button': ToggleButtonPage,
     'page-toggle-group': ToggleGroupPage,
+    'page-tool-bar': ToolBarPage,
     'page-tooltip': TooltipPage,
     'page-radio-group': RadioGroupPage,
   };
@@ -181,6 +184,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-tag></page-tag>`;
       case '/sl-toggle-group':
         return html`<page-toggle-group></page-toggle-group>`;
+      case '/sl-tool-bar':
+        return html`<page-tool-bar></page-tool-bar>`;
       case '/sl-tooltip':
         return html`<page-tooltip></page-tooltip>`;
       case '/sl-radio-group':
