@@ -204,6 +204,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-tool-bar',
+    loadComponent: () =>
+      import('./components/sl-tool-bar/sl-tool-bar.component').then(
+        (m) => m.ToolBarPageComponent,
+      ),
+  },
+  {
     path: 'sl-tooltip',
     loadComponent: () =>
       import('./components/sl-tooltip/sl-tooltip.component').then(
