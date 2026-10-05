@@ -8,7 +8,8 @@
   <sl-button>Cut</sl-button>
   <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
   <sl-button onclick={openBlankPage}>Copy</sl-button>
-  <sl-button disabled>Paste</sl-button>
+  <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
+  <sl-button onclick={openBlankPage} disabled>Paste</sl-button>
 
   <sl-tool-bar-divider></sl-tool-bar-divider>
 

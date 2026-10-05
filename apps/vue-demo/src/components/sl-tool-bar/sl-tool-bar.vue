@@ -2,7 +2,7 @@
   <sl-tool-bar>
     <sl-button>Cut</sl-button>
     <sl-button @click="openBlankPage">Copy</sl-button>
-    <sl-button disabled>Paste</sl-button>
+    <sl-button @click="openBlankPage" :disabled="true">Paste</sl-button>
 
     <sl-tool-bar-divider></sl-tool-bar-divider>
 

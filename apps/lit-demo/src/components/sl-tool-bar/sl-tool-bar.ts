@@ -25,7 +25,7 @@ export class ToolBarPage extends ScopedElementsMixin(LitElement) {
       <sl-tool-bar>
         <sl-button>Cut</sl-button>
         <sl-button @click=${this._openBlankPage}>Copy</sl-button>
-        <sl-button disabled>Paste</sl-button>
+        <sl-button @click=${this._openBlankPage} disabled>Paste</sl-button>
 
         <sl-tool-bar-divider></sl-tool-bar-divider>
 
