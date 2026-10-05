@@ -69,6 +69,7 @@ const navItems = [
   { path: '/sl-tag', label: 'sl-tag' },
   { path: '/sl-toggle-button', label: 'sl-toggle-button' },
   { path: '/sl-toggle-group', label: 'sl-toggle-group' },
+  { path: '/sl-tool-bar', label: 'sl-tool-bar' },
   { path: '/sl-tooltip', label: 'sl-tooltip' },
   { path: '/sl-radio-group', label: 'sl-radio-group' },
   { path: '/sl-tree', label: 'sl-tree' },
