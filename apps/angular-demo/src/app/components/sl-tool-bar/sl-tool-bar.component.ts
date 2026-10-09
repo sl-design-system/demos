@@ -1,6 +1,9 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ButtonComponent } from '@sl-design-system/angular/button';
-import { MenuButtonComponent, MenuItemComponent } from '@sl-design-system/angular/menu';
+import {
+  MenuButtonComponent,
+  MenuItemComponent,
+} from '@sl-design-system/angular/menu';
 import { ToolBarComponent } from '@sl-design-system/angular/tool-bar';
 
 @Component({

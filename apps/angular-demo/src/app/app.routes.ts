@@ -187,7 +187,9 @@ export const routes: Routes = [
   {
     path: 'sl-tag',
     loadComponent: () =>
-      import('./components/sl-tag/sl-tag.component').then((m) => m.TagPageComponent),
+      import('./components/sl-tag/sl-tag.component').then(
+        (m) => m.TagPageComponent,
+      ),
   },
   {
     path: 'sl-toggle-button',

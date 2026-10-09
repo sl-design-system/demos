@@ -60,15 +60,13 @@ test.describe('sl-tool-bar accessibility', () => {
     }
   });
 
-  test('should have correct tab order in mobile view', async ({
-    page,
-  }) => { 
+  test('should have correct tab order in mobile view', async ({ page }) => {
     const activeElements = ['Cut', 'Focus me'] as const;
 
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-tool-bar'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
-    await expect(page.getByRole('button', { name: 'Cut' }) ).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Cut' })).toBeVisible();
 
     for (const activeElement of activeElements) {
       await page.keyboard.press('Tab');
@@ -95,11 +93,13 @@ test.describe('sl-tool-bar accessibility', () => {
     await expect(getFocusedElement(page)).resolves.toBe('Copy');
   });
 
-  test(`should be reachable with arrow keys in mobile view`, async ({ page }) => {
+  test(`should be reachable with arrow keys in mobile view`, async ({
+    page,
+  }) => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-tool-bar'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
-    await expect(page.getByRole('button', { name: 'Cut' }) ).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Cut' })).toBeVisible();
 
     await page.keyboard.press('Tab');
     await expect(getFocusedElement(page)).resolves.toBe('Cut');
@@ -107,9 +107,7 @@ test.describe('sl-tool-bar accessibility', () => {
     await expect(getFocusedElement(page)).resolves.toBe('Copy');
 
     await page.keyboard.press('ArrowRight');
-    await expect(
-      page.getByRole('button', { name: 'Show more' }),
-    ).toBeFocused();
+    await expect(page.getByRole('button', { name: 'Show more' })).toBeFocused();
 
     await page.keyboard.press('ArrowLeft');
     await expect(getFocusedElement(page)).resolves.toBe('Copy');
@@ -127,7 +125,9 @@ test.describe('sl-tool-bar accessibility', () => {
     await expect(newPage).toHaveURL('about:blank');
   });
 
-  test(`menu item should be activated with Space and Enter key`, async ({ page }) => {
+  test(`menu item should be activated with Space and Enter key`, async ({
+    page,
+  }) => {
     const editButton = page.getByRole('button', { name: 'Edit' });
 
     await editButton.focus();
@@ -152,12 +152,12 @@ test.describe('sl-tool-bar accessibility', () => {
 
     await showButton.focus();
     await page.keyboard.press('Space');
-    
+
     await expect(editItem).toBeVisible();
 
     await editItem.focus();
     await page.keyboard.press('Space');
-    
+
     await expect(deleteItem).toBeVisible();
     await deleteItem.focus();
 
@@ -174,7 +174,9 @@ test.describe('sl-tool-bar accessibility', () => {
     await expect(disabledButton).toHaveAttribute('disabled');
   });
 
-  test(`should have aria-disabled attribute when in 'Show more' menu`, async ({ page }) => {
+  test(`should have aria-disabled attribute when in 'Show more' menu`, async ({
+    page,
+  }) => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-tool-bar'); // for Firefox to properly apply the viewport size before page load
 
