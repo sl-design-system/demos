@@ -161,7 +161,9 @@ test.describe('sl-tag accessibility', () => {
     await expect(disabledButton).toHaveAttribute('aria-disabled', 'true');
   });
 
-  test(`should not remove a disabled tag with Space and Enter key`, async ({ page }) => {
+  test(`should not remove a disabled tag with Space and Enter key`, async ({
+    page,
+  }) => {
     const disabledTag = page.locator('sl-tag', { hasText: 'Chemistry' });
     const disabledButton = page.getByRole('button', {
       name: "Remove tag 'Chemistry'",

@@ -118,6 +118,10 @@ export const router = createRouter({
       component: () => import('./components/sl-tooltip/sl-tooltip.vue'),
     },
     {
+      path: '/sl-tool-bar',
+      component: () => import('./components/sl-tool-bar/sl-tool-bar.vue'),
+    },
+    {
       path: '/sl-radio-group',
       component: () => import('./components/sl-radio-group/sl-radio-group.vue'),
     },

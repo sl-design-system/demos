@@ -187,7 +187,9 @@ export const routes: Routes = [
   {
     path: 'sl-tag',
     loadComponent: () =>
-      import('./components/sl-tag/sl-tag.component').then((m) => m.TagPageComponent),
+      import('./components/sl-tag/sl-tag.component').then(
+        (m) => m.TagPageComponent,
+      ),
   },
   {
     path: 'sl-toggle-button',
@@ -201,6 +203,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/sl-toggle-group/sl-toggle-group.component').then(
         (m) => m.ToggleGroupPageComponent,
+      ),
+  },
+  {
+    path: 'sl-tool-bar',
+    loadComponent: () =>
+      import('./components/sl-tool-bar/sl-tool-bar.component').then(
+        (m) => m.ToolBarPageComponent,
       ),
   },
   {
