@@ -127,22 +127,22 @@ test.describe('sl-tool-bar accessibility', () => {
     });
   }
 
-  test(`menu item should be activated with Space and Enter key`, async ({
-    page,
-  }) => {
-    const editButton = page.getByRole('button', { name: 'Edit' });
+  for (const key of ['Space', 'Enter'] as const) {
+    test(`menu item should be activated with ${key} key`, async ({ page }) => {
+      const editButton = page.getByRole('button', { name: 'Edit' });
 
-    await editButton.focus();
-    await page.keyboard.press('Space');
-    await page.keyboard.press('ArrowDown');
+      await editButton.focus();
+      await page.keyboard.press(key);
+      await page.keyboard.press('ArrowDown');
 
-    const [newPage] = await Promise.all([
-      page.context().waitForEvent('page'),
-      page.keyboard.press('Space'),
-    ]);
-    await expect(newPage).toHaveURL('about:blank');
-  });
-
+      const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'),
+        page.keyboard.press(key),
+      ]);
+      await expect(newPage).toHaveURL('about:blank');
+    });
+  }
+  
   test(`should have keyboard operable 'Show more' menu in mobile view`, async ({
     page,
   }) => {
