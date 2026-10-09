@@ -113,17 +113,19 @@ test.describe('sl-tool-bar accessibility', () => {
     await expect(getFocusedElement(page)).resolves.toBe('Copy');
   });
 
-  test(`should be activated with Space and Enter key`, async ({ page }) => {
-    const item = page.getByRole('button', { name: 'Copy' });
+  for (const key of ['Space', 'Enter'] as const) {
+    test(`should be activated with ${key} key`, async ({ page }) => {
+      const item = page.getByRole('button', { name: 'Copy' });
 
-    await item.focus();
+      await item.focus();
 
-    const [newPage] = await Promise.all([
-      page.context().waitForEvent('page'),
-      page.keyboard.press('Space'),
-    ]);
-    await expect(newPage).toHaveURL('about:blank');
-  });
+      const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'),
+        page.keyboard.press(key),
+      ]);
+      await expect(newPage).toHaveURL('about:blank');
+    });
+  }
 
   test(`menu item should be activated with Space and Enter key`, async ({
     page,

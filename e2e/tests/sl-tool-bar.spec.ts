@@ -41,7 +41,7 @@ test.describe('sl-tool-bar', () => {
     const [newPage] = await Promise.all([
       page
         .context()
-        .waitForEvent('page')
+        .waitForEvent('page', { timeout: 500 })
         .catch(() => null),
       page.locator('sl-button', { hasText: 'Paste' }).click(),
     ]);
