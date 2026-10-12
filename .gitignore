@@ -8,7 +8,6 @@
 # Node modules and dependency files
 node_modules
 package-lock.json
-yarn.lock
 
 # Optional npm cache directory
 .npm
