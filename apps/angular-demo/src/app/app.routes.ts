@@ -227,6 +227,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-search-field',
+    loadComponent: () =>
+      import('./components/sl-search-field/sl-search-field.component').then(
+        (m) => m.SearchFieldPageComponent,
+      ),
+  },
+  {
     path: 'sl-radio-group-reactive',
     loadComponent: () =>
       import('./components/sl-radio-group-reactive/sl-radio-group-reactive.component').then(
