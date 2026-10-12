@@ -35,5 +35,9 @@ jobs:
       - name: Lint
         run: yarn workspace ${{ matrix.app }} lint
 
+      - name: Lint styles
+        if: matrix.app == 'angular-demo'
+        run: yarn stylelint
+
       - name: Build
         run: yarn workspace ${{ matrix.app }} build
