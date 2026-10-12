@@ -29,6 +29,7 @@
   import ToolBar from './components/sl-tool-bar/sl-tool-bar.svelte';
   import Tooltip from './components/sl-tooltip/sl-tooltip.svelte';
   import Tree from './components/sl-tree/sl-tree.svelte';
+  import SearchField from './components/sl-search-field/sl-search-field.svelte';
 
   const navItems = [
     { path: '/sl-accordion', label: 'sl-accordion', component: Accordion },
@@ -57,6 +58,7 @@
     { path: '/sl-tag', label: 'sl-tag', component: Tag },
     { path: '/sl-toggle-button', label: 'sl-toggle-button', component: ToggleButton },
     { path: '/sl-toggle-group', label: 'sl-toggle-group', component: ToggleGroup },
+    { path: '/sl-search-field', label: 'sl-search-field', component: SearchField },
     { path: '/sl-tool-bar', label: 'sl-tool-bar', component: ToolBar },
     { path: '/sl-tooltip', label: 'sl-tooltip', component: Tooltip },
     { path: '/sl-radio-group', label: 'sl-radio-group', component: RadioGroup },
