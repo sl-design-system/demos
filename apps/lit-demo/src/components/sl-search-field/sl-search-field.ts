@@ -6,7 +6,7 @@ import {
 import { FormField } from '@sl-design-system/form';
 import { SearchField } from '@sl-design-system/search-field';
 
-export class FormFieldPage extends ScopedElementsMixin(LitElement) {
+export class SearchFieldPage extends ScopedElementsMixin(LitElement) {
   static scopedElements: ScopedElementsMap = {
     'sl-form-field': FormField,
     'sl-search-field': SearchField,
