@@ -7,6 +7,5 @@ import { SearchFieldComponent } from '@sl-design-system/angular/search-field';
   templateUrl: './sl-search-field.component.html',
   styleUrls: ['./sl-search-field.component.scss'],
   imports: [FormFieldComponent, SearchFieldComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SearchFieldPageComponent {}
