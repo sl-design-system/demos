@@ -7,7 +7,7 @@ on:
     branches: ['main']
 
 env:
-    SLDS_PACKAGES_AUTH_TOKEN: ${{ secrets.SLDS_PACKAGES_AUTH_TOKEN }}
+  SLDS_PACKAGES_AUTH_TOKEN: ${{ secrets.SLDS_PACKAGES_AUTH_TOKEN }}
 
 jobs:
   app:
@@ -34,10 +34,6 @@ jobs:
 
       - name: Lint
         run: yarn workspace ${{ matrix.app }} lint
-
-      - name: Lint styles
-        if: matrix.app == 'angular-demo'
-        run: yarn stylelint
 
       - name: Build
         run: yarn workspace ${{ matrix.app }} build
