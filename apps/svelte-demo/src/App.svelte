@@ -22,9 +22,11 @@
   import Switch from './components/sl-switch/sl-switch.svelte';
   import Card from './components/sl-card/sl-card.svelte';
   import Popover from './components/sl-popover/sl-popover.svelte';
+  import Tag from './components/sl-tag/sl-tag.svelte';
   import ToggleButton from './components/sl-toggle-button/sl-toggle-button.svelte';
   import ToggleGroup from './components/sl-toggle-group/sl-toggle-group.svelte';
   import TextField from './components/sl-text-field/sl-text-field.svelte';
+  import ToolBar from './components/sl-tool-bar/sl-tool-bar.svelte';
   import Tooltip from './components/sl-tooltip/sl-tooltip.svelte';
   import Tree from './components/sl-tree/sl-tree.svelte';
 
@@ -52,8 +54,10 @@
     { path: '/sl-text-field', label: 'sl-text-field', component: TextField },
     { path: '/sl-card', label: 'sl-card', component: Card },
     { path: '/sl-popover', label: 'sl-popover', component: Popover },
+    { path: '/sl-tag', label: 'sl-tag', component: Tag },
     { path: '/sl-toggle-button', label: 'sl-toggle-button', component: ToggleButton },
     { path: '/sl-toggle-group', label: 'sl-toggle-group', component: ToggleGroup },
+    { path: '/sl-tool-bar', label: 'sl-tool-bar', component: ToolBar },
     { path: '/sl-tooltip', label: 'sl-tooltip', component: Tooltip },
     { path: '/sl-radio-group', label: 'sl-radio-group', component: RadioGroup },
     { path: '/sl-tree', label: 'sl-tree', component: Tree },

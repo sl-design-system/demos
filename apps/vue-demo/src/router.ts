@@ -96,6 +96,10 @@ export const router = createRouter({
       component: () => import('./components/sl-popover/sl-popover.vue'),
     },
     {
+      path: '/sl-tag',
+      component: () => import('./components/sl-tag/sl-tag.vue'),
+    },
+    {
       path: '/sl-toggle-button',
       component: () =>
         import('./components/sl-toggle-button/sl-toggle-button.vue'),
@@ -112,6 +116,10 @@ export const router = createRouter({
     {
       path: '/sl-tooltip',
       component: () => import('./components/sl-tooltip/sl-tooltip.vue'),
+    },
+    {
+      path: '/sl-tool-bar',
+      component: () => import('./components/sl-tool-bar/sl-tool-bar.vue'),
     },
     {
       path: '/sl-radio-group',
