@@ -34,6 +34,7 @@ import { ToggleButtonPage } from '../components/sl-toggle-button/sl-toggle-butto
 import { ToggleGroupPage } from '../components/sl-toggle-group/sl-toggle-group.js';
 import { ToolBarPage } from '../components/sl-tool-bar/sl-tool-bar.js';
 import { TreePage } from '../components/sl-tree/sl-tree.js';
+import { SearchFieldPage } from '../components/sl-search-field/sl-search-field.js';
 import styles from './app.styles.scss.js';
 
 const ROUTES = [
@@ -67,6 +68,7 @@ const ROUTES = [
   { path: '/sl-tool-bar', label: 'sl-tool-bar' },
   { path: '/sl-tooltip', label: 'sl-tooltip' },
   { path: '/sl-radio-group', label: 'sl-radio-group' },
+  { path: '/sl-search-field', label: 'sl-search-field' },
 ];
 
 export class App extends ScopedElementsMixin(LitElement) {
@@ -101,6 +103,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-tool-bar': ToolBarPage,
     'page-tooltip': TooltipPage,
     'page-radio-group': RadioGroupPage,
+    'page-search-field': SearchFieldPage,
   };
 
   static override styles = styles;
@@ -164,6 +167,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-number-field></page-number-field>`;
       case '/sl-text-area':
         return html`<page-text-area></page-text-area>`;
+      case '/sl-search-field':
+        return html`<page-search-field></page-search-field>`;
       case '/sl-text-field':
         return html`<page-text-field></page-text-field>`;
       case '/sl-tab-group':
