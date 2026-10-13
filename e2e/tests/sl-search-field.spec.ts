@@ -15,7 +15,7 @@ test.describe('sl-search-field', () => {
     await expect(input).toHaveValue('');
   });
 
-  test('should have functional "Clear button" after filing the field', async ({
+  test('should have functional "Clear button" after filling the field', async ({
     page,
   }) => {
     const input = page.getByRole('textbox', { name: 'Enabled' });

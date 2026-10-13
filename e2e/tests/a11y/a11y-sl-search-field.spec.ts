@@ -17,6 +17,12 @@ test.describe('sl-search-field accessibility', () => {
       'wcag22a',
       'wcag22aa',
     ]);
+    await expect(
+      page.getByRole('textbox', {
+        name: 'Enabled search field',
+        exact: true,
+      }),
+    ).toBeVisible();
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
