@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormFieldComponent } from '@sl-design-system/angular/form';
 import { SearchFieldComponent } from '@sl-design-system/angular/search-field';
 

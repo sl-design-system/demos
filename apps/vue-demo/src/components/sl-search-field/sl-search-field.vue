@@ -1,10 +1,10 @@
 <template>
   <div class="states">
-    <sl-form-field label="Enabled">
+    <sl-form-field label="Enabled search field">
       <sl-search-field placeholder="Search"></sl-search-field>
     </sl-form-field>
 
-    <sl-form-field label="Disabled">
+    <sl-form-field label="Disabled search field">
       <sl-search-field :disabled="true" placeholder="Search"></sl-search-field>
     </sl-form-field>
   </div>
