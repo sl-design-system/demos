@@ -131,7 +131,8 @@ export const router = createRouter({
     },
     {
       path: '/sl-search-field',
-      component: () => import('./components/sl-search-field/sl-search-field.vue'),
+      component: () =>
+        import('./components/sl-search-field/sl-search-field.vue'),
     },
   ],
 });

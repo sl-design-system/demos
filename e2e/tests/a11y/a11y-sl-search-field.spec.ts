@@ -99,7 +99,7 @@ test.describe('sl-search-field accessibility', () => {
     await item.fill('Test');
 
     await expect(clearButton).toHaveAccessibleName('Clear text');
-  });  
+  });
 
   test('should have keyboard operable Clear button', async ({ page }) => {
     const item = page
@@ -112,7 +112,7 @@ test.describe('sl-search-field accessibility', () => {
     await page.keyboard.press('Tab');
     await item.fill('Test');
     await page.keyboard.press('Tab');
-    
+
     await expect(clearButton).toBeFocused();
     await page.keyboard.press('Enter');
 
