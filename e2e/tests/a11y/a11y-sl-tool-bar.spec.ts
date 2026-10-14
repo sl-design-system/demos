@@ -142,7 +142,7 @@ test.describe('sl-tool-bar accessibility', () => {
       await expect(newPage).toHaveURL('about:blank');
     });
   }
-  
+
   test(`should have keyboard operable 'Show more' menu in mobile view`, async ({
     page,
   }) => {
