@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FormFieldComponent } from '@sl-design-system/angular/form';
-import { SearchFieldComponent } from '@sl-design-system/angular/search-field';
+import '@sl-design-system/search-field/register.js';
 import { SearchFieldDirective } from '../sl-search-field/search-field.directive';
 
 @Component({
@@ -11,9 +11,9 @@ import { SearchFieldDirective } from '../sl-search-field/search-field.directive'
   imports: [
     ReactiveFormsModule,
     FormFieldComponent,
-    SearchFieldComponent,
     SearchFieldDirective,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SearchFieldReactivePageComponent {
   searchControl = new FormControl('', { nonNullable: true });
