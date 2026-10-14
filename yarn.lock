@@ -4440,7 +4440,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sl-design-system/angular@npm:^5.0.0":
+"@sl-design-system/angular@npm:^5.0.1":
   version: 5.0.1
   resolution: "@sl-design-system/angular@npm:5.0.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40sl-design-system%2Fangular%2F5.0.1%2Ffb5e651a2dc7b2b8e1503a3117f8cdcecf2b2cea"
   dependencies:
@@ -4554,7 +4554,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sl-design-system/card@npm:^2.0.5":
+"@sl-design-system/card@npm:^2.0.6":
   version: 2.0.6
   resolution: "@sl-design-system/card@npm:2.0.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40sl-design-system%2Fcard%2F2.0.6%2F1796075a995325955e17e0a3e8941a83b96e7f96"
   dependencies:
@@ -4598,7 +4598,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sl-design-system/data-source@npm:^0.4.0, @sl-design-system/data-source@npm:^0.4.4":
+"@sl-design-system/data-source@npm:^0.4.4, @sl-design-system/data-source@npm:^0.4.5":
   version: 0.4.5
   resolution: "@sl-design-system/data-source@npm:0.4.5::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40sl-design-system%2Fdata-source%2F0.4.5%2F94448882896309c8576bc57164fbd111a25a9bb9"
   dependencies:
@@ -4647,18 +4647,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sl-design-system/icon@npm:1.4.5":
-  version: 1.4.5
-  resolution: "@sl-design-system/icon@npm:1.4.5::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40sl-design-system%2Ficon%2F1.4.5%2Fd7d88962d44f7e666aca73d36b9561affbf149aa"
-  dependencies:
-    "@sl-design-system/shared": "npm:^0.14.1"
-  peerDependencies:
-    lit: ^3.1.4
-  checksum: 10c0/d3a0717989c1ec3f037ffeda8cc8f4a27453420968eebb45085fe48d20c22b80b7244f3cb79c600c85c901c19dd135ec2f0823d7b69c46b0fdefc1ec02459174
-  languageName: node
-  linkType: hard
-
-"@sl-design-system/icon@npm:^1.4.5, @sl-design-system/icon@npm:^1.4.6":
+"@sl-design-system/icon@npm:1.4.6, @sl-design-system/icon@npm:^1.4.5, @sl-design-system/icon@npm:^1.4.6":
   version: 1.4.6
   resolution: "@sl-design-system/icon@npm:1.4.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40sl-design-system%2Ficon%2F1.4.6%2Fc1b4f2ca6570ba14e019e40f5091f806630ce6a1"
   dependencies:
@@ -4782,12 +4771,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sl-design-system/sanoma-learning@npm:^1.1.6":
-  version: 1.1.6
-  resolution: "@sl-design-system/sanoma-learning@npm:1.1.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40sl-design-system%2Fsanoma-learning%2F1.1.6%2F64923ada461413b6e5696a64d3428f6bb5b30e82"
+"@sl-design-system/sanoma-learning@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@sl-design-system/sanoma-learning@npm:2.0.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40sl-design-system%2Fsanoma-learning%2F2.0.0%2F1d1a550d4bb5b84c0721e74eb79bd4c191a885e9"
   dependencies:
-    "@sl-design-system/icon": "npm:1.4.5"
-  checksum: 10c0/b1e9107d76a8ecc4002a54d8513e1a89172cc6f491d7074b61616a166b8a027e6020b6f5b0a03baa913a09a7de77cecc4b35a8b456f1176e9a2c601f32bbaee3
+    "@sl-design-system/icon": "npm:1.4.6"
+  checksum: 10c0/ae5bebd173e94526e1ca00af46adcc0ec08fbe64142a9ee0485d62f799535403dcddb01e2c6ed077babf17968f9e5a7379720927ba44574558258061f366ec07
   languageName: node
   linkType: hard
 
@@ -4845,7 +4834,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sl-design-system/switch@npm:^2.0.1, @sl-design-system/switch@npm:^2.1.0":
+"@sl-design-system/switch@npm:^2.1.0":
   version: 2.1.0
   resolution: "@sl-design-system/switch@npm:2.1.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40sl-design-system%2Fswitch%2F2.1.0%2Fbeccdaa0ef90d104d5325df3160f2755a47bf9b7"
   dependencies:
@@ -4948,7 +4937,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sl-design-system/toggle-group@npm:^1.0.1, @sl-design-system/toggle-group@npm:^1.1.0":
+"@sl-design-system/toggle-group@npm:^1.1.0":
   version: 1.1.0
   resolution: "@sl-design-system/toggle-group@npm:1.1.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40sl-design-system%2Ftoggle-group%2F1.1.0%2F538a0649ce7a515383f8753e2dc403d5adedcb16"
   dependencies:
@@ -4962,7 +4951,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sl-design-system/tool-bar@npm:^0.4.1":
+"@sl-design-system/tool-bar@npm:^0.4.2":
   version: 0.4.2
   resolution: "@sl-design-system/tool-bar@npm:0.4.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40sl-design-system%2Ftool-bar%2F0.4.2%2F85499db22012921d23ab0bf85186a10f9e9ecad8"
   dependencies:
@@ -7275,41 +7264,41 @@ __metadata:
     "@open-wc/dedupe-mixin": "npm:^2.0.1"
     "@open-wc/scoped-elements": "npm:^3.0.5"
     "@sl-design-system/accordion": "npm:^1.2.10"
-    "@sl-design-system/angular": "npm:^5.0.0"
+    "@sl-design-system/angular": "npm:^5.0.1"
     "@sl-design-system/avatar": "npm:^1.3.2"
     "@sl-design-system/badge": "npm:^1.1.6"
     "@sl-design-system/breadcrumbs": "npm:^1.3.2"
-    "@sl-design-system/button": "npm:^2.3.1"
+    "@sl-design-system/button": "npm:^2.3.2"
     "@sl-design-system/button-bar": "npm:^1.6.1"
     "@sl-design-system/callout": "npm:^1.0.1"
-    "@sl-design-system/card": "npm:^2.0.5"
+    "@sl-design-system/card": "npm:^2.0.6"
     "@sl-design-system/checkbox": "npm:^2.4.2"
     "@sl-design-system/combobox": "npm:^0.3.2"
-    "@sl-design-system/data-source": "npm:^0.4.0"
+    "@sl-design-system/data-source": "npm:^0.4.5"
     "@sl-design-system/dialog": "npm:^2.1.4"
-    "@sl-design-system/form": "npm:^1.6.0"
-    "@sl-design-system/icon": "npm:^1.4.5"
+    "@sl-design-system/form": "npm:^1.7.0"
+    "@sl-design-system/icon": "npm:^1.4.6"
     "@sl-design-system/inline-message": "npm:^2.1.4"
     "@sl-design-system/listbox": "npm:^0.2.3"
-    "@sl-design-system/menu": "npm:^1.0.1"
+    "@sl-design-system/menu": "npm:^1.1.0"
     "@sl-design-system/message-dialog": "npm:^1.1.7"
     "@sl-design-system/number-field": "npm:^0.2.2"
     "@sl-design-system/paginator": "npm:^0.2.11"
     "@sl-design-system/popover": "npm:^1.2.10"
     "@sl-design-system/radio-group": "npm:^1.3.2"
-    "@sl-design-system/sanoma-learning": "npm:^1.1.6"
+    "@sl-design-system/sanoma-learning": "npm:^2.0.0"
     "@sl-design-system/search-field": "npm:^1.0.2"
     "@sl-design-system/select": "npm:^2.4.2"
     "@sl-design-system/shared": "npm:^0.14.1"
-    "@sl-design-system/switch": "npm:^2.0.1"
+    "@sl-design-system/switch": "npm:^2.1.0"
     "@sl-design-system/tabs": "npm:^1.2.12"
     "@sl-design-system/tag": "npm:^1.0.1"
     "@sl-design-system/text-area": "npm:^1.2.2"
     "@sl-design-system/text-field": "npm:^1.7.2"
     "@sl-design-system/time-field": "npm:^0.3.2"
     "@sl-design-system/toggle-button": "npm:^2.0.1"
-    "@sl-design-system/toggle-group": "npm:^1.0.1"
-    "@sl-design-system/tool-bar": "npm:^0.4.1"
+    "@sl-design-system/toggle-group": "npm:^1.1.0"
+    "@sl-design-system/tool-bar": "npm:^0.4.2"
     "@sl-design-system/tooltip": "npm:^3.0.2"
     "@sl-design-system/tree": "npm:^0.3.3"
     "@typescript-eslint/types": "npm:^8.38.0"

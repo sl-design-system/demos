@@ -103,7 +103,7 @@
     </button>
     <h2>Svelte Demo App</h2>
     <ul class="sidebar-list">
-      {#each navItems as item}
+      {#each navItems as item (item.path)}
         <li>
           <a
             href={item.path}

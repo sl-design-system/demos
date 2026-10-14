@@ -34,15 +34,15 @@
       "service": true
     },
     "lint": {
-      "command": "eslint src/**/*.ts",
+      "command": "eslint \"src/**/*.{ts,vue}\"",
       "files": [
-        "src/**/*.ts"
+        "src/**/*.{ts,vue}"
       ]
     },
     "lint:fix": {
-      "command": "eslint src/**/*.ts --fix",
+      "command": "eslint \"src/**/*.{ts,vue}\" --fix",
       "files": [
-        "src/**/*.ts"
+        "src/**/*.{ts,vue}"
       ]
     },
     "preview": {

@@ -2,7 +2,7 @@
   <sl-tab-group>
     <sl-tab slot="tabs">General</sl-tab>
     <sl-tab slot="tabs">Settings</sl-tab>
-    <sl-tab :disabled="true" slot="tabs">Disabled</sl-tab>
+    <sl-tab slot="tabs" :disabled="true">Disabled</sl-tab>
 
     <sl-tab-panel
       >This is the <strong>General</strong> tab content. It contains basic

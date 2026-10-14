@@ -15,8 +15,8 @@ const runBuild = async () => {
   await fs.mkdir(outdir, { recursive: true });
 
   // Copy the theme CSS globally so elements outside shadow DOM (e.g. message-dialog) get CSS vars
-  const lightCssSrc = path.resolve(rootDir, '../../node_modules/@sl-design-system/sanoma-learning/light.css');
-  await fs.copyFile(lightCssSrc, path.resolve(outdir, 'light.css'));
+  const themeCssSrc = path.resolve(rootDir, '../../node_modules/@sl-design-system/sanoma-learning/theme.css');
+  await fs.copyFile(themeCssSrc, path.resolve(outdir, 'theme.css'));
 
   // Read and transform index.html so it loads the bundled script
   const rawHtml = await fs.readFile(path.resolve(rootDir, 'index.html'), 'utf-8');
