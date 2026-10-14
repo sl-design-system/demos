@@ -228,9 +228,21 @@ export const routes: Routes = [
   },
   {
     path: 'sl-search-field',
+    redirectTo: 'sl-search-field-reactive',
+    pathMatch: 'full',
+  },
+  {
+    path: 'sl-search-field-reactive',
     loadComponent: () =>
-      import('./components/sl-search-field/sl-search-field.component').then(
-        (m) => m.SearchFieldPageComponent,
+      import('./components/sl-search-field-reactive/sl-search-field-reactive.component').then(
+        (m) => m.SearchFieldReactivePageComponent,
+      ),
+  },
+  {
+    path: 'sl-search-field-template',
+    loadComponent: () =>
+      import('./components/sl-search-field-template/sl-search-field-template.component').then(
+        (m) => m.SearchFieldTemplatePageComponent,
       ),
   },
   {

@@ -41,7 +41,8 @@ export class AppComponent {
     { path: 'sl-tool-bar', label: 'sl-tool-bar' },
     { path: 'sl-tooltip', label: 'sl-tooltip' },
     { path: 'sl-tree', label: 'sl-tree' },
-    { path: 'sl-search-field', label: 'sl-search-field' },
+    { path: 'sl-search-field-reactive', label: 'sl-search-field (reactive)' },
+    { path: 'sl-search-field-template', label: 'sl-search-field (template)' },
     { path: 'sl-radio-group-reactive', label: 'sl-radio-group (reactive)' },
     { path: 'sl-radio-group-template', label: 'sl-radio-group (template)' },
   ];
