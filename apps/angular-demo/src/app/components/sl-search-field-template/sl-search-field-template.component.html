@@ -1,0 +1,21 @@
+<div class="states">
+  <sl-form-field
+    label="Enabled search field"
+    hint="This example uses template-driven forms."
+  >
+    <sl-search-field
+      [(ngModel)]="searchValue"
+      name="search"
+      placeholder="Search"
+    ></sl-search-field>
+  </sl-form-field>
+
+  <sl-form-field label="Disabled search field">
+    <sl-search-field
+      [(ngModel)]="disabledSearchValue"
+      name="disabledSearch"
+      [disabled]="true"
+      placeholder="Search"
+    ></sl-search-field>
+  </sl-form-field>
+</div>
