@@ -2,17 +2,17 @@
   <div class="app-layout">
     <a href="#main" class="skip-link">Skip to main content</a>
     <nav
-      id="app-sidebar"
       class="sidebar"
       :class="{ collapsed: navCollapsed }"
       aria-label="Main navigation"
+      id="app-sidebar"
     >
       <button
         class="sidebar-toggle"
         aria-controls="app-sidebar"
+        @click="navCollapsed = !navCollapsed"
         :aria-expanded="!navCollapsed"
         title="Toggle navigation"
-        @click="navCollapsed = !navCollapsed"
       >
         <span aria-hidden="true">☰</span>
         <span class="visually-hidden">{{

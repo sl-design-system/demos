@@ -37,7 +37,7 @@
 </script>
 
 <ul>
-  {#each visibleItems as item (item.id)}
+  {#each visibleItems as item}
     <li>{item.name}</li>
   {/each}
 </ul>

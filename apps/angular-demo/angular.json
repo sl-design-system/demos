@@ -26,7 +26,7 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [],
             "styles": [
-              "../../node_modules/@sl-design-system/sanoma-learning/theme.css",
+              "../../node_modules/@sl-design-system/sanoma-learning/light.css",
               "src/styles.scss"
             ],
             "scripts": []

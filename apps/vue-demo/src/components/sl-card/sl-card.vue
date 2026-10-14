@@ -23,6 +23,10 @@
   </div>
 </template>
 
+<style scoped lang="scss">
+@use './sl-card.scss';
+</style>
+
 <script setup lang="ts">
 import '@sl-design-system/badge/register.js';
 import '@sl-design-system/button/register.js';
@@ -32,7 +36,3 @@ const openBlankPage = () => {
   window.open('about:blank', '_blank', 'noopener,noreferrer');
 };
 </script>
-
-<style scoped lang="scss">
-@use './sl-card.scss';
-</style>

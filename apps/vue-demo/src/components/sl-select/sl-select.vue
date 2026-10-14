@@ -20,11 +20,11 @@
 
     <sl-form-field>
       <sl-select
-        id="disabled"
         :disabled="true"
         aria-label="Disabled select"
         placeholder="Disabled"
         size="md"
+        id="disabled"
       >
         <sl-option value="1">Disabled value 1</sl-option>
         <sl-option value="2">Disabled value 2</sl-option>

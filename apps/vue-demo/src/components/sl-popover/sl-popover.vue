@@ -1,5 +1,5 @@
 <template>
-  <sl-button id="popover-trigger" variant="primary" @click="togglePopover"
+  <sl-button id="popover-trigger" @click="togglePopover" variant="primary"
     >Toggle Popover</sl-button
   >
   <sl-popover anchor="popover-trigger" position="bottom"
