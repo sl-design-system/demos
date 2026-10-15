@@ -1,7 +1,5 @@
 <template>
-  <div class="infotip-example">
-    <sl-infotip>This is the infotip message</sl-infotip>
-  </div>
+  <sl-infotip>This is the infotip message</sl-infotip>
 </template>
 
 <script setup lang="ts">
