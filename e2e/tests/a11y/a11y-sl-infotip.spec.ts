@@ -73,7 +73,7 @@ test.describe('sl-infotip accessibility', () => {
   });
 
   for (const key of ['Space', 'Enter']) {
-    test(`should display infotiptip when button clicked with ${key.toLowerCase()}`, async ({
+    test(`should display infotip when button clicked with ${key.toLowerCase()}`, async ({
       page,
     }) => {
       const item = page.getByRole('button', { name: 'More information' });
