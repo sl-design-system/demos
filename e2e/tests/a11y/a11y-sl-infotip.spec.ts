@@ -53,8 +53,8 @@ test.describe('sl-infotip accessibility', () => {
 
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-infotip'); // for Firefox to properly apply the viewport size before page load
-    await item.click();
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
+    await item.click();
 
     const hasOverflow = await hasMainHorizontalOverflow(page);
     expect(hasOverflow).toBe(false);
