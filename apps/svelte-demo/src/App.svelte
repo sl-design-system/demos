@@ -11,6 +11,7 @@
   import FormField from './components/sl-form-field/sl-form-field.svelte';
   import Form from './components/sl-form/sl-form.svelte';
   import InlineMessage from './components/sl-inline-message/sl-inline-message.svelte';
+  import Infotip from './components/sl-infotip/sl-infotip.svelte';
   import Menu from './components/sl-menu/sl-menu.svelte';
   import RadioGroup from './components/sl-radio-group/sl-radio-group.svelte';
   import MessageDialog from './components/sl-message-dialog/sl-message-dialog.svelte';
@@ -45,6 +46,7 @@
     { path: '/sl-form', label: 'sl-form', component: Form },
     { path: '/sl-inline-message', label: 'sl-inline-message', component: InlineMessage },
     { path: '/sl-menu', label: 'sl-menu', component: Menu },
+    { path: '/sl-infotip', label: 'sl-infotip', component: Infotip },
     { path: '/sl-message-dialog', label: 'sl-message-dialog', component: MessageDialog },
     { path: '/sl-number-field', label: 'sl-number-field', component: NumberField },
     { path: '/sl-text-area', label: 'sl-text-area', component: TextArea },
