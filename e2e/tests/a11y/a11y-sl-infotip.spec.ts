@@ -35,7 +35,7 @@ test.describe('sl-infotip accessibility', () => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-infotip'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
-    await item.focus();
+    await item.click();
     const axe = new AxeBuilder({ page }).withTags([
       'wcag2a',
       'wcag2aa',
@@ -50,9 +50,10 @@ test.describe('sl-infotip accessibility', () => {
 
   test('component fits without horizontal scroll', async ({ page }) => {
     const item = page.getByRole('button', { name: 'More information' });
-    await item.click();
+
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-infotip'); // for Firefox to properly apply the viewport size before page load
+    await item.click();
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
     const hasOverflow = await hasMainHorizontalOverflow(page);
