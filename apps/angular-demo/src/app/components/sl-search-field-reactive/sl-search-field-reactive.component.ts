@@ -8,11 +8,7 @@ import { SearchFieldDirective } from '../sl-search-field/search-field.directive'
   selector: 'app-search-field-reactive-page',
   templateUrl: './sl-search-field-reactive.component.html',
   styleUrls: ['./sl-search-field-reactive.component.scss'],
-  imports: [
-    ReactiveFormsModule,
-    FormFieldComponent,
-    SearchFieldDirective,
-  ],
+  imports: [ReactiveFormsModule, FormFieldComponent, SearchFieldDirective],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SearchFieldReactivePageComponent {
