@@ -13,9 +13,7 @@ export class InfotipPage extends ScopedElementsMixin(LitElement) {
   override render(): TemplateResult {
     return html`
       <div class="infotip-example">
-        <sl-infotip>
-          This is the infotip message
-        </sl-infotip>
+        <sl-infotip> This is the infotip message </sl-infotip>
       </div>
     `;
   }

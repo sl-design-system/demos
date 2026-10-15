@@ -71,8 +71,10 @@ test.describe('sl-infotip accessibility', () => {
     }
   });
 
-  for(const key of ['Space', 'Enter']) {
-    test(`should display infotiptip when button clicked with ${key.toLowerCase()}`, async ({ page }) => {
+  for (const key of ['Space', 'Enter']) {
+    test(`should display infotiptip when button clicked with ${key.toLowerCase()}`, async ({
+      page,
+    }) => {
       const item = page.getByRole('button', { name: 'More information' });
 
       await item.focus();
@@ -95,7 +97,7 @@ test.describe('sl-infotip accessibility', () => {
 
     await item.click();
     await expect(item).toHaveAttribute('aria-expanded', 'true');
-    
+
     await item.click();
     await expect(item).toHaveAttribute('aria-expanded', 'false');
   });
