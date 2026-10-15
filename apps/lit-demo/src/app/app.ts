@@ -16,6 +16,7 @@ import { DialogPage } from '../components/sl-dialog/sl-dialog.js';
 import { FormFieldPage } from '../components/sl-form-field/sl-form-field.js';
 import { FormPage } from '../components/sl-form/sl-form.js';
 import { InlineMessagePage } from '../components/sl-inline-message/sl-inline-message.js';
+import { InfotipPage } from '../components/sl-infotip/sl-tooltip.js';
 import { MenuPage } from '../components/sl-menu/sl-menu.js';
 import { MessageDialogPage } from '../components/sl-message-dialog/sl-message-dialog.js';
 import { NumberFieldPage } from '../components/sl-number-field/sl-number-field.js';
@@ -48,6 +49,7 @@ const ROUTES = [
   { path: '/sl-combobox', label: 'sl-combobox' },
   { path: '/sl-dialog', label: 'sl-dialog' },
   { path: '/sl-form-field', label: 'sl-form-field' },
+  { path: '/sl-infotip', label: 'sl-infotip' },
   { path: '/sl-form', label: 'sl-form' },
   { path: '/sl-inline-message', label: 'sl-inline-message' },
   { path: '/sl-menu', label: 'sl-menu' },
@@ -96,6 +98,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-select': SelectPage,
     'page-switch': SwitchPage,
     'page-card': CardPage,
+    'page-infotip': InfotipPage,
     'page-popover': PopoverPage,
     'page-tree': TreePage,
     'page-toggle-button': ToggleButtonPage,
@@ -155,6 +158,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-dialog></page-dialog>`;
       case '/sl-form-field':
         return html`<page-form-field></page-form-field>`;
+      case '/sl-infotip':
+        return html`<page-infotip></page-infotip>`;
       case '/sl-form':
         return html`<page-form></page-form>`;
       case '/sl-inline-message':
