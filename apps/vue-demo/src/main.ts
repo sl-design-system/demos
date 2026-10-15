@@ -17,6 +17,7 @@ import '@sl-design-system/switch/register.js';
 import '@sl-design-system/toggle-button/register.js';
 import '@sl-design-system/toggle-group/register.js';
 import '@sl-design-system/tool-bar/register.js';
+import '@sl-design-system/infotip/register.js';
 import { setup } from '@sl-design-system/sanoma-learning';
 
 setup();
