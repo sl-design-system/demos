@@ -56,6 +56,10 @@ test.describe('sl-infotip accessibility', () => {
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
     await item.click();
 
+    const popover = page.locator('sl-infotip sl-popover');
+    await expect(popover).toBeVisible();
+    await expect(popover).toBeInViewport({ ratio: 1 });
+
     const hasOverflow = await hasMainHorizontalOverflow(page);
     expect(hasOverflow).toBe(false);
   });
