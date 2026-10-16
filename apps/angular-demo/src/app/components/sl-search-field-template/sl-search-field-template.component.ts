@@ -8,11 +8,7 @@ import { SearchFieldDirective } from '../sl-search-field/search-field.directive'
   selector: 'app-search-field-template-page',
   templateUrl: './sl-search-field-template.component.html',
   styleUrls: ['./sl-search-field-template.component.scss'],
-  imports: [
-    FormsModule,
-    FormFieldComponent,
-    SearchFieldDirective,
-  ],
+  imports: [FormsModule, FormFieldComponent, SearchFieldDirective],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SearchFieldTemplatePageComponent {
