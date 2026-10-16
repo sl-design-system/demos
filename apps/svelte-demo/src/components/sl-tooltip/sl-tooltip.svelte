@@ -4,6 +4,6 @@
 </script>
 
 <div class="tooltip-example">
-  <sl-button aria-describedby="tooltip" variant="primary">Button</sl-button>
-  <sl-tooltip id="tooltip" position="top">This is the tooltip message</sl-tooltip>
+  <sl-button id="tooltip-target" variant="primary">Button</sl-button>
+  <sl-tooltip for="tooltip-target" id="tooltip" position="top" type="description">This is the tooltip message</sl-tooltip>
 </div>

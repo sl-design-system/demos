@@ -14,7 +14,8 @@ test.describe('sl-tooltip accessibility', () => {
     page,
   }) => {
     const item = page.getByRole('button', { name: 'Button' });
-    await item.focus();
+    await item.hover();
+    await expect(page.getByText(tooltipText)).toBeVisible();
     const axe = new AxeBuilder({ page }).withTags([
       'wcag2a',
       'wcag2aa',
