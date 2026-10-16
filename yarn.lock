@@ -4658,6 +4658,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sl-design-system/infotip@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "@sl-design-system/infotip@npm:0.1.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40sl-design-system%2Finfotip%2F0.1.2%2Faa546c39101517a79bea53b3d1876312993500e6"
+  dependencies:
+    "@sl-design-system/button": "npm:^2.3.1"
+    "@sl-design-system/icon": "npm:^1.4.5"
+    "@sl-design-system/popover": "npm:^1.2.10"
+  peerDependencies:
+    "@lit/localize": ^0.12.1
+    "@open-wc/scoped-elements": ^3.0.10
+    lit: ^3.1.4
+  checksum: 10c0/c32e1f05ec4f36dcd18f7190e5816f44dfa8152abc1fc36f3f18649299f4276ec2e8d25f6e96cb1015f619e1ce59ab1560249bb4148ef20074ca9e0ac0a2efa8
+  languageName: node
+  linkType: hard
+
 "@sl-design-system/inline-message@npm:^2.1.4":
   version: 2.1.4
   resolution: "@sl-design-system/inline-message@npm:2.1.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40sl-design-system%2Finline-message%2F2.1.4%2F4939ae75fd9648896fd9c4b662e6b1a4f17d4501"
@@ -7278,6 +7293,7 @@ __metadata:
     "@sl-design-system/dialog": "npm:^2.1.4"
     "@sl-design-system/form": "npm:^1.7.0"
     "@sl-design-system/icon": "npm:^1.4.6"
+    "@sl-design-system/infotip": "npm:^0.1.2"
     "@sl-design-system/inline-message": "npm:^2.1.4"
     "@sl-design-system/listbox": "npm:^0.2.3"
     "@sl-design-system/menu": "npm:^1.1.0"

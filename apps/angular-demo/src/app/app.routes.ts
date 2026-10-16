@@ -108,6 +108,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-infotip',
+    loadComponent: () =>
+      import('./components/sl-infotip/sl-infotip.component').then(
+        (m) => m.InfotipPageComponent,
+      ),
+  },
+  {
     path: 'sl-number-field',
     loadComponent: () =>
       import('./components/sl-number-field/sl-number-field.component').then(

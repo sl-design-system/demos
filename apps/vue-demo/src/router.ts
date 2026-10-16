@@ -54,6 +54,10 @@ export const router = createRouter({
         import('./components/sl-inline-message/sl-inline-message.vue'),
     },
     {
+      path: '/sl-infotip',
+      component: () => import('./components/sl-infotip/sl-infotip.vue'),
+    },
+    {
       path: '/sl-menu',
       component: () => import('./components/sl-menu/sl-menu.vue'),
     },

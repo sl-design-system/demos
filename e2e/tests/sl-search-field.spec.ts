@@ -14,7 +14,9 @@ for (const { path, angularOnly } of variants) {
       await page.goto(path);
     });
 
-    test('should type and clear text in the enabled field', async ({ page }) => {
+    test('should type and clear text in the enabled field', async ({
+      page,
+    }) => {
       const input = page.getByRole('textbox', { name: 'Enabled' });
 
       await input.fill('Test');
