@@ -115,6 +115,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-month-view',
+    loadComponent: () =>
+      import('./components/sl-month-view/sl-month-view.component').then(
+        (m) => m.MonthViewPageComponent,
+      ),
+  },
+  {
     path: 'sl-number-field',
     loadComponent: () =>
       import('./components/sl-number-field/sl-number-field.component').then(
