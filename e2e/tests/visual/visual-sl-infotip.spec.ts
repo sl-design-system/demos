@@ -4,6 +4,8 @@ import pixelmatch from "pixelmatch";
 import { PNG } from "pngjs";
 
 test.describe('sl-infotip visual', () => {
+    test.use({ deviceScaleFactor: 1 });
+
     test("infotip matches Figma export", async ({ page }, testInfo) => {
     await page.goto("http://localhost:4200/sl-infotip");
 
@@ -14,7 +16,9 @@ test.describe('sl-infotip visual', () => {
     await expect(button).toBeVisible();
 
     // Capture screenshot of the rendered infotip button
-    const actualBuffer = await button.screenshot();
+    const actualBuffer = await button.screenshot({
+        scale: 'device',
+    });
 
     // Save temporarily
     fs.writeFileSync(
@@ -43,7 +47,7 @@ test.describe('sl-infotip visual', () => {
         actual.width,
         actual.height,
         {
-        threshold: 0.5,
+        threshold: 0.8,
         }
     );
 

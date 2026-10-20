@@ -27,6 +27,7 @@
             "assets": [],
             "styles": [
               "../../node_modules/@sl-design-system/sanoma-learning/theme.css",
+              "../../node_modules/@sl-design-system/sanoma-learning/typography.css",
               "src/styles.scss"
             ],
             "scripts": []

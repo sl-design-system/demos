@@ -17,6 +17,8 @@ const runBuild = async () => {
   // Copy the theme CSS globally so elements outside shadow DOM (e.g. message-dialog) get CSS vars
   const themeCssSrc = path.resolve(rootDir, '../../node_modules/@sl-design-system/sanoma-learning/theme.css');
   await fs.copyFile(themeCssSrc, path.resolve(outdir, 'theme.css'));
+  const typographyCssSrc = path.resolve(rootDir, '../../node_modules/@sl-design-system/sanoma-learning/typography.css');
+  await fs.copyFile(typographyCssSrc, path.resolve(outdir, 'typography.css'));
 
   // Read and transform index.html so it loads the bundled script
   const rawHtml = await fs.readFile(path.resolve(rootDir, 'index.html'), 'utf-8');
