@@ -67,6 +67,10 @@ export const router = createRouter({
         import('./components/sl-message-dialog/sl-message-dialog.vue'),
     },
     {
+      path: '/sl-month-view',
+      component: () => import('./components/sl-month-view/sl-month-view.vue'),
+    },
+    {
       path: '/sl-number-field',
       component: () =>
         import('./components/sl-number-field/sl-number-field.vue'),
