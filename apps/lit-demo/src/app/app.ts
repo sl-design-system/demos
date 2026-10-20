@@ -36,6 +36,7 @@ import { ToggleGroupPage } from '../components/sl-toggle-group/sl-toggle-group.j
 import { ToolBarPage } from '../components/sl-tool-bar/sl-tool-bar.js';
 import { TreePage } from '../components/sl-tree/sl-tree.js';
 import { SearchFieldPage } from '../components/sl-search-field/sl-search-field.js';
+import { MonthViewPage } from '../components/sl-month-view/sl-month-view.js';
 import styles from './app.styles.scss.js';
 
 const ROUTES = [
@@ -54,6 +55,7 @@ const ROUTES = [
   { path: '/sl-inline-message', label: 'sl-inline-message' },
   { path: '/sl-menu', label: 'sl-menu' },
   { path: '/sl-message-dialog', label: 'sl-message-dialog' },
+  { path: '/sl-month-view', label: 'sl-month-view' },
   { path: '/sl-number-field', label: 'sl-number-field' },
   { path: '/sl-text-area', label: 'sl-text-area' },
   { path: '/sl-text-field', label: 'sl-text-field' },
@@ -107,6 +109,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-tooltip': TooltipPage,
     'page-radio-group': RadioGroupPage,
     'page-search-field': SearchFieldPage,
+    'page-month-view': MonthViewPage,
   };
 
   static override styles = styles;
@@ -168,6 +171,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-menu></page-menu>`;
       case '/sl-message-dialog':
         return html`<page-message-dialog></page-message-dialog>`;
+      case '/sl-month-view':
+        return html`<page-month-view></page-month-view>`;
       case '/sl-number-field':
         return html`<page-number-field></page-number-field>`;
       case '/sl-text-area':
