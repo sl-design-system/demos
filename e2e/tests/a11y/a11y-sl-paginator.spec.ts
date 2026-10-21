@@ -49,7 +49,13 @@ test.describe('sl-paginator accessibility', () => {
   });
 
   test('should have correct tab order', async ({ page }) => {
-    const activeElements = ['1', '2', 'Go to the next page (2)', 'Items per page', 'Focus me'] as const;
+    const activeElements = [
+      '1',
+      '2',
+      'Go to the next page (2)',
+      'Items per page',
+      'Focus me',
+    ] as const;
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
@@ -75,12 +81,18 @@ test.describe('sl-paginator accessibility', () => {
   });
 
   for (const key of ['Space', 'Enter'] as const) {
-    test(`should have keyboard accessible buttons with ${key}`, async ({ page }) => {
+    test(`should have keyboard accessible buttons with ${key}`, async ({
+      page,
+    }) => {
       const items = page.locator('main ul li');
       const button1 = page.getByRole('button', { name: '1', exact: true });
       const button2 = page.getByRole('button', { name: '2', exact: true });
-      const buttonNext = page.getByRole('button', { name: 'Go to the next page (2)' });
-      const buttonPrev = page.getByRole('button', { name: 'Go to the previous page (1)' });
+      const buttonNext = page.getByRole('button', {
+        name: 'Go to the next page (2)',
+      });
+      const buttonPrev = page.getByRole('button', {
+        name: 'Go to the previous page (1)',
+      });
 
       await button2.focus();
       await page.keyboard.press(key);
@@ -104,7 +116,9 @@ test.describe('sl-paginator accessibility', () => {
     });
   }
 
-  test(`should have keyboard accessible buttons in mobile view`, async ({ page }) => {
+  test(`should have keyboard accessible buttons in mobile view`, async ({
+    page,
+  }) => {
     const items = page.locator('main ul li');
     const select = page.getByRole('combobox', { name: 'Page', exact: true });
     const listbox = page.getByRole('listbox', { name: 'Page', exact: true });
@@ -114,7 +128,7 @@ test.describe('sl-paginator accessibility', () => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-paginator'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
-    
+
     await select.focus();
     await page.keyboard.press('Space');
 
@@ -136,8 +150,14 @@ test.describe('sl-paginator accessibility', () => {
 
   test(`should have keyboard accessible size selection`, async ({ page }) => {
     const items = page.locator('main ul li');
-    const select = page.getByRole('combobox', { name: 'Items per page', exact: true });
-    const listbox = page.getByRole('listbox', { name: 'Items per page', exact: true });
+    const select = page.getByRole('combobox', {
+      name: 'Items per page',
+      exact: true,
+    });
+    const listbox = page.getByRole('listbox', {
+      name: 'Items per page',
+      exact: true,
+    });
     const page1 = page.getByRole('option', { name: '5' });
     const page2 = page.getByRole('option', { name: '10' });
 
@@ -155,7 +175,7 @@ test.describe('sl-paginator accessibility', () => {
     await expect(page2).toHaveAttribute('role', 'option');
     await expect(page2).toHaveAttribute('aria-selected', 'false');
 
-    await page.keyboard.press('Space');    
+    await page.keyboard.press('Space');
 
     await expect(items.nth(5)).toHaveText('Item 6');
   });
@@ -173,17 +193,21 @@ test.describe('sl-paginator accessibility', () => {
   });
 
   test(`should have disabled attribute`, async ({ page }) => {
-    const disabledButton = page.getByRole('button', { name: 'Go to the previous page (0)' });
+    const disabledButton = page.getByRole('button', {
+      name: 'Go to the previous page (0)',
+    });
 
     await expect(disabledButton).toHaveAttribute('disabled');
   });
 
   test(`should not have keyboard accessible disabled tab`, async ({ page }) => {
-    const disabledButton = page.getByRole('button', { name: 'Go to the previous page (0)' });
+    const disabledButton = page.getByRole('button', {
+      name: 'Go to the previous page (0)',
+    });
     const items = page.locator('main ul li');
 
     await disabledButton.focus();
     await page.keyboard.press('Space');
     await expect(items.nth(0)).toHaveText('Item 1');
   });
-})  
+});
