@@ -108,6 +108,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-infotip',
+    loadComponent: () =>
+      import('./components/sl-infotip/sl-infotip.component').then(
+        (m) => m.InfotipPageComponent,
+      ),
+  },
+  {
     path: 'sl-number-field',
     loadComponent: () =>
       import('./components/sl-number-field/sl-number-field.component').then(
@@ -119,6 +126,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/sl-text-area/sl-text-area.component').then(
         (m) => m.TextAreaPageComponent,
+      ),
+  },
+  {
+    path: 'sl-text-field',
+    loadComponent: () =>
+      import('./components/sl-text-field/sl-text-field.component').then(
+        (m) => m.TextFieldPageComponent,
       ),
   },
   {
@@ -178,6 +192,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-tag',
+    loadComponent: () =>
+      import('./components/sl-tag/sl-tag.component').then(
+        (m) => m.TagPageComponent,
+      ),
+  },
+  {
     path: 'sl-toggle-button',
     loadComponent: () =>
       import('./components/sl-toggle-button/sl-toggle-button.component').then(
@@ -185,10 +206,50 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-toggle-group',
+    loadComponent: () =>
+      import('./components/sl-toggle-group/sl-toggle-group.component').then(
+        (m) => m.ToggleGroupPageComponent,
+      ),
+  },
+  {
+    path: 'sl-tool-bar',
+    loadComponent: () =>
+      import('./components/sl-tool-bar/sl-tool-bar.component').then(
+        (m) => m.ToolBarPageComponent,
+      ),
+  },
+  {
     path: 'sl-tooltip',
     loadComponent: () =>
       import('./components/sl-tooltip/sl-tooltip.component').then(
         (m) => m.TooltipPageComponent,
+      ),
+  },
+  {
+    path: 'sl-tree',
+    loadComponent: () =>
+      import('./components/sl-tree/sl-tree.component').then(
+        (m) => m.TreePageComponent,
+      ),
+  },
+  {
+    path: 'sl-search-field',
+    redirectTo: 'sl-search-field-reactive',
+    pathMatch: 'full',
+  },
+  {
+    path: 'sl-search-field-reactive',
+    loadComponent: () =>
+      import('./components/sl-search-field-reactive/sl-search-field-reactive.component').then(
+        (m) => m.SearchFieldReactivePageComponent,
+      ),
+  },
+  {
+    path: 'sl-search-field-template',
+    loadComponent: () =>
+      import('./components/sl-search-field-template/sl-search-field-template.component').then(
+        (m) => m.SearchFieldTemplatePageComponent,
       ),
   },
   {

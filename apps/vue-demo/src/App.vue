@@ -2,17 +2,17 @@
   <div class="app-layout">
     <a href="#main" class="skip-link">Skip to main content</a>
     <nav
+      id="app-sidebar"
       class="sidebar"
       :class="{ collapsed: navCollapsed }"
       aria-label="Main navigation"
-      id="app-sidebar"
     >
       <button
         class="sidebar-toggle"
         aria-controls="app-sidebar"
-        @click="navCollapsed = !navCollapsed"
         :aria-expanded="!navCollapsed"
         title="Toggle navigation"
+        @click="navCollapsed = !navCollapsed"
       >
         <span aria-hidden="true">☰</span>
         <span class="visually-hidden">{{
@@ -30,6 +30,9 @@
     </nav>
     <main id="main" class="content" tabindex="-1">
       <router-view />
+      <div class="tabindex-btn">
+        <button type="button">Focus me</button>
+      </div>
     </main>
   </div>
 </template>
@@ -52,19 +55,26 @@ const navItems = [
   { path: '/sl-form-field', label: 'sl-form-field' },
   { path: '/sl-form', label: 'sl-form' },
   { path: '/sl-inline-message', label: 'sl-inline-message' },
+  { path: '/sl-infotip', label: 'sl-infotip' },
   { path: '/sl-menu', label: 'sl-menu' },
   { path: '/sl-message-dialog', label: 'sl-message-dialog' },
   { path: '/sl-number-field', label: 'sl-number-field' },
   { path: '/sl-text-area', label: 'sl-text-area' },
+  { path: '/sl-text-field', label: 'sl-text-field' },
   { path: '/sl-tab-group', label: 'sl-tab-group' },
   { path: '/sl-paginator', label: 'sl-paginator' },
   { path: '/sl-select', label: 'sl-select' },
   { path: '/sl-switch', label: 'sl-switch' },
   { path: '/sl-card', label: 'sl-card' },
   { path: '/sl-popover', label: 'sl-popover' },
+  { path: '/sl-tag', label: 'sl-tag' },
   { path: '/sl-toggle-button', label: 'sl-toggle-button' },
+  { path: '/sl-toggle-group', label: 'sl-toggle-group' },
+  { path: '/sl-tool-bar', label: 'sl-tool-bar' },
   { path: '/sl-tooltip', label: 'sl-tooltip' },
   { path: '/sl-radio-group', label: 'sl-radio-group' },
+  { path: '/sl-tree', label: 'sl-tree' },
+  { path: '/sl-search-field', label: 'sl-search-field' },
 ];
 </script>
 
@@ -193,6 +203,9 @@ const navItems = [
 
 .sidebar.collapsed .sidebar-list {
   display: none;
+}
+.tabindex-btn {
+  padding: 10px;
 }
 </style>
 

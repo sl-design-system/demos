@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { getFocusedElement } from '../../utils/getFocusedElement.js';
 import { hasMainHorizontalOverflow } from '../../utils/checkForHorizontalScroll.js';
 
 test.describe('sl-text-area accessibility', () => {
@@ -56,12 +57,15 @@ test.describe('sl-text-area accessibility', () => {
   });
 
   test('should have correct tab order', async ({ page }) => {
-    const item = page.getByRole('textbox', { name: 'Text area', exact: true });
+    const activeElements = ['Text area', 'Focus me'] as const;
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
-    await page.keyboard.press('Tab');
-    await expect(item).toBeFocused();
+    for (const activeElement of activeElements) {
+      await page.keyboard.press('Tab');
+      const focusedOn = await getFocusedElement(page);
+      expect(focusedOn).toBe(activeElement);
+    }
   });
 
   test(`should be keyboard operable`, async ({ page }) => {

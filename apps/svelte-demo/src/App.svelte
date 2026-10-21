@@ -11,6 +11,7 @@
   import FormField from './components/sl-form-field/sl-form-field.svelte';
   import Form from './components/sl-form/sl-form.svelte';
   import InlineMessage from './components/sl-inline-message/sl-inline-message.svelte';
+  import Infotip from './components/sl-infotip/sl-infotip.svelte';
   import Menu from './components/sl-menu/sl-menu.svelte';
   import RadioGroup from './components/sl-radio-group/sl-radio-group.svelte';
   import MessageDialog from './components/sl-message-dialog/sl-message-dialog.svelte';
@@ -22,8 +23,14 @@
   import Switch from './components/sl-switch/sl-switch.svelte';
   import Card from './components/sl-card/sl-card.svelte';
   import Popover from './components/sl-popover/sl-popover.svelte';
+  import Tag from './components/sl-tag/sl-tag.svelte';
   import ToggleButton from './components/sl-toggle-button/sl-toggle-button.svelte';
+  import ToggleGroup from './components/sl-toggle-group/sl-toggle-group.svelte';
+  import TextField from './components/sl-text-field/sl-text-field.svelte';
+  import ToolBar from './components/sl-tool-bar/sl-tool-bar.svelte';
   import Tooltip from './components/sl-tooltip/sl-tooltip.svelte';
+  import Tree from './components/sl-tree/sl-tree.svelte';
+  import SearchField from './components/sl-search-field/sl-search-field.svelte';
 
   const navItems = [
     { path: '/sl-accordion', label: 'sl-accordion', component: Accordion },
@@ -39,6 +46,7 @@
     { path: '/sl-form', label: 'sl-form', component: Form },
     { path: '/sl-inline-message', label: 'sl-inline-message', component: InlineMessage },
     { path: '/sl-menu', label: 'sl-menu', component: Menu },
+    { path: '/sl-infotip', label: 'sl-infotip', component: Infotip },
     { path: '/sl-message-dialog', label: 'sl-message-dialog', component: MessageDialog },
     { path: '/sl-number-field', label: 'sl-number-field', component: NumberField },
     { path: '/sl-text-area', label: 'sl-text-area', component: TextArea },
@@ -46,11 +54,17 @@
     { path: '/sl-paginator', label: 'sl-paginator', component: Paginator },
     { path: '/sl-select', label: 'sl-select', component: Select },
     { path: '/sl-switch', label: 'sl-switch', component: Switch },
+    { path: '/sl-text-field', label: 'sl-text-field', component: TextField },
     { path: '/sl-card', label: 'sl-card', component: Card },
     { path: '/sl-popover', label: 'sl-popover', component: Popover },
+    { path: '/sl-tag', label: 'sl-tag', component: Tag },
     { path: '/sl-toggle-button', label: 'sl-toggle-button', component: ToggleButton },
+    { path: '/sl-toggle-group', label: 'sl-toggle-group', component: ToggleGroup },
+    { path: '/sl-search-field', label: 'sl-search-field', component: SearchField },
+    { path: '/sl-tool-bar', label: 'sl-tool-bar', component: ToolBar },
     { path: '/sl-tooltip', label: 'sl-tooltip', component: Tooltip },
     { path: '/sl-radio-group', label: 'sl-radio-group', component: RadioGroup },
+    { path: '/sl-tree', label: 'sl-tree', component: Tree },
   ];
 
   const initialPath = window.location.pathname === '/' ? '/sl-accordion' : window.location.pathname;
@@ -91,7 +105,7 @@
     </button>
     <h2>Svelte Demo App</h2>
     <ul class="sidebar-list">
-      {#each navItems as item}
+      {#each navItems as item (item.path)}
         <li>
           <a
             href={item.path}
@@ -104,5 +118,8 @@
   </nav>
   <main id="main" class="content" tabindex="-1">
     <CurrentPage />
+    <div class="tabindex-btn">
+      <button type="button">Focus me</button>
+    </div>
   </main>
 </div>

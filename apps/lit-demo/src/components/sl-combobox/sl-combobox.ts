@@ -15,7 +15,7 @@ export class ComboboxPage extends ScopedElementsMixin(LitElement) {
 
   override render(): TemplateResult {
     return html`
-      <sl-combobox multiple>
+      <sl-combobox multiple aria-label="Label">
         <sl-listbox>
           <sl-option value="0">Test 1</sl-option>
           <sl-option value="1">Test 2</sl-option>

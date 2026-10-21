@@ -1,10 +1,10 @@
 <template>
   <sl-form ref="formEl">
     <sl-form-field
-      label="Radio group"
+      label="Active"
       hint="This story has both builtin validation (required) and custom validation. You need to check the second option to make the field valid."
     >
-      <sl-radio-group @sl-validate="handleValidate" :required="true">
+      <sl-radio-group :required="true" @sl-validate="handleValidate">
         <sl-radio value="1">One</sl-radio>
         <sl-radio value="2">Two</sl-radio>
       </sl-radio-group>
@@ -15,7 +15,7 @@
     </sl-button-bar>
 
     <sl-form-field
-      label="Disabled radio group"
+      label="Disabled"
       hint="This radio group is disabled; no interaction is possible."
     >
       <sl-radio-group :disabled="true">

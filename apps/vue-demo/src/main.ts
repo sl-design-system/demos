@@ -10,12 +10,14 @@ import '@sl-design-system/avatar/register.js';
 import '@sl-design-system/breadcrumbs/register.js';
 import '@sl-design-system/callout/register.js';
 import '@sl-design-system/checkbox/register.js';
-import '@sl-design-system/combobox/register.js';
 import '@sl-design-system/dialog/register.js';
-import '@sl-design-system/listbox/register.js';
 import '@sl-design-system/menu/register.js';
 import '@sl-design-system/popover/register.js';
 import '@sl-design-system/switch/register.js';
+import '@sl-design-system/toggle-button/register.js';
+import '@sl-design-system/toggle-group/register.js';
+import '@sl-design-system/tool-bar/register.js';
+import '@sl-design-system/infotip/register.js';
 import { setup } from '@sl-design-system/sanoma-learning';
 
 setup();

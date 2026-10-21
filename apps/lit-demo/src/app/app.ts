@@ -16,10 +16,12 @@ import { DialogPage } from '../components/sl-dialog/sl-dialog.js';
 import { FormFieldPage } from '../components/sl-form-field/sl-form-field.js';
 import { FormPage } from '../components/sl-form/sl-form.js';
 import { InlineMessagePage } from '../components/sl-inline-message/sl-inline-message.js';
+import { InfotipPage } from '../components/sl-infotip/sl-infotip.js';
 import { MenuPage } from '../components/sl-menu/sl-menu.js';
 import { MessageDialogPage } from '../components/sl-message-dialog/sl-message-dialog.js';
 import { NumberFieldPage } from '../components/sl-number-field/sl-number-field.js';
 import { TextAreaPage } from '../components/sl-text-area/sl-text-area.js';
+import { TextFieldPage } from '../components/sl-text-field/sl-text-field.js';
 import { TabGroupPage } from '../components/sl-tab-group/sl-tab-group.js';
 import { PaginatorPage } from '../components/sl-paginator/sl-paginator.js';
 import { SelectPage } from '../components/sl-select/sl-select.js';
@@ -28,7 +30,12 @@ import { CardPage } from '../components/sl-card/sl-card.js';
 import { PopoverPage } from '../components/sl-popover/sl-popover.js';
 import { TooltipPage } from '../components/sl-tooltip/sl-tooltip.js';
 import { RadioGroupPage } from '../components/sl-radio-group/sl-radio-group.js';
+import { TagPage } from '../components/sl-tag/sl-tag.js';
 import { ToggleButtonPage } from '../components/sl-toggle-button/sl-toggle-button.js';
+import { ToggleGroupPage } from '../components/sl-toggle-group/sl-toggle-group.js';
+import { ToolBarPage } from '../components/sl-tool-bar/sl-tool-bar.js';
+import { TreePage } from '../components/sl-tree/sl-tree.js';
+import { SearchFieldPage } from '../components/sl-search-field/sl-search-field.js';
 import styles from './app.styles.scss.js';
 
 const ROUTES = [
@@ -42,26 +49,34 @@ const ROUTES = [
   { path: '/sl-combobox', label: 'sl-combobox' },
   { path: '/sl-dialog', label: 'sl-dialog' },
   { path: '/sl-form-field', label: 'sl-form-field' },
+  { path: '/sl-infotip', label: 'sl-infotip' },
   { path: '/sl-form', label: 'sl-form' },
   { path: '/sl-inline-message', label: 'sl-inline-message' },
   { path: '/sl-menu', label: 'sl-menu' },
   { path: '/sl-message-dialog', label: 'sl-message-dialog' },
   { path: '/sl-number-field', label: 'sl-number-field' },
   { path: '/sl-text-area', label: 'sl-text-area' },
+  { path: '/sl-text-field', label: 'sl-text-field' },
   { path: '/sl-tab-group', label: 'sl-tab-group' },
   { path: '/sl-paginator', label: 'sl-paginator' },
   { path: '/sl-select', label: 'sl-select' },
   { path: '/sl-switch', label: 'sl-switch' },
   { path: '/sl-card', label: 'sl-card' },
   { path: '/sl-popover', label: 'sl-popover' },
+  { path: '/sl-tag', label: 'sl-tag' },
+  { path: '/sl-tree', label: 'sl-tree' },
   { path: '/sl-toggle-button', label: 'sl-toggle-button' },
+  { path: '/sl-toggle-group', label: 'sl-toggle-group' },
+  { path: '/sl-tool-bar', label: 'sl-tool-bar' },
   { path: '/sl-tooltip', label: 'sl-tooltip' },
   { path: '/sl-radio-group', label: 'sl-radio-group' },
+  { path: '/sl-search-field', label: 'sl-search-field' },
 ];
 
 export class App extends ScopedElementsMixin(LitElement) {
   static scopedElements: ScopedElementsMap = {
     'page-accordion': AccordionPage,
+    'page-tag': TagPage,
     'page-avatar': AvatarPage,
     'page-breadcrumbs': BreadcrumbsPage,
     'page-button': ButtonPage,
@@ -77,15 +92,21 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-message-dialog': MessageDialogPage,
     'page-number-field': NumberFieldPage,
     'page-text-area': TextAreaPage,
+    'page-text-field': TextFieldPage,
     'page-tab-group': TabGroupPage,
     'page-paginator': PaginatorPage,
     'page-select': SelectPage,
     'page-switch': SwitchPage,
     'page-card': CardPage,
+    'page-infotip': InfotipPage,
     'page-popover': PopoverPage,
+    'page-tree': TreePage,
     'page-toggle-button': ToggleButtonPage,
+    'page-toggle-group': ToggleGroupPage,
+    'page-tool-bar': ToolBarPage,
     'page-tooltip': TooltipPage,
     'page-radio-group': RadioGroupPage,
+    'page-search-field': SearchFieldPage,
   };
 
   static override styles = styles;
@@ -137,6 +158,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-dialog></page-dialog>`;
       case '/sl-form-field':
         return html`<page-form-field></page-form-field>`;
+      case '/sl-infotip':
+        return html`<page-infotip></page-infotip>`;
       case '/sl-form':
         return html`<page-form></page-form>`;
       case '/sl-inline-message':
@@ -149,6 +172,10 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-number-field></page-number-field>`;
       case '/sl-text-area':
         return html`<page-text-area></page-text-area>`;
+      case '/sl-search-field':
+        return html`<page-search-field></page-search-field>`;
+      case '/sl-text-field':
+        return html`<page-text-field></page-text-field>`;
       case '/sl-tab-group':
         return html`<page-tab-group></page-tab-group>`;
       case '/sl-paginator':
@@ -163,10 +190,18 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-popover></page-popover>`;
       case '/sl-toggle-button':
         return html`<page-toggle-button></page-toggle-button>`;
+      case '/sl-tag':
+        return html`<page-tag></page-tag>`;
+      case '/sl-toggle-group':
+        return html`<page-toggle-group></page-toggle-group>`;
+      case '/sl-tool-bar':
+        return html`<page-tool-bar></page-tool-bar>`;
       case '/sl-tooltip':
         return html`<page-tooltip></page-tooltip>`;
       case '/sl-radio-group':
         return html`<page-radio-group></page-radio-group>`;
+      case '/sl-tree':
+        return html`<page-tree></page-tree>`;
       default:
         return html``;
     }
@@ -190,9 +225,9 @@ export class App extends ScopedElementsMixin(LitElement) {
           >
             <span aria-hidden="true">☰</span>
             <span class="visually-hidden"
-              >${this._navCollapsed
-                ? 'Expand navigation'
-                : 'Collapse navigation'}</span
+              >${
+                this._navCollapsed ? 'Expand navigation' : 'Collapse navigation'
+              }</span
             >
           </button>
           <h2>Lit Demo App</h2>
@@ -216,6 +251,9 @@ export class App extends ScopedElementsMixin(LitElement) {
         </nav>
         <main id="main" class="content" tabindex="-1">
           ${this._renderPage()}
+          <div class="tabindex-btn">
+            <button type="button">Focus me</button>
+          </div>
         </main>
       </div>
     `;

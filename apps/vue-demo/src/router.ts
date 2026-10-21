@@ -54,6 +54,10 @@ export const router = createRouter({
         import('./components/sl-inline-message/sl-inline-message.vue'),
     },
     {
+      path: '/sl-infotip',
+      component: () => import('./components/sl-infotip/sl-infotip.vue'),
+    },
+    {
       path: '/sl-menu',
       component: () => import('./components/sl-menu/sl-menu.vue'),
     },
@@ -96,17 +100,43 @@ export const router = createRouter({
       component: () => import('./components/sl-popover/sl-popover.vue'),
     },
     {
+      path: '/sl-tag',
+      component: () => import('./components/sl-tag/sl-tag.vue'),
+    },
+    {
       path: '/sl-toggle-button',
       component: () =>
         import('./components/sl-toggle-button/sl-toggle-button.vue'),
+    },
+    {
+      path: '/sl-toggle-group',
+      component: () =>
+        import('./components/sl-toggle-group/sl-toggle-group.vue'),
+    },
+    {
+      path: '/sl-text-field',
+      component: () => import('./components/sl-text-field/sl-text-field.vue'),
     },
     {
       path: '/sl-tooltip',
       component: () => import('./components/sl-tooltip/sl-tooltip.vue'),
     },
     {
+      path: '/sl-tool-bar',
+      component: () => import('./components/sl-tool-bar/sl-tool-bar.vue'),
+    },
+    {
       path: '/sl-radio-group',
       component: () => import('./components/sl-radio-group/sl-radio-group.vue'),
+    },
+    {
+      path: '/sl-tree',
+      component: () => import('./components/sl-tree/sl-tree.vue'),
+    },
+    {
+      path: '/sl-search-field',
+      component: () =>
+        import('./components/sl-search-field/sl-search-field.vue'),
     },
   ],
 });
