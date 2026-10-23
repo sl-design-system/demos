@@ -51,10 +51,15 @@ test.describe('sl-month-view', () => {
     const dayPrevious = page.getByRole('button', { name: '30, Wednesday September 2026' });
     const dayNext = page.getByRole('button', { name: '1, Sunday November 2026' });
     const dayCurrent = page.getByRole('button', { name: '15, Thursday October 2026' });
+    
     await dayPrevious.click();
+
+    await expect(dayPrevious).toHaveAttribute('part', /\bselected\b/);
 
     await expect(dayCurrent).toBeVisible();
     await dayNext.click();
+
+    await expect(dayNext).toHaveAttribute('part', /\bselected\b/);
 
     await expect(dayCurrent).toBeVisible();
   });
