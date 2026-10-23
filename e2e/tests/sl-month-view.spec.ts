@@ -6,7 +6,9 @@ test.describe('sl-month-view', () => {
     await page.goto('/sl-month-view');
   });
 
-  test('should render the month view without any selection', async ({ page }) => {
+  test('should render the month view without any selection', async ({
+    page,
+  }) => {
     const monthView = page.locator('sl-month-view');
 
     await expect(monthView.getByRole('grid')).toBeVisible();
@@ -33,14 +35,16 @@ test.describe('sl-month-view', () => {
     await expect(item).toHaveAttribute('part', 'day selected');
   });
 
-  test('should change selection when a different day is clicked', async ({ page }) => {
+  test('should change selection when a different day is clicked', async ({
+    page,
+  }) => {
     const day1 = page.getByRole('button', { name: '1, Thursday October 2026' });
     const day2 = page.getByRole('button', { name: '2, Friday October 2026' });
     await day1.click();
 
     await expect(day1).toHaveAttribute('part', 'day selected');
     await expect(day2).toHaveAttribute('part', 'day');
-    
+
     await day2.click();
 
     await expect(day1).toHaveAttribute('part', 'day');
@@ -48,10 +52,16 @@ test.describe('sl-month-view', () => {
   });
 
   test('should not change month when a day is selected', async ({ page }) => {
-    const dayPrevious = page.getByRole('button', { name: '30, Wednesday September 2026' });
-    const dayNext = page.getByRole('button', { name: '1, Sunday November 2026' });
-    const dayCurrent = page.getByRole('button', { name: '15, Thursday October 2026' });
-    
+    const dayPrevious = page.getByRole('button', {
+      name: '30, Wednesday September 2026',
+    });
+    const dayNext = page.getByRole('button', {
+      name: '1, Sunday November 2026',
+    });
+    const dayCurrent = page.getByRole('button', {
+      name: '15, Thursday October 2026',
+    });
+
     await dayPrevious.click();
 
     await expect(dayPrevious).toHaveAttribute('part', /\bselected\b/);
@@ -65,7 +75,9 @@ test.describe('sl-month-view', () => {
   });
 
   test('should not allow selecting disabled dates', async ({ page }) => {
-    const disabledDay = page.getByRole('button', { name: '6, Tuesday October 2026' });
+    const disabledDay = page.getByRole('button', {
+      name: '6, Tuesday October 2026',
+    });
 
     await expect(disabledDay).toHaveAttribute('part', /\bdisabled\b/);
     await disabledDay.click({ force: true });

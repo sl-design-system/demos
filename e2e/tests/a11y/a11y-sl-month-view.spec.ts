@@ -55,15 +55,14 @@ test.describe('sl-month-view accessibility', () => {
   });
 
   test('should have buttons with accessible names', async ({ page }) => {
-    const button = page.getByRole('button', { name: '1, Thursday October 2026' });
+    const button = page.getByRole('button', {
+      name: '1, Thursday October 2026',
+    });
     await expect(button).toHaveAccessibleName('1, Thursday October 2026');
   });
 
   test('should have correct tab order', async ({ page }) => {
-    const activeElements = [
-      '1, Thursday October 2026',
-      'Focus me',
-    ] as const;
+    const activeElements = ['1, Thursday October 2026', 'Focus me'] as const;
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
@@ -75,7 +74,9 @@ test.describe('sl-month-view accessibility', () => {
   });
 
   test('should be navigable with arrows', async ({ page }) => {
-    const button = page.getByRole('button', { name: '1, Thursday October 2026' });
+    const button = page.getByRole('button', {
+      name: '1, Thursday October 2026',
+    });
     await button.focus();
 
     await page.keyboard.press('ArrowRight');
@@ -92,24 +93,27 @@ test.describe('sl-month-view accessibility', () => {
   });
 
   test('should skip disabled dates with keyboard', async ({ page }) => {
-  const day = (name: string) =>
-    page.getByRole('button', { name, exact: true });
+    const day = (name: string) =>
+      page.getByRole('button', { name, exact: true });
 
-  await page.getByRole('button', { name: '1, Thursday October 2026'}).focus();
+    await page
+      .getByRole('button', { name: '1, Thursday October 2026' })
+      .focus();
 
-  for (const name of [ // used becuase focusing directly on a date other than October 1st makes test flaky
-    '2, Friday October 2026',
-    '3, Saturday October 2026',
-    '4, Sunday October 2026',
-    '5, Monday October 2026',
-    '7, Wednesday October 2026',
-  ]) {
-    await page.keyboard.press('ArrowRight');
-    await expect(day(name)).toBeFocused();
-  }
+    for (const name of [
+      // used becuase focusing directly on a date other than October 1st makes test flaky
+      '2, Friday October 2026',
+      '3, Saturday October 2026',
+      '4, Sunday October 2026',
+      '5, Monday October 2026',
+      '7, Wednesday October 2026',
+    ]) {
+      await page.keyboard.press('ArrowRight');
+      await expect(day(name)).toBeFocused();
+    }
 
-  await page.keyboard.press('ArrowLeft');
-  await expect(day('5, Monday October 2026')).toBeFocused();
+    await page.keyboard.press('ArrowLeft');
+    await expect(day('5, Monday October 2026')).toBeFocused();
   });
 
   test('should not select dates on arrow navigation', async ({ page }) => {
@@ -133,7 +137,9 @@ test.describe('sl-month-view accessibility', () => {
     test(`should have keyboard accessible buttons with ${key}`, async ({
       page,
     }) => {
-      const button = page.getByRole('button', { name: '1, Thursday October 2026' });
+      const button = page.getByRole('button', {
+        name: '1, Thursday October 2026',
+      });
 
       await button.focus();
       await page.keyboard.press(key);
@@ -143,7 +149,9 @@ test.describe('sl-month-view accessibility', () => {
   }
 
   test('should not select disabled date with keyboard', async ({ page }) => {
-    const button = page.getByRole('button', { name: '6, Tuesday October 2026' });
+    const button = page.getByRole('button', {
+      name: '6, Tuesday October 2026',
+    });
 
     await button.focus();
     await page.keyboard.press('Space');
@@ -153,11 +161,13 @@ test.describe('sl-month-view accessibility', () => {
   });
 
   test('should have aria-pressed attribute', async ({ page }) => {
-    const button = page.getByRole('button', { name: '1, Thursday October 2026' });
+    const button = page.getByRole('button', {
+      name: '1, Thursday October 2026',
+    });
 
     await button.focus();
     await page.keyboard.press('Space');
 
     await expect(button).toHaveAttribute('aria-pressed', 'true');
   });
-})
+});
