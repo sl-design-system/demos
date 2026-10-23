@@ -2,49 +2,60 @@ import { test, expect } from '@playwright/test';
 
 test.describe('sl-month-view', () => {
   test.beforeEach(async ({ page }) => {
+    await page.clock.setFixedTime(new Date(2026, 9, 15, 12));
     await page.goto('/sl-month-view');
   });
 
-  test('should select day and remove selection', async ({ page }) => {
-    await page.getByRole('grid').click({ force: true });
-    await expect(page.getByRole('option', { name: 'Test 1' })).toBeVisible();
-    await expect(page.getByRole('option', { name: 'Test 2' })).toBeVisible();
+  test('should render the month view without any selection', async ({ page }) => {
+    const monthView = page.locator('sl-month-view');
 
-    await page.getByRole('option', { name: 'Test 1' }).click();
-    const tag = page
-      .locator('sl-combobox')
-      .locator('sl-tag', { hasText: 'Test 1' });
-    await expect(tag).toBeVisible();
-
-    await tag.locator('button').click();
-    await expect(tag).not.toBeVisible();
+    await expect(monthView.getByRole('grid')).toBeVisible();
+    await expect(
+      monthView.locator('button[part~="day"][part~="selected"]'),
+    ).toHaveCount(0);
   });
 
-  // test('should select an option by typing text and pressing Enter', async ({
-  //   page,
-  // }) => {
-  //   await page.getByRole('combobox').click({ force: true });
-  //   await page.keyboard.type('Test 2');
-  //   await page.keyboard.press('Enter');
-  //   const tag = page
-  //     .locator('sl-combobox')
-  //     .locator('sl-tag', { hasText: 'Test 2' });
-  //   await expect(tag).toBeVisible();
-  // });
+  test('should select day', async ({ page }) => {
+    const item = page.getByRole('button', { name: '1, Thursday October 2026' });
+    await expect(item).not.toHaveAttribute('part', /\bselected\b/);
+    await item.click();
 
-  // test('should allow selecting multiple options and show all as tags', async ({
-  //   page,
-  // }) => {
-  //   const combobox = page.locator('sl-combobox');
-  //   await page.getByRole('combobox').click({ force: true });
-  //   await page.getByRole('option', { name: 'Test 1' }).click();
-  //   await page.getByRole('option', { name: 'Test 2' }).click();
+    await expect(item).toHaveAttribute('part', /\bselected\b/);
+  });
 
-  //   await expect(
-  //     combobox.locator('sl-tag', { hasText: 'Test 1' }),
-  //   ).toBeVisible();
-  //   await expect(
-  //     combobox.locator('sl-tag', { hasText: 'Test 2' }),
-  //   ).toBeVisible();
-  // });
+  test('should not deselect after second click', async ({ page }) => {
+    const item = page.getByRole('button', { name: '1, Thursday October 2026' });
+    await item.click();
+
+    await expect(item).toHaveAttribute('part', 'day selected');
+    await item.click();
+
+    await expect(item).toHaveAttribute('part', 'day selected');
+  });
+
+  test('should change selection when a different day is clicked', async ({ page }) => {
+    const day1 = page.getByRole('button', { name: '1, Thursday October 2026' });
+    const day2 = page.getByRole('button', { name: '2, Friday October 2026' });
+    await day1.click();
+
+    await expect(day1).toHaveAttribute('part', 'day selected');
+    await expect(day2).toHaveAttribute('part', 'day');
+    
+    await day2.click();
+
+    await expect(day1).toHaveAttribute('part', 'day');
+    await expect(day2).toHaveAttribute('part', 'day selected');
+  });
+
+  test('should not change month when a day is selected', async ({ page }) => {
+    const dayPrevious = page.getByRole('button', { name: '30, Wednesday September 2026' });
+    const dayNext = page.getByRole('button', { name: '1, Sunday November 2026' });
+    const dayCurrent = page.getByRole('button', { name: '15, Thursday October 2026' });
+    await dayPrevious.click();
+
+    await expect(dayCurrent).toBeVisible();
+    await dayNext.click();
+
+    await expect(dayCurrent).toBeVisible();
+  });
 });
