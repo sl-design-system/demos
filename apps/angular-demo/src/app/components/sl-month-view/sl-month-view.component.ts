@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 import { MonthViewComponent } from '@sl-design-system/angular/calendar';
 
 @Component({
@@ -6,6 +6,5 @@ import { MonthViewComponent } from '@sl-design-system/angular/calendar';
   templateUrl: './sl-month-view.component.html',
   styleUrls: ['./sl-month-view.component.scss'],
   imports: [MonthViewComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MonthViewPageComponent {}
