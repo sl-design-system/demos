@@ -28,6 +28,7 @@ export class AppComponent {
     { path: 'sl-menu', label: 'sl-menu' },
     { path: 'sl-message-dialog', label: 'sl-message-dialog' },
     { path: 'sl-message-dialog-service', label: 'sl-message-dialog-service' },
+    { path: 'sl-month-view', label: 'sl-month-view' },
     { path: 'sl-number-field', label: 'sl-number-field' },
     { path: 'sl-text-area', label: 'sl-text-area' },
     { path: 'sl-text-field', label: 'sl-text-field' },

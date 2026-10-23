@@ -4541,6 +4541,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sl-design-system/calendar@npm:^0.1.3":
+  version: 0.1.3
+  resolution: "@sl-design-system/calendar@npm:0.1.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40sl-design-system%2Fcalendar%2F0.1.3%2F89599a0986d81f5208e43aead4a07fd867905ad3"
+  dependencies:
+    "@sl-design-system/button": "npm:^2.3.1"
+    "@sl-design-system/format-date": "npm:^0.1.9"
+    "@sl-design-system/icon": "npm:^1.4.5"
+    "@sl-design-system/shared": "npm:^0.14.1"
+    "@sl-design-system/tooltip": "npm:^3.0.2"
+  peerDependencies:
+    "@lit/localize": ^0.12.1
+    "@open-wc/scoped-elements": ^3.0.10
+    lit: ^3.1.4
+  checksum: 10c0/5aef8ea623ff4cf0601a8cee59e6499f6489b0bc2b06dc02fad289c78971b19ab451ac5530dbef1d587b1deb580863f9adc446979d2df2c842a8150621c8914b
+  languageName: node
+  linkType: hard
+
 "@sl-design-system/callout@npm:^1.0.1":
   version: 1.0.1
   resolution: "@sl-design-system/callout@npm:1.0.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40sl-design-system%2Fcallout%2F1.0.1%2Fe36ba08537fc6070f9605927830c4e2b2984a9a8"
@@ -4635,6 +4652,15 @@ __metadata:
     "@lit/localize": ^0.12.1
     "@open-wc/scoped-elements": ^3.0.10
   checksum: 10c0/74a7dfb31e4d96870928f10381bcc7f44c72de5135a13cd0d964d44005e69a9bf9d7f0d48c4dd84eb25deb7efa06a0afb4b3def8001ce8c7a43fc5c9f195b128
+  languageName: node
+  linkType: hard
+
+"@sl-design-system/format-date@npm:^0.1.9":
+  version: 0.1.9
+  resolution: "@sl-design-system/format-date@npm:0.1.9::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40sl-design-system%2Fformat-date%2F0.1.9%2F2ea04a1ce1ce6b37aa99b8a4a45e9b806899b121"
+  dependencies:
+    "@sl-design-system/shared": "npm:^0.14.1"
+  checksum: 10c0/027a876ad3a2a587a9c24031d6c70fc51dc1360802f28b6f682e1e3da9e5a1b61cc8f7c1715001a7fe30cbf2692b135a5f72155ec48c2ebe11c549a6e96a954c
   languageName: node
   linkType: hard
 
@@ -7285,6 +7311,7 @@ __metadata:
     "@sl-design-system/breadcrumbs": "npm:^1.3.2"
     "@sl-design-system/button": "npm:^2.3.2"
     "@sl-design-system/button-bar": "npm:^1.6.1"
+    "@sl-design-system/calendar": "npm:^0.1.3"
     "@sl-design-system/callout": "npm:^1.0.1"
     "@sl-design-system/card": "npm:^2.0.6"
     "@sl-design-system/checkbox": "npm:^2.4.2"
