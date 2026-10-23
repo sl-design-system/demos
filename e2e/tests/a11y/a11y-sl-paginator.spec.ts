@@ -165,13 +165,13 @@ test.describe('sl-paginator accessibility', () => {
     await page.keyboard.press('Space');
 
     await expect(listbox).toBeVisible();
-    await expect(getFocusedElement(page)).resolves.toBe('5 items per page');
+    await expect.poll(() => getFocusedElement(page)).toBe('5 items per page');
     await expect(page1).toHaveAttribute('role', 'option');
     await expect(page1).toHaveAttribute('aria-selected', 'true');
 
     await page.keyboard.press('ArrowDown');
 
-    await expect(getFocusedElement(page)).resolves.toBe('10 items per page');
+    await expect.poll(() => getFocusedElement(page)).toBe('10 items per page');
     await expect(page2).toHaveAttribute('role', 'option');
     await expect(page2).toHaveAttribute('aria-selected', 'false');
 
