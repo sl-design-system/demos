@@ -63,4 +63,12 @@ test.describe('sl-month-view', () => {
 
     await expect(dayCurrent).toBeVisible();
   });
+
+  test('should not allow selecting disabled dates', async ({ page }) => {
+    const disabledDay = page.getByRole('button', { name: '6, Tuesday October 2026' });
+
+    await expect(disabledDay).toHaveAttribute('part', /\bdisabled\b/);
+    await disabledDay.click({ force: true });
+    await expect(disabledDay).not.toHaveAttribute('part', /\bselected\b/);
+  });
 });
