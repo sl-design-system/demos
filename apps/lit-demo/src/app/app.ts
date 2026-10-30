@@ -9,6 +9,7 @@ import { AvatarPage } from '../components/sl-avatar/sl-avatar.js';
 import { BreadcrumbsPage } from '../components/sl-breadcrumbs/sl-breadcrumbs.js';
 import { ButtonPage } from '../components/sl-button/sl-button.js';
 import { ButtonBarPage } from '../components/sl-button-bar/sl-button-bar.js';
+import { CalendarPage } from '../components/sl-calendar/sl-calendar.js';
 import { CalloutPage } from '../components/sl-callout/sl-callout.js';
 import { CheckboxPage } from '../components/sl-checkbox/sl-checkbox.js';
 import { ComboboxPage } from '../components/sl-combobox/sl-combobox.js';
@@ -55,7 +56,7 @@ const ROUTES = [
   { path: '/sl-inline-message', label: 'sl-inline-message' },
   { path: '/sl-menu', label: 'sl-menu' },
   { path: '/sl-message-dialog', label: 'sl-message-dialog' },
-  { path: '/sl-month-view', label: 'sl-month-view' },
+  { path: '/sl-calendar', label: 'sl-calendar' },
   { path: '/sl-number-field', label: 'sl-number-field' },
   { path: '/sl-text-area', label: 'sl-text-area' },
   { path: '/sl-text-field', label: 'sl-text-field' },
@@ -102,6 +103,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-card': CardPage,
     'page-infotip': InfotipPage,
     'page-popover': PopoverPage,
+    'page-calendar': CalendarPage,
     'page-tree': TreePage,
     'page-toggle-button': ToggleButtonPage,
     'page-toggle-group': ToggleGroupPage,
@@ -151,6 +153,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-button></page-button>`;
       case '/sl-button-bar':
         return html`<page-button-bar></page-button-bar>`;
+      case '/sl-calendar':
+        return html`<page-calendar></page-calendar>`;
       case '/sl-callout':
         return html`<page-callout></page-callout>`;
       case '/sl-checkbox':
