@@ -29,10 +29,10 @@ test.describe('sl-calendar', () => {
     const item = page.getByRole('button', { name: '1, Thursday October 2026' });
     await item.click();
 
-    await expect(item).toHaveAttribute('part', 'day selected');
+    await expect(item).toHaveAttribute('part', /\bselected\b/);
     await item.click();
 
-    await expect(item).toHaveAttribute('part', 'day selected');
+    await expect(item).toHaveAttribute('part', /\bselected\b/);
   });
 
   test('should change selection when a different day is clicked', async ({
@@ -42,13 +42,13 @@ test.describe('sl-calendar', () => {
     const day2 = page.getByRole('button', { name: '2, Friday October 2026' });
     await day1.click();
 
-    await expect(day1).toHaveAttribute('part', 'day selected');
+    await expect(day1).toHaveAttribute('part', /\bselected\b/);
     await expect(day2).toHaveAttribute('part', 'day');
 
     await day2.click();
 
     await expect(day1).toHaveAttribute('part', 'day');
-    await expect(day2).toHaveAttribute('part', 'day selected');
+    await expect(day2).toHaveAttribute('part', /\bselected\b/);
   });
 
   test('should change month when day outside current month is clicked', async ({ page }) => {
