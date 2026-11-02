@@ -56,38 +56,68 @@ test.describe('sl-calendar accessibility', () => {
 
   test('should have accessible name for month view', async ({ page }) => {
     const monthView = page.getByRole('grid', { name: 'Months of 2026' });
-    
-    await page.getByRole('button', { name: 'October, change month', exact: true }).click();
+
+    await page
+      .getByRole('button', { name: 'October, change month', exact: true })
+      .click();
     await expect(monthView).toHaveAccessibleName('Months of 2026');
   });
 
   test('should have accessible name for year view', async ({ page }) => {
-    const yearView = page.getByRole('grid', { name: 'Years from 2021 to 2032' });
+    const yearView = page.getByRole('grid', {
+      name: 'Years from 2021 to 2032',
+    });
 
-    await page.getByRole('button', { name: '2026, change year', exact: true }).click();
+    await page
+      .getByRole('button', { name: '2026, change year', exact: true })
+      .click();
     await expect(yearView).toHaveAccessibleName('Years from 2021 to 2032');
   });
 
-  test('should have buttons with accessible names in day view', async ({ page }) => {
-    const monthButton = page.getByRole('button', { name: 'October, change month', exact: true });
-    const yearButton = page.getByRole('button', { name: '2026, change year', exact: true });
-    const previousButton = page.getByRole('button', { name: 'Previous month, September 2026' });
-    const nextButton = page.getByRole('button', { name: 'Next month, November 2026' });
+  test('should have buttons with accessible names in day view', async ({
+    page,
+  }) => {
+    const monthButton = page.getByRole('button', {
+      name: 'October, change month',
+      exact: true,
+    });
+    const yearButton = page.getByRole('button', {
+      name: '2026, change year',
+      exact: true,
+    });
+    const previousButton = page.getByRole('button', {
+      name: 'Previous month, September 2026',
+    });
+    const nextButton = page.getByRole('button', {
+      name: 'Next month, November 2026',
+    });
     const dayButton = page.getByRole('button', {
       name: '1, Thursday October 2026',
     });
 
     await expect(monthButton).toHaveAccessibleName('October, change month');
     await expect(yearButton).toHaveAccessibleName('2026, change year');
-    await expect(previousButton).toHaveAccessibleName('Previous month, September 2026');
+    await expect(previousButton).toHaveAccessibleName(
+      'Previous month, September 2026',
+    );
     await expect(nextButton).toHaveAccessibleName('Next month, November 2026');
     await expect(dayButton).toHaveAccessibleName('1, Thursday October 2026');
   });
 
-  test('should have buttons with accessible names in month view', async ({ page }) => {
-    const monthButton = page.getByRole('button', { name: 'October, change month', exact: true });
-    const yearButton = page.getByRole('button', { name: '2026, change year', exact: true });
-    const previousButton = page.getByRole('button', { name: 'Previous year, 2025' });
+  test('should have buttons with accessible names in month view', async ({
+    page,
+  }) => {
+    const monthButton = page.getByRole('button', {
+      name: 'October, change month',
+      exact: true,
+    });
+    const yearButton = page.getByRole('button', {
+      name: '2026, change year',
+      exact: true,
+    });
+    const previousButton = page.getByRole('button', {
+      name: 'Previous year, 2025',
+    });
     const nextButton = page.getByRole('button', { name: 'Next year, 2027' });
     const currentMonthButton = page.getByRole('button', {
       name: 'October',
@@ -101,10 +131,19 @@ test.describe('sl-calendar accessibility', () => {
     await expect(currentMonthButton).toHaveAccessibleName('October');
   });
 
-  test('should have buttons with accessible names in year view', async ({ page }) => {
-    const yearButton = page.getByRole('button', { name: '2026, change year', exact: true });
-    const previousButton = page.getByRole('button', { name: 'Go back 12 years' });
-    const nextButton = page.getByRole('button', { name: 'Go forward 12 years' });
+  test('should have buttons with accessible names in year view', async ({
+    page,
+  }) => {
+    const yearButton = page.getByRole('button', {
+      name: '2026, change year',
+      exact: true,
+    });
+    const previousButton = page.getByRole('button', {
+      name: 'Go back 12 years',
+    });
+    const nextButton = page.getByRole('button', {
+      name: 'Go forward 12 years',
+    });
     const currentYearButton = page.getByRole('button', {
       name: '2026',
     });
@@ -117,7 +156,14 @@ test.describe('sl-calendar accessibility', () => {
   });
 
   test('should have correct tab order', async ({ page }) => {
-    const activeElements = ['October, change month', '2026, change year', 'Previous month, September 2026', 'Next month, November 2026', '1, Thursday October 2026', 'Focus me'] as const;
+    const activeElements = [
+      'October, change month',
+      '2026, change year',
+      'Previous month, September 2026',
+      'Next month, November 2026',
+      '1, Thursday October 2026',
+      'Focus me',
+    ] as const;
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
@@ -245,7 +291,7 @@ test.describe('sl-calendar accessibility', () => {
       await expect(button).toHaveAttribute('part', /\bselected\b/);
     });
   }
-  
+
   for (const key of ['Space', 'Enter'] as const) {
     test(`should have keyboard accessible buttons with ${key} in month view`, async ({
       page,
@@ -253,8 +299,14 @@ test.describe('sl-calendar accessibility', () => {
       const button = page.getByRole('button', {
         name: '1, Thursday October 2026',
       });
-      const monthButton = page.getByRole('button', { name: 'October, change month', exact: true });
-      const currentMonth = page.getByRole('button', { name: 'October', exact: true });
+      const monthButton = page.getByRole('button', {
+        name: 'October, change month',
+        exact: true,
+      });
+      const currentMonth = page.getByRole('button', {
+        name: 'October',
+        exact: true,
+      });
 
       await button.focus();
       await page.keyboard.press(key);
@@ -277,8 +329,14 @@ test.describe('sl-calendar accessibility', () => {
       const button = page.getByRole('button', {
         name: '1, Thursday October 2026',
       });
-      const yearButton = page.getByRole('button', { name: '2026, change year', exact: true });
-      const currentYear = page.getByRole('button', { name: '2026', exact: true });
+      const yearButton = page.getByRole('button', {
+        name: '2026, change year',
+        exact: true,
+      });
+      const currentYear = page.getByRole('button', {
+        name: '2026',
+        exact: true,
+      });
 
       await button.focus();
       await page.keyboard.press(key);
@@ -318,8 +376,14 @@ test.describe('sl-calendar accessibility', () => {
   });
 
   test('should have aria-pressed attribute for month', async ({ page }) => {
-    const monthButton = page.getByRole('button', { name: 'October, change month', exact: true });
-    const currentMonth = page.getByRole('button', { name: 'October', exact: true });
+    const monthButton = page.getByRole('button', {
+      name: 'October, change month',
+      exact: true,
+    });
+    const currentMonth = page.getByRole('button', {
+      name: 'October',
+      exact: true,
+    });
     const button = page.getByRole('button', {
       name: '1, Thursday October 2026',
     });
@@ -334,9 +398,15 @@ test.describe('sl-calendar accessibility', () => {
   });
 
   test('should have aria-pressed attribute for year', async ({ page }) => {
-    const yearButton = page.getByRole('button', { name: '2026, change year', exact: true });
+    const yearButton = page.getByRole('button', {
+      name: '2026, change year',
+      exact: true,
+    });
     const currentYear = page.getByRole('button', { name: '2026', exact: true });
-    const button = page.getByRole('button', { name: '15, Thursday October 2026', exact: true });
+    const button = page.getByRole('button', {
+      name: '15, Thursday October 2026',
+      exact: true,
+    });
 
     await button.focus();
     await page.keyboard.press('Space');
@@ -347,12 +417,29 @@ test.describe('sl-calendar accessibility', () => {
     await expect(currentYear).toHaveAttribute('aria-pressed', 'true');
   });
 
-  test('should preserve `aria-pressed` when month changes with arrow buttons', async ({ page }) => {
-    const changeMonthOctober = page.getByRole('button', { name: 'October, change month', exact: true });
-    const changeMonthNovember = page.getByRole('button', { name: 'November, change month', exact: true });
-    const nextMonth = page.getByRole('button', { name: 'November', exact: true });
-    const previousMonth = page.getByRole('button', { name: 'October', exact: true });
-    const selectedDay = page.getByRole('button', { name: '15, Thursday October 2026', exact: true });
+  test('should preserve `aria-pressed` when month changes with arrow buttons', async ({
+    page,
+  }) => {
+    const changeMonthOctober = page.getByRole('button', {
+      name: 'October, change month',
+      exact: true,
+    });
+    const changeMonthNovember = page.getByRole('button', {
+      name: 'November, change month',
+      exact: true,
+    });
+    const nextMonth = page.getByRole('button', {
+      name: 'November',
+      exact: true,
+    });
+    const previousMonth = page.getByRole('button', {
+      name: 'October',
+      exact: true,
+    });
+    const selectedDay = page.getByRole('button', {
+      name: '15, Thursday October 2026',
+      exact: true,
+    });
 
     await selectedDay.click();
     await expect(selectedDay).toHaveAttribute('aria-pressed', 'true');
@@ -368,12 +455,29 @@ test.describe('sl-calendar accessibility', () => {
     await expect(selectedDay).toHaveAttribute('aria-pressed', 'true');
   });
 
-  test('should preserve `aria-pressed` when month changes with month button', async ({ page }) => {
-    const changeMonthOctober = page.getByRole('button', { name: 'October, change month', exact: true });
-    const changeMonthNovember = page.getByRole('button', { name: 'November, change month', exact: true });
-    const nextMonth = page.getByRole('button', { name: 'November', exact: true });
-    const previousArrow = page.getByRole('button', { name: 'October', exact: true }); 
-    const selectedDay = page.getByRole('button', { name: '15, Thursday October 2026', exact: true });
+  test('should preserve `aria-pressed` when month changes with month button', async ({
+    page,
+  }) => {
+    const changeMonthOctober = page.getByRole('button', {
+      name: 'October, change month',
+      exact: true,
+    });
+    const changeMonthNovember = page.getByRole('button', {
+      name: 'November, change month',
+      exact: true,
+    });
+    const nextMonth = page.getByRole('button', {
+      name: 'November',
+      exact: true,
+    });
+    const previousArrow = page.getByRole('button', {
+      name: 'October',
+      exact: true,
+    });
+    const selectedDay = page.getByRole('button', {
+      name: '15, Thursday October 2026',
+      exact: true,
+    });
 
     await selectedDay.click();
     await expect(selectedDay).toHaveAttribute('aria-pressed', 'true');
@@ -389,12 +493,26 @@ test.describe('sl-calendar accessibility', () => {
     await expect(selectedDay).toHaveAttribute('aria-pressed', 'true');
   });
 
-  test('should preserve `aria-pressed` when year changes with year button', async ({ page }) => {
-    const changeYear2026 = page.getByRole('button', { name: '2026, change year', exact: true });
-    const changeYear2027 = page.getByRole('button', { name: '2027, change year', exact: true });
+  test('should preserve `aria-pressed` when year changes with year button', async ({
+    page,
+  }) => {
+    const changeYear2026 = page.getByRole('button', {
+      name: '2026, change year',
+      exact: true,
+    });
+    const changeYear2027 = page.getByRole('button', {
+      name: '2027, change year',
+      exact: true,
+    });
     const nextYear = page.getByRole('button', { name: '2027', exact: true });
-    const previousArrow = page.getByRole('button', { name: '2026', exact: true }); 
-    const selectedDay = page.getByRole('button', { name: '15, Thursday October 2026', exact: true });
+    const previousArrow = page.getByRole('button', {
+      name: '2026',
+      exact: true,
+    });
+    const selectedDay = page.getByRole('button', {
+      name: '15, Thursday October 2026',
+      exact: true,
+    });
 
     await selectedDay.click();
     await expect(selectedDay).toHaveAttribute('aria-pressed', 'true');

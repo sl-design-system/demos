@@ -51,29 +51,37 @@ test.describe('sl-calendar', () => {
     await expect(day2).toHaveAttribute('part', /\bselected\b/);
   });
 
-  test('should change month when day outside current month is clicked', async ({ page }) => {
+  test('should change month when day outside current month is clicked', async ({
+    page,
+  }) => {
     const dayPrevious = page.getByRole('button', {
       name: '30, Wednesday September 2026',
     });
     const dayNext = page.getByRole('button', {
       name: '1, Thursday October 2026',
     });
-    const octoberMonth = page.getByRole('button', { name: 'October, change month', exact: true });
-    const septemberMonth = page.getByRole('button', { name: 'September, change month', exact: true });
+    const octoberMonth = page.getByRole('button', {
+      name: 'October, change month',
+      exact: true,
+    });
+    const septemberMonth = page.getByRole('button', {
+      name: 'September, change month',
+      exact: true,
+    });
 
     await expect(octoberMonth).toBeVisible();
-    await expect(septemberMonth).not.toBeVisible(); 
+    await expect(septemberMonth).not.toBeVisible();
     await dayPrevious.click();
 
     await expect(dayPrevious).toHaveAttribute('part', /\bselected\b/);
-    await expect(septemberMonth).toBeVisible(); 
+    await expect(septemberMonth).toBeVisible();
     await expect(octoberMonth).not.toBeVisible();
 
     await dayNext.click();
 
     await expect(dayNext).toHaveAttribute('part', /\bselected\b/);
-    await expect(octoberMonth).toBeVisible(); 
-    await expect(septemberMonth).not.toBeVisible(); 
+    await expect(octoberMonth).toBeVisible();
+    await expect(septemberMonth).not.toBeVisible();
   });
 
   test('should not allow selecting disabled dates', async ({ page }) => {
@@ -87,11 +95,26 @@ test.describe('sl-calendar', () => {
   });
 
   test('should change month when clicking month buttons', async ({ page }) => {
-    const currentMonth = page.getByRole('button', { name: 'October, change month', exact: true });
-    const previousMonth = page.getByRole('button', { name: 'September, change month', exact: true });
-    const selectDay = page.getByRole('grid', { name: 'Days of September 2026', exact: true });
-    const selectMonth = page.getByRole('grid', { name: 'Months of 2026', exact: true });
-    const septemberButton = page.getByRole('button', { name: 'September', exact: true });
+    const currentMonth = page.getByRole('button', {
+      name: 'October, change month',
+      exact: true,
+    });
+    const previousMonth = page.getByRole('button', {
+      name: 'September, change month',
+      exact: true,
+    });
+    const selectDay = page.getByRole('grid', {
+      name: 'Days of September 2026',
+      exact: true,
+    });
+    const selectMonth = page.getByRole('grid', {
+      name: 'Months of 2026',
+      exact: true,
+    });
+    const septemberButton = page.getByRole('button', {
+      name: 'September',
+      exact: true,
+    });
 
     await currentMonth.click();
 
@@ -104,10 +127,21 @@ test.describe('sl-calendar', () => {
     await expect(currentMonth).not.toBeVisible();
   });
 
-  test('should add class `selected` to month in month view', async ({ page }) => {
-    const currentMonth = page.getByRole('button', { name: 'October, change month', exact: true });
-    const octoberButton = page.getByRole('button', { name: 'October', exact: true });
-    const selectedDay = page.getByRole('button', { name: '15, Thursday October 2026', exact: true });
+  test('should add class `selected` to month in month view', async ({
+    page,
+  }) => {
+    const currentMonth = page.getByRole('button', {
+      name: 'October, change month',
+      exact: true,
+    });
+    const octoberButton = page.getByRole('button', {
+      name: 'October',
+      exact: true,
+    });
+    const selectedDay = page.getByRole('button', {
+      name: '15, Thursday October 2026',
+      exact: true,
+    });
 
     await selectedDay.click();
 
@@ -118,10 +152,22 @@ test.describe('sl-calendar', () => {
   });
 
   test('should change year when clicking year buttons', async ({ page }) => {
-    const currentYear = page.getByRole('button', { name: '2026, change year', exact: true });
-    const nextYear = page.getByRole('button', { name: '2027, change year', exact: true });
-    const selectDay = page.getByRole('grid', { name: 'Days of October 2027', exact: true });
-    const selectYear = page.getByRole('grid', { name: 'Years from 2021 to 2032', exact: true });
+    const currentYear = page.getByRole('button', {
+      name: '2026, change year',
+      exact: true,
+    });
+    const nextYear = page.getByRole('button', {
+      name: '2027, change year',
+      exact: true,
+    });
+    const selectDay = page.getByRole('grid', {
+      name: 'Days of October 2027',
+      exact: true,
+    });
+    const selectYear = page.getByRole('grid', {
+      name: 'Years from 2021 to 2032',
+      exact: true,
+    });
     const yearButton = page.getByRole('button', { name: '2027', exact: true });
 
     await currentYear.click();
@@ -136,9 +182,15 @@ test.describe('sl-calendar', () => {
   });
 
   test('should add class `selected` to year in year view', async ({ page }) => {
-    const currentYear = page.getByRole('button', { name: '2026, change year', exact: true });
+    const currentYear = page.getByRole('button', {
+      name: '2026, change year',
+      exact: true,
+    });
     const yearButton = page.getByRole('button', { name: '2026', exact: true });
-    const selectedDay = page.getByRole('button', { name: '15, Thursday October 2026', exact: true });
+    const selectedDay = page.getByRole('button', {
+      name: '15, Thursday October 2026',
+      exact: true,
+    });
 
     await selectedDay.click();
 
@@ -149,10 +201,22 @@ test.describe('sl-calendar', () => {
   });
 
   test('should allow to use arrow buttons to navigate', async ({ page }) => {
-    const previousArrow = page.getByRole('button', { name: 'Previous month, September 2026', exact: true });
-    const nextArrow = page.getByRole('button', { name: 'Next month, November 2026', exact: true });
-    const nextMonthButton = page.getByRole('button', { name: 'Next month, October 2026', exact: true });
-    const currentMonth = page.getByRole('button', { name: 'September, change month', exact: true });
+    const previousArrow = page.getByRole('button', {
+      name: 'Previous month, September 2026',
+      exact: true,
+    });
+    const nextArrow = page.getByRole('button', {
+      name: 'Next month, November 2026',
+      exact: true,
+    });
+    const nextMonthButton = page.getByRole('button', {
+      name: 'Next month, October 2026',
+      exact: true,
+    });
+    const currentMonth = page.getByRole('button', {
+      name: 'September, change month',
+      exact: true,
+    });
 
     await expect(previousArrow).toBeVisible();
     await expect(nextArrow).toBeVisible();
@@ -164,10 +228,21 @@ test.describe('sl-calendar', () => {
     await expect(currentMonth).not.toBeVisible();
   });
 
-  test('should preserve selected date when changing month with arrow buttons', async ({ page }) => {
-    const previousArrow = page.getByRole('button', { name: 'Previous month, September 2026', exact: true });
-    const nextArrow = page.getByRole('button', { name: 'Next month, October 2026', exact: true });
-    const selectedDay = page.getByRole('button', { name: '15, Thursday October 2026', exact: true });
+  test('should preserve selected date when changing month with arrow buttons', async ({
+    page,
+  }) => {
+    const previousArrow = page.getByRole('button', {
+      name: 'Previous month, September 2026',
+      exact: true,
+    });
+    const nextArrow = page.getByRole('button', {
+      name: 'Next month, October 2026',
+      exact: true,
+    });
+    const selectedDay = page.getByRole('button', {
+      name: '15, Thursday October 2026',
+      exact: true,
+    });
 
     await selectedDay.click();
     await expect(selectedDay).toBeVisible();
@@ -181,12 +256,29 @@ test.describe('sl-calendar', () => {
     await expect(selectedDay).toHaveAttribute('part', /\bselected\b/);
   });
 
-  test('should preserve selected date when changing month with month view', async ({ page }) => {
-    const changeMonthOctober = page.getByRole('button', { name: 'October, change month', exact: true });
-    const changeMonthNovember = page.getByRole('button', { name: 'November, change month', exact: true });
-    const nextMonth = page.getByRole('button', { name: 'November', exact: true });
-    const previousMonth = page.getByRole('button', { name: 'October', exact: true });
-    const selectedDay = page.getByRole('button', { name: '15, Thursday October 2026', exact: true });
+  test('should preserve selected date when changing month with month view', async ({
+    page,
+  }) => {
+    const changeMonthOctober = page.getByRole('button', {
+      name: 'October, change month',
+      exact: true,
+    });
+    const changeMonthNovember = page.getByRole('button', {
+      name: 'November, change month',
+      exact: true,
+    });
+    const nextMonth = page.getByRole('button', {
+      name: 'November',
+      exact: true,
+    });
+    const previousMonth = page.getByRole('button', {
+      name: 'October',
+      exact: true,
+    });
+    const selectedDay = page.getByRole('button', {
+      name: '15, Thursday October 2026',
+      exact: true,
+    });
 
     await selectedDay.click();
     await expect(selectedDay).toHaveAttribute('part', /\bselected\b/);
@@ -202,12 +294,26 @@ test.describe('sl-calendar', () => {
     await expect(selectedDay).toHaveAttribute('part', /\bselected\b/);
   });
 
-  test('should preserve selected date when changing year with year view', async ({ page }) => {
-    const changeYear2026 = page.getByRole('button', { name: '2026, change year', exact: true });
-    const changeYear2027 = page.getByRole('button', { name: '2027, change year', exact: true });
+  test('should preserve selected date when changing year with year view', async ({
+    page,
+  }) => {
+    const changeYear2026 = page.getByRole('button', {
+      name: '2026, change year',
+      exact: true,
+    });
+    const changeYear2027 = page.getByRole('button', {
+      name: '2027, change year',
+      exact: true,
+    });
     const nextYear = page.getByRole('button', { name: '2027', exact: true });
-    const previousArrow = page.getByRole('button', { name: '2026', exact: true }); 
-    const selectedDay = page.getByRole('button', { name: '15, Thursday October 2026', exact: true });
+    const previousArrow = page.getByRole('button', {
+      name: '2026',
+      exact: true,
+    });
+    const selectedDay = page.getByRole('button', {
+      name: '15, Thursday October 2026',
+      exact: true,
+    });
 
     await selectedDay.click();
     await expect(selectedDay).toHaveAttribute('part', /\bselected\b/);
@@ -222,4 +328,4 @@ test.describe('sl-calendar', () => {
     await expect(selectedDay).toBeVisible();
     await expect(selectedDay).toHaveAttribute('part', /\bselected\b/);
   });
-})
+});
