@@ -420,20 +420,12 @@ test.describe('sl-calendar accessibility', () => {
   test('should preserve `aria-pressed` when month changes with arrow buttons', async ({
     page,
   }) => {
-    const changeMonthOctober = page.getByRole('button', {
-      name: 'October, change month',
-      exact: true,
-    });
-    const changeMonthNovember = page.getByRole('button', {
-      name: 'November, change month',
-      exact: true,
-    });
     const nextMonth = page.getByRole('button', {
-      name: 'November',
+      name: 'Next month, November 2026',
       exact: true,
     });
     const previousMonth = page.getByRole('button', {
-      name: 'October',
+      name: 'Previous month, October 2026',
       exact: true,
     });
     const selectedDay = page.getByRole('button', {
@@ -444,12 +436,9 @@ test.describe('sl-calendar accessibility', () => {
     await selectedDay.click();
     await expect(selectedDay).toHaveAttribute('aria-pressed', 'true');
 
-    await changeMonthOctober.click();
-
     await nextMonth.click();
     await expect(selectedDay).not.toBeVisible();
 
-    await changeMonthNovember.click();
     await previousMonth.click();
     await expect(selectedDay).toBeVisible();
     await expect(selectedDay).toHaveAttribute('aria-pressed', 'true');
