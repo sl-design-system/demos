@@ -38,6 +38,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-calendar',
+    loadComponent: () =>
+      import('./components/sl-calendar/sl-calendar.component').then(
+        (m) => m.CalendarPageComponent,
+      ),
+  },
+  {
     path: 'sl-callout',
     loadComponent: () =>
       import('./components/sl-callout/sl-callout.component').then(

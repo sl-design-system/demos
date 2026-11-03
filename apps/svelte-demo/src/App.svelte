@@ -4,6 +4,7 @@
   import Breadcrumbs from './components/sl-breadcrumbs/sl-breadcrumbs.svelte';
   import Button from './components/sl-button/sl-button.svelte';
   import ButtonBar from './components/sl-button-bar/sl-button-bar.svelte';
+  import Calendar from './components/sl-calendar/sl-calendar.svelte';
   import Callout from './components/sl-callout/sl-callout.svelte';
   import Checkbox from './components/sl-checkbox/sl-checkbox.svelte';
   import Combobox from './components/sl-combobox/sl-combobox.svelte';
@@ -39,6 +40,7 @@
     { path: '/sl-breadcrumbs', label: 'sl-breadcrumbs', component: Breadcrumbs },
     { path: '/sl-button', label: 'sl-button', component: Button },
     { path: '/sl-button-bar', label: 'sl-button-bar', component: ButtonBar },
+    { path: '/sl-calendar', label: 'sl-calendar', component: Calendar },
     { path: '/sl-callout', label: 'sl-callout', component: Callout },
     { path: '/sl-checkbox', label: 'sl-checkbox', component: Checkbox },
     { path: '/sl-combobox', label: 'sl-combobox', component: Combobox },

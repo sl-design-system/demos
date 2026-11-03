@@ -25,6 +25,10 @@ export const router = createRouter({
       component: () => import('./components/sl-button-bar/sl-button-bar.vue'),
     },
     {
+      path: '/sl-calendar',
+      component: () => import('./components/sl-calendar/sl-calendar.vue'),
+    },
+    {
       path: '/sl-callout',
       component: () => import('./components/sl-callout/sl-callout.vue'),
     },

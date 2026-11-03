@@ -48,6 +48,7 @@ const navItems = [
   { path: '/sl-breadcrumbs', label: 'sl-breadcrumbs' },
   { path: '/sl-button', label: 'sl-button' },
   { path: '/sl-button-bar', label: 'sl-button-bar' },
+  { path: '/sl-calendar', label: 'sl-calendar' },
   { path: '/sl-callout', label: 'sl-callout' },
   { path: '/sl-checkbox', label: 'sl-checkbox' },
   { path: '/sl-combobox', label: 'sl-combobox' },
