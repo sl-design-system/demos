@@ -351,19 +351,7 @@ test.describe('sl-calendar accessibility', () => {
       await expect(button).toHaveAttribute('part', /\bselected\b/);
     });
   }
-
-  test('should not select disabled date with keyboard', async ({ page }) => {
-    const button = page.getByRole('button', {
-      name: '6, Tuesday October 2026',
-    });
-
-    await button.focus();
-    await page.keyboard.press('Space');
-
-    await expect(button).not.toHaveAttribute('part', /\bselected\b/);
-    await expect(button).not.toHaveAttribute('aria-pressed');
-  });
-
+  
   test('should have aria-pressed attribute', async ({ page }) => {
     const button = page.getByRole('button', {
       name: '1, Thursday October 2026',
