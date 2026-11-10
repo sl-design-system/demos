@@ -41,6 +41,10 @@ export const router = createRouter({
       component: () => import('./components/sl-combobox/sl-combobox.vue'),
     },
     {
+      path: '/sl-date-field',
+      component: () => import('./components/sl-date-field/sl-date-field.vue'),
+    },
+    {
       path: '/sl-dialog',
       component: () => import('./components/sl-dialog/sl-dialog.vue'),
     },
