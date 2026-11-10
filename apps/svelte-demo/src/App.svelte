@@ -8,6 +8,7 @@
   import Callout from './components/sl-callout/sl-callout.svelte';
   import Checkbox from './components/sl-checkbox/sl-checkbox.svelte';
   import Combobox from './components/sl-combobox/sl-combobox.svelte';
+  import DateField from './components/sl-date-field/sl-date-field.svelte';
   import Dialog from './components/sl-dialog/sl-dialog.svelte';
   import FormField from './components/sl-form-field/sl-form-field.svelte';
   import Form from './components/sl-form/sl-form.svelte';
@@ -47,6 +48,7 @@
     { path: '/sl-dialog', label: 'sl-dialog', component: Dialog },
     { path: '/sl-form-field', label: 'sl-form-field', component: FormField },
     { path: '/sl-form', label: 'sl-form', component: Form },
+    { path: '/sl-date-field', label: 'sl-date-field', component: DateField },
     { path: '/sl-inline-message', label: 'sl-inline-message', component: InlineMessage },
     { path: '/sl-menu', label: 'sl-menu', component: Menu },
     { path: '/sl-infotip', label: 'sl-infotip', component: Infotip },
