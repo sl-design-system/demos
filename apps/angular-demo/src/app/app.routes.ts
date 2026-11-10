@@ -73,6 +73,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-date-field',
+    loadComponent: () =>
+      import('./components/sl-date-field/sl-date-field.component').then(
+        (m) => m.DateFieldPageComponent,
+      ),
+  },
+  {
     path: 'sl-dialog',
     loadComponent: () =>
       import('./components/sl-dialog/sl-dialog.component').then(

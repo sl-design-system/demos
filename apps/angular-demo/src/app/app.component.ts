@@ -19,6 +19,7 @@ export class AppComponent {
     { path: 'sl-card', label: 'sl-card' },
     { path: 'sl-checkbox', label: 'sl-checkbox' },
     { path: 'sl-combobox', label: 'sl-combobox' },
+    { path: 'sl-date-field', label: 'sl-date-field' },
     { path: 'sl-dialog', label: 'sl-dialog' },
     { path: 'sl-dialog-service', label: 'sl-dialog-service' },
     { path: 'sl-form-field', label: 'sl-form-field' },
