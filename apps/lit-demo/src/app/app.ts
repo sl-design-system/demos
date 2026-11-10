@@ -13,6 +13,7 @@ import { CalendarPage } from '../components/sl-calendar/sl-calendar.js';
 import { CalloutPage } from '../components/sl-callout/sl-callout.js';
 import { CheckboxPage } from '../components/sl-checkbox/sl-checkbox.js';
 import { ComboboxPage } from '../components/sl-combobox/sl-combobox.js';
+import { DateFieldPage } from '../components/sl-date-field/sl-date-field.js';
 import { DialogPage } from '../components/sl-dialog/sl-dialog.js';
 import { FormFieldPage } from '../components/sl-form-field/sl-form-field.js';
 import { FormPage } from '../components/sl-form/sl-form.js';
@@ -46,6 +47,8 @@ const ROUTES = [
   { path: '/sl-breadcrumbs', label: 'sl-breadcrumbs' },
   { path: '/sl-button', label: 'sl-button' },
   { path: '/sl-button-bar', label: 'sl-button-bar' },
+  { path: '/sl-calendar', label: 'sl-calendar' },
+  { path: '/sl-date-field', label: 'sl-date-field' },
   { path: '/sl-callout', label: 'sl-callout' },
   { path: '/sl-checkbox', label: 'sl-checkbox' },
   { path: '/sl-combobox', label: 'sl-combobox' },
@@ -80,6 +83,7 @@ const ROUTES = [
 export class App extends ScopedElementsMixin(LitElement) {
   static scopedElements: ScopedElementsMap = {
     'page-accordion': AccordionPage,
+    'page-date-field': DateFieldPage,
     'page-tag': TagPage,
     'page-avatar': AvatarPage,
     'page-breadcrumbs': BreadcrumbsPage,
@@ -162,6 +166,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-checkbox></page-checkbox>`;
       case '/sl-combobox':
         return html`<page-combobox></page-combobox>`;
+      case '/sl-date-field':
+        return html`<page-date-field></page-date-field>`;
       case '/sl-dialog':
         return html`<page-dialog></page-dialog>`;
       case '/sl-form-field':
