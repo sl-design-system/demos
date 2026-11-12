@@ -51,14 +51,26 @@ test.describe('sl-date-field accessibility', () => {
 
   test('should have accessible name for stepper fields', async ({ page }) => {
     const activeDateField = page.locator('#sl-form-field-control-0');
-    const activeDayField = activeDateField.getByRole('spinbutton', { name: 'Day' });
-    const activeMonthField = activeDateField.getByRole('spinbutton', { name: 'Month' });
-    const activeYearField = activeDateField.getByRole('spinbutton', { name: 'Year' });
+    const activeDayField = activeDateField.getByRole('spinbutton', {
+      name: 'Day',
+    });
+    const activeMonthField = activeDateField.getByRole('spinbutton', {
+      name: 'Month',
+    });
+    const activeYearField = activeDateField.getByRole('spinbutton', {
+      name: 'Year',
+    });
     const disabledDateField = page.locator('#sl-form-field-control-1');
-    const disabledDayField = disabledDateField.getByRole('spinbutton', { name: 'Day' });
-    const disabledMonthField = disabledDateField.getByRole('spinbutton', { name: 'Month' });
-    const disabledYearField = disabledDateField.getByRole('spinbutton', { name: 'Year' });
-  
+    const disabledDayField = disabledDateField.getByRole('spinbutton', {
+      name: 'Day',
+    });
+    const disabledMonthField = disabledDateField.getByRole('spinbutton', {
+      name: 'Month',
+    });
+    const disabledYearField = disabledDateField.getByRole('spinbutton', {
+      name: 'Year',
+    });
+
     await expect(activeDayField).toHaveAccessibleName('Day');
     await expect(activeMonthField).toHaveAccessibleName('Month');
     await expect(activeYearField).toHaveAccessibleName('Year');
@@ -68,19 +80,19 @@ test.describe('sl-date-field accessibility', () => {
   });
 
   test('should have accessible name for field buttons', async ({ page }) => {
-    const activeSelectButton = page.locator('#sl-form-field-control-0').getByRole('button', { name: 'Select date' });
-    const disabledSelectButton = page.locator('#sl-form-field-control-1').getByRole('button', { name: 'Select date' });
+    const activeSelectButton = page
+      .locator('#sl-form-field-control-0')
+      .getByRole('button', { name: 'Select date' });
+    const disabledSelectButton = page
+      .locator('#sl-form-field-control-1')
+      .getByRole('button', { name: 'Select date' });
 
     await expect(activeSelectButton).toHaveAccessibleName('Select date');
     await expect(disabledSelectButton).toHaveAccessibleName('Select date');
   });
 
   test('should have correct tab order', async ({ page }) => {
-    const activeElements = [
-      'Day',
-      'Select date',
-      'Focus me'
-    ] as const;
+    const activeElements = ['Day', 'Select date', 'Focus me'] as const;
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
@@ -91,9 +103,15 @@ test.describe('sl-date-field accessibility', () => {
     }
   });
 
-    test('should have correct tab order when calendar is opened v2', async ({ page }) => {
-    const selectDate = page.locator('#sl-form-field-control-0').getByRole('button', { name: 'Select date' });
-    const selectMonth = page.getByRole('button', { name: 'October, change month' });
+  test('should have correct tab order when calendar is opened', async ({
+    page,
+  }) => {
+    const selectDate = page
+      .locator('#sl-form-field-control-0')
+      .getByRole('button', { name: 'Select date' });
+    const selectMonth = page.getByRole('button', {
+      name: 'October, change month',
+    });
     const activeElements = [
       'October, change month',
       '2026, change year',
@@ -113,9 +131,15 @@ test.describe('sl-date-field accessibility', () => {
   });
 
   test('should have keyboard operable spinbuttons', async ({ page }) => {
-    const dayField = page.locator('#sl-form-field-control-0').getByRole('spinbutton', { name: 'Day' });
-    const monthField = page.locator('#sl-form-field-control-0').getByRole('spinbutton', { name: 'Month' });
-    const yearField = page.locator('#sl-form-field-control-0').getByRole('spinbutton', { name: 'Year' });
+    const dayField = page
+      .locator('#sl-form-field-control-0')
+      .getByRole('spinbutton', { name: 'Day' });
+    const monthField = page
+      .locator('#sl-form-field-control-0')
+      .getByRole('spinbutton', { name: 'Month' });
+    const yearField = page
+      .locator('#sl-form-field-control-0')
+      .getByRole('spinbutton', { name: 'Year' });
 
     await dayField.focus();
     await page.keyboard.press('ArrowUp');
@@ -130,11 +154,15 @@ test.describe('sl-date-field accessibility', () => {
     await expect(yearField).toBeFocused();
     await page.keyboard.press('ArrowUp');
     await expect(yearField).toHaveText('2026');
-    });
+  });
 
-    test('should have aria-expanded attribute for field button', async ({ page }) => {
-    const activeSelectButton = page.locator('#sl-form-field-control-0').getByRole('button', { name: 'Select date' });
-    
+  test('should have aria-expanded attribute for field button', async ({
+    page,
+  }) => {
+    const activeSelectButton = page
+      .locator('#sl-form-field-control-0')
+      .getByRole('button', { name: 'Select date' });
+
     await expect(activeSelectButton).toHaveAttribute('aria-expanded', 'false');
     await activeSelectButton.click();
     await expect(activeSelectButton).toHaveAttribute('aria-expanded', 'true');
@@ -170,7 +198,10 @@ test.describe('sl-date-field accessibility with opened dialog', () => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-date-field'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
-    await page.locator('#sl-form-field-control-0').getByRole('button', { name: 'Select date' }).click();
+    await page
+      .locator('#sl-form-field-control-0')
+      .getByRole('button', { name: 'Select date' })
+      .click();
     const axe = new AxeBuilder({ page }).withTags([
       'wcag2a',
       'wcag2aa',
@@ -187,7 +218,10 @@ test.describe('sl-date-field accessibility with opened dialog', () => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-date-field'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
-    await page.locator('#sl-form-field-control-0').getByRole('button', { name: 'Select date' }).click();
+    await page
+      .locator('#sl-form-field-control-0')
+      .getByRole('button', { name: 'Select date' })
+      .click();
 
     const hasOverflow = await hasMainHorizontalOverflow(page);
     expect(hasOverflow).toBe(false);
@@ -362,7 +396,9 @@ test.describe('sl-date-field accessibility with opened dialog', () => {
   });
 
   test('should not select dates on arrow navigation', async ({ page }) => {
-    const day1 = page.getByRole('button', { name: '15, Thursday October 2026' });
+    const day1 = page.getByRole('button', {
+      name: '15, Thursday October 2026',
+    });
     const day2 = page.getByRole('button', { name: '16, Friday October 2026' });
 
     await day1.focus();
@@ -382,7 +418,9 @@ test.describe('sl-date-field accessibility with opened dialog', () => {
     test(`should have keyboard accessible buttons with ${key} in day view`, async ({
       page,
     }) => {
-      const selectButton = page.locator('#sl-form-field-control-0').getByRole('button', { name: 'Select date' });
+      const selectButton = page
+        .locator('#sl-form-field-control-0')
+        .getByRole('button', { name: 'Select date' });
       const button = page.getByRole('button', {
         name: '15, Thursday October 2026',
       });
@@ -400,7 +438,9 @@ test.describe('sl-date-field accessibility with opened dialog', () => {
     test(`should have keyboard accessible buttons with ${key} in month view`, async ({
       page,
     }) => {
-      const selectButton = page.locator('#sl-form-field-control-0').getByRole('button', { name: 'Select date' });
+      const selectButton = page
+        .locator('#sl-form-field-control-0')
+        .getByRole('button', { name: 'Select date' });
       const button = page.getByRole('button', {
         name: '15, Thursday October 2026',
       });
@@ -433,7 +473,9 @@ test.describe('sl-date-field accessibility with opened dialog', () => {
     test(`should have keyboard accessible buttons with ${key} in year view`, async ({
       page,
     }) => {
-      const selectButton = page.locator('#sl-form-field-control-0').getByRole('button', { name: 'Select date' });
+      const selectButton = page
+        .locator('#sl-form-field-control-0')
+        .getByRole('button', { name: 'Select date' });
       const button = page.getByRole('button', {
         name: '1, Thursday October 2026',
       });
@@ -453,7 +495,6 @@ test.describe('sl-date-field accessibility with opened dialog', () => {
       await yearButton.focus();
       await page.keyboard.press(key);
 
-    
       await expect(currentYear).toHaveAttribute('class', /\bselected\b/);
 
       await currentYear.focus();
@@ -464,7 +505,9 @@ test.describe('sl-date-field accessibility with opened dialog', () => {
   }
 
   test('should have aria-pressed attribute', async ({ page }) => {
-    const selectButton = page.locator('#sl-form-field-control-0').getByRole('button', { name: 'Select date' });
+    const selectButton = page
+      .locator('#sl-form-field-control-0')
+      .getByRole('button', { name: 'Select date' });
     const button = page.getByRole('button', {
       name: '1, Thursday October 2026',
     });
@@ -477,7 +520,9 @@ test.describe('sl-date-field accessibility with opened dialog', () => {
   });
 
   test('should have aria-pressed attribute for month', async ({ page }) => {
-    const selectButton = page.locator('#sl-form-field-control-0').getByRole('button', { name: 'Select date' });
+    const selectButton = page
+      .locator('#sl-form-field-control-0')
+      .getByRole('button', { name: 'Select date' });
     const monthButton = page.getByRole('button', {
       name: 'October, change month',
       exact: true,
@@ -501,7 +546,9 @@ test.describe('sl-date-field accessibility with opened dialog', () => {
   });
 
   test('should have aria-pressed attribute for year', async ({ page }) => {
-    const selectButton = page.locator('#sl-form-field-control-0').getByRole('button', { name: 'Select date' });
+    const selectButton = page
+      .locator('#sl-form-field-control-0')
+      .getByRole('button', { name: 'Select date' });
     const yearButton = page.getByRole('button', {
       name: '2026, change year',
       exact: true,
@@ -525,7 +572,9 @@ test.describe('sl-date-field accessibility with opened dialog', () => {
   test('should preserve `aria-pressed` when month changes with arrow buttons', async ({
     page,
   }) => {
-    const selectButton = page.locator('#sl-form-field-control-0').getByRole('button', { name: 'Select date' });
+    const selectButton = page
+      .locator('#sl-form-field-control-0')
+      .getByRole('button', { name: 'Select date' });
     const nextMonth = page.getByRole('button', {
       name: 'Next month, November 2026',
       exact: true,
@@ -555,7 +604,9 @@ test.describe('sl-date-field accessibility with opened dialog', () => {
   test('should preserve `aria-pressed` when month changes with month button', async ({
     page,
   }) => {
-    const selectButton = page.locator('#sl-form-field-control-0').getByRole('button', { name: 'Select date' });
+    const selectButton = page
+      .locator('#sl-form-field-control-0')
+      .getByRole('button', { name: 'Select date' });
     const changeMonthOctober = page.getByRole('button', {
       name: 'October, change month',
       exact: true,
@@ -595,7 +646,9 @@ test.describe('sl-date-field accessibility with opened dialog', () => {
   test('should preserve `aria-pressed` when year changes with year button', async ({
     page,
   }) => {
-    const selectButton = page.locator('#sl-form-field-control-0').getByRole('button', { name: 'Select date' });
+    const selectButton = page
+      .locator('#sl-form-field-control-0')
+      .getByRole('button', { name: 'Select date' });
     const changeYear2026 = page.getByRole('button', {
       name: '2026, change year',
       exact: true,
@@ -630,10 +683,10 @@ test.describe('sl-date-field accessibility with opened dialog', () => {
     await expect(selectedDay).toHaveAttribute('aria-pressed', 'true');
   });
 
-  test('should close calendar with Esc key', async ({
-    page,
-  }) => {
-    const activeSelectButton = page.locator('#sl-form-field-control-0').getByRole('button', { name: 'Select date' });
+  test('should close calendar with Esc key', async ({ page }) => {
+    const activeSelectButton = page
+      .locator('#sl-form-field-control-0')
+      .getByRole('button', { name: 'Select date' });
     const calendar = page.getByRole('grid', { name: 'October 2026' });
 
     await expect(calendar).toBeVisible();

@@ -351,7 +351,7 @@ test.describe('sl-calendar accessibility', () => {
       await expect(button).toHaveAttribute('part', /\bselected\b/);
     });
   }
-  
+
   test('should have aria-pressed attribute', async ({ page }) => {
     const button = page.getByRole('button', {
       name: '1, Thursday October 2026',

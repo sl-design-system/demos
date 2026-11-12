@@ -574,9 +574,7 @@ test.describe('sl-date-field with opened dialog', () => {
     await expect(selectedDay).toHaveAttribute('part', /\bselected\b/);
   });
 
-  test('should close calendar when clicking outside', async ({
-    page,
-  }) => {
+  test('should close calendar when clicking outside', async ({ page }) => {
     await expect(
       page.getByRole('grid', { name: 'Days of October 2026' }),
     ).toBeVisible();

@@ -17,13 +17,13 @@ export class DateFieldPage extends ScopedElementsMixin(LitElement) {
 
   override render(): TemplateResult {
     return html`
-        <sl-form-field label="Appointment date">
-          <sl-date-field locale="en-GB"></sl-date-field>
-        </sl-form-field>
+      <sl-form-field label="Appointment date">
+        <sl-date-field locale="en-GB"></sl-date-field>
+      </sl-form-field>
 
-        <sl-form-field label="Concert date">
-          <sl-date-field locale="en-GB" disabled></sl-date-field>
-        </sl-form-field>
+      <sl-form-field label="Concert date">
+        <sl-date-field locale="en-GB" disabled></sl-date-field>
+      </sl-form-field>
     `;
   }
 }
