@@ -47,7 +47,6 @@ const ROUTES = [
   { path: '/sl-breadcrumbs', label: 'sl-breadcrumbs' },
   { path: '/sl-button', label: 'sl-button' },
   { path: '/sl-button-bar', label: 'sl-button-bar' },
-  { path: '/sl-calendar', label: 'sl-calendar' },
   { path: '/sl-date-field', label: 'sl-date-field' },
   { path: '/sl-callout', label: 'sl-callout' },
   { path: '/sl-checkbox', label: 'sl-checkbox' },
