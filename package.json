@@ -88,6 +88,7 @@
     "@sl-design-system/checkbox": "^2.4.2",
     "@sl-design-system/combobox": "^0.3.2",
     "@sl-design-system/data-source": "^0.4.5",
+    "@sl-design-system/date-field": "^0.4.0",
     "@sl-design-system/dialog": "^2.1.4",
     "@sl-design-system/form": "^1.7.0",
     "@sl-design-system/icon": "^1.4.6",
