@@ -215,13 +215,17 @@ test.describe('sl-date-field accessibility with opened dialog', () => {
   });
 
   test('component fits without horizontal scroll', async ({ page }) => {
-    await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
+    await page.setViewportSize({ width: 408, height: 667 }); // 320px width + 32px padding + 56px collapsed navigation
     await page.goto('/sl-date-field'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
     await page
       .locator('#sl-form-field-control-0')
       .getByRole('button', { name: 'Select date' })
       .click();
+
+    const calendar = page.locator('sl-calendar');
+    await expect(calendar).toBeVisible();
+    await expect(calendar).toBeInViewport({ ratio: 1 });
 
     const hasOverflow = await hasMainHorizontalOverflow(page);
     expect(hasOverflow).toBe(false);
