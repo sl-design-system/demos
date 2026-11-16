@@ -30,7 +30,7 @@
 
 <sl-form bind:this={formEl}>
   <sl-form-field
-    label="Radio group"
+    label="Active"
     hint="This story has both builtin validation (required) and custom validation. You need to check the second option to make the field valid."
   >
     <sl-radio-group onsl-validate={handleValidate} required>
@@ -45,7 +45,7 @@
     <sl-button variant="primary" onclick={reportValidity}>Submit</sl-button>
   </sl-button-bar>
 
-  <sl-form-field label="Disabled radio group" hint="This radio group is disabled; no interaction is possible.">
+  <sl-form-field label="Disabled" hint="This radio group is disabled; no interaction is possible.">
     <sl-radio-group disabled>
       <sl-radio value="4">Four</sl-radio>
       <sl-radio value="5">Five</sl-radio>

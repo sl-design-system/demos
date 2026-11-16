@@ -9,6 +9,10 @@ export const router = createRouter({
       component: () => import('./components/sl-accordion/sl-accordion.vue'),
     },
     {
+      path: '/sl-avatar',
+      component: () => import('./components/sl-avatar/sl-avatar.vue'),
+    },
+    {
       path: '/sl-breadcrumbs',
       component: () => import('./components/sl-breadcrumbs/sl-breadcrumbs.vue'),
     },
@@ -21,6 +25,10 @@ export const router = createRouter({
       component: () => import('./components/sl-button-bar/sl-button-bar.vue'),
     },
     {
+      path: '/sl-calendar',
+      component: () => import('./components/sl-calendar/sl-calendar.vue'),
+    },
+    {
       path: '/sl-callout',
       component: () => import('./components/sl-callout/sl-callout.vue'),
     },
@@ -31,6 +39,10 @@ export const router = createRouter({
     {
       path: '/sl-combobox',
       component: () => import('./components/sl-combobox/sl-combobox.vue'),
+    },
+    {
+      path: '/sl-date-field',
+      component: () => import('./components/sl-date-field/sl-date-field.vue'),
     },
     {
       path: '/sl-dialog',
@@ -50,6 +62,10 @@ export const router = createRouter({
         import('./components/sl-inline-message/sl-inline-message.vue'),
     },
     {
+      path: '/sl-infotip',
+      component: () => import('./components/sl-infotip/sl-infotip.vue'),
+    },
+    {
       path: '/sl-menu',
       component: () => import('./components/sl-menu/sl-menu.vue'),
     },
@@ -57,6 +73,10 @@ export const router = createRouter({
       path: '/sl-message-dialog',
       component: () =>
         import('./components/sl-message-dialog/sl-message-dialog.vue'),
+    },
+    {
+      path: '/sl-month-view',
+      component: () => import('./components/sl-month-view/sl-month-view.vue'),
     },
     {
       path: '/sl-number-field',
@@ -92,12 +112,43 @@ export const router = createRouter({
       component: () => import('./components/sl-popover/sl-popover.vue'),
     },
     {
+      path: '/sl-tag',
+      component: () => import('./components/sl-tag/sl-tag.vue'),
+    },
+    {
+      path: '/sl-toggle-button',
+      component: () =>
+        import('./components/sl-toggle-button/sl-toggle-button.vue'),
+    },
+    {
+      path: '/sl-toggle-group',
+      component: () =>
+        import('./components/sl-toggle-group/sl-toggle-group.vue'),
+    },
+    {
+      path: '/sl-text-field',
+      component: () => import('./components/sl-text-field/sl-text-field.vue'),
+    },
+    {
       path: '/sl-tooltip',
       component: () => import('./components/sl-tooltip/sl-tooltip.vue'),
     },
     {
+      path: '/sl-tool-bar',
+      component: () => import('./components/sl-tool-bar/sl-tool-bar.vue'),
+    },
+    {
       path: '/sl-radio-group',
       component: () => import('./components/sl-radio-group/sl-radio-group.vue'),
+    },
+    {
+      path: '/sl-tree',
+      component: () => import('./components/sl-tree/sl-tree.vue'),
+    },
+    {
+      path: '/sl-search-field',
+      component: () =>
+        import('./components/sl-search-field/sl-search-field.vue'),
     },
   ],
 });

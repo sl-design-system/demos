@@ -1,0 +1,13 @@
+<sl-tool-bar>
+  <sl-button>Cut</sl-button>
+  <sl-button (click)="openBlankPage()">Copy</sl-button>
+  <sl-button (click)="openBlankPage()" [disabled]="true">Paste</sl-button>
+
+  <sl-tool-bar-divider></sl-tool-bar-divider>
+
+  <sl-menu-button>
+    <div slot="button">Edit</div>
+    <sl-menu-item> Rename... </sl-menu-item>
+    <sl-menu-item (click)="openBlankPage()"> Delete... </sl-menu-item>
+  </sl-menu-button>
+</sl-tool-bar>

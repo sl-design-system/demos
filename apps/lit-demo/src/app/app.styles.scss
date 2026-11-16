@@ -1,4 +1,4 @@
-@import '../../../../node_modules/@sl-design-system/sanoma-learning/light.css';
+@import '../../../../node_modules/@sl-design-system/sanoma-learning/theme.css';
 @import '../../../shared/styles/visually-hidden.css';
 
 :host {
@@ -18,6 +18,7 @@
     'Apple Color Emoji',
     'Segoe UI Emoji',
     'Segoe UI Symbol';
+  --sl-text-new-body-md: 400 14px/20px var(--app-font-family);
 }
 
 .app-layout {
@@ -159,4 +160,8 @@ h1 {
 
 .sidebar.collapsed .sidebar-list {
   display: none;
+}
+
+.tabindex-btn {
+  padding: 10px;
 }

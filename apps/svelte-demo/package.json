@@ -40,15 +40,15 @@
       ]
     },
     "lint": {
-      "command": "eslint src/**/*.ts",
+      "command": "eslint \"src/**/*.{ts,svelte}\"",
       "files": [
-        "src/**/*.ts"
+        "src/**/*.{ts,svelte}"
       ]
     },
     "lint:fix": {
-      "command": "eslint src/**/*.ts --fix",
+      "command": "eslint \"src/**/*.{ts,svelte}\" --fix",
       "files": [
-        "src/**/*.ts"
+        "src/**/*.{ts,svelte}"
       ]
     },
     "preview": {
@@ -66,6 +66,7 @@
     }
   },
   "devDependencies": {
+    "@tanstack/virtual-core": "3.13.12",
     "@web/dev-server": "^0.4.6",
     "esbuild": "^0.25.8",
     "esbuild-svelte": "^0.9.3",

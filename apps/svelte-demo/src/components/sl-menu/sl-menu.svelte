@@ -19,4 +19,5 @@
       <sl-menu-item use:directClick>Test 3</sl-menu-item>
     </sl-menu>
   </sl-menu-item>
+  <sl-menu-item aria-disabled="true" onclick={openBlankPage}>Test 4</sl-menu-item>
 </sl-menu-button>

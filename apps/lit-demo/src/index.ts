@@ -7,7 +7,7 @@ setup();
 
 // Make theme CSS vars available on :root so elements appended to document.body
 // (e.g. sl-message-dialog opened via MessageDialog.alert()) can access them.
-// app.styles.scss.js contains the same vars as light.css but scoped to :host.
+// app.styles.scss.js contains the same vars as theme.css but scoped to :host.
 const globalSheet = new CSSStyleSheet();
 globalSheet.replaceSync(
   appStyles.cssText.replace(/:host\b/g, ':root') + '\nbody { width: 100%; }',

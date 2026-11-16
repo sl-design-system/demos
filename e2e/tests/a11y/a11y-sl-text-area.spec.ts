@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { getFocusedElement } from '../../utils/getFocusedElement.js';
 import { hasMainHorizontalOverflow } from '../../utils/checkForHorizontalScroll.js';
 
 test.describe('sl-text-area accessibility', () => {
@@ -11,7 +12,14 @@ test.describe('sl-text-area accessibility', () => {
     await expect(
       page.getByRole('textbox', { name: 'Text area', exact: true }),
     ).toBeVisible();
-    const axe = new AxeBuilder({ page }).withTags(['wcag22a', 'wcag22aa']);
+    const axe = new AxeBuilder({ page }).withTags([
+      'wcag2a',
+      'wcag2aa',
+      'wcag21a',
+      'wcag21aa',
+      'wcag22a',
+      'wcag22aa',
+    ]);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
@@ -22,7 +30,14 @@ test.describe('sl-text-area accessibility', () => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-text-area'); // for Firefox to properly apply the viewport size before page load
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
-    const axe = new AxeBuilder({ page }).withTags(['wcag22a', 'wcag22aa']);
+    const axe = new AxeBuilder({ page }).withTags([
+      'wcag2a',
+      'wcag2aa',
+      'wcag21a',
+      'wcag21aa',
+      'wcag22a',
+      'wcag22aa',
+    ]);
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
@@ -42,12 +57,15 @@ test.describe('sl-text-area accessibility', () => {
   });
 
   test('should have correct tab order', async ({ page }) => {
-    const item = page.getByRole('textbox', { name: 'Text area', exact: true });
+    const activeElements = ['Text area', 'Focus me'] as const;
 
     await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
-    await page.keyboard.press('Tab');
-    await expect(item).toBeFocused();
+    for (const activeElement of activeElements) {
+      await page.keyboard.press('Tab');
+      const focusedOn = await getFocusedElement(page);
+      expect(focusedOn).toBe(activeElement);
+    }
   });
 
   test(`should be keyboard operable`, async ({ page }) => {
