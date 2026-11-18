@@ -6,6 +6,7 @@ import './app.scss';
 import '@sl-design-system/button/register.js';
 import '@sl-design-system/button-bar/register.js';
 import '@sl-design-system/date-field/register.js';
+import '@sl-design-system/time-field/register.js';
 import '@sl-design-system/accordion/register.js';
 import '@sl-design-system/avatar/register.js';
 import '@sl-design-system/breadcrumbs/register.js';
