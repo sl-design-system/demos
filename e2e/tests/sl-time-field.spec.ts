@@ -122,7 +122,7 @@ test.describe('sl-time-field', () => {
 
     const timePicker = page.locator('#sl-form-field-control-1').locator('#dialog');
 
-    await expect(timePicker.getByRole('grid')).not.toBeVisible();
+    await expect(timePicker).not.toBeVisible();
   });
 });
 
@@ -166,11 +166,19 @@ test.describe('sl-time-field with opened dialog', () => {
     const hourButton = page.getByRole('option', { name: '12 hour' });
     const minuteButton = page.getByRole('option', { name: '30 minute' });
 
-    await expect(hourButton).not.toHaveAttribute('selected', 'true');
+    await expect(
+      timeField
+        .getByRole('listbox', { name: 'Select hours' })
+        .getByRole('option', { selected: true }),
+    ).toHaveCount(0);
     await hourButton.click();
     await expect(hourField).toHaveText('12');
 
-    await expect(minuteButton).not.toHaveAttribute('selected', 'true');
+    await expect(
+      timeField
+        .getByRole('listbox', { name: 'Select minutes' })
+        .getByRole('option', { selected: true }),
+    ).toHaveCount(0);
     await minuteButton.click();
     await expect(minuteField).toHaveText('30');  
 
