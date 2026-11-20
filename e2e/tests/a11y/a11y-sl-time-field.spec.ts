@@ -5,7 +5,6 @@ import { getFocusedElement } from '../../utils/getFocusedElement.js';
 
 test.describe('sl-time-field accessibility', () => {
   test.beforeEach(async ({ page }) => {
-    await page.clock.setFixedTime(new Date(2026, 9, 15, 12));
     await page.goto('/sl-time-field');
   });
 
@@ -50,25 +49,25 @@ test.describe('sl-time-field accessibility', () => {
   });
 
   test('should have accessible name for stepper fields', async ({ page }) => {
-    const activeDateField = page.locator('#sl-form-field-control-0');
-    const activeDayField = activeDateField.getByRole('spinbutton', {
+    const activeTimeField = page.locator('#sl-form-field-control-0');
+    const activeHourField = activeTimeField.getByRole('spinbutton', {
       name: 'Hour',
     });
-    const activeMonthField = activeDateField.getByRole('spinbutton', {
+    const activeMinuteField = activeTimeField.getByRole('spinbutton', {
       name: 'Minute',
     });
-    const disabledDateField = page.locator('#sl-form-field-control-1');
-    const disabledDayField = disabledDateField.getByRole('spinbutton', {
+    const disabledTimeField = page.locator('#sl-form-field-control-1');
+    const disabledHourField = disabledTimeField.getByRole('spinbutton', {
       name: 'Hour',
     });
-    const disabledMonthField = disabledDateField.getByRole('spinbutton', {
+    const disabledMinuteField = disabledTimeField.getByRole('spinbutton', {
       name: 'Minute',
     });
 
-    await expect(activeDayField).toHaveAccessibleName('Hour');
-    await expect(activeMonthField).toHaveAccessibleName('Minute');
-    await expect(disabledDayField).toHaveAccessibleName('Hour');
-    await expect(disabledMonthField).toHaveAccessibleName('Minute');
+    await expect(activeHourField).toHaveAccessibleName('Hour');
+    await expect(activeMinuteField).toHaveAccessibleName('Minute');
+    await expect(disabledHourField).toHaveAccessibleName('Hour');
+    await expect(disabledMinuteField).toHaveAccessibleName('Minute');
   });
 
   test('should have accessible name for field buttons', async ({ page }) => {
@@ -233,7 +232,7 @@ test.describe('sl-time-field accessibility with opened dialog', () => {
     await expect(minute).toHaveAccessibleName('30 Minute');
   });
 
-  test('should be navigable with arrows in day view', async ({ page }) => {
+  test('should be navigable with arrows', async ({ page }) => {
     const hourStart = page.getByRole('listbox', { name: 'Hours' }).getByRole('option', {
       name: '12 Hour', exact: true
     });

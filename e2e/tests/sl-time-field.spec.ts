@@ -93,6 +93,32 @@ test.describe('sl-time-field', () => {
     await expect(minuteField).toHaveText('01');
   });
 
+  test('should not allow times outside valid range with spinbuttons', async ({ page }) => {
+    const timeField = page.locator('#sl-form-field-control-0');
+    const hourField = timeField.getByRole('spinbutton', { name: 'Hour' });
+    const minuteField = timeField.getByRole('spinbutton', { name: 'Minute' });
+
+    await enterSegment(timeField, 'Hour', '8');
+    await timeField.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(hourField).toHaveText('08');
+
+    await enterSegment(timeField, 'Minute', '40');
+    await timeField.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(minuteField).toHaveText('40');
+
+    await enterSegment(timeField, 'Hour', '18');
+    await timeField.focus();
+    await page.keyboard.press('ArrowUp');
+    await expect(hourField).toHaveText('18');
+
+    await enterSegment(timeField, 'Minute', '20');
+    await timeField.focus();
+    await page.keyboard.press('ArrowUp');
+    await expect(minuteField).toHaveText('20');
+  });
+
   test('should not allow filling disabled time field', async ({ page }) => {
     const timeField = page.locator('#sl-form-field-control-1');
     const hourField = timeField.getByRole('spinbutton', { name: 'Hour' });
@@ -109,7 +135,7 @@ test.describe('sl-time-field', () => {
     await expect(minuteField).toHaveText('MM');
   });
 
-  test('should not allow expanding calendar when disabled', async ({
+  test('should not allow expanding time picker when disabled', async ({
     page,
   }) => {
     const selectTime = page
@@ -241,12 +267,12 @@ test.describe('sl-time-field with opened dialog', () => {
     const timeField = page.locator('#sl-form-field-control-0');
     const hourField = timeField.getByRole('spinbutton', { name: 'Hour' });
     const minuteField = timeField.getByRole('spinbutton', { name: 'Minute' });
-    const selectDate = timeField.getByRole('button', { name: 'Select time' });
-    const hour1 = page.getByRole('option', { name: '12 hour' });
-    const minute1 = page.getByRole('option', { name: '30 minute' });
+    const selectTime = timeField.getByRole('button', { name: 'Select time' });
+    const hour = page.getByRole('option', { name: '12 hour' });
+    const minute = page.getByRole('option', { name: '30 minute' });
 
-    await hour1.click();
-    await minute1.click();
+    await hour.click();
+    await minute.click();
 
     await expect(hourField).toHaveText('12');
     await expect(minuteField).toHaveText('30');
@@ -256,7 +282,7 @@ test.describe('sl-time-field with opened dialog', () => {
     await enterSegment(timeField, 'Minute', '20');
     await expect(minuteField).toHaveText('20');
 
-    await selectDate.click();
+    await selectTime.click();
 
     const timePicker = page.locator('#sl-form-field-control-0').locator('#dialog');
     await expect(timePicker).toBeVisible();
@@ -279,5 +305,30 @@ test.describe('sl-time-field with opened dialog', () => {
 
     await page.mouse.click(0, 0);
     await expect(timePicker).not.toBeVisible();
+  });
+
+  test('should close picker when hours and minutes are selected', async ({ page }) => {
+    const timePicker = page.locator('#sl-form-field-control-0').locator('#dialog');
+    await expect(timePicker).toBeVisible();
+    const hour = page.getByRole('option', { name: '12 hour' });
+    const minute = page.getByRole('option', { name: '30 minute' });
+
+    await hour.click();
+    await minute.click();
+    await expect(timePicker).not.toBeVisible();
+  });
+
+  test('should have inactive disabled minutes', async ({ page }) => {
+    const hour = page.getByRole('listbox', { name: 'Hours' }).getByRole('option', {
+      name: '8 Hour', exact: true
+    });
+    const minuteDisabled = page.getByRole('listbox', { name: 'Minutes' }).getByRole('option', {
+      name: '35 Minute'
+    });
+    
+    await hour.click();
+  
+    await minuteDisabled.click({ force: true });
+    await expect(minuteDisabled).not.toBeFocused();
   });
 });
