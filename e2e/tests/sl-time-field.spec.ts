@@ -1,6 +1,6 @@
 import { test, expect, type Locator } from '@playwright/test';
 
-type TimeSegment = 'Hour' | 'Minute' ;
+type TimeSegment = 'Hour' | 'Minute';
 
 const segmentPlaceholders: Record<TimeSegment, string> = {
   Hour: 'HH',
@@ -27,11 +27,7 @@ async function enterSegment(
   await expect(field).toHaveText(expectedText);
 }
 
-async function enterTime(
-  timeField: Locator,
-  hour: string,
-  minute: string,
-) {
+async function enterTime(timeField: Locator, hour: string, minute: string) {
   await enterSegment(timeField, 'Hour', hour);
   await enterSegment(timeField, 'Minute', minute);
 }
@@ -75,9 +71,7 @@ test.describe('sl-time-field', () => {
     ).toHaveText('30');
   });
 
-  test('should not allow invalid times', async ({
-    page,
-  }) => {
+  test('should not allow invalid times', async ({ page }) => {
     const timeField = page.locator('#sl-form-field-control-0');
     const hourField = timeField.getByRole('spinbutton', { name: 'Hour' });
     const minuteField = timeField.getByRole('spinbutton', { name: 'Minute' });
@@ -93,7 +87,9 @@ test.describe('sl-time-field', () => {
     await expect(minuteField).toHaveText('01');
   });
 
-  test('should not allow times outside valid range with spinbuttons', async ({ page }) => {
+  test('should not allow times outside valid range with spinbuttons', async ({
+    page,
+  }) => {
     const timeField = page.locator('#sl-form-field-control-0');
     const hourField = timeField.getByRole('spinbutton', { name: 'Hour' });
     const minuteField = timeField.getByRole('spinbutton', { name: 'Minute' });
@@ -146,7 +142,9 @@ test.describe('sl-time-field', () => {
 
     await selectTime.click({ force: true });
 
-    const timePicker = page.locator('#sl-form-field-control-1').locator('#dialog');
+    const timePicker = page
+      .locator('#sl-form-field-control-1')
+      .locator('#dialog');
 
     await expect(timePicker).not.toBeVisible();
   });
@@ -169,7 +167,9 @@ test.describe('sl-time-field with opened dialog', () => {
 
     await selectTime.click();
 
-    const timePicker = page.locator('#sl-form-field-control-0').locator('#dialog');
+    const timePicker = page
+      .locator('#sl-form-field-control-0')
+      .locator('#dialog');
     await expect(timePicker).toBeVisible();
 
     await expect(
@@ -206,7 +206,7 @@ test.describe('sl-time-field with opened dialog', () => {
         .getByRole('option', { selected: true }),
     ).toHaveCount(0);
     await minuteButton.click();
-    await expect(minuteField).toHaveText('30');  
+    await expect(minuteField).toHaveText('30');
 
     await expect(timeField).toHaveJSProperty('formValue', '12:30');
     await expect(timeField).toHaveJSProperty('valid', true);
@@ -284,7 +284,9 @@ test.describe('sl-time-field with opened dialog', () => {
 
     await selectTime.click();
 
-    const timePicker = page.locator('#sl-form-field-control-0').locator('#dialog');
+    const timePicker = page
+      .locator('#sl-form-field-control-0')
+      .locator('#dialog');
     await expect(timePicker).toBeVisible();
 
     await expect(
@@ -300,15 +302,21 @@ test.describe('sl-time-field with opened dialog', () => {
   });
 
   test('should close picker when clicking outside', async ({ page }) => {
-    const timePicker = page.locator('#sl-form-field-control-0').locator('#dialog');
+    const timePicker = page
+      .locator('#sl-form-field-control-0')
+      .locator('#dialog');
     await expect(timePicker).toBeVisible();
 
     await page.mouse.click(0, 0);
     await expect(timePicker).not.toBeVisible();
   });
 
-  test('should close picker when hours and minutes are selected', async ({ page }) => {
-    const timePicker = page.locator('#sl-form-field-control-0').locator('#dialog');
+  test('should close picker when hours and minutes are selected', async ({
+    page,
+  }) => {
+    const timePicker = page
+      .locator('#sl-form-field-control-0')
+      .locator('#dialog');
     await expect(timePicker).toBeVisible();
     const hour = page.getByRole('option', { name: '12 hour' });
     const minute = page.getByRole('option', { name: '30 minute' });
@@ -319,15 +327,20 @@ test.describe('sl-time-field with opened dialog', () => {
   });
 
   test('should have inactive disabled minutes', async ({ page }) => {
-    const hour = page.getByRole('listbox', { name: 'Hours' }).getByRole('option', {
-      name: '8 Hour', exact: true
-    });
-    const minuteDisabled = page.getByRole('listbox', { name: 'Minutes' }).getByRole('option', {
-      name: '35 Minute'
-    });
-    
+    const hour = page
+      .getByRole('listbox', { name: 'Hours' })
+      .getByRole('option', {
+        name: '8 Hour',
+        exact: true,
+      });
+    const minuteDisabled = page
+      .getByRole('listbox', { name: 'Minutes' })
+      .getByRole('option', {
+        name: '35 Minute',
+      });
+
     await hour.click();
-  
+
     await minuteDisabled.click({ force: true });
     await expect(minuteDisabled).not.toBeFocused();
   });

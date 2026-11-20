@@ -98,8 +98,7 @@ test.describe('sl-time-field accessibility', () => {
     page,
   }) => {
     const timeField = page.locator('#sl-form-field-control-0');
-    const selectTime = timeField
-      .getByRole('button', { name: 'Select time' });
+    const selectTime = timeField.getByRole('button', { name: 'Select time' });
     const activeElement = '12 Hour';
     const button = 'Focus me';
 
@@ -109,8 +108,7 @@ test.describe('sl-time-field accessibility', () => {
     expect(focusedOn).toBe(activeElement);
     await page.keyboard.press('Tab');
     await expect(getFocusedElement(page)).resolves.toBe(button);
-    }
-  );
+  });
 
   test('should have keyboard operable spinbuttons', async ({ page }) => {
     const hourField = page
@@ -158,14 +156,16 @@ test.describe('sl-time-field accessibility with opened dialog', () => {
   });
 
   test('should have no accessibility violations', async ({ page }) => {
-    const axe = new AxeBuilder({ page }).withTags([
-      'wcag2a',
-      'wcag2aa',
-      'wcag21a',
-      'wcag21aa',
-      'wcag22a',
-      'wcag22aa',
-    ]).disableRules(['color-contrast', 'scrollable-region-focusable']); // disable rules that are design choice that are not accessibility issues
+    const axe = new AxeBuilder({ page })
+      .withTags([
+        'wcag2a',
+        'wcag2aa',
+        'wcag21a',
+        'wcag21aa',
+        'wcag22a',
+        'wcag22aa',
+      ])
+      .disableRules(['color-contrast', 'scrollable-region-focusable']); // disable rules that are design choice that are not accessibility issues
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
@@ -180,14 +180,16 @@ test.describe('sl-time-field accessibility with opened dialog', () => {
       .locator('#sl-form-field-control-0')
       .getByRole('button', { name: 'Select time' })
       .click();
-    const axe = new AxeBuilder({ page }).withTags([
-      'wcag2a',
-      'wcag2aa',
-      'wcag21a',
-      'wcag21aa',
-      'wcag22a',
-      'wcag22aa',
-    ]).disableRules(['color-contrast', 'scrollable-region-focusable']); // disable rules that are design choice that are not accessibility issues;
+    const axe = new AxeBuilder({ page })
+      .withTags([
+        'wcag2a',
+        'wcag2aa',
+        'wcag21a',
+        'wcag21aa',
+        'wcag22a',
+        'wcag22aa',
+      ])
+      .disableRules(['color-contrast', 'scrollable-region-focusable']); // disable rules that are design choice that are not accessibility issues;
     const results = await axe.analyze();
     expect(results.violations).toEqual([]);
   });
@@ -201,7 +203,9 @@ test.describe('sl-time-field accessibility with opened dialog', () => {
       .getByRole('button', { name: 'Select time' })
       .click();
 
-    const timePicker = page.locator('#sl-form-field-control-0').locator('#dialog');
+    const timePicker = page
+      .locator('#sl-form-field-control-0')
+      .locator('#dialog');
     await expect(timePicker).toBeVisible();
     await expect(timePicker).toBeInViewport({ ratio: 1 });
 
@@ -209,8 +213,12 @@ test.describe('sl-time-field accessibility with opened dialog', () => {
     expect(hasOverflow).toBe(false);
   });
 
-  test('should have accessible name for lists in time picker', async ({ page }) => {
-    const timePicker = page.locator('#sl-form-field-control-0').locator('#dialog');
+  test('should have accessible name for lists in time picker', async ({
+    page,
+  }) => {
+    const timePicker = page
+      .locator('#sl-form-field-control-0')
+      .locator('#dialog');
     const hours = timePicker.getByRole('listbox', { name: 'Hours' });
     const minutes = timePicker.getByRole('listbox', { name: 'Minutes' });
 
@@ -222,10 +230,10 @@ test.describe('sl-time-field accessibility with opened dialog', () => {
     page,
   }) => {
     const hour = page.getByRole('option', {
-      name: '12'
+      name: '12',
     });
     const minute = page.getByRole('option', {
-      name: '30'
+      name: '30',
     });
 
     await expect(hour).toHaveAccessibleName('12 Hour');
@@ -233,21 +241,30 @@ test.describe('sl-time-field accessibility with opened dialog', () => {
   });
 
   test('should be navigable with arrows', async ({ page }) => {
-    const hourStart = page.getByRole('listbox', { name: 'Hours' }).getByRole('option', {
-      name: '12 Hour', exact: true
-    });
-    const hourPrevious = page.getByRole('listbox', { name: 'Hours' }).getByRole('option', {
-      name: '11 Hour', exact: true
-    });
-    const minuteStart = page.getByRole('listbox', { name: 'Minutes' }).getByRole('option', {
-      name: '0 Minute', exact: true
-    });
-    const minutePrevious = page.getByRole('listbox', { name: 'Minutes' }).getByRole('option', {
-      name: '55 Minute'
-    });
-    const picker = page
-  .locator('#sl-form-field-control-0')
-  .locator('#dialog');
+    const hourStart = page
+      .getByRole('listbox', { name: 'Hours' })
+      .getByRole('option', {
+        name: '12 Hour',
+        exact: true,
+      });
+    const hourPrevious = page
+      .getByRole('listbox', { name: 'Hours' })
+      .getByRole('option', {
+        name: '11 Hour',
+        exact: true,
+      });
+    const minuteStart = page
+      .getByRole('listbox', { name: 'Minutes' })
+      .getByRole('option', {
+        name: '0 Minute',
+        exact: true,
+      });
+    const minutePrevious = page
+      .getByRole('listbox', { name: 'Minutes' })
+      .getByRole('option', {
+        name: '55 Minute',
+      });
+    const picker = page.locator('#sl-form-field-control-0').locator('#dialog');
 
     await expect(picker).toBeVisible();
 
@@ -265,22 +282,33 @@ test.describe('sl-time-field accessibility with opened dialog', () => {
     await expect(minuteStart).toBeFocused();
   });
 
-  test('should not select hours and minutes on arrow navigation', async ({ page }) => {
-    const hourStart = page.getByRole('listbox', { name: 'Hours' }).getByRole('option', {
-      name: '12 Hour', exact: true
-    });
-    const hourPrevious = page.getByRole('listbox', { name: 'Hours' }).getByRole('option', {
-      name: '11 Hour', exact: true
-    });
-    const minuteStart = page.getByRole('listbox', { name: 'Minutes' }).getByRole('option', {
-      name: '0 Minute', exact: true
-    });
-    const minutePrevious = page.getByRole('listbox', { name: 'Minutes' }).getByRole('option', {
-      name: '55 Minute'
-    });
-    const picker = page
-  .locator('#sl-form-field-control-0')
-  .locator('#dialog');
+  test('should not select hours and minutes on arrow navigation', async ({
+    page,
+  }) => {
+    const hourStart = page
+      .getByRole('listbox', { name: 'Hours' })
+      .getByRole('option', {
+        name: '12 Hour',
+        exact: true,
+      });
+    const hourPrevious = page
+      .getByRole('listbox', { name: 'Hours' })
+      .getByRole('option', {
+        name: '11 Hour',
+        exact: true,
+      });
+    const minuteStart = page
+      .getByRole('listbox', { name: 'Minutes' })
+      .getByRole('option', {
+        name: '0 Minute',
+        exact: true,
+      });
+    const minutePrevious = page
+      .getByRole('listbox', { name: 'Minutes' })
+      .getByRole('option', {
+        name: '55 Minute',
+      });
+    const picker = page.locator('#sl-form-field-control-0').locator('#dialog');
 
     await expect(picker).toBeVisible();
 
@@ -300,19 +328,29 @@ test.describe('sl-time-field accessibility with opened dialog', () => {
   });
 
   test('should have not focusable disabled minutes', async ({ page }) => {
-    const hour = page.getByRole('listbox', { name: 'Hours' }).getByRole('option', {
-      name: '8 Hour', exact: true
-    });
-    const minuteStart = page.getByRole('listbox', { name: 'Minutes' }).getByRole('option', {
-      name: '40 Minute', exact: true
-    });
-    const minuteNext = page.getByRole('listbox', { name: 'Minutes' }).getByRole('option', {
-      name: '55 Minute'
-    });
-    const minuteDisabled = page.getByRole('listbox', { name: 'Minutes' }).getByRole('option', {
-      name: '35 Minute'
-    });
-    
+    const hour = page
+      .getByRole('listbox', { name: 'Hours' })
+      .getByRole('option', {
+        name: '8 Hour',
+        exact: true,
+      });
+    const minuteStart = page
+      .getByRole('listbox', { name: 'Minutes' })
+      .getByRole('option', {
+        name: '40 Minute',
+        exact: true,
+      });
+    const minuteNext = page
+      .getByRole('listbox', { name: 'Minutes' })
+      .getByRole('option', {
+        name: '55 Minute',
+      });
+    const minuteDisabled = page
+      .getByRole('listbox', { name: 'Minutes' })
+      .getByRole('option', {
+        name: '35 Minute',
+      });
+
     await hour.click();
     await minuteStart.focus();
 
@@ -338,7 +376,8 @@ test.describe('sl-time-field accessibility with opened dialog', () => {
         name: '30',
       });
       const picker = page
-      .locator('#sl-form-field-control-0').locator('#dialog');
+        .locator('#sl-form-field-control-0')
+        .locator('#dialog');
 
       await hour.focus();
       await page.keyboard.press(key);
@@ -357,8 +396,7 @@ test.describe('sl-time-field accessibility with opened dialog', () => {
     const selectButton = page
       .locator('#sl-form-field-control-0')
       .getByRole('button', { name: 'Select time' });
-    const picker = page
-      .locator('#sl-form-field-control-0').locator('#dialog');
+    const picker = page.locator('#sl-form-field-control-0').locator('#dialog');
 
     await expect(picker).toBeVisible();
 
@@ -368,14 +406,21 @@ test.describe('sl-time-field accessibility with opened dialog', () => {
     await expect(selectButton).toBeFocused();
   });
 
-  test('should have aria-disabled attribute for disabled minutes', async ({ page }) => {
-    const hour = page.getByRole('listbox', { name: 'Hours' }).getByRole('option', {
-      name: '8 Hour', exact: true
-    });
-    const minuteDisabled = page.getByRole('listbox', { name: 'Minutes' }).getByRole('option', {
-      name: '35 Minute'
-    });
-    
+  test('should have aria-disabled attribute for disabled minutes', async ({
+    page,
+  }) => {
+    const hour = page
+      .getByRole('listbox', { name: 'Hours' })
+      .getByRole('option', {
+        name: '8 Hour',
+        exact: true,
+      });
+    const minuteDisabled = page
+      .getByRole('listbox', { name: 'Minutes' })
+      .getByRole('option', {
+        name: '35 Minute',
+      });
+
     await hour.click();
     await expect(minuteDisabled).toHaveAttribute('disabled', '');
   });
