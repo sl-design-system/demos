@@ -27,6 +27,7 @@
   import Card from './components/sl-card/sl-card.svelte';
   import Popover from './components/sl-popover/sl-popover.svelte';
   import Tag from './components/sl-tag/sl-tag.svelte';
+  import TimeField from './components/sl-time-field/sl-time-field.svelte';
   import ToggleButton from './components/sl-toggle-button/sl-toggle-button.svelte';
   import ToggleGroup from './components/sl-toggle-group/sl-toggle-group.svelte';
   import TextField from './components/sl-text-field/sl-text-field.svelte';
@@ -56,6 +57,7 @@
     { path: '/sl-month-view', label: 'sl-month-view', component: MonthView },
     { path: '/sl-number-field', label: 'sl-number-field', component: NumberField },
     { path: '/sl-text-area', label: 'sl-text-area', component: TextArea },
+    { path: '/sl-time-field', label: 'sl-time-field', component: TimeField },
     { path: '/sl-tab-group', label: 'sl-tab-group', component: TabGroup },
     { path: '/sl-paginator', label: 'sl-paginator', component: Paginator },
     { path: '/sl-select', label: 'sl-select', component: Select },

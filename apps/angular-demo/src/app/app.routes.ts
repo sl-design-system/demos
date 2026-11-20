@@ -227,6 +227,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-time-field',
+    loadComponent: () =>
+      import('./components/sl-time-field/sl-time-field.component').then(
+        (m) => m.TimeFieldPageComponent,
+      ),
+  },
+  {
     path: 'sl-toggle-group',
     loadComponent: () =>
       import('./components/sl-toggle-group/sl-toggle-group.component').then(
