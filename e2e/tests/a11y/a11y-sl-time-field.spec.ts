@@ -101,6 +101,15 @@ test.describe('sl-time-field accessibility', () => {
     const selectTime = timeField.getByRole('button', { name: 'Select time' });
     const activeElement = '12 Hour';
     const button = 'Focus me';
+    const hourField = page
+      .locator('#sl-form-field-control-0')
+      .getByRole('spinbutton', { name: 'Hour' });
+    const minuteField = page
+      .locator('#sl-form-field-control-0')
+      .getByRole('spinbutton', { name: 'Minute' });
+
+    await hourField.pressSequentially('12', { delay: 250 });
+    await minuteField.pressSequentially('00', { delay: 250 });
 
     await selectTime.click();
 
@@ -118,6 +127,7 @@ test.describe('sl-time-field accessibility', () => {
       .locator('#sl-form-field-control-0')
       .getByRole('spinbutton', { name: 'Minute' });
 
+    await hourField.pressSequentially('12', { delay: 250 });
     await hourField.focus();
     await page.keyboard.press('ArrowUp');
     await expect(hourField).toHaveText('13');
@@ -379,6 +389,7 @@ test.describe('sl-time-field accessibility with opened dialog', () => {
         .locator('#sl-form-field-control-0')
         .locator('#dialog');
 
+      await expect(picker).toBeVisible();
       await hour.focus();
       await page.keyboard.press(key);
 

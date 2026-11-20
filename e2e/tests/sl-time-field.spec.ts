@@ -204,7 +204,7 @@ test.describe('sl-time-field with opened dialog', () => {
       timeField
         .getByRole('listbox', { name: 'Select minutes' })
         .getByRole('option', { selected: true }),
-    ).toHaveCount(0);
+    ).toHaveText('00');
     await minuteButton.click();
     await expect(minuteField).toHaveText('30');
 
