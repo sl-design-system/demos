@@ -327,6 +327,7 @@ test.describe('sl-time-field with opened dialog', () => {
   });
 
   test('should have inactive disabled minutes', async ({ page }) => {
+    const timeField = page.locator('#sl-form-field-control-0');
     const hour = page
       .getByRole('listbox', { name: 'Hours' })
       .getByRole('option', {
@@ -341,7 +342,14 @@ test.describe('sl-time-field with opened dialog', () => {
 
     await hour.click();
 
+    const valueBefore = await timeField.evaluate(
+      (element) =>
+        (element as HTMLElement & { formValue: string | null }).formValue,
+    );
+
     await minuteDisabled.click({ force: true });
     await expect(minuteDisabled).not.toBeFocused();
+    await expect(timeField).toHaveJSProperty('formValue', valueBefore);
+    await expect(minuteDisabled).not.toHaveAttribute('aria-selected', 'true');
   });
 });
