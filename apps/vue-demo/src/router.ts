@@ -85,7 +85,7 @@ export const router = createRouter({
     },
     {
       path: '/sl-time-field',
-      component: () => import('./components/sl-time-field/sl-time-field.vue'),
+      component: () => import('./components/sl-time-field/TimeFieldPage.vue'),
     },
     {
       path: '/sl-text-area',
