@@ -33,6 +33,7 @@ import { PopoverPage } from '../components/sl-popover/sl-popover.js';
 import { TooltipPage } from '../components/sl-tooltip/sl-tooltip.js';
 import { RadioGroupPage } from '../components/sl-radio-group/sl-radio-group.js';
 import { TagPage } from '../components/sl-tag/sl-tag.js';
+import { TimeFieldPage } from '../components/sl-time-field/sl-time-field.js';
 import { ToggleButtonPage } from '../components/sl-toggle-button/sl-toggle-button.js';
 import { ToggleGroupPage } from '../components/sl-toggle-group/sl-toggle-group.js';
 import { ToolBarPage } from '../components/sl-tool-bar/sl-tool-bar.js';
@@ -70,6 +71,7 @@ const ROUTES = [
   { path: '/sl-card', label: 'sl-card' },
   { path: '/sl-popover', label: 'sl-popover' },
   { path: '/sl-tag', label: 'sl-tag' },
+  { path: '/sl-time-field', label: 'sl-time-field' },
   { path: '/sl-tree', label: 'sl-tree' },
   { path: '/sl-toggle-button', label: 'sl-toggle-button' },
   { path: '/sl-toggle-group', label: 'sl-toggle-group' },
@@ -116,6 +118,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-radio-group': RadioGroupPage,
     'page-search-field': SearchFieldPage,
     'page-month-view': MonthViewPage,
+    'page-time-field': TimeFieldPage,
   };
 
   static override styles = styles;
@@ -175,6 +178,8 @@ export class App extends ScopedElementsMixin(LitElement) {
         return html`<page-infotip></page-infotip>`;
       case '/sl-form':
         return html`<page-form></page-form>`;
+      case '/sl-time-field':
+        return html`<page-time-field></page-time-field>`;
       case '/sl-inline-message':
         return html`<page-inline-message></page-inline-message>`;
       case '/sl-menu':

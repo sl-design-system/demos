@@ -62,6 +62,7 @@ const navItems = [
   { path: '/sl-message-dialog', label: 'sl-message-dialog' },
   { path: '/sl-month-view', label: 'sl-month-view' },
   { path: '/sl-number-field', label: 'sl-number-field' },
+  { path: '/sl-time-field', label: 'sl-time-field' },
   { path: '/sl-text-area', label: 'sl-text-area' },
   { path: '/sl-text-field', label: 'sl-text-field' },
   { path: '/sl-tab-group', label: 'sl-tab-group' },
