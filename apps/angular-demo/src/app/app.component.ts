@@ -40,6 +40,7 @@ export class AppComponent {
     { path: 'sl-switch', label: 'sl-switch' },
     { path: 'sl-popover', label: 'sl-popover' },
     { path: 'sl-tag', label: 'sl-tag' },
+    { path: 'sl-panel', label: 'sl-panel' },
     { path: 'sl-time-field', label: 'sl-time-field' },
     { path: 'sl-toggle-button', label: 'sl-toggle-button' },
     { path: 'sl-toggle-group', label: 'sl-toggle-group' },
