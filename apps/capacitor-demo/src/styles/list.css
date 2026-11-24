@@ -8,14 +8,18 @@
   gap: var(--sl-size-075);
 }
 
+/*
+ * Section header, styled like iOS 27's grouped-list headers: body size,
+ * semibold, secondary colour and written as-is (not uppercase). SLDS has no
+ * 600 weight token, but the theme font ships a SemiBold face.
+ */
 .group-title {
   color: var(--sl-color-foreground-subtle);
-  font-size: var(--sl-text-sm-fontSize);
-  font-weight: var(--sl-fontWeight-medium);
-  line-height: var(--sl-text-sm-lineHeight);
+  font-size: var(--sl-text-md-fontSize);
+  font-weight: 600;
+  line-height: var(--sl-text-md-lineHeight);
   margin: 0;
   padding-inline: var(--sl-size-100);
-  text-transform: uppercase;
 }
 
 .list {

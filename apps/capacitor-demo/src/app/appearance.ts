@@ -27,8 +27,27 @@ export function getColorScheme(): ColorScheme {
 }
 
 /**
+ * Publishes the page background as `<meta name="theme-color">`. The native
+ * iOS shell (`AppViewController.swift`) paints the window behind the web view
+ * in this colour, which shows around the on-screen keyboard's corners.
+ */
+function publishThemeColor(): void {
+  let meta = document.querySelector<HTMLMetaElement>(
+    'meta[name="theme-color"]',
+  );
+  if (!meta) {
+    meta = document.createElement('meta');
+    meta.name = 'theme-color';
+    document.head.append(meta);
+  }
+
+  meta.content = getComputedStyle(document.body).backgroundColor;
+}
+
+/**
  * Applies the appearance: `data-appearance` on `<html>` overrides the system
- * setting in global.css, and the system bars are restyled to match.
+ * setting in global.css, and the system bars and the native window background
+ * are updated to match.
  */
 function apply(): void {
   const appearance = getAppearance(),
@@ -40,6 +59,7 @@ function apply(): void {
     root.dataset['appearance'] = appearance;
   }
 
+  publishThemeColor();
   void setSystemBarsScheme(getColorScheme());
 }
 

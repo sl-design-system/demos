@@ -67,7 +67,7 @@ The app uses the Popover API, `@starting-style`, CSS nesting and the theme's sty
 - **Android back button:** closes an open dialog or popover first, then goes back to the parent screen, then to the Components tab, then leaves the app.
 - **Appearance:** Settings has Match system / Light / Dark. The choice is stored in `localStorage` and also restyles the status bar (and the Android navigation bar) through Capacitor's built-in `SystemBars` API.
 - **Safe areas:** content stays clear of notches, the Dynamic Island and the home indicator. On Android, Capacitor injects `--safe-area-inset-*` variables because older WebViews report wrong `env()` values; `src/styles/global.css` turns either source into `--safe-top/right/bottom/left`.
-- **Keyboard:** on native platforms the tab bar hides while the on-screen keyboard is open. On iOS the WKWebView's own scrolling is disabled (`ios.scrollEnabled: false`), so focusing a field scrolls `<main>` instead of moving the whole app.
+- **Keyboard:** on native platforms the tab bar hides while the on-screen keyboard is open. On iOS the WKWebView's own scrolling is disabled (`ios.scrollEnabled: false`), so focusing a field scrolls `<main>` instead of moving the whole app. While the keyboard is open, the area around its rounded corners shows the page background: the page publishes it as `<meta name="theme-color">` and `ios/App/App/AppViewController.swift` copies it to the native window.
 - **Native plugins:** all plugin calls go through `src/native/native.ts`, which does nothing in a regular browser, so `yarn dev` keeps working.
 
 ## Component demos
