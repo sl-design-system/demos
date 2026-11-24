@@ -1,6 +1,7 @@
 import { html, type TemplateResult } from 'lit';
 import { html as staticHtml, unsafeStatic } from 'lit/static-html.js';
 import { findCatalogItem } from '../catalog.js';
+import { findShowcaseScreen } from '../showcase/screens.js';
 
 export type TabId = 'components' | 'showcase' | 'settings';
 
@@ -79,6 +80,22 @@ export function resolveScreen(path: string): Screen | undefined {
       tab: 'showcase',
       title: 'Showcase',
       content: html`<page-showcase></page-showcase>`,
+    };
+  }
+
+  if (section === 'showcase' && slug) {
+    const screen = findShowcaseScreen(slug);
+    if (!screen) {
+      return undefined;
+    }
+
+    // Safe: the tag name is built from a slug that exists in the registry.
+    const tag = unsafeStatic(`showcase-${screen.slug}`);
+    return {
+      tab: 'showcase',
+      title: screen.name,
+      parent: '/showcase',
+      content: staticHtml`<${tag}></${tag}>`,
     };
   }
 

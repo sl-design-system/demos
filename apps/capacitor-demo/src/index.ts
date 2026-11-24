@@ -10,9 +10,11 @@ import './styles/global.css';
 import { App } from './app/app.js';
 import { initAppearance } from './app/appearance.js';
 import { registerAppIcons } from './app/icons.js';
+import { initUserGroup } from './app/user-group.js';
 
 setup();
 registerAppIcons();
 initAppearance();
+initUserGroup();
 
 customElements.define('demo-app', App);

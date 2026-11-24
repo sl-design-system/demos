@@ -22,6 +22,7 @@ import { ComponentsPage } from '../pages/components/components-page.js';
 import { SettingsPage } from '../pages/settings/settings-page.js';
 import { ShowcasePage } from '../pages/showcase/showcase-page.js';
 import { demoElements } from '../catalog.js';
+import { showcaseElements } from '../showcase/screens.js';
 import { closeTopmostOverlay } from './overlays.js';
 import { Router } from './router.js';
 import {
@@ -43,6 +44,7 @@ import styles from './app.css' with { type: 'css' };
 export class App extends ScopedElementsMixin(LitElement) {
   static override scopedElements: ScopedElementsMap = {
     ...demoElements(),
+    ...showcaseElements(),
     'demo-tab-bar': TabBar,
     'page-components': ComponentsPage,
     'page-settings': SettingsPage,

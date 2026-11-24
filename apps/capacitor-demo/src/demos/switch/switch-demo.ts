@@ -2,23 +2,20 @@ import type { ScopedElementsMap } from '@open-wc/scoped-elements/lit-element.js'
 import { Switch } from '@sl-design-system/switch';
 import { html, type TemplateResult } from 'lit';
 import { DemoPage, demoSection } from '../demo-page.js';
-import styles from './switch-demo.css' with { type: 'css' };
 
 export class SwitchDemo extends DemoPage {
   static override scopedElements: ScopedElementsMap = {
     'sl-switch': Switch,
   };
 
-  static override styles = [DemoPage.styles, styles];
-
   override render(): TemplateResult {
     return html`
       ${demoSection(
         'Settings list',
         html`
-          <sl-switch reverse checked>Notifications</sl-switch>
-          <sl-switch reverse>Sounds</sl-switch>
-          <sl-switch reverse checked>
+          <sl-switch checked>Notifications</sl-switch>
+          <sl-switch>Sounds</sl-switch>
+          <sl-switch checked>
             Show grades
             <span slot="description"
               >Grades appear as soon as they are published.</span
@@ -26,8 +23,14 @@ export class SwitchDemo extends DemoPage {
           </sl-switch>
         `,
         {
-          hint: 'With reverse, the label comes first and the switch sits at the end of the row, as in iOS and Android settings.',
+          hint: 'The label comes first and the switch sits at the end of the row, as in iOS and Android settings.',
         },
+      )}
+      ${demoSection(
+        'Reversed',
+        html`<sl-switch reverse checked
+          >Switch first, then the label</sl-switch
+        >`,
       )}
       ${demoSection(
         'Sizes',

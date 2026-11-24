@@ -1,0 +1,57 @@
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-size-150);
+}
+
+/* SLDS toggle groups don't wrap; three chips overflow a 375px-wide phone. */
+sl-toggle-group {
+  flex-wrap: wrap;
+}
+
+.count {
+  color: var(--sl-color-foreground-subtle);
+  font-size: var(--sl-text-sm-fontSize);
+  margin: 0;
+  padding-inline: var(--sl-size-100);
+}
+
+.media {
+  aspect-ratio: 3 / 1;
+  inline-size: 100%;
+}
+
+.blue {
+  background: var(--sl-color-background-accent-blue-bold);
+}
+
+.green {
+  background: var(--sl-color-background-accent-green-bold);
+}
+
+.orange {
+  background: var(--sl-color-background-accent-orange-bold);
+}
+
+.purple {
+  background: var(--sl-color-background-accent-purple-bold);
+}
+
+.teal {
+  background: var(--sl-color-background-accent-teal-bold);
+}
+
+h3 {
+  margin: 0;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-size-100);
+}
+
+.progress {
+  color: var(--sl-color-foreground-subtle);
+  margin: 0;
+}
