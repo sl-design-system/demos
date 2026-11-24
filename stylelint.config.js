@@ -6,6 +6,9 @@ export default {
     '**/node_modules/**',
     '**/.wireit/**',
     '**/*.scss.js',
+    // Native Capacitor projects contain copies of the built web app
+    'apps/capacitor-demo/android/**',
+    'apps/capacitor-demo/ios/**',
   ],
   rules: {
     'color-named': 'never',

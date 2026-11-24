@@ -4,10 +4,18 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "android": "yarn build && cap run android",
+    "android:live": "cap run android --live-reload --host localhost --port 8010 --forwardPorts 8010:8010",
     "build": "wireit",
+    "cap:sync": "yarn build && cap sync",
     "dev": "wireit",
+    "dev:host": "wireit",
+    "ios": "yarn build && cap run ios",
+    "ios:live": "cap run ios --live-reload --port 8010",
     "lint": "wireit",
     "lint:fix": "wireit",
+    "open:android": "cap open android",
+    "open:ios": "cap open ios",
     "preview": "wireit",
     "typecheck": "wireit"
   },
@@ -30,6 +38,10 @@
     },
     "dev": {
       "command": "vite",
+      "service": true
+    },
+    "dev:host": {
+      "command": "vite --host",
       "service": true
     },
     "lint": {
@@ -61,11 +73,19 @@
     }
   },
   "dependencies": {
+    "@capacitor/android": "^8.6.2",
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/core": "^8.6.2",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/ios": "^8.6.2",
+    "@capacitor/keyboard": "^8.0.6",
+    "@capacitor/status-bar": "^8.0.4",
     "@open-wc/scoped-elements": "^3.0.10",
     "@webcomponents/scoped-custom-element-registry": "^0.0.11",
     "lit": "^3.3.3"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.6.2",
     "@sl-design-system/rolldown-plugin-css-sheet": "^0.0.2",
     "typescript": "^5.8.3",
     "vite": "^8.3.8",
