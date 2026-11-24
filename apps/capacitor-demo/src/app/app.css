@@ -49,6 +49,13 @@ main {
   padding-inline: var(--gutter-start) var(--gutter-end);
 }
 
+main:focus-visible {
+  --ring-width: var(--sl-size-outlineWidth-default);
+
+  outline: var(--ring-width) solid var(--sl-color-border-focused);
+  outline-offset: calc(-1 * var(--ring-width));
+}
+
 main > * {
   margin-inline: auto;
   max-inline-size: 40rem;

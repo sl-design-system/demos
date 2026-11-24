@@ -26,6 +26,24 @@ export async function setSystemBarsScheme(
   });
 }
 
+/**
+ * iOS zooms the page when an input with a font size under 16px gets focus,
+ * and SLDS inputs use 14px for the default user group. Adding
+ * `maximum-scale=1` stops that, but also disables pinch-zoom, which WCAG
+ * 1.4.4 asks for on the web. So it is only applied inside the native iOS app,
+ * where text scales through the reading level setting instead.
+ */
+export function preventInputZoomOnIOS(): void {
+  const viewport = document.querySelector<HTMLMetaElement>(
+    'meta[name="viewport"]',
+  );
+  if (platform !== 'ios' || !viewport) {
+    return;
+  }
+
+  viewport.content = `${viewport.content}, maximum-scale=1.0`;
+}
+
 /** A light tick, used when switching tabs. */
 export function selectionHaptic(): void {
   if (isNative) {

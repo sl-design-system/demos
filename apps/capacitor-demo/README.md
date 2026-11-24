@@ -88,18 +88,7 @@ To add a screen, create it and add an entry to `src/showcase/screens.ts`; it is 
 
 ## Mobile findings
 
-Issues in SLDS itself that this demo surfaced, mostly on iOS (iPhone simulator, iOS 27.2). Where the app works around one, the item says so.
-
-1. **Inputs zoom the page on iOS.** For the default (adult) user group, text inputs use a 14px font, also at size `lg`. iOS zooms in whenever an input under 16px gets focus. The younger user groups use 16–20px and are not affected. The app sets `maximum-scale=1` in the viewport meta tag to prevent it; a fix in SLDS would be a 16px minimum font size for inputs on touch devices.
-2. **Hover styles stick after a tap.** On iOS a button keeps its hover background after it is tapped (and an element that appears under the finger after navigation shows as hovered). Hover styles should be wrapped in `@media (hover: hover)`.
-3. **Dialog bottom sheet ignores the home indicator.** On small screens `sl-dialog` becomes a bottom sheet, but it does not add `env(safe-area-inset-bottom)` padding, so the bottom button sits on the home indicator. The close button also sits flush against the right edge.
-4. **Toggle button icons need `slot="default"`.** Icon-only toggle buttons only detect their icon in a slot literally named `default`; an icon in the unnamed slot logs an error and shows error styling. They also require a different icon in the `pressed` slot.
-5. **Toggle groups don't wrap.** Three text chips in an `sl-toggle-group` overflow a 375px-wide screen; the courses screen adds `flex-wrap: wrap` to the host.
-6. **Form field error announcements throw inside shadow DOM.** `sl-form-field` reads `event.target` inside a `setTimeout` when announcing a validation error. By then the event has been retargeted to the outermost shadow host (here `<demo-app>`), which has no `formControlElement`, so every invalid submit logs `Cannot read properties of undefined (reading 'getAttribute')` and the screen-reader announcement is lost.
-7. **`sl-form` reports valid before its controls register.** Controls register a frame after they connect; until then `controls` is empty and `reportValidity()` returns `true`. The assignment screen checks `controls.length` first.
-8. **Form values are strings.** `form.value` returns the date field as an ISO string (`2026-11-27`) and the number field as a string, not a `Date` or `number`.
-9. **Select-only date fields show iOS selection handles.** Tapping a `select-only` date field opens the calendar without a keyboard, but iOS selects part of the read-only input and shows text selection handles.
-10. **Missing pieces for mobile apps.** There is no bottom navigation component (the tab bar here is custom), and the Sanoma Learning theme has no grid or settings icon (the app registers simple ones).
+Running SLDS in this app surfaced a number of mobile issues in the components themselves: touch targets below 44 pt, inputs that make iOS zoom, sticky hover styles, a dialog sheet that ignores the home indicator, a form bug inside shadow DOM, and more. They are written up as issue drafts, with how they were tested and what passed, in [MOBILE-FINDINGS.md](MOBILE-FINDINGS.md).
 
 ## Styles
 

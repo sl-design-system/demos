@@ -134,7 +134,10 @@ export class App extends ScopedElementsMixin(LitElement) {
         }
         <h1>${screen.title}</h1>
       </header>
-      <main id="main" @click=${this.#onLinkClick}>${screen.content}</main>
+      <!-- tabindex: keyboard users must be able to scroll pages without focusable content. -->
+      <main id="main" tabindex="0" @click=${this.#onLinkClick}>
+        ${screen.content}
+      </main>
       <demo-tab-bar
         .active=${screen.tab}
         @tab-select=${this.#onTabSelect}
