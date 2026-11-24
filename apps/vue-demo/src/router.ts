@@ -112,6 +112,10 @@ export const router = createRouter({
       component: () => import('./components/sl-card/sl-card.vue'),
     },
     {
+      path: '/sl-panel',
+      component: () => import('./components/sl-panel/sl-panel.vue'),
+    },
+    {
       path: '/sl-popover',
       component: () => import('./components/sl-popover/sl-popover.vue'),
     },

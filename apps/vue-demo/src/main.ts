@@ -15,6 +15,7 @@ import '@sl-design-system/checkbox/register.js';
 import '@sl-design-system/dialog/register.js';
 import '@sl-design-system/menu/register.js';
 import '@sl-design-system/calendar/register.js';
+import '@sl-design-system/panel/register.js';
 import '@sl-design-system/popover/register.js';
 import '@sl-design-system/switch/register.js';
 import '@sl-design-system/toggle-button/register.js';

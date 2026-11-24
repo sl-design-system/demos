@@ -67,6 +67,7 @@ const navItems = [
   { path: '/sl-text-field', label: 'sl-text-field' },
   { path: '/sl-tab-group', label: 'sl-tab-group' },
   { path: '/sl-paginator', label: 'sl-paginator' },
+  { path: '/sl-panel', label: 'sl-panel' },
   { path: '/sl-select', label: 'sl-select' },
   { path: '/sl-switch', label: 'sl-switch' },
   { path: '/sl-card', label: 'sl-card' },
