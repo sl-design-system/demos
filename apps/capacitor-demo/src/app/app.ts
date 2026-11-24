@@ -16,14 +16,21 @@ import {
   exitApp,
   onBackButton,
   onKeyboardVisibilityChange,
+  platform,
   selectionHaptic,
 } from '../native/native.js';
+import {
+  hasNativeTabBar,
+  onNativeTabSelect,
+  renderNativeTabBar,
+} from '../native/tab-bar.js';
 import { ComponentsPage } from '../pages/components/components-page.js';
 import { SettingsPage } from '../pages/settings/settings-page.js';
 import { ShowcasePage } from '../pages/showcase/showcase-page.js';
 import { demoElements } from '../catalog.js';
 import { showcaseElements } from '../showcase/screens.js';
-import { closeTopmostOverlay } from './overlays.js';
+import { APPEARANCE_CHANGE_EVENT } from './appearance.js';
+import { closeTopmostOverlay, onModalDialogChange } from './overlays.js';
 import { Router } from './router.js';
 import {
   defaultTab,
@@ -35,9 +42,20 @@ import {
 import { TabBar, type TabSelectEvent } from './tab-bar/tab-bar.js';
 import styles from './app.css' with { type: 'css' };
 
+/** The focused element, looking inside shadow roots. */
+function deepActiveElement(): Element | null {
+  let active = document.activeElement;
+  while (active?.shadowRoot?.activeElement) {
+    active = active.shadowRoot.activeElement;
+  }
+  return active;
+}
+
 /**
  * The app shell: a header with the screen title (and a back button on child
- * screens), the current page, and a bottom tab bar. On Android the hardware
+ * screens), the current page, and a bottom tab bar. In the native apps the tab
+ * bar is native (Liquid Glass on iOS 26+); in a browser it is the web
+ * `<demo-tab-bar>`. On Android the hardware
  * back button closes overlays first, then walks back up to the default tab,
  * then leaves the app.
  */
@@ -65,6 +83,9 @@ export class App extends ScopedElementsMixin(LitElement) {
 
   #renderedPath?: string;
 
+  #keyboardOpen = false;
+  #modalOpen = false;
+
   @query('main') private main?: HTMLElement;
 
   get #screen(): Screen {
@@ -78,9 +99,25 @@ export class App extends ScopedElementsMixin(LitElement) {
   override connectedCallback(): void {
     super.connectedCallback();
     onBackButton(this.#onBackButton);
-    onKeyboardVisibilityChange((visible) =>
-      this.toggleAttribute('keyboard-open', visible),
-    );
+    onKeyboardVisibilityChange((visible, height) => {
+      this.toggleAttribute('keyboard-open', visible);
+      this.#keyboardOpen = visible;
+      this.#syncNativeTabBar();
+      this.#makeRoomForKeyboard(height);
+    });
+
+    if (hasNativeTabBar) {
+      this.toggleAttribute('native-tab-bar', true);
+      // The tab bar tint follows the light/dark theme.
+      window.addEventListener(APPEARANCE_CHANGE_EVENT, () =>
+        this.#syncNativeTabBar(),
+      );
+      onNativeTabSelect((id) => this.#selectTab(id));
+      onModalDialogChange((open) => {
+        this.#modalOpen = open;
+        this.#syncNativeTabBar();
+      });
+    }
   }
 
   override willUpdate(changes: PropertyValues<this>): void {
@@ -97,6 +134,7 @@ export class App extends ScopedElementsMixin(LitElement) {
 
   override updated(changes: PropertyValues<this>): void {
     super.updated(changes);
+    this.#syncNativeTabBar();
 
     const path = this.#router.path;
     if (path !== this.#renderedPath) {
@@ -138,11 +176,48 @@ export class App extends ScopedElementsMixin(LitElement) {
       <main id="main" tabindex="0" @click=${this.#onLinkClick}>
         ${screen.content}
       </main>
-      <demo-tab-bar
-        .active=${screen.tab}
-        @tab-select=${this.#onTabSelect}
-      ></demo-tab-bar>
+      ${
+        hasNativeTabBar
+          ? nothing
+          : html`
+              <demo-tab-bar
+                .active=${screen.tab}
+                @tab-select=${this.#onTabSelect}
+              ></demo-tab-bar>
+            `
+      }
     `;
+  }
+
+  /**
+   * Shows the current tab in the native tab bar. The bar is drawn above the
+   * web view, so it is hidden while a modal dialog is open (it would cover
+   * the dialog) and, on Android, while the keyboard is open (the window
+   * resizes, which would push the bar up above the keyboard).
+   */
+  #syncNativeTabBar(): void {
+    const hidden =
+      this.#modalOpen || (this.#keyboardOpen && platform === 'android');
+    void renderNativeTabBar(this.#screen.tab, hidden);
+  }
+
+  /**
+   * On iOS the WebView keeps its full height while the keyboard is open (see
+   * `Keyboard.resize` in capacitor.config.ts). Shrink the shell by the keyboard
+   * height so `<main>` ends at the top of the keyboard, then scroll the focused
+   * field into view. Android resizes the window itself, so this is iOS only.
+   */
+  #makeRoomForKeyboard(height: number): void {
+    if (platform !== 'ios') {
+      return;
+    }
+
+    this.style.setProperty('--keyboard-height', `${height}px`);
+    if (height > 0) {
+      requestAnimationFrame(() =>
+        deepActiveElement()?.scrollIntoView({ block: 'nearest' }),
+      );
+    }
   }
 
   /** Go to the parent of the current screen. Returns whether there was one. */

@@ -1926,6 +1926,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@capgo/capacitor-native-navigation@npm:^8.16.4":
+  version: 8.16.4
+  resolution: "@capgo/capacitor-native-navigation@npm:8.16.4"
+  peerDependencies:
+    "@capacitor/core": ">=8.0.0"
+  checksum: 10c0/434e2d4fd04ddc07cb88c14fba75bfa20cc7632a1943da7f73d337224806467d894e7d13344c2e3f8fd55551c275729ba680fc04c5ea433bf67c2bc4d03228e7
+  languageName: node
+  linkType: hard
+
 "@csstools/css-parser-algorithms@npm:^3.0.5":
   version: 3.0.5
   resolution: "@csstools/css-parser-algorithms@npm:3.0.5"
@@ -7214,6 +7223,7 @@ __metadata:
     "@capacitor/haptics": "npm:^8.0.2"
     "@capacitor/ios": "npm:^8.6.2"
     "@capacitor/keyboard": "npm:^8.0.6"
+    "@capgo/capacitor-native-navigation": "npm:^8.16.4"
     "@open-wc/scoped-elements": "npm:^3.0.10"
     "@sl-design-system/rolldown-plugin-css-sheet": "npm:^0.0.2"
     "@webcomponents/scoped-custom-element-registry": "npm:^0.0.11"

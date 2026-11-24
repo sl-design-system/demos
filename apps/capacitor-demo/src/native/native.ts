@@ -64,16 +64,21 @@ export function exitApp(): void {
   }
 }
 
-/** Calls `handler` with `true` just before the on-screen keyboard appears and `false` before it hides. */
+/**
+ * Calls `handler` just before the on-screen keyboard appears (with its height
+ * in CSS pixels) and before it hides (with `0`).
+ */
 export function onKeyboardVisibilityChange(
-  handler: (visible: boolean) => void,
+  handler: (visible: boolean, height: number) => void,
 ): void {
   if (!isNative) {
     return;
   }
 
-  void Keyboard.addListener('keyboardWillShow', () => handler(true));
-  void Keyboard.addListener('keyboardWillHide', () => handler(false));
+  void Keyboard.addListener('keyboardWillShow', ({ keyboardHeight }) =>
+    handler(true, keyboardHeight),
+  );
+  void Keyboard.addListener('keyboardWillHide', () => handler(false, 0));
 }
 
 /** The native app's version and build number, e.g. `1.0 (1)`; `undefined` in a browser. */

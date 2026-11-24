@@ -156,7 +156,7 @@ An icon-only toggle button only finds its icon in a slot literally named `defaul
 
 **Severity:** feature request. **Components:** new component; sanoma-learning theme.
 
-Mobile apps almost always need a bottom tab bar. SLDS has no component for it, so this app builds its own from links and tokens (`src/app/tab-bar/`). The Sanoma Learning icon set also has no grid or settings icon, so the app registers two simple ones.
+Mobile apps almost always need a bottom tab bar. SLDS has no component for it, so in the native apps this demo uses a native tab bar ([`@capgo/capacitor-native-navigation`](https://github.com/Cap-go/capacitor-native-navigation), Liquid Glass on iOS 26+), and in a browser a tab bar built from links and tokens (`src/app/tab-bar/`). The Sanoma Learning icon set also has no grid or settings icon, so the web tab bar registers two simple ones.
 
 ---
 

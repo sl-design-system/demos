@@ -1,4 +1,5 @@
 import type { CapacitorConfig } from '@capacitor/cli';
+import { KeyboardResize } from '@capacitor/keyboard';
 
 const config: CapacitorConfig = {
   appId: 'com.sanomalearning.slds.demo',
@@ -17,6 +18,13 @@ const config: CapacitorConfig = {
     scrollEnabled: false,
   },
   plugins: {
+    Keyboard: {
+      // The native navigation plugin hosts the WebView in its own tab
+      // container and re-lays it out on keyboard changes, which undoes the
+      // keyboard plugin's 'native' resize. So the WebView keeps its size and
+      // the page makes room itself (--keyboard-height, see src/app/app.ts).
+      resize: KeyboardResize.None,
+    },
     SystemBars: {
       // index.html uses viewport-fit=cover; telling Android up front avoids a
       // layout jump while the WebView starts. The default insetsHandling

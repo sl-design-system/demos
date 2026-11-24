@@ -6,6 +6,9 @@ export type ColorScheme = 'light' | 'dark';
 
 const STORAGE_KEY = 'slds-demo:appearance';
 
+/** Dispatched on `window` after the (effective) appearance has been applied. */
+export const APPEARANCE_CHANGE_EVENT = 'slds-demo:appearance-change';
+
 const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
 function isAppearance(value: string | null): value is Appearance {
@@ -61,6 +64,7 @@ function apply(): void {
 
   publishThemeColor();
   void setSystemBarsScheme(getColorScheme());
+  window.dispatchEvent(new Event(APPEARANCE_CHANGE_EVENT));
 }
 
 export function setAppearance(appearance: Appearance): void {

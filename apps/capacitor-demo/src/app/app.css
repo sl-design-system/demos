@@ -5,7 +5,8 @@
   --gutter-end: calc(var(--safe-right) + var(--gutter));
   --header-top: calc(var(--safe-top) + var(--sl-size-050));
 
-  block-size: 100dvh;
+  /* --keyboard-height: set on iOS while the on-screen keyboard is open. */
+  block-size: calc(100dvh - var(--keyboard-height, 0px));
   display: flex;
   flex-direction: column;
 }
@@ -59,6 +60,19 @@ main:focus-visible {
 main > * {
   margin-inline: auto;
   max-inline-size: 40rem;
+}
+
+/*
+ * With the native tab bar, content scrolls underneath the glass. Leave room
+ * at the end so the last item can scroll clear of the bar. The plugin reports
+ * the bar height (including the home indicator) as
+ * --cap-native-system-tabbar-height.
+ */
+:host([native-tab-bar]) main {
+  --tabbar-height: var(--cap-native-system-tabbar-height, 0px);
+  --tab-bar-space: max(var(--safe-bottom), var(--tabbar-height));
+
+  padding-block-end: calc(var(--tab-bar-space) + var(--gutter));
 }
 
 /* Hide the tab bar while the on-screen keyboard is open (native only). */

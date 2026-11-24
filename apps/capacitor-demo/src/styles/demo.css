@@ -49,3 +49,11 @@
   font-size: var(--sl-text-sm-fontSize);
   margin: 0;
 }
+
+/*
+ * Keep a dialog's bottom sheet above the on-screen keyboard on iOS, where the
+ * WebView doesn't resize (--keyboard-height is set by the app shell).
+ */
+sl-dialog::part(dialog) {
+  inset-block-end: var(--keyboard-height, 0);
+}

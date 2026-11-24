@@ -23,6 +23,42 @@ function findOpenOverlays(
 }
 
 /**
+ * Calls `handler` with `true` when a modal dialog opens anywhere in the app
+ * (including inside shadow roots and `MessageDialog`) and with `false` once
+ * the last open one has closed.
+ *
+ * Modal dialogs don't fire an event when they open, so this wraps
+ * `HTMLDialogElement.prototype.showModal`. It is used to hide the native tab
+ * bar, which is drawn above the web view and would cover a dialog.
+ */
+export function onModalDialogChange(handler: (open: boolean) => void): void {
+  const showModal = HTMLDialogElement.prototype.showModal;
+  let openCount = 0;
+
+  HTMLDialogElement.prototype.showModal = function (
+    this: HTMLDialogElement,
+  ): void {
+    showModal.call(this);
+
+    openCount += 1;
+    if (openCount === 1) {
+      handler(true);
+    }
+
+    this.addEventListener(
+      'close',
+      () => {
+        openCount = Math.max(0, openCount - 1);
+        if (openCount === 0) {
+          handler(false);
+        }
+      },
+      { once: true },
+    );
+  };
+}
+
+/**
  * Closes the overlay that was opened last (the deepest open dialog or popover),
  * the way the Escape key would. Returns whether an overlay was closed.
  *
