@@ -1,43 +1,65 @@
 :host {
-  /* Page gutters that also keep content clear of notches and home indicators. */
+  /* Page gutters that also keep content clear of notches and rounded corners. */
   --gutter: var(--sl-size-200);
-  --gutter-start: calc(env(safe-area-inset-left) + var(--gutter));
-  --gutter-end: calc(env(safe-area-inset-right) + var(--gutter));
-  --header-top: calc(env(safe-area-inset-top) + var(--sl-size-150));
-  --main-bottom: calc(env(safe-area-inset-bottom) + var(--gutter));
+  --gutter-start: calc(var(--safe-left) + var(--gutter));
+  --gutter-end: calc(var(--safe-right) + var(--gutter));
+  --header-top: calc(var(--safe-top) + var(--sl-size-050));
 
+  block-size: 100dvh;
   display: flex;
   flex-direction: column;
-  min-block-size: 100dvh;
 }
 
 .app-header {
+  align-items: center;
   background: var(--sl-elevation-surface-raised-default);
   border-block-end: 1px solid var(--sl-color-border-plain);
-  inset-block-start: 0;
-  padding-block: var(--header-top) var(--sl-size-150);
+  box-sizing: border-box;
+  display: flex;
+  gap: var(--sl-size-050);
+  min-block-size: calc(var(--safe-top) + var(--sl-size-700));
+  padding-block: var(--header-top) var(--sl-size-050);
   padding-inline: var(--gutter-start) var(--gutter-end);
-  position: sticky;
-  z-index: 1;
+}
 
-  h1 {
-    font-family: var(--sl-heading-fontFamily);
-    font-size: var(--sl-heading-md-fontSize);
-    font-weight: var(--sl-typography-heading-md-fontWeight);
-    line-height: var(--sl-heading-md-lineHeight);
-    margin: 0;
-  }
+.app-header h1 {
+  font-family: var(--sl-heading-fontFamily);
+  font-size: var(--sl-heading-sm-fontSize);
+  font-weight: var(--sl-typography-heading-sm-fontWeight);
+  line-height: var(--sl-heading-sm-lineHeight);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Pull the back button into the gutter so its icon lines up with the content. */
+.back {
+  margin-inline-start: calc(-1 * var(--sl-size-100));
 }
 
 main {
-  display: flex;
   flex: 1;
-  flex-direction: column;
-  gap: var(--gutter);
-  padding-block: var(--gutter) var(--main-bottom);
+
+  /* Let main shrink below its content height so it scrolls instead of pushing the tab bar off-screen. */
+  min-block-size: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-block: var(--gutter);
   padding-inline: var(--gutter-start) var(--gutter-end);
 }
 
-sl-button {
-  align-self: stretch;
+main > * {
+  margin-inline: auto;
+  max-inline-size: 40rem;
+}
+
+/* Hide the tab bar while the on-screen keyboard is open (native only). */
+:host([keyboard-open]) demo-tab-bar {
+  display: none;
+}
+
+/* Without the tab bar, main keeps the content clear of the home indicator itself. */
+:host([keyboard-open]) main {
+  padding-block-end: calc(var(--safe-bottom) + var(--gutter));
 }

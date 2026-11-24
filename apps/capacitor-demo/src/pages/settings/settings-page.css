@@ -1,0 +1,7 @@
+.panel {
+  background: var(--sl-elevation-surface-raised-default);
+  border: 1px solid var(--sl-color-border-plain);
+  border-radius: var(--sl-size-borderRadius-lg);
+  padding-block: var(--sl-size-150);
+  padding-inline: var(--sl-size-200);
+}

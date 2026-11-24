@@ -1926,15 +1926,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@capacitor/status-bar@npm:^8.0.4":
-  version: 8.0.4
-  resolution: "@capacitor/status-bar@npm:8.0.4"
-  peerDependencies:
-    "@capacitor/core": ">=8.0.0"
-  checksum: 10c0/f3c291c00e9898b5876df07d745d8931c107a4b40bee3db66c7b564b2e58fbacebcb4c5b95813f8b64f2acdd5eea413a7072025e49051b374878a85dae4f7d89
-  languageName: node
-  linkType: hard
-
 "@csstools/css-parser-algorithms@npm:^3.0.5":
   version: 3.0.5
   resolution: "@csstools/css-parser-algorithms@npm:3.0.5"
@@ -7223,7 +7214,6 @@ __metadata:
     "@capacitor/haptics": "npm:^8.0.2"
     "@capacitor/ios": "npm:^8.6.2"
     "@capacitor/keyboard": "npm:^8.0.6"
-    "@capacitor/status-bar": "npm:^8.0.4"
     "@open-wc/scoped-elements": "npm:^3.0.10"
     "@sl-design-system/rolldown-plugin-css-sheet": "npm:^0.0.2"
     "@webcomponents/scoped-custom-element-registry": "npm:^0.0.11"

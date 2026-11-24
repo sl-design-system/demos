@@ -11,6 +11,14 @@ const config: CapacitorConfig = {
     // half-broken UI.
     minWebViewVersion: 120,
   },
+  plugins: {
+    SystemBars: {
+      // index.html uses viewport-fit=cover; telling Android up front avoids a
+      // layout jump while the WebView starts. The default insetsHandling
+      // ('css') injects --safe-area-inset-* variables, used in global.css.
+      initialViewportFitValueHint: 'cover',
+    },
+  },
   experimental: {
     ios: {
       spm: {

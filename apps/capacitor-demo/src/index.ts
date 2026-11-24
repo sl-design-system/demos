@@ -8,7 +8,11 @@ import '@sl-design-system/sanoma-learning/global.css';
 import '@sl-design-system/sanoma-learning/typography.css';
 import './styles/global.css';
 import { App } from './app/app.js';
+import { initAppearance } from './app/appearance.js';
+import { registerAppIcons } from './app/icons.js';
 
 setup();
+registerAppIcons();
+initAppearance();
 
 customElements.define('demo-app', App);

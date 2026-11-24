@@ -4,14 +4,36 @@
  * regular CSS and injects it into the document.
  */
 
-/* The theme switches to its dark tokens via `@container style(--color-scheme: dark)`. */
 html {
+  /*
+   * Safe-area insets. On Android, Capacitor's SystemBars plugin injects the
+   * correct values as --safe-area-inset-* (older Android WebViews report wrong
+   * env() values); everywhere else env() is used.
+   */
+  --safe-top: var(--safe-area-inset-top, env(safe-area-inset-top));
+  --safe-right: var(--safe-area-inset-right, env(safe-area-inset-right));
+  --safe-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom));
+  --safe-left: var(--safe-area-inset-left, env(safe-area-inset-left));
+
+  /*
+   * The theme switches to its dark tokens via
+   * `@container style(--color-scheme: dark)`. The system setting applies
+   * unless the user picked Light or Dark in Settings (`data-appearance`).
+   */
   --color-scheme: light;
 
   block-size: 100%;
   color-scheme: light;
 
   @media (prefers-color-scheme: dark) {
+    &:not([data-appearance='light']) {
+      --color-scheme: dark;
+
+      color-scheme: dark;
+    }
+  }
+
+  &[data-appearance='dark'] {
     --color-scheme: dark;
 
     color-scheme: dark;
@@ -21,9 +43,5 @@ html {
 body {
   block-size: 100%;
   margin: 0;
-}
-
-demo-app {
-  display: block;
-  min-block-size: 100%;
+  overflow: hidden;
 }

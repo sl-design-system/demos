@@ -1,0 +1,44 @@
+:host {
+  background: var(--sl-elevation-surface-raised-default);
+  border-block-start: 1px solid var(--sl-color-border-plain);
+  display: block;
+  padding-block-end: var(--safe-bottom);
+  padding-inline: var(--safe-left) var(--safe-right);
+}
+
+nav {
+  display: flex;
+}
+
+a {
+  align-items: center;
+  color: var(--sl-color-foreground-subtle);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-size: var(--sl-caption-md-fontSize);
+  gap: var(--sl-size-025);
+  justify-content: center;
+  min-block-size: var(--sl-size-600);
+  padding-block: var(--sl-size-075);
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+}
+
+a[aria-current='page'] {
+  color: var(--sl-color-foreground-selected-bold);
+  font-weight: var(--sl-fontWeight-medium);
+}
+
+a:focus-visible {
+  --ring-width: var(--sl-size-outlineWidth-default);
+
+  border-radius: var(--sl-size-borderRadius-default);
+  outline: var(--ring-width) solid var(--sl-color-border-focused);
+  outline-offset: calc(-1 * var(--ring-width));
+}
+
+sl-icon {
+  --sl-icon-fill-default: currentcolor;
+  --sl-icon-size: var(--sl-size-300);
+}

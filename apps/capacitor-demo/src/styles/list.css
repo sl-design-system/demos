@@ -1,0 +1,69 @@
+/*
+ * Grouped list ("table view") styles shared by several pages. Pages add this
+ * sheet to their `static styles` next to their own sheet.
+ */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-size-075);
+}
+
+.group-title {
+  color: var(--sl-color-foreground-subtle);
+  font-size: var(--sl-text-sm-fontSize);
+  font-weight: var(--sl-fontWeight-medium);
+  line-height: var(--sl-text-sm-lineHeight);
+  margin: 0;
+  padding-inline: var(--sl-size-100);
+  text-transform: uppercase;
+}
+
+.list {
+  background: var(--sl-elevation-surface-raised-default);
+  border: 1px solid var(--sl-color-border-plain);
+  border-radius: var(--sl-size-borderRadius-lg);
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.list > li + li {
+  border-block-start: 1px solid var(--sl-color-border-plain);
+}
+
+.row {
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--sl-color-foreground-plain);
+  display: flex;
+  gap: var(--sl-size-100);
+  min-block-size: var(--sl-size-600);
+  padding-block: var(--sl-size-100);
+  padding-inline: var(--sl-size-200);
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+}
+
+a.row:active {
+  background: var(--sl-color-background-neutral-subtlest);
+}
+
+a.row:focus-visible {
+  --ring-width: var(--sl-size-outlineWidth-default);
+
+  outline: var(--ring-width) solid var(--sl-color-border-focused);
+  outline-offset: calc(-1 * var(--ring-width));
+}
+
+.row-label {
+  flex: 1;
+}
+
+.row-value {
+  color: var(--sl-color-foreground-subtle);
+}
+
+.row sl-icon {
+  color: var(--sl-color-foreground-subtlest);
+}

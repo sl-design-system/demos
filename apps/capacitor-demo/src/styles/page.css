@@ -1,0 +1,12 @@
+/* Layout shared by all pages: a vertical stack with page gutters. */
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-size-300);
+}
+
+.intro {
+  color: var(--sl-color-foreground-subtle);
+  margin: 0;
+  padding-inline: var(--sl-size-100);
+}
