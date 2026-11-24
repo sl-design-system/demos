@@ -1,0 +1,4 @@
+/* Settings rows: the reversed switches span the full width. */
+sl-switch[reverse] {
+  inline-size: 100%;
+}

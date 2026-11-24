@@ -18,10 +18,10 @@ import {
   onKeyboardVisibilityChange,
   selectionHaptic,
 } from '../native/native.js';
-import { ComponentDetailPage } from '../pages/component-detail/component-detail-page.js';
 import { ComponentsPage } from '../pages/components/components-page.js';
 import { SettingsPage } from '../pages/settings/settings-page.js';
 import { ShowcasePage } from '../pages/showcase/showcase-page.js';
+import { demoElements } from '../catalog.js';
 import { closeTopmostOverlay } from './overlays.js';
 import { Router } from './router.js';
 import {
@@ -42,8 +42,8 @@ import styles from './app.css' with { type: 'css' };
  */
 export class App extends ScopedElementsMixin(LitElement) {
   static override scopedElements: ScopedElementsMap = {
+    ...demoElements(),
     'demo-tab-bar': TabBar,
-    'page-component-detail': ComponentDetailPage,
     'page-components': ComponentsPage,
     'page-settings': SettingsPage,
     'page-showcase': ShowcasePage,

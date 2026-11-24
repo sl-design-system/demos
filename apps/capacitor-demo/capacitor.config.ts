@@ -11,6 +11,11 @@ const config: CapacitorConfig = {
     // half-broken UI.
     minWebViewVersion: 120,
   },
+  ios: {
+    // The app shell scrolls inside <main>; keep the WKWebView itself fixed so
+    // focusing a field or overscrolling never moves the header and tab bar.
+    scrollEnabled: false,
+  },
   plugins: {
     SystemBars: {
       // index.html uses viewport-fit=cover; telling Android up front avoids a

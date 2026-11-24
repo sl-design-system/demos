@@ -1,0 +1,7 @@
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-size-050);
+  margin: 0;
+  padding-inline-start: var(--sl-size-250);
+}

@@ -1,4 +1,5 @@
 import { html, type TemplateResult } from 'lit';
+import { html as staticHtml, unsafeStatic } from 'lit/static-html.js';
 import { findCatalogItem } from '../catalog.js';
 
 export type TabId = 'components' | 'showcase' | 'settings';
@@ -59,16 +60,18 @@ export function resolveScreen(path: string): Screen | undefined {
 
   if (section === 'components' && slug) {
     const item = findCatalogItem(slug);
-    return item
-      ? {
-          tab: 'components',
-          title: item.name,
-          parent: '/components',
-          content: html`<page-component-detail
-            .name=${item.name}
-          ></page-component-detail>`,
-        }
-      : undefined;
+    if (!item) {
+      return undefined;
+    }
+
+    // Safe: the tag name is built from a slug that exists in the catalog.
+    const tag = unsafeStatic(`demo-${item.slug}`);
+    return {
+      tab: 'components',
+      title: item.name,
+      parent: '/components',
+      content: staticHtml`<${tag}></${tag}>`,
+    };
   }
 
   if (section === 'showcase' && !slug) {
