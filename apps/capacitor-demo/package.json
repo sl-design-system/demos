@@ -1,0 +1,74 @@
+{
+  "name": "capacitor-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "wireit",
+    "dev": "wireit",
+    "lint": "wireit",
+    "lint:fix": "wireit",
+    "preview": "wireit",
+    "typecheck": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "command": "vite build",
+      "files": [
+        "index.html",
+        "public/**/*",
+        "src/**/*",
+        "tsconfig.json",
+        "vite.config.ts"
+      ],
+      "output": [
+        "dist/**"
+      ],
+      "dependencies": [
+        "typecheck"
+      ]
+    },
+    "dev": {
+      "command": "vite",
+      "service": true
+    },
+    "lint": {
+      "command": "eslint \"src/**/*.ts\"",
+      "files": [
+        "src/**/*.ts"
+      ]
+    },
+    "lint:fix": {
+      "command": "eslint \"src/**/*.ts\" --fix",
+      "files": [
+        "src/**/*.ts"
+      ]
+    },
+    "preview": {
+      "command": "vite preview",
+      "service": true,
+      "dependencies": [
+        "build"
+      ]
+    },
+    "typecheck": {
+      "command": "tsc --noEmit",
+      "files": [
+        "src/**/*",
+        "tsconfig.json"
+      ],
+      "output": []
+    }
+  },
+  "dependencies": {
+    "@open-wc/scoped-elements": "^3.0.10",
+    "@webcomponents/scoped-custom-element-registry": "^0.0.11",
+    "lit": "^3.3.3"
+  },
+  "devDependencies": {
+    "@sl-design-system/rolldown-plugin-css-sheet": "^0.0.2",
+    "typescript": "^5.8.3",
+    "vite": "^8.3.8",
+    "wireit": "^0.14.12"
+  }
+}

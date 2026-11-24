@@ -1,0 +1,29 @@
+/*
+ * Global (document-level) styles. Like the theme files, this file is imported
+ * in src/index.ts WITHOUT the `type: 'css'` attribute, so Vite handles it as
+ * regular CSS and injects it into the document.
+ */
+
+/* The theme switches to its dark tokens via `@container style(--color-scheme: dark)`. */
+html {
+  --color-scheme: light;
+
+  block-size: 100%;
+  color-scheme: light;
+
+  @media (prefers-color-scheme: dark) {
+    --color-scheme: dark;
+
+    color-scheme: dark;
+  }
+}
+
+body {
+  block-size: 100%;
+  margin: 0;
+}
+
+demo-app {
+  display: block;
+  min-block-size: 100%;
+}

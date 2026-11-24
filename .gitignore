@@ -34,6 +34,7 @@ yarn-error.log*
 dist
 custom-elements.json
 apps/**/*.d.ts
+!apps/capacitor-demo/src/vite-env.d.ts
 apps/**/*.d.ts.map
 apps/**/*.js
 apps/**/*.js.map

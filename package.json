@@ -22,6 +22,7 @@
     "build": {
       "dependencies": [
         "./apps/angular-demo:build",
+        "./apps/capacitor-demo:build",
         "./apps/lit-demo:build",
         "./apps/svelte-demo:build",
         "./apps/vue-demo:build"
@@ -37,6 +38,7 @@
     "lint": {
       "dependencies": [
         "./apps/angular-demo:lint",
+        "./apps/capacitor-demo:lint",
         "./apps/lit-demo:lint",
         "./apps/svelte-demo:lint",
         "./apps/vue-demo:lint"
@@ -45,6 +47,7 @@
     "lint:fix": {
       "dependencies": [
         "./apps/angular-demo:lint:fix",
+        "./apps/capacitor-demo:lint:fix",
         "./apps/lit-demo:lint:fix",
         "./apps/svelte-demo:lint:fix",
         "./apps/vue-demo:lint:fix"

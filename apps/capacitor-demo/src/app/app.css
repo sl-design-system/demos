@@ -1,0 +1,43 @@
+:host {
+  /* Page gutters that also keep content clear of notches and home indicators. */
+  --gutter: var(--sl-size-200);
+  --gutter-start: calc(env(safe-area-inset-left) + var(--gutter));
+  --gutter-end: calc(env(safe-area-inset-right) + var(--gutter));
+  --header-top: calc(env(safe-area-inset-top) + var(--sl-size-150));
+  --main-bottom: calc(env(safe-area-inset-bottom) + var(--gutter));
+
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100dvh;
+}
+
+.app-header {
+  background: var(--sl-elevation-surface-raised-default);
+  border-block-end: 1px solid var(--sl-color-border-plain);
+  inset-block-start: 0;
+  padding-block: var(--header-top) var(--sl-size-150);
+  padding-inline: var(--gutter-start) var(--gutter-end);
+  position: sticky;
+  z-index: 1;
+
+  h1 {
+    font-family: var(--sl-heading-fontFamily);
+    font-size: var(--sl-heading-md-fontSize);
+    font-weight: var(--sl-typography-heading-md-fontWeight);
+    line-height: var(--sl-heading-md-lineHeight);
+    margin: 0;
+  }
+}
+
+main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gutter);
+  padding-block: var(--gutter) var(--main-bottom);
+  padding-inline: var(--gutter-start) var(--gutter-end);
+}
+
+sl-button {
+  align-self: stretch;
+}
