@@ -38,8 +38,9 @@ export interface Screen {
   /** The screen "back" returns to; undefined for a tab's root screen. */
   parent?: string;
   /**
-   * Whether the page is made of inset grouped lists (styles/list.css). The
-   * shell then gives it the tinted ground the list cards sit on.
+   * Whether the page is made of inset grouped cards (styles/list.css and the
+   * demo sections in styles/demo.css). The shell then gives it the tinted
+   * ground the cards sit on.
    */
   grouped?: boolean;
   /**
@@ -77,6 +78,7 @@ export function resolveScreen(path: string): Screen | undefined {
       tab: 'components',
       title: item.name,
       parent: '/components',
+      grouped: true,
       content: staticHtml`<${tag}></${tag}>`,
     };
   }

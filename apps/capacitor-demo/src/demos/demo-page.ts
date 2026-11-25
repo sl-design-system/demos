@@ -19,7 +19,7 @@ export class DemoPage extends ScopedElementsMixin(LitElement) {
 }
 
 export interface DemoSectionOptions {
-  /** A sentence about what to look for, shown under the title. */
+  /** A sentence about what to look for, shown under the example like an iOS section footer. */
   hint?: string;
   /** `wrap` lays out small items (buttons, tags) in rows instead of a column. */
   layout?: 'stack' | 'wrap';
@@ -34,8 +34,8 @@ export function demoSection(
   return html`
     <section class="demo">
       <h2 class="demo-title">${title}</h2>
-      ${hint ? html`<p class="demo-hint">${hint}</p>` : nothing}
       <div class="demo-body ${layout === 'wrap' ? 'wrap' : ''}">${content}</div>
+      ${hint ? html`<p class="demo-hint">${hint}</p>` : nothing}
     </section>
   `;
 }

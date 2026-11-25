@@ -6,13 +6,6 @@
  * tinted ground from the app shell (`grouped` on its Screen, see routes.ts).
  */
 :host {
-  /*
-   * iOS 26 rounds grouped lists more than SLDS's largest radius (xl, 12px),
-   * so this uses the size scale instead.
-   */
-  --list-radius: var(--sl-size-250);
-  --list-inset: var(--sl-size-200);
-
   /* iOS rows are 44pt at minimum and 52pt by default. */
   --row-height: calc(var(--sl-size-600) + var(--sl-size-050));
 }
@@ -26,15 +19,24 @@
 /*
  * Section header, styled like iOS 27's grouped-list headers: body size,
  * semibold, secondary colour and written as-is (not uppercase). SLDS has no
- * 600 weight token, but the theme font ships a SemiBold face.
+ * 600 weight token, but the theme font ships a SemiBold face. It is a flex
+ * row so a count badge after the title lines up with the text.
  */
 .group-title {
+  align-items: center;
   color: var(--sl-color-foreground-subtle);
+  display: flex;
   font-size: var(--sl-text-md-fontSize);
   font-weight: 600;
+  gap: var(--sl-size-100);
   line-height: var(--sl-text-md-lineHeight);
   margin: 0;
-  padding-inline: var(--list-inset);
+  padding-inline: var(--card-inset);
+}
+
+/* The count badge would inherit the title's semibold weight. */
+.group-title sl-badge {
+  font-weight: var(--sl-text-new-typeset-fontWeight-regular);
 }
 
 /* Explanation under a list, like an iOS section footer. */
@@ -43,14 +45,14 @@
   font-size: var(--sl-text-sm-fontSize);
   line-height: var(--sl-text-sm-lineHeight);
   margin: 0;
-  padding-inline: var(--list-inset);
+  padding-inline: var(--card-inset);
 }
 
 /* `.list` is a <ul>, or a <fieldset> of radio rows (see .row:has(input)). */
 .list {
   background: var(--list-fill, var(--sl-elevation-surface-raised-default));
   border: 0;
-  border-radius: var(--list-radius);
+  border-radius: var(--card-radius);
   list-style: none;
   margin: 0;
   min-inline-size: 0;
@@ -58,7 +60,7 @@
   padding: 0;
 }
 
-/* Separators start at the text and run to the trailing edge. */
+/* Separators are inset by the same amount at both ends. */
 .list > * + * {
   position: relative;
 }
@@ -71,7 +73,7 @@
   block-size: 0.5px;
   content: '';
   inset-block-start: 0;
-  inset-inline: var(--list-inset) 0;
+  inset-inline: var(--card-inset);
   position: absolute;
 }
 
@@ -83,7 +85,7 @@
   gap: var(--sl-size-150);
   min-block-size: var(--row-height);
   padding-block: var(--sl-size-100);
-  padding-inline: var(--list-inset);
+  padding-inline: var(--card-inset);
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
 }
@@ -109,14 +111,14 @@ label.row:has(:focus-visible) {
 /* The list's rounded corners would clip the focus ring of the first and last row. */
 .list > :first-child > a.row,
 .list > label.row:first-child {
-  border-start-end-radius: var(--list-radius);
-  border-start-start-radius: var(--list-radius);
+  border-start-end-radius: var(--card-radius);
+  border-start-start-radius: var(--card-radius);
 }
 
 .list > :last-child > a.row,
 .list > label.row:last-child {
-  border-end-end-radius: var(--list-radius);
-  border-end-start-radius: var(--list-radius);
+  border-end-end-radius: var(--card-radius);
+  border-end-start-radius: var(--card-radius);
 }
 
 .row-label {
@@ -132,11 +134,13 @@ label.row:has(:focus-visible) {
 }
 
 /*
- * Checkmark rows: a radio group where each row is a <label> around a visually
- * hidden native radio. The radios keep the keyboard behaviour (arrow keys) and
+ * Hidden from view but read by screen readers. Also used for checkmark rows: a
+ * radio group where each row is a <label> around a visually hidden native
+ * radio. The radios keep the keyboard behaviour (arrow keys) and
  * the "radio button, 1 of 3" announcement; the checkmark shows the choice.
  */
-.row input[type='radio'] {
+.row input[type='radio'],
+.visually-hidden {
   block-size: 1px;
   clip-path: inset(50%);
   inline-size: 1px;
