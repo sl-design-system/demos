@@ -13,6 +13,7 @@ import '@sl-design-system/dialog/register.js';
 import '@sl-design-system/menu/register.js';
 import '@sl-design-system/calendar/register.js';
 import '@sl-design-system/switch/register.js';
+import '@sl-design-system/panel/register.js';
 import '@sl-design-system/text-field/register.js';
 import '@sl-design-system/time-field/register.js';
 import '@sl-design-system/tool-bar/register.js';
