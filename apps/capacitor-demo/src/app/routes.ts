@@ -8,8 +8,10 @@ export type TabId = 'components' | 'showcase' | 'settings';
 export interface Tab {
   id: TabId;
   label: string;
-  /** Name of a registered `sl-icon`. */
+  /** Name of a registered `sl-icon` (outline). */
   icon: string;
+  /** The filled version, shown while the tab is selected. */
+  selectedIcon: string;
   /** The tab's root screen. */
   path: string;
 }
@@ -19,13 +21,21 @@ export const tabs: Tab[] = [
     id: 'components',
     label: 'Components',
     icon: 'demo-grid',
+    selectedIcon: 'demo-grid-filled',
     path: '/components',
   },
-  { id: 'showcase', label: 'Showcase', icon: 'star', path: '/showcase' },
+  {
+    id: 'showcase',
+    label: 'Showcase',
+    icon: 'demo-star',
+    selectedIcon: 'demo-star-filled',
+    path: '/showcase',
+  },
   {
     id: 'settings',
     label: 'Settings',
     icon: 'demo-sliders',
+    selectedIcon: 'demo-sliders-filled',
     path: '/settings',
   },
 ];

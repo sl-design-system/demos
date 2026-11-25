@@ -39,6 +39,47 @@
   margin-inline-start: calc(-1 * var(--sl-size-100));
 }
 
+/*
+ * Android: Material top app bars. No divider, and the bar takes the screen's
+ * background. Child screens get a 64dp bar with the back arrow and a
+ * left-aligned title; tab roots get a large title.
+ */
+@container style(--platform: android) {
+  .app-header {
+    border-block-end: 0;
+  }
+
+  .app-header.grouped {
+    background: var(--sl-elevation-surface-raised-alternative);
+  }
+
+  .app-header.child {
+    min-block-size: calc(var(--safe-top) + var(--sl-size-800));
+  }
+
+  .app-header.child h1 {
+    font-size: var(--sl-title-md-fontSize);
+    font-weight: var(--sl-typography-title-md-fontWeight);
+    line-height: var(--sl-title-md-lineHeight);
+  }
+
+  .app-header.root {
+    padding-block: calc(var(--safe-top) + var(--sl-size-400)) var(--sl-size-150);
+  }
+
+  .app-header.root h1 {
+    font-size: var(--sl-heading-md-fontSize);
+    font-weight: var(--sl-typography-heading-md-fontWeight);
+    line-height: var(--sl-heading-md-lineHeight);
+  }
+}
+
+@container style(--platform: android) and style(--color-scheme: dark) {
+  .app-header.grouped {
+    background: var(--sl-elevation-surface-base-default);
+  }
+}
+
 main {
   /* Opaque, so a page doesn't show through the one sliding over it. */
   background: var(--sl-elevation-surface-base-default);

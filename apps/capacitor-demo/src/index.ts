@@ -11,8 +11,9 @@ import { App } from './app/app.js';
 import { initAppearance } from './app/appearance.js';
 import { registerAppIcons } from './app/icons.js';
 import { initUserGroup } from './app/user-group.js';
-import { preventInputZoomOnIOS } from './native/native.js';
+import { applyPlatformClass, preventInputZoomOnIOS } from './native/native.js';
 
+applyPlatformClass();
 preventInputZoomOnIOS();
 setup();
 registerAppIcons();

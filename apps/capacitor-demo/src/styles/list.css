@@ -158,3 +158,88 @@ label.row:has(:focus-visible) {
 .row:has(input:checked) .check {
   visibility: visible;
 }
+
+/*
+ * Android: Material 3 segmented lists, as in Android 16 settings. Every row is
+ * its own tile, 2px apart, with large outer and small inner corners, and there
+ * are no dividers or chevrons. Section headers use the primary colour, values
+ * go on a second line under the title, and single choices show radio buttons.
+ */
+@container style(--platform: android) {
+  .group-title {
+    color: var(--sl-color-foreground-primary-bold);
+    font-size: var(--sl-text-sm-fontSize);
+    line-height: var(--sl-text-sm-lineHeight);
+  }
+
+  .list {
+    background: none;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sl-size-025);
+    overflow: visible;
+  }
+
+  .list > * {
+    background: var(--list-fill, var(--sl-elevation-surface-raised-default));
+    border-radius: var(--sl-size-050);
+    overflow: hidden;
+  }
+
+  .list > :first-child {
+    border-start-end-radius: var(--card-radius);
+    border-start-start-radius: var(--card-radius);
+  }
+
+  .list > :last-child {
+    border-end-end-radius: var(--card-radius);
+    border-end-start-radius: var(--card-radius);
+  }
+
+  .list > * + *::before {
+    display: none;
+  }
+
+  .row {
+    gap: var(--sl-size-200);
+    min-block-size: var(--sl-size-700);
+  }
+
+  a.row > sl-icon {
+    display: none;
+  }
+
+  /* Two-line rows: the value under the title. */
+  .row:has(.row-value) {
+    align-items: start;
+    flex-direction: column;
+    gap: 0;
+    justify-content: center;
+    min-block-size: calc(var(--sl-size-800) + var(--sl-size-100));
+  }
+
+  .row:has(.row-value) .row-label {
+    flex: none;
+  }
+
+  .row-value {
+    font-size: var(--sl-text-sm-fontSize);
+    line-height: var(--sl-text-sm-lineHeight);
+  }
+
+  /* Radio buttons before the label instead of a trailing checkmark. */
+  .row input[type='radio'] {
+    accent-color: var(--sl-color-border-selected);
+    block-size: var(--sl-size-250);
+    clip-path: none;
+    flex: none;
+    inline-size: var(--sl-size-250);
+    overflow: visible;
+    position: static;
+  }
+
+  .row .check {
+    display: none;
+  }
+}

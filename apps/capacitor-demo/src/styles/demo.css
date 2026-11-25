@@ -47,6 +47,15 @@
   gap: var(--sl-size-100);
 }
 
+/* Android: Material section headers, in the primary colour. */
+@container style(--platform: android) {
+  .demo-title {
+    color: var(--sl-color-foreground-primary-bold);
+    font-size: var(--sl-text-sm-fontSize);
+    line-height: var(--sl-text-sm-lineHeight);
+  }
+}
+
 /* Shows the result of an interaction, e.g. "Selected: Edit". */
 .demo-output {
   color: var(--sl-color-foreground-subtle);

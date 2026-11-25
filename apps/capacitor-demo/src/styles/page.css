@@ -13,6 +13,13 @@
   gap: var(--sl-size-300);
 }
 
+/* Material's large shape: slightly rounder cards on Android. */
+@container style(--platform: android) {
+  :host {
+    --card-radius: var(--sl-size-300);
+  }
+}
+
 .intro {
   color: var(--sl-color-foreground-subtle);
   margin: 0;

@@ -13,6 +13,33 @@ export const isNative = Capacitor.isNativePlatform();
 
 export const platform = Capacitor.getPlatform();
 
+export type DesignPlatform = 'ios' | 'android';
+
+/**
+ * The platform whose look the app follows: the native platform in the apps.
+ * In a browser `?platform=ios` or `?platform=android` previews one of them;
+ * without it there is none, and the app keeps its default (iOS-like) look.
+ */
+export const designPlatform = getDesignPlatform();
+
+function getDesignPlatform(): DesignPlatform | undefined {
+  const requested = isNative
+    ? platform
+    : new URLSearchParams(location.search).get('platform');
+  return requested === 'ios' || requested === 'android' ? requested : undefined;
+}
+
+/**
+ * Adds `ios` or `android` as a class on `<html>`, so document CSS can follow
+ * the platform's conventions. Shadow DOM styles read the matching
+ * `--platform` custom property instead (see global.css).
+ */
+export function applyPlatformClass(): void {
+  if (designPlatform) {
+    document.documentElement.classList.add(designPlatform);
+  }
+}
+
 /** Make the status bar (and Android navigation bar) readable on the current color scheme. */
 export async function setSystemBarsScheme(
   scheme: 'light' | 'dark',

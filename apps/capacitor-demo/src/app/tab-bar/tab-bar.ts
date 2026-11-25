@@ -36,7 +36,11 @@ export class TabBar extends ScopedElementsMixin(LitElement) {
               aria-current=${tab.id === this.active ? 'page' : 'false'}
               @click=${(event: MouseEvent) => this.#onClick(event, tab.id)}
             >
-              <sl-icon name=${tab.icon}></sl-icon>
+              <span class="indicator"
+                ><sl-icon
+                  name=${tab.id === this.active ? tab.selectedIcon : tab.icon}
+                ></sl-icon
+              ></span>
               <span>${tab.label}</span>
             </a>
           `,

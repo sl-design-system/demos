@@ -13,6 +13,7 @@ import {
 } from 'lit';
 import { query } from 'lit/decorators.js';
 import {
+  designPlatform,
   exitApp,
   hideSplashScreen,
   onBackButton,
@@ -44,6 +45,9 @@ import { TabBar, type TabSelectEvent } from './tab-bar/tab-bar.js';
 import styles from './app.css' with { type: 'css' };
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+/** Android's back affordance is an arrow; iOS (and the default look) uses a chevron. */
+const BACK_ICON = designPlatform === 'android' ? 'arrow-left' : 'chevron-left';
 
 /** The focused element, looking inside shadow roots. */
 function deepActiveElement(): Element | null {
@@ -170,7 +174,11 @@ export class App extends ScopedElementsMixin(LitElement) {
     const screen = this.#screen;
 
     return html`
-      <header class="app-header">
+      <header
+        class="app-header ${screen.parent ? 'child' : 'root'} ${
+          screen.grouped ? 'grouped' : ''
+        }"
+      >
         ${
           screen.parent
             ? html`
@@ -180,7 +188,7 @@ export class App extends ScopedElementsMixin(LitElement) {
                   aria-label="Back"
                   @click=${this.#goUp}
                 >
-                  <sl-icon name="chevron-left"></sl-icon>
+                  <sl-icon name=${BACK_ICON}></sl-icon>
                 </sl-button>
               `
             : nothing

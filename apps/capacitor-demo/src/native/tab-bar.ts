@@ -4,14 +4,16 @@ import {
   type NativeNavigationTab,
 } from '@capgo/capacitor-native-navigation';
 import { type TabId, tabs } from '../app/routes.js';
-import { isNative } from './native.js';
+import { isNative, platform } from './native.js';
 
 /**
- * Native tab bar through `@capgo/capacitor-native-navigation`: on iOS 26+ a
- * system `UITabBarController` with Liquid Glass, on Android a floating
- * translucent capsule. In a regular browser the app keeps its web tab bar.
+ * Native tab bar through `@capgo/capacitor-native-navigation`, on iOS only:
+ * iOS 26+ shows the system `UITabBarController` with Liquid Glass, which a
+ * web view can't imitate convincingly. Android's Material navigation bar is
+ * opaque and flat, so there (and in a browser) the app's web tab bar is just
+ * as native-looking and stays under dialogs and popovers.
  */
-export const hasNativeTabBar = isNative;
+export const hasNativeTabBar = isNative && platform === 'ios';
 
 // Android renders inline SVG (as template images, so the native tint applies).
 const GRID_SVG =
