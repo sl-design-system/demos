@@ -12,7 +12,9 @@ import { PanelComponent } from '@sl-design-system/angular/panel';
 })
 export class PanelPageComponent {
   @ViewChild('panel', { read: ElementRef })
-  panel!: ElementRef<HTMLElement & { hasActions: boolean; updateComplete: Promise<boolean> }>;
+  panel!: ElementRef<
+    HTMLElement & { hasActions: boolean; updateComplete: Promise<boolean> }
+  >;
 
   readonly actionsReady = signal(false);
 

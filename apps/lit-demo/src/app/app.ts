@@ -58,7 +58,7 @@ const ROUTES = [
   { path: '/sl-infotip', label: 'sl-infotip' },
   { path: '/sl-form', label: 'sl-form' },
   { path: '/sl-inline-message', label: 'sl-inline-message' },
-  { path: '/sl-panel', label: 'sl-panel' }, 
+  { path: '/sl-panel', label: 'sl-panel' },
   { path: '/sl-menu', label: 'sl-menu' },
   { path: '/sl-month-view', label: 'sl-month-view' },
   { path: '/sl-message-dialog', label: 'sl-message-dialog' },

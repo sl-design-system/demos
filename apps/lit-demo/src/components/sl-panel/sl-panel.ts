@@ -26,11 +26,23 @@ export class PanelPage extends ScopedElementsMixin(LitElement) {
   override render(): TemplateResult {
     return html`
       <sl-panel heading="Panel Title" collapsible>
-        <sl-button slot="actions" tooltip="Pinata" fill="ghost"><sl-icon name="pinata"></sl-icon></sl-button>
-        <sl-button slot="actions" tooltip="Smile" fill="ghost"><sl-icon name="face-smile"></sl-icon></sl-button>
-        <sl-button slot="actions" tooltip="Warning" fill="ghost" @click=${this._openBlankPage}><sl-icon name="triangle-exclamation-solid"></sl-icon></sl-button>
+        <sl-button slot="actions" tooltip="Pinata" fill="ghost"
+          ><sl-icon name="pinata"></sl-icon
+        ></sl-button>
+        <sl-button slot="actions" tooltip="Smile" fill="ghost"
+          ><sl-icon name="face-smile"></sl-icon
+        ></sl-button>
+        <sl-button
+          slot="actions"
+          tooltip="Warning"
+          fill="ghost"
+          @click=${this._openBlankPage}
+          ><sl-icon name="triangle-exclamation-solid"></sl-icon
+        ></sl-button>
 
-        <sl-badge slot="suffix" emphasis="subtle" size="lg" variant="info">suffix</sl-badge>
+        <sl-badge slot="suffix" emphasis="subtle" size="lg" variant="info"
+          >suffix</sl-badge
+        >
         <span>Collapsible panel content</span>
       </sl-panel>
     `;

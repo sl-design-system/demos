@@ -80,15 +80,18 @@ test.describe('sl-panel accessibility', () => {
     test(`should have keyboard accessible buttons with ${key}`, async ({
       page,
     }) => {
-    const button = page.locator('sl-button').filter({ hasText: 'Warning' }).locator('#button');
-    await button.focus();
-    await expect(button).toBeFocused();
+      const button = page
+        .locator('sl-button')
+        .filter({ hasText: 'Warning' })
+        .locator('#button');
+      await button.focus();
+      await expect(button).toBeFocused();
 
-    const [newPage] = await Promise.all([
-      page.context().waitForEvent('page'),
-      page.keyboard.press(key),
-    ]);
-    await expect(newPage).toHaveURL('about:blank');
+      const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'),
+        page.keyboard.press(key),
+      ]);
+      await expect(newPage).toHaveURL('about:blank');
     });
   }
 
@@ -96,32 +99,43 @@ test.describe('sl-panel accessibility', () => {
     test(`should have keyboard accessible buttons with ${key} on mobile viewport`, async ({
       page,
     }) => {
-    await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
-    await page.goto('/sl-panel'); // for Firefox to properly apply the viewport size before page load
-    await page.getByRole('button', { name: 'Collapse navigation' }).click();
+      await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
+      await page.goto('/sl-panel'); // for Firefox to properly apply the viewport size before page load
+      await page.getByRole('button', { name: 'Collapse navigation' }).click();
 
-    const button = page.getByRole('button', { name: 'Show more' });
-    const menuitem = page.locator('sl-panel').getByRole('menuitem', { name: 'Warning' });
-    await button.focus();
-    await expect(button).toBeFocused();
+      const button = page.getByRole('button', { name: 'Show more' });
+      const menuitem = page
+        .locator('sl-panel')
+        .getByRole('menuitem', { name: 'Warning' });
+      await button.focus();
+      await expect(button).toBeFocused();
 
-    await page.keyboard.press(key);
+      await page.keyboard.press(key);
 
-    await menuitem.focus();
-    await expect(menuitem).toBeFocused();
+      await menuitem.focus();
+      await expect(menuitem).toBeFocused();
 
-    const [newPage] = await Promise.all([
-      page.context().waitForEvent('page'),
-      page.keyboard.press(key),
-    ]);
-    await expect(newPage).toHaveURL('about:blank');
+      const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'),
+        page.keyboard.press(key),
+      ]);
+      await expect(newPage).toHaveURL('about:blank');
     });
   }
 
   test('should navigate actions with arrow keys', async ({ page }) => {
-    const pinataButton = page.locator('sl-button').filter({ hasText: 'Pinata' }).locator('#button');
-    const smileButton = page.locator('sl-button').filter({ hasText: 'Smile' }).locator('#button');
-    const warningButton = page.locator('sl-button').filter({ hasText: 'Warning' }).locator('#button');
+    const pinataButton = page
+      .locator('sl-button')
+      .filter({ hasText: 'Pinata' })
+      .locator('#button');
+    const smileButton = page
+      .locator('sl-button')
+      .filter({ hasText: 'Smile' })
+      .locator('#button');
+    const warningButton = page
+      .locator('sl-button')
+      .filter({ hasText: 'Warning' })
+      .locator('#button');
 
     await pinataButton.focus();
     await expect(pinataButton).toBeFocused();
@@ -136,13 +150,21 @@ test.describe('sl-panel accessibility', () => {
     await expect(warningButton).toBeFocused();
   });
 
-  test('should navigate actions with arrow keys in mobile view', async ({ page }) => {
+  test('should navigate actions with arrow keys in mobile view', async ({
+    page,
+  }) => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-panel'); // for Firefox to properly apply the viewport size before page load
     const menu = page.getByRole('button', { name: 'Show more' });
-    const pinataButton = page.locator('sl-panel').getByRole('menuitem', { name: 'Pinata' });
-    const smileButton = page.locator('sl-panel').getByRole('menuitem', { name: 'Smile' });
-    const warningButton = page.locator('sl-panel').getByRole('menuitem', { name: 'Warning' });
+    const pinataButton = page
+      .locator('sl-panel')
+      .getByRole('menuitem', { name: 'Pinata' });
+    const smileButton = page
+      .locator('sl-panel')
+      .getByRole('menuitem', { name: 'Smile' });
+    const warningButton = page
+      .locator('sl-panel')
+      .getByRole('menuitem', { name: 'Warning' });
 
     await menu.click();
 
@@ -159,7 +181,9 @@ test.describe('sl-panel accessibility', () => {
     await expect(warningButton).toBeFocused();
   });
 
-  test('should have `aria-expanded` attribute for collapsible button', async ({ page }) => {
+  test('should have `aria-expanded` attribute for collapsible button', async ({
+    page,
+  }) => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-panel'); // for Firefox to properly apply the viewport size before page load
 
@@ -172,7 +196,9 @@ test.describe('sl-panel accessibility', () => {
     await expect(exandedButton).toHaveAttribute('aria-expanded', 'true');
   });
 
-  test('should have `aria-expanded` attribute for menu in mobile view', async ({ page }) => {
+  test('should have `aria-expanded` attribute for menu in mobile view', async ({
+    page,
+  }) => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-panel'); // for Firefox to properly apply the viewport size before page load
 
