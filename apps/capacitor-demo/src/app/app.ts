@@ -31,7 +31,7 @@ import { SettingsPage } from '../pages/settings/settings-page.js';
 import { ShowcasePage } from '../pages/showcase/showcase-page.js';
 import { demoElements } from '../catalog.js';
 import { showcaseElements } from '../showcase/screens.js';
-import { APPEARANCE_CHANGE_EVENT } from './appearance.js';
+import { APPEARANCE_CHANGE_EVENT, setThemeColorSource } from './appearance.js';
 import { closeTopmostOverlay, onModalDialogChange } from './overlays.js';
 import { type NavigationDirection, Router } from './router.js';
 import {
@@ -60,8 +60,8 @@ function deepActiveElement(): Element | null {
 
 /**
  * The app shell: a header with the screen title (and a back button on child
- * screens), the current page, and a bottom tab bar. In the native apps the tab
- * bar is native (Liquid Glass on iOS 26+); in a browser it is the web
+ * screens), the current page, and a bottom tab bar. On iOS the tab bar is
+ * native (Liquid Glass on iOS 26+); on Android and in a browser it is the web
  * `<demo-tab-bar>`. On Android the hardware
  * back button closes overlays first, then walks back up to the default tab,
  * then leaves the app.
@@ -95,7 +95,6 @@ export class App extends ScopedElementsMixin(LitElement) {
   /** Scroll position to restore once the new page has rendered. */
   #pendingScrollTop?: number;
 
-  #keyboardOpen = false;
   #modalOpen = false;
 
   @query('main') private main?: HTMLElement;
@@ -113,8 +112,6 @@ export class App extends ScopedElementsMixin(LitElement) {
     onBackButton(this.#onBackButton);
     onKeyboardVisibilityChange((visible, height) => {
       this.toggleAttribute('keyboard-open', visible);
-      this.#keyboardOpen = visible;
-      this.#syncNativeTabBar();
       this.#makeRoomForKeyboard(height);
     });
 
@@ -162,6 +159,11 @@ export class App extends ScopedElementsMixin(LitElement) {
     if (path !== this.#renderedPath) {
       this.#renderedPath = path;
       this.#lastPathByTab.set(this.#screen.tab, path);
+      // Grouped screens paint a different ground than the body; keep the
+      // native window behind the keyboard in the same colour.
+      if (this.main) {
+        setThemeColorSource(this.main);
+      }
       // The page element renders its own content after this update, so wait a
       // frame until it is tall enough to scroll. (During a view transition
       // `#transition` restores it earlier, before the new page is captured.)
@@ -269,15 +271,12 @@ export class App extends ScopedElementsMixin(LitElement) {
   }
 
   /**
-   * Shows the current tab in the native tab bar. The bar is drawn above the
-   * web view, so it is hidden while a modal dialog is open (it would cover
-   * the dialog) and, on Android, while the keyboard is open (the window
-   * resizes, which would push the bar up above the keyboard).
+   * Shows the current tab in the native (iOS) tab bar. The bar is drawn above
+   * the web view, so it is hidden while a modal dialog is open (it would
+   * cover the dialog).
    */
   #syncNativeTabBar(): void {
-    const hidden =
-      this.#modalOpen || (this.#keyboardOpen && platform === 'android');
-    void renderNativeTabBar(this.#screen.tab, hidden);
+    void renderNativeTabBar(this.#screen.tab, this.#modalOpen);
   }
 
   /**

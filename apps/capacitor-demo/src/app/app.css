@@ -46,6 +46,7 @@
  */
 @container style(--platform: android) {
   .app-header {
+    background: var(--sl-elevation-surface-base-default);
     border-block-end: 0;
   }
 
@@ -143,7 +144,11 @@ main > * {
   display: none;
 }
 
-/* Without the tab bar, main keeps the content clear of the home indicator itself. */
-:host([keyboard-open]) main {
+/*
+ * iOS: with the native tab bar hidden, main keeps the content clear of the
+ * home indicator itself. Android resizes the window above the keyboard, so
+ * there the inset no longer applies.
+ */
+:host([native-tab-bar][keyboard-open]) main {
   padding-block-end: calc(var(--safe-bottom) + var(--gutter));
 }

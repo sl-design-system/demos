@@ -17,16 +17,29 @@ export type DesignPlatform = 'ios' | 'android';
 
 /**
  * The platform whose look the app follows: the native platform in the apps.
- * In a browser `?platform=ios` or `?platform=android` previews one of them;
- * without it there is none, and the app keeps its default (iOS-like) look.
+ * In a browser `?platform=ios` or `?platform=android` previews one of them.
+ * The router drops the query string, so the choice is kept in session storage
+ * for later reloads; any other value clears it. Without one there is none,
+ * and the app keeps its default (iOS-like) look.
  */
 export const designPlatform = getDesignPlatform();
 
 function getDesignPlatform(): DesignPlatform | undefined {
-  const requested = isNative
-    ? platform
-    : new URLSearchParams(location.search).get('platform');
-  return requested === 'ios' || requested === 'android' ? requested : undefined;
+  if (isNative) {
+    return platform === 'ios' || platform === 'android' ? platform : undefined;
+  }
+
+  const key = 'slds-demo:platform',
+    param = new URLSearchParams(location.search).get('platform'),
+    requested = param ?? sessionStorage.getItem(key);
+  if (requested === 'ios' || requested === 'android') {
+    sessionStorage.setItem(key, requested);
+    return requested;
+  }
+
+  // Any other `?platform=` value goes back to the default look.
+  sessionStorage.removeItem(key);
+  return undefined;
 }
 
 /**

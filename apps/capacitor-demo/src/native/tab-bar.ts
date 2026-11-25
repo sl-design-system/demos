@@ -15,39 +15,22 @@ import { isNative, platform } from './native.js';
  */
 export const hasNativeTabBar = isNative && platform === 'ios';
 
-// Android renders inline SVG (as template images, so the native tint applies).
-const GRID_SVG =
-  '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>';
-const STAR_SVG =
-  '<svg viewBox="0 0 24 24"><polygon points="12 2 15.1 8.3 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 8.9 8.3"/></svg>';
-const SLIDERS_SVG =
-  '<svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="2"/><rect x="2" y="11" width="20" height="2"/><rect x="2" y="18" width="20" height="2"/><circle cx="8" cy="5" r="2.5"/><circle cx="16" cy="12" r="2.5"/><circle cx="10" cy="19" r="2.5"/></svg>';
-
-/** SF Symbols on iOS (outline, and filled when selected), SVG on Android. */
+/** SF Symbols, outline and filled when selected. */
 const ICONS: Record<
   TabId,
   { icon: NativeNavigationIcon; selectedIcon: NativeNavigationIcon }
 > = {
   components: {
-    icon: { ios: { sfSymbol: 'square.grid.2x2' }, android: { svg: GRID_SVG } },
-    selectedIcon: {
-      ios: { sfSymbol: 'square.grid.2x2.fill' },
-      android: { svg: GRID_SVG },
-    },
+    icon: { ios: { sfSymbol: 'square.grid.2x2' } },
+    selectedIcon: { ios: { sfSymbol: 'square.grid.2x2.fill' } },
   },
   showcase: {
-    icon: { ios: { sfSymbol: 'star' }, android: { svg: STAR_SVG } },
-    selectedIcon: {
-      ios: { sfSymbol: 'star.fill' },
-      android: { svg: STAR_SVG },
-    },
+    icon: { ios: { sfSymbol: 'star' } },
+    selectedIcon: { ios: { sfSymbol: 'star.fill' } },
   },
   settings: {
-    icon: { ios: { sfSymbol: 'gearshape' }, android: { svg: SLIDERS_SVG } },
-    selectedIcon: {
-      ios: { sfSymbol: 'gearshape.fill' },
-      android: { svg: SLIDERS_SVG },
-    },
+    icon: { ios: { sfSymbol: 'gearshape' } },
+    selectedIcon: { ios: { sfSymbol: 'gearshape.fill' } },
   },
 };
 

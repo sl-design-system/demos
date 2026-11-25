@@ -29,6 +29,9 @@ export function getColorScheme(): ColorScheme {
   return darkQuery.matches ? 'dark' : 'light';
 }
 
+/** The element whose background is published; the app shell sets it to `<main>`. */
+let themeColorSource: Element | undefined;
+
 /**
  * Publishes the page background as `<meta name="theme-color">`. The native
  * iOS shell (`AppViewController.swift`) paints the window behind the web view
@@ -44,7 +47,19 @@ function publishThemeColor(): void {
     document.head.append(meta);
   }
 
-  meta.content = getComputedStyle(document.body).backgroundColor;
+  meta.content = getComputedStyle(
+    themeColorSource ?? document.body,
+  ).backgroundColor;
+}
+
+/**
+ * Publishes `element`'s background from now on. The app shell calls this with
+ * `<main>` after every route change, since grouped screens paint a different
+ * ground than the body.
+ */
+export function setThemeColorSource(element: Element): void {
+  themeColorSource = element;
+  publishThemeColor();
 }
 
 /**
