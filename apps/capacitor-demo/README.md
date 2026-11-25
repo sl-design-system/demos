@@ -53,6 +53,21 @@ yarn android:live   # or Android: uses adb reverse, so the emulator can use loca
 
 A physical iPhone must be on the same network as your Mac. Run `yarn ios` or `yarn cap:sync` afterwards to go back to the bundled web app.
 
+### App icon and splash screen
+
+Both are made from the SLDS logo mark (`assets/sl-logo-mark.svg`, the blue square with the "S" from the logo in the components repository):
+
+- **Icon:** blue with the S. iOS rounds it itself; Android gets an adaptive icon (blue background layer, S foreground layer).
+- **Splash screen:** the mark centred on the page colour, white in light mode and `#222222` in dark mode. It stays up until the first page has rendered (`@capacitor/splash-screen` with `launchAutoHide: false`, hidden from `App#firstUpdated`), so the app never shows an empty frame while it starts.
+
+To change them, edit the mark or `scripts/generate-assets.mjs` and run:
+
+```bash
+yarn assets   # renders assets/*.png, then writes every iOS and Android size (@capacitor/assets)
+```
+
+`capacitor-assets` reformats `android/app/src/main/AndroidManifest.xml` without changing it; revert that file afterwards.
+
 ### Minimum versions
 
 The app uses the Popover API, `@starting-style`, CSS nesting and the theme's style container queries (for dark mode), so:
@@ -63,6 +78,7 @@ The app uses the Popover API, `@starting-style`, CSS nesting and the theme's sty
 ## App shell
 
 - **Tabs:** Components, Showcase and Settings. Switching tabs returns to the screen you last had open in that tab; tapping the active tab goes back to its root screen.
+- **Page transitions:** navigating uses the View Transitions API (`App#transition` in `src/app/app.ts`, keyframes in `src/styles/global.css`). Opening a screen slides it in from the right over the previous one, which moves left and dims; going back (header button, Android back button, tapping the active tab) reverses that. The header title slides and fades like an iOS navigation title. Tab switches are instant, as on iOS, and everything is instant with _reduce motion_ on. View transition names are tree-scoped, so `<main>` and the title are exposed as parts (`page`, `title`) and named from the document with `demo-app::part(...)`.
 - **Native tab bar:** in the iOS and Android apps the tab bar is native, through [`@capgo/capacitor-native-navigation`](https://github.com/Cap-go/capacitor-native-navigation) (`src/native/tab-bar.ts`). On iOS 26+ it is the system `UITabBarController` with Liquid Glass: content scrolls underneath it, icons are SF Symbols (filled when selected) and the tint is the SLDS "selected" colour, which follows light and dark mode. On Android it is the plugin's floating translucent capsule. In a regular browser the app uses its web tab bar (`src/app/tab-bar/`).
   - The native bar is drawn above the WebView, so it is hidden while a modal dialog is open (`onModalDialogChange()` in `src/app/overlays.ts`). Popovers and menus are not handled: one that opens near the bottom of the screen can end up under the bar.
 - **Navigation:** a small History API router (`src/app/router.ts`); screens are defined in `src/app/routes.ts`. Child screens get a back button in the header, and scroll positions are restored when you go back.
@@ -115,6 +131,7 @@ This app uses [Vite](https://vite.dev) with [`@sl-design-system/rolldown-plugin-
 - `index.html`: Vite entry, with `viewport-fit=cover` for notched devices
 - `vite.config.ts`: Vite config with the css-sheet plugin
 - `capacitor.config.ts`: app id, name, web directory and native settings
+- `assets/`: the logo mark and the source images for the app icon and splash screen (`yarn assets`)
 - `ios/`, `android/`: native projects. They are committed; edit them in Xcode or Android Studio, and let `cap sync` manage the generated parts.
 - `src/index.ts`: bootstraps the scoped-registry polyfill, the theme and `<demo-app>`
 - `src/app/`: the app shell (`app.ts`), router, routes, tab bar, appearance setting and app icons

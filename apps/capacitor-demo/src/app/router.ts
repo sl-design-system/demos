@@ -6,6 +6,22 @@ interface RouterState {
   index: number;
 }
 
+/**
+ * How a navigation moves through the app: deeper (`forward`), back up
+ * (`back`), or sideways without a history entry (`replace`, e.g. a tab switch).
+ */
+export type NavigationDirection = 'forward' | 'back' | 'replace';
+
+/**
+ * Called for every route change. `apply` updates the router (and requests a
+ * host update); the host decides when to call it, for example inside a view
+ * transition.
+ */
+export type RouteChangeHandler = (
+  direction: NavigationDirection,
+  apply: () => void,
+) => void;
+
 function isRouterState(value: object | null): value is RouterState {
   return value !== null && 'index' in value && typeof value.index === 'number';
 }
@@ -18,6 +34,7 @@ function isRouterState(value: object | null): value is RouterState {
  */
 export class Router implements ReactiveController {
   #host: ReactiveControllerHost;
+  #onChange?: RouteChangeHandler;
   #index = 0;
   /** Paths of the history entries this router knows about, by index. */
   #entries: string[] = [];
@@ -29,8 +46,9 @@ export class Router implements ReactiveController {
     return this.#index > 0 ? this.#entries[this.#index - 1] : undefined;
   }
 
-  constructor(host: ReactiveControllerHost) {
+  constructor(host: ReactiveControllerHost, onChange?: RouteChangeHandler) {
     this.#host = host;
+    this.#onChange = onChange;
     host.addController(this);
   }
 
@@ -52,7 +70,10 @@ export class Router implements ReactiveController {
 
   navigate(
     path: string,
-    { replace = false }: { replace?: boolean } = {},
+    {
+      replace = false,
+      direction = replace ? 'replace' : 'forward',
+    }: { replace?: boolean; direction?: NavigationDirection } = {},
   ): void {
     path = Router.#normalize(path);
     if (path === this.path) {
@@ -76,8 +97,7 @@ export class Router implements ReactiveController {
     }
 
     this.#entries[this.#index] = path;
-    this.path = path;
-    this.#host.requestUpdate();
+    this.#commit(direction, () => (this.path = path));
   }
 
   /** Return to `path`: a real "back" if it is the previous entry, otherwise replace the current entry. */
@@ -85,17 +105,35 @@ export class Router implements ReactiveController {
     if (this.previousPath === Router.#normalize(path)) {
       window.history.back();
     } else {
-      this.navigate(path, { replace: true });
+      this.navigate(path, { replace: true, direction: 'back' });
     }
   }
 
   #onPopState = (event: PopStateEvent): void => {
-    const state: object | null = event.state;
-    this.#index = isRouterState(state) ? state.index : 0;
-    this.path = Router.#normalize(window.location.pathname);
-    this.#entries[this.#index] = this.path;
-    this.#host.requestUpdate();
+    const state: object | null = event.state,
+      index = isRouterState(state) ? state.index : 0,
+      path = Router.#normalize(window.location.pathname);
+
+    this.#commit(index < this.#index ? 'back' : 'forward', () => {
+      this.#index = index;
+      this.path = path;
+      this.#entries[index] = path;
+    });
   };
+
+  /** Applies a route change, through the host's handler when it has one. */
+  #commit(direction: NavigationDirection, change: () => void): void {
+    const apply = (): void => {
+      change();
+      this.#host.requestUpdate();
+    };
+
+    if (this.#onChange) {
+      this.#onChange(direction, apply);
+    } else {
+      apply();
+    }
+  }
 
   /** Strips a trailing slash, except for the root path. */
   static #normalize(path: string): string {

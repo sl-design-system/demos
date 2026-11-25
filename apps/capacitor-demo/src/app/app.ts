@@ -14,6 +14,7 @@ import {
 import { query } from 'lit/decorators.js';
 import {
   exitApp,
+  hideSplashScreen,
   onBackButton,
   onKeyboardVisibilityChange,
   platform,
@@ -31,7 +32,7 @@ import { demoElements } from '../catalog.js';
 import { showcaseElements } from '../showcase/screens.js';
 import { APPEARANCE_CHANGE_EVENT } from './appearance.js';
 import { closeTopmostOverlay, onModalDialogChange } from './overlays.js';
-import { Router } from './router.js';
+import { type NavigationDirection, Router } from './router.js';
 import {
   defaultTab,
   resolveScreen,
@@ -41,6 +42,8 @@ import {
 } from './routes.js';
 import { TabBar, type TabSelectEvent } from './tab-bar/tab-bar.js';
 import styles from './app.css' with { type: 'css' };
+
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 /** The focused element, looking inside shadow roots. */
 function deepActiveElement(): Element | null {
@@ -73,7 +76,9 @@ export class App extends ScopedElementsMixin(LitElement) {
 
   static override styles = styles;
 
-  #router = new Router(this);
+  #router = new Router(this, (direction, apply) =>
+    this.#transition(direction, apply),
+  );
 
   /** The last path visited in each tab, so switching tabs returns to where you were. */
   #lastPathByTab = new Map<TabId, string>();
@@ -82,6 +87,9 @@ export class App extends ScopedElementsMixin(LitElement) {
   #scrollByPath = new Map<string, number>();
 
   #renderedPath?: string;
+
+  /** Scroll position to restore once the new page has rendered. */
+  #pendingScrollTop?: number;
 
   #keyboardOpen = false;
   #modalOpen = false;
@@ -120,6 +128,16 @@ export class App extends ScopedElementsMixin(LitElement) {
     }
   }
 
+  override firstUpdated(changes: PropertyValues<this>): void {
+    super.firstUpdated(changes);
+
+    // Keep the native splash screen up until the first page has rendered, so
+    // the app never shows an empty frame.
+    void this.#pageUpdateComplete().then(() =>
+      requestAnimationFrame(hideSplashScreen),
+    );
+  }
+
   override willUpdate(changes: PropertyValues<this>): void {
     super.willUpdate(changes);
 
@@ -141,13 +159,10 @@ export class App extends ScopedElementsMixin(LitElement) {
       this.#renderedPath = path;
       this.#lastPathByTab.set(this.#screen.tab, path);
       // The page element renders its own content after this update, so wait a
-      // frame until it is tall enough to scroll.
-      const scrollTop = this.#scrollByPath.get(path) ?? 0;
-      requestAnimationFrame(() => {
-        if (this.main) {
-          this.main.scrollTop = scrollTop;
-        }
-      });
+      // frame until it is tall enough to scroll. (During a view transition
+      // `#transition` restores it earlier, before the new page is captured.)
+      this.#pendingScrollTop = this.#scrollByPath.get(path) ?? 0;
+      requestAnimationFrame(() => this.#restoreScroll());
     }
   }
 
@@ -170,10 +185,10 @@ export class App extends ScopedElementsMixin(LitElement) {
               `
             : nothing
         }
-        <h1>${screen.title}</h1>
+        <h1 part="title">${screen.title}</h1>
       </header>
       <!-- tabindex: keyboard users must be able to scroll pages without focusable content. -->
-      <main id="main" tabindex="0" @click=${this.#onLinkClick}>
+      <main id="main" part="page" tabindex="0" @click=${this.#onLinkClick}>
         ${screen.content}
       </main>
       ${
@@ -187,6 +202,56 @@ export class App extends ScopedElementsMixin(LitElement) {
             `
       }
     `;
+  }
+
+  /**
+   * Animates a route change with a view transition, like native navigation:
+   * going deeper slides the new page in from the right over the old one, going
+   * back slides the page away to the right. The header crossfades. Tab
+   * switches (`replace`) are instant, as on iOS. See the `::view-transition`
+   * rules in global.css.
+   */
+  #transition(direction: NavigationDirection, apply: () => void): void {
+    if (
+      direction === 'replace' ||
+      reducedMotion.matches ||
+      !('startViewTransition' in document)
+    ) {
+      apply();
+      return;
+    }
+
+    const root = document.documentElement;
+    root.dataset['navDirection'] = direction;
+
+    const transition = document.startViewTransition(async () => {
+      apply();
+      await this.updateComplete;
+
+      // Wait for the page itself, so the new state is captured fully rendered
+      // and scrolled to where the user left it.
+      await this.#pageUpdateComplete();
+      this.#restoreScroll();
+    });
+
+    void transition.finished.finally(() => {
+      delete root.dataset['navDirection'];
+    });
+  }
+
+  /** Resolves once the current page element has rendered. */
+  async #pageUpdateComplete(): Promise<void> {
+    const page = this.main?.firstElementChild;
+    if (page instanceof LitElement) {
+      await page.updateComplete;
+    }
+  }
+
+  #restoreScroll(): void {
+    if (this.main && this.#pendingScrollTop !== undefined) {
+      this.main.scrollTop = this.#pendingScrollTop;
+      this.#pendingScrollTop = undefined;
+    }
   }
 
   /**

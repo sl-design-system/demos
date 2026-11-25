@@ -25,6 +25,15 @@ const config: CapacitorConfig = {
       // the page makes room itself (--keyboard-height, see src/app/app.ts).
       resize: KeyboardResize.None,
     },
+    SplashScreen: {
+      // The app hides the splash itself once the first page has rendered
+      // (hideSplashScreen() in src/native/native.ts). The light and dark
+      // splash images come from `yarn assets`.
+      launchAutoHide: false,
+      launchFadeOutDuration: 300,
+      showSpinner: false,
+      androidScaleType: 'CENTER_CROP',
+    },
     SystemBars: {
       // index.html uses viewport-fit=cover; telling Android up front avoids a
       // layout jump while the WebView starts. The default insetsHandling

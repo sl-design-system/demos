@@ -40,6 +40,8 @@
 }
 
 main {
+  /* Opaque, so a page doesn't show through the one sliding over it. */
+  background: var(--sl-elevation-surface-base-default);
   flex: 1;
 
   /* Let main shrink below its content height so it scrolls instead of pushing the tab bar off-screen. */

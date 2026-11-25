@@ -15,6 +15,9 @@ html {
   --safe-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom));
   --safe-left: var(--safe-area-inset-left, env(safe-area-inset-left));
 
+  /* Shadow along the left edge of the top page during page transitions. */
+  --page-edge-shadow: -8px 0 24px rgb(0 0 0 / 15%);
+
   /*
    * The theme switches to its dark tokens via
    * `@container style(--color-scheme: dark)`. The system setting applies
@@ -44,4 +47,170 @@ body {
   block-size: 100%;
   margin: 0;
   overflow: hidden;
+}
+
+/*
+ * Page transitions, iOS style (App#transition sets data-nav-direction).
+ * Going deeper, the new page slides in from the right over the old one, which
+ * moves a little to the left and dims. Going back reverses that. The rest of
+ * the screen (header, web tab bar) is the root snapshot and crossfades.
+ *
+ * <main> animates separately from the header. View transition names are
+ * tree-scoped, so the name is set here, from the document, on the shell's
+ * exposed part rather than inside its shadow root.
+ */
+demo-app::part(page) {
+  view-transition-name: page;
+}
+
+demo-app::part(title) {
+  view-transition-name: title;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(page),
+  ::view-transition-new(page) {
+    animation-duration: 0.45s;
+    animation-timing-function: cubic-bezier(0.2, 0.9, 0.25, 1);
+
+    /* The default plus-lighter blend brightens overlapping pages. */
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.25s;
+  }
+
+  /* Titles keep their own width (no stretching) while their box moves. */
+  ::view-transition-group(title),
+  ::view-transition-old(title),
+  ::view-transition-new(title) {
+    animation-duration: 0.35s;
+    animation-timing-function: cubic-bezier(0.2, 0.9, 0.25, 1);
+  }
+
+  ::view-transition-old(title),
+  ::view-transition-new(title) {
+    inline-size: auto;
+    mix-blend-mode: normal;
+  }
+
+  html[data-nav-direction='forward'] {
+    &::view-transition-old(page) {
+      animation-name: page-recede;
+    }
+
+    &::view-transition-new(page) {
+      animation-name: page-enter;
+      box-shadow: var(--page-edge-shadow);
+    }
+
+    &::view-transition-old(title) {
+      animation-name: title-out-left;
+    }
+
+    &::view-transition-new(title) {
+      animation-name: title-in-right;
+    }
+  }
+
+  html[data-nav-direction='back'] {
+    &::view-transition-old(page) {
+      animation-name: page-leave;
+      box-shadow: var(--page-edge-shadow);
+      z-index: 1;
+    }
+
+    &::view-transition-new(page) {
+      animation-name: page-return;
+    }
+
+    &::view-transition-old(title) {
+      animation-name: title-out-right;
+    }
+
+    &::view-transition-new(title) {
+      animation-name: title-in-left;
+    }
+  }
+}
+
+/* New page slides in from the right edge. */
+@keyframes page-enter {
+  from {
+    translate: 100% 0;
+  }
+}
+
+/* The page underneath moves a third of the way left and dims. */
+@keyframes page-recede {
+  to {
+    filter: brightness(0.85);
+    translate: -30% 0;
+  }
+}
+
+/* Going back: the top page slides out to the right... */
+@keyframes page-leave {
+  to {
+    translate: 100% 0;
+  }
+}
+
+/* ...uncovering the previous page as it moves back into place. */
+@keyframes page-return {
+  from {
+    filter: brightness(0.85);
+    translate: -30% 0;
+  }
+}
+
+/*
+ * Header titles slide a little and fade, the way iOS navigation titles do. The
+ * old title is gone by halfway and the new one only fades in after 40%, so the
+ * two never overlap legibly.
+ */
+@keyframes title-out-left {
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+    translate: -32px 0;
+  }
+}
+
+@keyframes title-in-right {
+  0% {
+    opacity: 0;
+    translate: 32px 0;
+  }
+
+  40% {
+    opacity: 0;
+  }
+}
+
+@keyframes title-out-right {
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+    translate: 32px 0;
+  }
+}
+
+@keyframes title-in-left {
+  0% {
+    opacity: 0;
+    translate: -32px 0;
+  }
+
+  40% {
+    opacity: 0;
+  }
 }

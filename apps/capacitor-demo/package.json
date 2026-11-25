@@ -6,6 +6,7 @@
   "scripts": {
     "android": "yarn build && cap run android",
     "android:live": "cap run android --live-reload --host localhost --port 8010 --forwardPorts 8010:8010",
+    "assets": "node scripts/generate-assets.mjs && capacitor-assets generate --ios --android --iconBackgroundColor '#5985ff' --iconBackgroundColorDark '#5985ff' --splashBackgroundColor '#ffffff' --splashBackgroundColorDark '#222222'",
     "build": "wireit",
     "cap:sync": "yarn build && cap sync",
     "dev": "wireit",
@@ -79,14 +80,17 @@
     "@capacitor/haptics": "^8.0.2",
     "@capacitor/ios": "^8.6.2",
     "@capacitor/keyboard": "^8.0.6",
+    "@capacitor/splash-screen": "^8.0.2",
     "@capgo/capacitor-native-navigation": "^8.16.4",
     "@open-wc/scoped-elements": "^3.0.10",
     "@webcomponents/scoped-custom-element-registry": "^0.0.11",
     "lit": "^3.3.3"
   },
   "devDependencies": {
+    "@capacitor/assets": "^4.0.0",
     "@capacitor/cli": "^8.6.2",
     "@sl-design-system/rolldown-plugin-css-sheet": "^0.0.2",
+    "sharp": "^0.35.5",
     "typescript": "^5.8.3",
     "vite": "^8.3.8",
     "wireit": "^0.14.12"

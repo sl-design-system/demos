@@ -2,6 +2,7 @@ import { App } from '@capacitor/app';
 import { Capacitor, SystemBars, SystemBarsStyle } from '@capacitor/core';
 import { Haptics } from '@capacitor/haptics';
 import { Keyboard } from '@capacitor/keyboard';
+import { SplashScreen } from '@capacitor/splash-screen';
 
 /**
  * Thin wrappers around the Capacitor plugins the app uses. Every function is a
@@ -79,6 +80,16 @@ export function onKeyboardVisibilityChange(
     handler(true, keyboardHeight),
   );
   void Keyboard.addListener('keyboardWillHide', () => handler(false, 0));
+}
+
+/**
+ * Fades out the native splash screen. It stays up until this is called
+ * (`launchAutoHide: false` in capacitor.config.ts), so the app can first render.
+ */
+export function hideSplashScreen(): void {
+  if (isNative) {
+    void SplashScreen.hide({ fadeOutDuration: 300 });
+  }
 }
 
 /** The native app's version and build number, e.g. `1.0 (1)`; `undefined` in a browser. */
