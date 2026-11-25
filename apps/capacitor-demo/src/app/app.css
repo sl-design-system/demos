@@ -52,6 +52,26 @@ main {
   padding-inline: var(--gutter-start) var(--gutter-end);
 }
 
+/*
+ * Screens of inset grouped lists (Screen.grouped): white cards on a tinted
+ * ground in light mode. In dark mode the ground is the page colour and the
+ * cards are lighter, as on iOS. Both grounds are opaque, so a page never shows
+ * through the one sliding over it.
+ */
+main.grouped {
+  --list-fill: var(--sl-elevation-surface-raised-default);
+
+  background: var(--sl-elevation-surface-raised-alternative);
+}
+
+@container style(--color-scheme: dark) {
+  main.grouped {
+    --list-fill: var(--sl-elevation-surface-raised-alternative);
+
+    background: var(--sl-elevation-surface-base-default);
+  }
+}
+
 main:focus-visible {
   --ring-width: var(--sl-size-outlineWidth-default);
 

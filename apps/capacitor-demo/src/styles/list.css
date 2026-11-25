@@ -1,11 +1,26 @@
 /*
- * Grouped list ("table view") styles shared by several pages. Pages add this
- * sheet to their `static styles` next to their own sheet.
+ * Inset grouped lists, the iOS "table view" style (also close to the grouped
+ * cards of Android 16 settings): rounded cards on a tinted ground, without
+ * borders, and separators that start where the text starts. Pages add this
+ * sheet to their `static styles` next to their own sheet; the screen gets the
+ * tinted ground from the app shell (`grouped` on its Screen, see routes.ts).
  */
+:host {
+  /*
+   * iOS 26 rounds grouped lists more than SLDS's largest radius (xl, 12px),
+   * so this uses the size scale instead.
+   */
+  --list-radius: var(--sl-size-250);
+  --list-inset: var(--sl-size-200);
+
+  /* iOS rows are 44pt at minimum and 52pt by default. */
+  --row-height: calc(var(--sl-size-600) + var(--sl-size-050));
+}
+
 .group {
   display: flex;
   flex-direction: column;
-  gap: var(--sl-size-075);
+  gap: var(--sl-size-100);
 }
 
 /*
@@ -19,21 +34,45 @@
   font-weight: 600;
   line-height: var(--sl-text-md-lineHeight);
   margin: 0;
-  padding-inline: var(--sl-size-100);
+  padding-inline: var(--list-inset);
 }
 
+/* Explanation under a list, like an iOS section footer. */
+.group-footer {
+  color: var(--sl-color-foreground-subtle);
+  font-size: var(--sl-text-sm-fontSize);
+  line-height: var(--sl-text-sm-lineHeight);
+  margin: 0;
+  padding-inline: var(--list-inset);
+}
+
+/* `.list` is a <ul>, or a <fieldset> of radio rows (see .row:has(input)). */
 .list {
-  background: var(--sl-elevation-surface-raised-default);
-  border: 1px solid var(--sl-color-border-plain);
-  border-radius: var(--sl-size-borderRadius-lg);
+  background: var(--list-fill, var(--sl-elevation-surface-raised-default));
+  border: 0;
+  border-radius: var(--list-radius);
   list-style: none;
   margin: 0;
+  min-inline-size: 0;
   overflow: hidden;
   padding: 0;
 }
 
-.list > li + li {
-  border-block-start: 1px solid var(--sl-color-border-plain);
+/* Separators start at the text and run to the trailing edge. */
+.list > * + * {
+  position: relative;
+}
+
+.list > * + *::before {
+  /* border-plain disappears on the lighter cards of dark mode. */
+  background: var(--sl-color-border-neutral-subtle);
+
+  /* A device-pixel hairline on 2x and 3x screens, like UIKit separators. */
+  block-size: 0.5px;
+  content: '';
+  inset-block-start: 0;
+  inset-inline: var(--list-inset) 0;
+  position: absolute;
 }
 
 .row {
@@ -41,23 +80,43 @@
   box-sizing: border-box;
   color: var(--sl-color-foreground-plain);
   display: flex;
-  gap: var(--sl-size-100);
-  min-block-size: var(--sl-size-600);
+  gap: var(--sl-size-150);
+  min-block-size: var(--row-height);
   padding-block: var(--sl-size-100);
-  padding-inline: var(--sl-size-200);
+  padding-inline: var(--list-inset);
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
 }
 
-a.row:active {
+a.row,
+label.row {
+  cursor: pointer;
+}
+
+a.row:active,
+label.row:active {
   background: var(--sl-color-background-neutral-subtlest);
 }
 
-a.row:focus-visible {
+a.row:focus-visible,
+label.row:has(:focus-visible) {
   --ring-width: var(--sl-size-outlineWidth-default);
 
   outline: var(--ring-width) solid var(--sl-color-border-focused);
   outline-offset: calc(-1 * var(--ring-width));
+}
+
+/* The list's rounded corners would clip the focus ring of the first and last row. */
+.list > :first-child > a.row,
+.list > label.row:first-child {
+  border-start-end-radius: var(--list-radius);
+  border-start-start-radius: var(--list-radius);
+}
+
+.list > :last-child > a.row,
+.list > label.row:last-child {
+  border-end-end-radius: var(--list-radius);
+  border-end-start-radius: var(--list-radius);
 }
 
 .row-label {
@@ -70,4 +129,28 @@ a.row:focus-visible {
 
 .row sl-icon {
   color: var(--sl-color-foreground-subtlest);
+}
+
+/*
+ * Checkmark rows: a radio group where each row is a <label> around a visually
+ * hidden native radio. The radios keep the keyboard behaviour (arrow keys) and
+ * the "radio button, 1 of 3" announcement; the checkmark shows the choice.
+ */
+.row input[type='radio'] {
+  block-size: 1px;
+  clip-path: inset(50%);
+  inline-size: 1px;
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.row .check {
+  color: var(--sl-color-foreground-selected-bold);
+  visibility: hidden;
+}
+
+.row:has(input:checked) .check {
+  visibility: visible;
 }

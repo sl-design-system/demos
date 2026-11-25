@@ -2,8 +2,7 @@ import {
   ScopedElementsMixin,
   type ScopedElementsMap,
 } from '@open-wc/scoped-elements/lit-element.js';
-import { Radio, RadioGroup } from '@sl-design-system/radio-group';
-import type { SlChangeEvent } from '@sl-design-system/shared/events.js';
+import { Icon } from '@sl-design-system/icon';
 import { html, LitElement, type TemplateResult } from 'lit';
 import { state } from 'lit/decorators.js';
 import {
@@ -11,10 +10,13 @@ import {
   getAppearance,
   setAppearance,
 } from '../../app/appearance.js';
-import { getAppVersion, platform } from '../../native/native.js';
+import {
+  getAppVersion,
+  platform,
+  selectionHaptic,
+} from '../../native/native.js';
 import listStyles from '../../styles/list.css' with { type: 'css' };
 import pageStyles from '../../styles/page.css' with { type: 'css' };
-import styles from './settings-page.css' with { type: 'css' };
 
 const PLATFORM_NAMES: Record<string, string> = {
   android: 'Android',
@@ -22,13 +24,23 @@ const PLATFORM_NAMES: Record<string, string> = {
   web: 'Web browser',
 };
 
+const APPEARANCES: { value: Appearance; label: string }[] = [
+  { value: 'system', label: 'Match system' },
+  { value: 'light', label: 'Light' },
+  { value: 'dark', label: 'Dark' },
+];
+
+/**
+ * App settings. These are the app's own controls, not an SLDS demo, so they
+ * use the platform's list patterns: Appearance is a list of checkmark rows,
+ * the way iOS Settings presents a single choice.
+ */
 export class SettingsPage extends ScopedElementsMixin(LitElement) {
   static override scopedElements: ScopedElementsMap = {
-    'sl-radio': Radio,
-    'sl-radio-group': RadioGroup,
+    'sl-icon': Icon,
   };
 
-  static override styles = [pageStyles, listStyles, styles];
+  static override styles = [pageStyles, listStyles];
 
   @state() private appearance: Appearance = getAppearance();
   @state() private version?: string;
@@ -42,17 +54,26 @@ export class SettingsPage extends ScopedElementsMixin(LitElement) {
     return html`
       <section class="group">
         <h2 class="group-title" id="appearance-title">Appearance</h2>
-        <div class="panel">
-          <sl-radio-group
-            aria-labelledby="appearance-title"
-            .value=${this.appearance}
-            @sl-change=${this.#onAppearanceChange}
-          >
-            <sl-radio value="system">Match system</sl-radio>
-            <sl-radio value="light">Light</sl-radio>
-            <sl-radio value="dark">Dark</sl-radio>
-          </sl-radio-group>
-        </div>
+        <fieldset class="list" aria-labelledby="appearance-title">
+          ${APPEARANCES.map(
+            ({ value, label }) => html`
+              <label class="row">
+                <input
+                  type="radio"
+                  name="appearance"
+                  .value=${value}
+                  .checked=${value === this.appearance}
+                  @change=${this.#onAppearanceChange}
+                />
+                <span class="row-label">${label}</span>
+                <sl-icon class="check" name="check"></sl-icon>
+              </label>
+            `,
+          )}
+        </fieldset>
+        <p class="group-footer">
+          Match system follows the light or dark setting of your device.
+        </p>
       </section>
 
       <section class="group" aria-labelledby="about-title">
@@ -83,11 +104,15 @@ export class SettingsPage extends ScopedElementsMixin(LitElement) {
     `;
   }
 
-  #onAppearanceChange = (
-    event: SlChangeEvent<Appearance | undefined>,
-  ): void => {
-    const appearance = event.detail ?? 'system';
-    this.appearance = appearance;
-    setAppearance(appearance);
+  #onAppearanceChange = (event: Event): void => {
+    const input = event.currentTarget as HTMLInputElement,
+      appearance = APPEARANCES.find(({ value }) => value === input.value);
+    if (!appearance) {
+      return;
+    }
+
+    selectionHaptic();
+    this.appearance = appearance.value;
+    setAppearance(appearance.value);
   };
 }

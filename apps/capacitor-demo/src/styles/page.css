@@ -8,5 +8,7 @@
 .intro {
   color: var(--sl-color-foreground-subtle);
   margin: 0;
-  padding-inline: var(--sl-size-100);
+
+  /* Lines up with list headers and row text on list pages (list.css). */
+  padding-inline: var(--list-inset, var(--sl-size-100));
 }

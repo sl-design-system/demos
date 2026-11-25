@@ -188,7 +188,13 @@ export class App extends ScopedElementsMixin(LitElement) {
         <h1 part="title">${screen.title}</h1>
       </header>
       <!-- tabindex: keyboard users must be able to scroll pages without focusable content. -->
-      <main id="main" part="page" tabindex="0" @click=${this.#onLinkClick}>
+      <main
+        id="main"
+        class=${screen.grouped ? 'grouped' : ''}
+        part="page"
+        tabindex="0"
+        @click=${this.#onLinkClick}
+      >
         ${screen.content}
       </main>
       ${

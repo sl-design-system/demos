@@ -38,6 +38,11 @@ export interface Screen {
   /** The screen "back" returns to; undefined for a tab's root screen. */
   parent?: string;
   /**
+   * Whether the page is made of inset grouped lists (styles/list.css). The
+   * shell then gives it the tinted ground the list cards sit on.
+   */
+  grouped?: boolean;
+  /**
    * The page to show. The tag names are scoped elements registered by
    * `App`, so this template must be rendered inside the app's shadow root.
    */
@@ -55,6 +60,7 @@ export function resolveScreen(path: string): Screen | undefined {
     return {
       tab: 'components',
       title: 'Components',
+      grouped: true,
       content: html`<page-components></page-components>`,
     };
   }
@@ -79,6 +85,7 @@ export function resolveScreen(path: string): Screen | undefined {
     return {
       tab: 'showcase',
       title: 'Showcase',
+      grouped: true,
       content: html`<page-showcase></page-showcase>`,
     };
   }
@@ -103,6 +110,7 @@ export function resolveScreen(path: string): Screen | undefined {
     return {
       tab: 'settings',
       title: 'Settings',
+      grouped: true,
       content: html`<page-settings></page-settings>`,
     };
   }
