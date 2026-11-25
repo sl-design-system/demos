@@ -1,9 +1,11 @@
-<sl-panel collapsible>
-  <span slot="header">Panel Title</span>
-  <sl-button slot="aside actions" tooltip="Pinata" fill="ghost"><sl-icon name="pinata"></sl-icon></sl-button>
-  <sl-button slot="aside" tooltip="Smile" fill="ghost"><sl-icon name="face-smile"></sl-icon></sl-button>
-  <sl-button slot="aside" tooltip="Warning" fill="ghost" (click)="openBlankPage()"><sl-icon name="triangle-exclamation-solid"></sl-icon></sl-button>
-
-  <sl-badge slot="suffix" emphasis="subtle" size="lg" variant="info">suffix</sl-badge>
-  <span>Collapsible panel content</span>
+<sl-panel>
+    <span slot="heading">Panel Title</span>
+    <sl-button fill="ghost" slot="actions" tooltip="Copy">
+        <sl-icon name="face-smile"></sl-icon>
+    </sl-button>
+    <sl-button fill="ghost" slot="actions" tooltip="Book">
+        <sl-icon name="piniata"> </sl-icon>
+    </sl-button>
+    <p>This is the panel content area.</p>
+    <p>You can add any content here.</p> 
 </sl-panel>

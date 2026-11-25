@@ -5,7 +5,7 @@ test.describe('sl-panel', () => {
     await page.goto('/sl-panel');
   });
 
-  test('should render card content correctly', async ({ page }) => {
+  test('should render panel content correctly', async ({ page }) => {
     await expect(page.locator('sl-panel')).toMatchAriaSnapshot(`
       - button "Collapse panel" [expanded]
       - text: Panel Title suffix
@@ -17,7 +17,7 @@ test.describe('sl-panel', () => {
     `);
   });
 
-  test('collapses and expands its content', async ({ page }) => {
+  test('should collapse and expand its content', async ({ page }) => {
     const panel = page.locator('sl-panel');
     await panel.getByRole('button', { name: 'Collapse panel' }).click();
     await expect(panel).toHaveAttribute('collapsed', '');
