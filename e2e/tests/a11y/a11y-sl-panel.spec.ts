@@ -187,13 +187,13 @@ test.describe('sl-panel accessibility', () => {
     await page.setViewportSize({ width: 376, height: 667 }); // 320px width + 56px collapsed navigation
     await page.goto('/sl-panel'); // for Firefox to properly apply the viewport size before page load
 
-    const exandedButton = page.getByRole('button', { name: 'Collapse panel' });
+    const expandedButton = page.getByRole('button', { name: 'Collapse panel' });
     const collapsedButton = page.getByRole('button', { name: 'Expand panel' });
-    await expect(exandedButton).toHaveAttribute('aria-expanded', 'true');
-    await exandedButton.click();
+    await expect(expandedButton).toHaveAttribute('aria-expanded', 'true');
+    await expandedButton.click();
     await expect(collapsedButton).toHaveAttribute('aria-expanded', 'false');
     await collapsedButton.click();
-    await expect(exandedButton).toHaveAttribute('aria-expanded', 'true');
+    await expect(expandedButton).toHaveAttribute('aria-expanded', 'true');
   });
 
   test('should have `aria-expanded` attribute for menu in mobile view', async ({
