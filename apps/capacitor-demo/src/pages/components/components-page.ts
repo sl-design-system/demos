@@ -23,10 +23,12 @@ export class ComponentsPage extends ScopedElementsMixin(LitElement) {
 
   override render(): TemplateResult {
     return html`
-      ${catalog.map(
-        (group) => html`
-          <section class="group" aria-labelledby="group-${group.title}">
-            <h2 class="group-title" id="group-${group.title}">
+      ${catalog.map((group) => {
+        // IDs can't contain spaces ("Data display").
+        const id = `group-${group.title.toLowerCase().replaceAll(' ', '-')}`;
+        return html`
+          <section class="group" aria-labelledby=${id}>
+            <h2 class="group-title" id=${id}>
               ${group.title}
               <!-- The badge is decoration; the hidden text gives screen readers the count with its meaning. -->
               <sl-badge aria-hidden="true">${group.items.length}</sl-badge>
@@ -47,8 +49,8 @@ export class ComponentsPage extends ScopedElementsMixin(LitElement) {
               )}
             </ul>
           </section>
-        `,
-      )}
+        `;
+      })}
     `;
   }
 }

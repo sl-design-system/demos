@@ -126,6 +126,9 @@ export class CoursesScreen extends ScopedElementsMixin(LitElement) {
                 @sl-toggle=${(event: CustomEvent<boolean>) => {
                   if (event.detail) {
                     this.filter = value;
+                  } else if (event.target instanceof ToggleButton) {
+                    // One filter is always active: tapping it again keeps it on.
+                    event.target.pressed = true;
                   }
                 }}
               >

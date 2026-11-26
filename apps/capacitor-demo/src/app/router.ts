@@ -38,6 +38,8 @@ export class Router implements ReactiveController {
   #index = 0;
   /** Paths of the history entries this router knows about, by index. */
   #entries: string[] = [];
+  /** Increases with every route change; see `#commit`. */
+  #latestCommit = 0;
 
   path = Router.#normalize(window.location.pathname);
 
@@ -114,16 +116,26 @@ export class Router implements ReactiveController {
       index = isRouterState(state) ? state.index : 0,
       path = Router.#normalize(window.location.pathname);
 
-    this.#commit(index < this.#index ? 'back' : 'forward', () => {
-      this.#index = index;
-      this.path = path;
-      this.#entries[index] = path;
-    });
+    const direction = index < this.#index ? 'back' : 'forward';
+    this.#index = index;
+    this.#entries[index] = path;
+    this.#commit(direction, () => (this.path = path));
   };
 
-  /** Applies a route change, through the host's handler when it has one. */
+  /**
+   * Applies a route change, through the host's handler when it has one. The
+   * handler may apply it later (after a view transition starts); if another
+   * route change was committed in the meantime, the older one is dropped so
+   * it can't overwrite the newer route. History bookkeeping is updated
+   * before this is called, so only `path` waits.
+   */
   #commit(direction: NavigationDirection, change: () => void): void {
+    const commit = ++this.#latestCommit;
     const apply = (): void => {
+      if (commit !== this.#latestCommit) {
+        return;
+      }
+
       change();
       this.#host.requestUpdate();
     };
