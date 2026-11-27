@@ -2,6 +2,34 @@ import type { Page } from '@playwright/test';
 
 export async function getFocusedElement(page: Page): Promise<string | null> {
   return page.evaluate(() => {
+    const getLabelledByText = (element: Element): string => {
+      const root = element.getRootNode();
+      const attributeRefs = element.getAttribute('aria-labelledby');
+      const internals =
+        'elementInternals' in element &&
+        typeof ElementInternals !== 'undefined' &&
+        element.elementInternals instanceof ElementInternals
+          ? element.elementInternals
+          : null;
+      const references =
+        element.ariaLabelledByElements ??
+        (attributeRefs &&
+        (root instanceof Document || root instanceof ShadowRoot)
+          ? attributeRefs
+              .trim()
+              .split(/\s+/)
+              .map((id) => root.getElementById(id))
+              .filter((label): label is HTMLElement => label !== null)
+          : internals?.ariaLabelledByElements);
+
+      return (
+        references
+          ?.map((label) => label.textContent?.trim())
+          .filter(Boolean)
+          .join(' ') ?? ''
+      );
+    };
+
     let el = document.activeElement as Element | null;
 
     if (!el) return null;
@@ -20,6 +48,9 @@ export async function getFocusedElement(page: Page): Promise<string | null> {
     // Check for aria-label on deepest element (highest priority)
     const ariaLabel = el.getAttribute('aria-label')?.trim();
     if (ariaLabel) return ariaLabel;
+
+    const labelledByText = getLabelledByText(el);
+    if (labelledByText) return labelledByText;
 
     // Try to get innerText from the deepest element (HTMLElement only)
     const deepestText = el instanceof HTMLElement ? el.innerText.trim() : '';
@@ -69,6 +100,9 @@ export async function getFocusedElement(page: Page): Promise<string | null> {
     if (prevEl) {
       const prevAriaLabel = prevEl.getAttribute('aria-label')?.trim();
       if (prevAriaLabel) return prevAriaLabel;
+
+      const prevLabelledByText = getLabelledByText(prevEl);
+      if (prevLabelledByText) return prevLabelledByText;
 
       const prevText =
         prevEl instanceof HTMLElement ? prevEl.innerText.trim() : '';

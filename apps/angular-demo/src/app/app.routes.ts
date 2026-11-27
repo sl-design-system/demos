@@ -192,6 +192,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'sl-panel',
+    loadComponent: () =>
+      import('./components/sl-panel/sl-panel.component').then(
+        (m) => m.PanelPageComponent,
+      ),
+  },
+  {
     path: 'sl-select',
     loadComponent: () =>
       import('./components/sl-select/sl-select.component').then(

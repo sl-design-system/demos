@@ -29,6 +29,7 @@ import { PaginatorPage } from '../components/sl-paginator/sl-paginator.js';
 import { SelectPage } from '../components/sl-select/sl-select.js';
 import { SwitchPage } from '../components/sl-switch/sl-switch.js';
 import { CardPage } from '../components/sl-card/sl-card.js';
+import { PanelPage } from '../components/sl-panel/sl-panel.js';
 import { PopoverPage } from '../components/sl-popover/sl-popover.js';
 import { TooltipPage } from '../components/sl-tooltip/sl-tooltip.js';
 import { RadioGroupPage } from '../components/sl-radio-group/sl-radio-group.js';
@@ -57,6 +58,7 @@ const ROUTES = [
   { path: '/sl-infotip', label: 'sl-infotip' },
   { path: '/sl-form', label: 'sl-form' },
   { path: '/sl-inline-message', label: 'sl-inline-message' },
+  { path: '/sl-panel', label: 'sl-panel' },
   { path: '/sl-menu', label: 'sl-menu' },
   { path: '/sl-month-view', label: 'sl-month-view' },
   { path: '/sl-message-dialog', label: 'sl-message-dialog' },
@@ -107,6 +109,7 @@ export class App extends ScopedElementsMixin(LitElement) {
     'page-select': SelectPage,
     'page-switch': SwitchPage,
     'page-card': CardPage,
+    'page-panel': PanelPage,
     'page-infotip': InfotipPage,
     'page-popover': PopoverPage,
     'page-calendar': CalendarPage,
@@ -152,6 +155,8 @@ export class App extends ScopedElementsMixin(LitElement) {
     switch (this._currentPath) {
       case '/sl-accordion':
         return html`<page-accordion></page-accordion>`;
+      case '/sl-panel':
+        return html`<page-panel></page-panel>`;
       case '/sl-avatar':
         return html`<page-avatar></page-avatar>`;
       case '/sl-breadcrumbs':
