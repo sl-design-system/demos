@@ -1,0 +1,72 @@
+/*
+ * Sections on the component demo pages, in the inset grouped style of the
+ * list pages (list.css): a header, the example on a rounded card without a
+ * border, and the hint underneath as a section footer. The screen gets the
+ * tinted ground from the app shell (`grouped` on its Screen, see routes.ts).
+ */
+.demo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-size-100);
+}
+
+/*
+ * Section header, styled like iOS 27's grouped-list headers: body size,
+ * semibold, secondary colour and written as-is (not uppercase). SLDS has no
+ * 600 weight token, but the theme font ships a SemiBold face.
+ */
+.demo-title {
+  color: var(--sl-color-foreground-subtle);
+  font-size: var(--sl-text-md-fontSize);
+  font-weight: 600;
+  line-height: var(--sl-text-md-lineHeight);
+  margin: 0;
+  padding-inline: var(--card-inset);
+}
+
+.demo-hint {
+  color: var(--sl-color-foreground-subtle);
+  font-size: var(--sl-text-sm-fontSize);
+  line-height: var(--sl-text-sm-lineHeight);
+  margin: 0;
+  padding-inline: var(--card-inset);
+}
+
+.demo-body {
+  background: var(--list-fill, var(--sl-elevation-surface-raised-default));
+  border-radius: var(--card-radius);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-size-200);
+  padding: var(--card-inset);
+}
+
+.demo-body.wrap {
+  align-items: center;
+  flex-flow: row wrap;
+  gap: var(--sl-size-100);
+}
+
+/* Android: Material section headers, in the primary colour. */
+@container style(--platform: android) {
+  .demo-title {
+    color: var(--sl-color-foreground-primary-bold);
+    font-size: var(--sl-text-sm-fontSize);
+    line-height: var(--sl-text-sm-lineHeight);
+  }
+}
+
+/* Shows the result of an interaction, e.g. "Selected: Edit". */
+.demo-output {
+  color: var(--sl-color-foreground-subtle);
+  font-size: var(--sl-text-sm-fontSize);
+  margin: 0;
+}
+
+/*
+ * Keep a dialog's bottom sheet above the on-screen keyboard on iOS, where the
+ * WebView doesn't resize (--keyboard-height is set by the app shell).
+ */
+sl-dialog::part(dialog) {
+  inset-block-end: var(--keyboard-height, 0);
+}

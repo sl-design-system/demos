@@ -1,0 +1,86 @@
+:host {
+  background: var(--sl-elevation-surface-raised-default);
+  border-block-start: 1px solid var(--sl-color-border-plain);
+  display: block;
+  padding-block-end: var(--safe-bottom);
+  padding-inline: var(--safe-left) var(--safe-right);
+}
+
+nav {
+  display: flex;
+}
+
+a {
+  align-items: center;
+  color: var(--sl-color-foreground-subtle);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-size: var(--sl-caption-md-fontSize);
+  gap: var(--sl-size-025);
+  justify-content: center;
+  min-block-size: var(--sl-size-600);
+  padding-block: var(--sl-size-075);
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+}
+
+a[aria-current='page'] {
+  color: var(--sl-color-foreground-selected-bold);
+  font-weight: var(--sl-fontWeight-medium);
+}
+
+a:focus-visible {
+  --ring-width: var(--sl-size-outlineWidth-default);
+
+  border-radius: var(--sl-size-borderRadius-default);
+  outline: var(--ring-width) solid var(--sl-color-border-focused);
+  outline-offset: calc(-1 * var(--ring-width));
+}
+
+sl-icon {
+  --sl-icon-fill-default: currentcolor;
+  --sl-icon-size: var(--sl-size-300);
+}
+
+.indicator {
+  display: flex;
+}
+
+/*
+ * Android: the Material 3 navigation bar. Taller, no top border, and a pill
+ * behind the selected icon instead of only a coloured label.
+ */
+@container style(--platform: android) {
+  :host {
+    border-block-start: 0;
+  }
+
+  a {
+    /* 64dp including the padding, like the Material 3 short navigation bar. */
+    box-sizing: border-box;
+    font-size: var(--sl-caption-md-fontSize);
+    font-weight: 600;
+    gap: var(--sl-size-050);
+    line-height: var(--sl-caption-md-lineHeight);
+    min-block-size: var(--sl-size-800);
+    padding-block: var(--sl-size-075);
+  }
+
+  /* The base style gives the current tab a lighter weight than this. */
+  a[aria-current='page'] {
+    font-weight: 600;
+  }
+
+  .indicator {
+    align-items: center;
+    block-size: var(--sl-size-400);
+    border-radius: var(--sl-size-borderRadius-full);
+    inline-size: calc(var(--sl-size-600) + var(--sl-size-100));
+    justify-content: center;
+  }
+
+  a[aria-current='page'] .indicator {
+    background: var(--sl-color-background-selected-subtle);
+  }
+}

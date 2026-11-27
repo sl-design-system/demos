@@ -1,0 +1,245 @@
+/*
+ * Inset grouped lists, the iOS "table view" style (also close to the grouped
+ * cards of Android 16 settings): rounded cards on a tinted ground, without
+ * borders, and separators that start where the text starts. Pages add this
+ * sheet to their `static styles` next to their own sheet; the screen gets the
+ * tinted ground from the app shell (`grouped` on its Screen, see routes.ts).
+ */
+:host {
+  /* iOS rows are 44pt at minimum and 52pt by default. */
+  --row-height: calc(var(--sl-size-600) + var(--sl-size-050));
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-size-100);
+}
+
+/*
+ * Section header, styled like iOS 27's grouped-list headers: body size,
+ * semibold, secondary colour and written as-is (not uppercase). SLDS has no
+ * 600 weight token, but the theme font ships a SemiBold face. It is a flex
+ * row so a count badge after the title lines up with the text.
+ */
+.group-title {
+  align-items: center;
+  color: var(--sl-color-foreground-subtle);
+  display: flex;
+  font-size: var(--sl-text-md-fontSize);
+  font-weight: 600;
+  gap: var(--sl-size-100);
+  line-height: var(--sl-text-md-lineHeight);
+  margin: 0;
+  padding-inline: var(--card-inset);
+}
+
+/* The count badge would inherit the title's semibold weight. */
+.group-title sl-badge {
+  font-weight: var(--sl-text-new-typeset-fontWeight-regular);
+}
+
+/* Explanation under a list, like an iOS section footer. */
+.group-footer {
+  color: var(--sl-color-foreground-subtle);
+  font-size: var(--sl-text-sm-fontSize);
+  line-height: var(--sl-text-sm-lineHeight);
+  margin: 0;
+  padding-inline: var(--card-inset);
+}
+
+/* `.list` is a <ul>, or a <fieldset> of radio rows (see .row:has(input)). */
+.list {
+  background: var(--list-fill, var(--sl-elevation-surface-raised-default));
+  border: 0;
+  border-radius: var(--card-radius);
+  list-style: none;
+  margin: 0;
+  min-inline-size: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Separators are inset by the same amount at both ends. */
+.list > * + * {
+  position: relative;
+}
+
+.list > * + *::before {
+  /* border-plain disappears on the lighter cards of dark mode. */
+  background: var(--sl-color-border-neutral-subtle);
+
+  /* A device-pixel hairline on 2x and 3x screens, like UIKit separators. */
+  block-size: 0.5px;
+  content: '';
+  inset-block-start: 0;
+  inset-inline: var(--card-inset);
+  position: absolute;
+}
+
+.row {
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--sl-color-foreground-plain);
+  display: flex;
+  gap: var(--sl-size-150);
+  min-block-size: var(--row-height);
+  padding-block: var(--sl-size-100);
+  padding-inline: var(--card-inset);
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+}
+
+a.row,
+label.row {
+  cursor: pointer;
+}
+
+a.row:active,
+label.row:active {
+  background: var(--sl-color-background-neutral-subtlest);
+}
+
+a.row:focus-visible,
+label.row:has(:focus-visible) {
+  --ring-width: var(--sl-size-outlineWidth-default);
+
+  outline: var(--ring-width) solid var(--sl-color-border-focused);
+  outline-offset: calc(-1 * var(--ring-width));
+}
+
+/* The list's rounded corners would clip the focus ring of the first and last row. */
+.list > :first-child > a.row,
+.list > label.row:first-child {
+  border-start-end-radius: var(--card-radius);
+  border-start-start-radius: var(--card-radius);
+}
+
+.list > :last-child > a.row,
+.list > label.row:last-child {
+  border-end-end-radius: var(--card-radius);
+  border-end-start-radius: var(--card-radius);
+}
+
+.row-label {
+  flex: 1;
+}
+
+.row-value {
+  color: var(--sl-color-foreground-subtle);
+}
+
+.row sl-icon {
+  color: var(--sl-color-foreground-subtlest);
+}
+
+/*
+ * Hidden from view but read by screen readers. Also used for checkmark rows: a
+ * radio group where each row is a <label> around a visually hidden native
+ * radio. The radios keep the keyboard behaviour (arrow keys) and
+ * the "radio button, 1 of 3" announcement; the checkmark shows the choice.
+ */
+.row input[type='radio'],
+.visually-hidden {
+  block-size: 1px;
+  clip-path: inset(50%);
+  inline-size: 1px;
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.row .check {
+  color: var(--sl-color-foreground-selected-bold);
+  visibility: hidden;
+}
+
+.row:has(input:checked) .check {
+  visibility: visible;
+}
+
+/*
+ * Android: Material 3 segmented lists, as in Android 16 settings. Every row is
+ * its own tile, 2px apart, with large outer and small inner corners, and there
+ * are no dividers or chevrons. Section headers use the primary colour, values
+ * go on a second line under the title, and single choices show radio buttons.
+ */
+@container style(--platform: android) {
+  .group-title {
+    color: var(--sl-color-foreground-primary-bold);
+    font-size: var(--sl-text-sm-fontSize);
+    line-height: var(--sl-text-sm-lineHeight);
+  }
+
+  .list {
+    background: none;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sl-size-025);
+    overflow: visible;
+  }
+
+  .list > * {
+    background: var(--list-fill, var(--sl-elevation-surface-raised-default));
+    border-radius: var(--sl-size-050);
+    overflow: hidden;
+  }
+
+  .list > :first-child {
+    border-start-end-radius: var(--card-radius);
+    border-start-start-radius: var(--card-radius);
+  }
+
+  .list > :last-child {
+    border-end-end-radius: var(--card-radius);
+    border-end-start-radius: var(--card-radius);
+  }
+
+  .list > * + *::before {
+    display: none;
+  }
+
+  .row {
+    gap: var(--sl-size-200);
+    min-block-size: var(--sl-size-700);
+  }
+
+  a.row > sl-icon {
+    display: none;
+  }
+
+  /* Two-line rows: the value under the title. */
+  .row:has(.row-value) {
+    align-items: start;
+    flex-direction: column;
+    gap: 0;
+    justify-content: center;
+    min-block-size: calc(var(--sl-size-800) + var(--sl-size-100));
+  }
+
+  .row:has(.row-value) .row-label {
+    flex: none;
+  }
+
+  .row-value {
+    font-size: var(--sl-text-sm-fontSize);
+    line-height: var(--sl-text-sm-lineHeight);
+  }
+
+  /* Radio buttons before the label instead of a trailing checkmark. */
+  .row input[type='radio'] {
+    accent-color: var(--sl-color-border-selected);
+    block-size: var(--sl-size-250);
+    clip-path: none;
+    flex: none;
+    inline-size: var(--sl-size-250);
+    overflow: visible;
+    position: static;
+  }
+
+  .row .check {
+    display: none;
+  }
+}

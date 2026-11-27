@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app: [angular-demo, lit-demo, svelte-demo, vue-demo]
+        app: [angular-demo, capacitor-demo, lit-demo, svelte-demo, vue-demo]
     steps:
       - name: Checkout
         uses: actions/checkout@v6

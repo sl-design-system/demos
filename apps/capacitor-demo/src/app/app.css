@@ -1,0 +1,154 @@
+:host {
+  /* Page gutters that also keep content clear of notches and rounded corners. */
+  --gutter: var(--sl-size-200);
+  --gutter-start: calc(var(--safe-left) + var(--gutter));
+  --gutter-end: calc(var(--safe-right) + var(--gutter));
+  --header-top: calc(var(--safe-top) + var(--sl-size-050));
+
+  /* --keyboard-height: set on iOS while the on-screen keyboard is open. */
+  block-size: calc(100dvh - var(--keyboard-height, 0px));
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  align-items: center;
+  background: var(--sl-elevation-surface-raised-default);
+  border-block-end: 1px solid var(--sl-color-border-plain);
+  box-sizing: border-box;
+  display: flex;
+  gap: var(--sl-size-050);
+  min-block-size: calc(var(--safe-top) + var(--sl-size-700));
+  padding-block: var(--header-top) var(--sl-size-050);
+  padding-inline: var(--gutter-start) var(--gutter-end);
+}
+
+.app-header h1 {
+  font-family: var(--sl-heading-fontFamily);
+  font-size: var(--sl-heading-sm-fontSize);
+  font-weight: var(--sl-typography-heading-sm-fontWeight);
+  line-height: var(--sl-heading-sm-lineHeight);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Pull the back button into the gutter so its icon lines up with the content. */
+.back {
+  margin-inline-start: calc(-1 * var(--sl-size-100));
+}
+
+/*
+ * Android: Material top app bars. No divider, and the bar takes the screen's
+ * background. Child screens get a 64dp bar with the back arrow and a
+ * left-aligned title; tab roots get a large title.
+ */
+@container style(--platform: android) {
+  .app-header {
+    background: var(--sl-elevation-surface-base-default);
+    border-block-end: 0;
+  }
+
+  .app-header.grouped {
+    background: var(--sl-elevation-surface-raised-alternative);
+  }
+
+  .app-header.child {
+    min-block-size: calc(var(--safe-top) + var(--sl-size-800));
+  }
+
+  .app-header.child h1 {
+    font-size: var(--sl-title-md-fontSize);
+    font-weight: var(--sl-typography-title-md-fontWeight);
+    line-height: var(--sl-title-md-lineHeight);
+  }
+
+  .app-header.root {
+    padding-block: calc(var(--safe-top) + var(--sl-size-400)) var(--sl-size-150);
+  }
+
+  .app-header.root h1 {
+    font-size: var(--sl-heading-md-fontSize);
+    font-weight: var(--sl-typography-heading-md-fontWeight);
+    line-height: var(--sl-heading-md-lineHeight);
+  }
+}
+
+@container style(--platform: android) and style(--color-scheme: dark) {
+  .app-header.grouped {
+    background: var(--sl-elevation-surface-base-default);
+  }
+}
+
+main {
+  /* Opaque, so a page doesn't show through the one sliding over it. */
+  background: var(--sl-elevation-surface-base-default);
+  flex: 1;
+
+  /* Let main shrink below its content height so it scrolls instead of pushing the tab bar off-screen. */
+  min-block-size: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-block: var(--gutter);
+  padding-inline: var(--gutter-start) var(--gutter-end);
+}
+
+/*
+ * Screens of inset grouped lists (Screen.grouped): white cards on a tinted
+ * ground in light mode. In dark mode the ground is the page colour and the
+ * cards are lighter, as on iOS. Both grounds are opaque, so a page never shows
+ * through the one sliding over it.
+ */
+main.grouped {
+  --list-fill: var(--sl-elevation-surface-raised-default);
+
+  background: var(--sl-elevation-surface-raised-alternative);
+}
+
+@container style(--color-scheme: dark) {
+  main.grouped {
+    --list-fill: var(--sl-elevation-surface-raised-alternative);
+
+    background: var(--sl-elevation-surface-base-default);
+  }
+}
+
+main:focus-visible {
+  --ring-width: var(--sl-size-outlineWidth-default);
+
+  outline: var(--ring-width) solid var(--sl-color-border-focused);
+  outline-offset: calc(-1 * var(--ring-width));
+}
+
+main > * {
+  margin-inline: auto;
+  max-inline-size: 40rem;
+}
+
+/*
+ * With the native tab bar, content scrolls underneath the glass. Leave room
+ * at the end so the last item can scroll clear of the bar. The plugin reports
+ * the bar height (including the home indicator) as
+ * --cap-native-system-tabbar-height.
+ */
+:host([native-tab-bar]) main {
+  --tabbar-height: var(--cap-native-system-tabbar-height, 0px);
+  --tab-bar-space: max(var(--safe-bottom), var(--tabbar-height));
+
+  padding-block-end: calc(var(--tab-bar-space) + var(--gutter));
+}
+
+/* Hide the tab bar while the on-screen keyboard is open (native only). */
+:host([keyboard-open]) demo-tab-bar {
+  display: none;
+}
+
+/*
+ * iOS: with the native tab bar hidden, main keeps the content clear of the
+ * home indicator itself. Android resizes the window above the keyboard, so
+ * there the inset no longer applies.
+ */
+:host([native-tab-bar][keyboard-open]) main {
+  padding-block-end: calc(var(--safe-bottom) + var(--gutter));
+}

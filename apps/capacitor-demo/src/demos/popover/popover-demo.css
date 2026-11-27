@@ -1,0 +1,16 @@
+.content {
+  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-size-100);
+  max-inline-size: 16rem;
+
+  p {
+    margin: 0;
+  }
+}
+
+.end {
+  display: flex;
+  justify-content: end;
+}

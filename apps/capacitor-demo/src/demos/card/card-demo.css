@@ -1,0 +1,24 @@
+.media {
+  aspect-ratio: 16 / 9;
+  inline-size: 100%;
+}
+
+.blue {
+  background: var(--sl-color-background-accent-blue-bold);
+}
+
+.green {
+  background: var(--sl-color-background-accent-green-bold);
+}
+
+.orange {
+  background: var(--sl-color-background-accent-orange-bold);
+}
+
+h3 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}

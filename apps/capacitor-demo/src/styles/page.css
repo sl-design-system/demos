@@ -1,0 +1,29 @@
+/* Layout shared by all pages: a vertical stack with page gutters. */
+:host {
+  /*
+   * Grouped cards (list.css, demo.css). iOS 26 rounds them more than SLDS's
+   * largest radius (xl, 12px), so this uses the size scale instead. Headers,
+   * footers and row text are inset from the card edge by --card-inset.
+   */
+  --card-radius: var(--sl-size-250);
+  --card-inset: var(--sl-size-200);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-size-300);
+}
+
+/* Material's large shape: slightly rounder cards on Android. */
+@container style(--platform: android) {
+  :host {
+    --card-radius: var(--sl-size-300);
+  }
+}
+
+.intro {
+  color: var(--sl-color-foreground-subtle);
+  margin: 0;
+
+  /* Lines up with section headers and row text. */
+  padding-inline: var(--card-inset);
+}

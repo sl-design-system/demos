@@ -1,2 +1,5 @@
 dist
 
+# Native Capacitor projects (generated/managed by Xcode, Gradle and the Capacitor CLI)
+apps/capacitor-demo/android
+apps/capacitor-demo/ios

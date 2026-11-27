@@ -7,9 +7,11 @@
    - Prefer explicit and strict types.
    - If a temporary fallback is unavoidable, add an inline code comment beginning with `// TODO:` that explains the reason, and open a follow-up ticket in the issue tracker referencing that comment.
 
-2. Put component styles in the component `.scss` file inside that component folder.
+2. Put component styles in the component's style file inside that component folder.
+   - Use `.scss` in the esbuild-based demos (Angular, Lit, Svelte, Vue).
+   - Use plain `.css` in `apps/capacitor-demo`, imported with `with { type: 'css' }` (Vite + `@sl-design-system/rolldown-plugin-css-sheet`). Do not add `.scss` or a style-generation step there.
    - Do not rely on inline `style` attributes in component HTML/templates.
-   - Keep markup focused on structure and behavior, and keep styling in `.scss`.
+   - Keep markup focused on structure and behavior, and keep styling in the style file.
 
 3. For new form components, Angular demos must include both variants:
    - A form component is any component whose primary purpose is user data entry and which integrates with Angular form APIs (for example, implements `ControlValueAccessor` or accepts form-control inputs).
